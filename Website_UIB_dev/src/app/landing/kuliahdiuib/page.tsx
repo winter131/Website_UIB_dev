@@ -7,11 +7,13 @@ import Footer from '@/components/landing/footer'
 import AboutHeader from '@/components/landing/tentang/about-header'
 import { FileDown, Award, Search, BookOpen, X, Eye } from 'lucide-react'
 import { Poppins } from 'next/font/google'
-import TentangView from './view/TentangView'
+import KuliahdiUibView from './view/KuliahdiUibView'
 
 
-export default function Tentang() {
+
+
+export default function KuliahdiUIB() {
         
-  return <TentangView />
+  return <KuliahdiUibView />
    
 }

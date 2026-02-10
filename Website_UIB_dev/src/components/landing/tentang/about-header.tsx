@@ -7,7 +7,7 @@ export default function AboutHeader({ title }: { title: string }) {
       
       {/* Background Pattern - Sangat tipis dengan gradasi */}
       <div 
-        className="absolute inset-0 opacity-[0.15] pointer-events-none z-0"
+        className="absolute inset-0 opacity-[0.10] pointer-events-none z-0"
         style={{ 
           backgroundImage: "url('/img/batik_new.jpg')", 
           backgroundSize: '700px',

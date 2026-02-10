@@ -59,7 +59,7 @@ const pimpinanData = {
 type Category = keyof typeof pimpinanData
 
 export default function PimpinanView() {
-  const [activeTab, setActiveTab] = useState<Category>('Fakultas')
+  const [activeTab, setActiveTab] = useState<Category>('Rektorat')
 
   return (
     <main className="min-h-screen bg-white font-poppins">

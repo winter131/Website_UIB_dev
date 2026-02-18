@@ -1,148 +1,367 @@
 'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import NavbarLanding from '@/components/landing/navbar'
 import Footer from '@/components/landing/footer'
-import { Landmark, GraduationCap, ArrowRight, ChevronRight } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Landmark, GraduationCap, ArrowRight, ChevronRight, Globe, ArrowUpRight } from 'lucide-react'
+import DownloadCard from '@/components/landing/kuliahdiuib/downloadcard'
+
+const fakultasData = [
+  { name: 'Fakultas Ekonomi', img: '/img/C1700307.jpg' },
+  { name: 'Fakultas Hukum', img: '/img/C1700295.jpg' },
+  { name: 'Fakultas Teknik Sipil', img: '/img/DSC06279.jpg' },
+  { name: 'Fakultas Ilmu Komputer', img: '/img/Gp.jpg' },
+  { name: 'Fakultas Ilmu Pendidikan', img: '/img/story2.jpg' },
+  { name: 'Program Pascasarjana', img: '/img/TE.webp' },
+]
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  }),
+}
 
 export default function KuliahdiUibView() {
   return (
-    <main className="min-h-screen bg-white font-poppins">
+    <main className="min-h-screen" style={{ background: '#f4f5f7' }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap');
+        .font-sora { font-family: 'Sora', sans-serif; }
+        .font-dm   { font-family: 'DM Sans', sans-serif; }
+      `}</style>
+
       <NavbarLanding />
-      
-      {/* SECTION 1: HEADER & STATISTIK */}
-      <section className="relative pt-32 md:pt-40 pb-24 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-20">
-            <div className="w-full lg:w-1/2">
-              <h1 className="text-[#1a365d] text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] tracking-tight">
-                Memberi Dukungan, Menggali Potensi, dan Mewujudkan Impian.
+
+      {/* ─────────────────────────────────────────────
+          SECTION 1 — HERO / STATISTIK
+      ───────────────────────────────────────────── */}
+      <section className="pt-32 md:pt-44 pb-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col lg:flex-row lg:items-end gap-12 lg:gap-20"
+          >
+            {/* Kiri — heading */}
+            <div className="lg:w-1/2">
+              <p
+                className="font-dm"
+                style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase', color: '#e67e22', fontWeight: 600, marginBottom: '16px' }}
+              >
+                Kuliah di UIB
+              </p>
+              <h1
+                className="font-sora"
+                style={{ fontSize: 'clamp(30px, 4vw, 50px)', fontWeight: 800, color: '#2A3955', lineHeight: 1.1, letterSpacing: '-1px' }}
+              >
+                Memberi Dukungan,<br />
+                Menggali Potensi,<br />
+                <span style={{ color: '#e67e22' }}>Mewujudkan Impian.</span>
               </h1>
             </div>
 
-            <div className="w-full lg:w-1/2 space-y-8">
-              <h2 className="text-[#1a365d] text-lg md:text-xl font-medium leading-relaxed max-w-xl">
-                Program Pendidikan Tersedia di Universitas Internasional Batam
-              </h2>
-              
-              <div className="flex flex-wrap items-center gap-8 md:gap-12 pt-4">
-                <div className="flex items-center gap-3 group">
-                  <div className="p-2 text-[#e67e22]"><Landmark size={32} strokeWidth={1.5} /></div>
-                  <div>
-                    <div className="text-xl font-bold text-[#e67e22] leading-none">7</div>
-                    <div className="text-[10px] uppercase tracking-wider text-gray-500 font-bold mt-1">Fakultas</div>
+            {/* Kanan — deskripsi + stats */}
+            <div className="lg:w-1/2 space-y-10">
+              <p
+                className="font-dm"
+                style={{ fontSize: '15px', color: 'rgba(42,57,85,0.55)', lineHeight: 1.75 }}
+              >
+                Program Pendidikan Tersedia di Universitas Internasional Batam — mempersiapkan generasi unggul berdaya saing global.
+              </p>
+
+              <div style={{ display: 'flex', gap: '32px' }}>
+                {[
+                  { icon: Landmark, value: '7', label: 'Fakultas' },
+                  { icon: GraduationCap, value: '14', label: 'Program Studi' },
+                ].map(({ icon: Icon, value, label }, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                    <div
+                      style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '14px',
+                        background: '#fff5ec',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                      }}
+                    >
+                      <Icon size={22} strokeWidth={1.8} color="#e67e22" />
+                    </div>
+                    <div>
+                      <div className="font-sora" style={{ fontSize: '26px', fontWeight: 800, color: '#2A3955', lineHeight: 1 }}>{value}</div>
+                      <div className="font-dm" style={{ fontSize: '10px', letterSpacing: '2px', textTransform: 'uppercase', color: '#aaa', fontWeight: 600, marginTop: '4px' }}>{label}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-3 group">
-                  <div className="p-2 text-[#e67e22]"><GraduationCap size={32} strokeWidth={1.5} /></div>
-                  <div>
-                    <div className="text-xl font-bold text-[#e67e22] leading-none">14</div>
-                    <div className="text-[10px] uppercase tracking-wider text-gray-500 font-bold mt-1">Program Studi</div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-          </div>
+          </motion.div>
+
+          {/* Accent line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.35, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            style={{ marginTop: '48px', height: '2px', background: 'linear-gradient(90deg, #e67e22 0%, #2A3955 55%, transparent 100%)', transformOrigin: 'left', borderRadius: '2px' }}
+          />
         </div>
       </section>
 
-      {/* SECTION 2: GRID FAKULTAS (4 KOLOM) */}
-      <section className="py-24 bg-gray-50/50">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[280px]">
-            
-            {/* BARIS 1: Kartu Utama (Navy) */}
-            <div className="lg:col-span-2 bg-[#1a365d] rounded-3xl p-8 flex flex-col justify-between text-white relative overflow-hidden group shadow-lg">
-              <div className="relative z-10">
-                <span className="text-[#e67e22] text-sm font-bold uppercase tracking-wider mb-4 block">Fakultas dan Sekolah</span>
-                <h2 className="text-2xl font-bold mb-4 leading-tight">
-                  Universitas Internasional Batam (UIB) menawarkan beragam program studi.
-                </h2>
-                <p className="text-white/80 text-sm mb-6">
-                  Lihat rincian biaya kuliah di sini.
+      {/* ─────────────────────────────────────────────
+          SECTION 2 — GRID FAKULTAS
+      ───────────────────────────────────────────── */}
+      <section className="px-6 pb-20">
+        <div className="max-w-6xl mx-auto">
+
+          {/* Sub-header */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
+          >
+            <div>
+              <p className="font-dm" style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase', color: '#e67e22', fontWeight: 600, marginBottom: '8px' }}>
+                Pilih Jalurmu
+              </p>
+              <h2 className="font-sora" style={{ fontSize: '24px', fontWeight: 700, color: '#2A3955', letterSpacing: '-0.5px' }}>
+                Fakultas & Program Studi
+              </h2>
+            </div>
+            <Link
+              href="/landing/biaya"
+              className="font-dm"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 600, color: '#2A3955', textDecoration: 'none', opacity: 0.6, transition: 'opacity 0.2s' }}
+            >
+              Lihat Biaya Pendidikan <ArrowUpRight size={15} />
+            </Link>
+          </motion.div>
+
+          {/* Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '14px' }}>
+
+            {/* Info card — navy */}
+            <motion.div
+              custom={0}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              style={{
+                gridColumn: 'span 2',
+                background: '#2A3955',
+                borderRadius: '20px',
+                padding: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                minHeight: '220px',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              <div style={{ position: 'absolute', right: '-30px', top: '-30px', width: '160px', height: '160px', borderRadius: '50%', background: 'rgba(230,126,34,0.1)' }} />
+              <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '4px', background: '#e67e22', borderRadius: '20px 0 0 20px' }} />
+              <div>
+                <p className="font-dm" style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#e67e22', fontWeight: 600, marginBottom: '12px' }}>
+                  Fakultas & Sekolah
+                </p>
+                <h3 className="font-sora" style={{ fontSize: '18px', fontWeight: 700, color: '#fff', lineHeight: 1.3, marginBottom: '10px' }}>
+                  UIB menawarkan beragam<br />program studi berkualitas.
+                </h3>
+                <p className="font-dm" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.65 }}>
+                  Kurikulum berbasis industri untuk karir global.
                 </p>
               </div>
-              <div className="relative z-10">
-                <Link href="/landing/beasiswa" className="inline-flex items-center gap-2 bg-white text-[#1a365d] px-6 py-3 rounded-full font-bold text-sm hover:bg-gray-100 transition-all">
-                  Biaya Pendidikan <ChevronRight size={18} />
-                </Link>
-              </div>
-            </div>
+              <Link
+                href="/landing/beasiswa"
+                className="font-dm"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#e67e22', color: '#fff', borderRadius: '100px', padding: '11px 22px', fontSize: '12px', fontWeight: 600, textDecoration: 'none', width: 'fit-content', marginTop: '20px', boxShadow: '0 6px 24px rgba(230,126,34,0.35)' }}
+              >
+                Biaya Pendidikan <ChevronRight size={15} />
+              </Link>
+            </motion.div>
 
-            {/* Grid Kartu Fakultas */}
-            {[
-              { name: "Fakultas Ekonomi", img: "/img/ekonomi.jpg" },
-              { name: "Fakultas Hukum", img: "/img/hukum.jpg" },
-              { name: "Fakultas Teknik Sipil", img: "/img/teknik.jpg" },
-              { name: "Fakultas Ilmu Komputer", img: "/img/komputer.jpg" },
-              { name: "Fakultas Ilmu Pendidikan", img: "/img/pendidikan.jpg" },
-              { name: "Program Pascasarjana", img: "/img/pasca.jpg" },
-            ].map((f, i) => (
-              <div key={i} className="relative rounded-3xl overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-all duration-500">
-                <Image src={f.img} alt={f.name} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a365d]/95 via-[#1a365d]/20 to-transparent opacity-90 transition-opacity duration-500"></div>
-                <div className="absolute bottom-0 left-0 p-6 w-full">
-                  <h3 className="text-white font-bold text-lg leading-tight group-hover:-translate-y-2 transition-transform duration-500">
+            {/* Fakultas photo cards */}
+            {fakultasData.map((f, i) => (
+              <motion.div
+                key={i}
+                custom={i + 1}
+                variants={fadeUp}
+                initial="hidden"
+                animate="visible"
+                style={{ position: 'relative', borderRadius: '20px', overflow: 'hidden', minHeight: '220px', cursor: 'pointer' }}
+                className="group"
+              >
+                <Image
+                  src={f.img}
+                  alt={f.name}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(42,57,85,0.92) 0%, rgba(42,57,85,0.15) 60%, transparent 100%)' }} />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, padding: '22px' }}>
+                  <h3
+                    className="font-sora"
+                    style={{ fontSize: '15px', fontWeight: 700, color: '#fff', lineHeight: 1.25, transition: 'transform 0.4s cubic-bezier(0.22,1,0.36,1)' }}
+                  >
                     {f.name}
                   </h3>
                 </div>
-              </div>
+                {/* Orange accent dot on hover */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '18px',
+                    right: '18px',
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    background: '#e67e22',
+                    opacity: 0,
+                    transition: 'opacity 0.3s',
+                  }}
+                  className="group-hover:opacity-100"
+                />
+              </motion.div>
             ))}
-
-            {/* Kartu Penutup (Oranye) */}
-            <div className="lg:col-span-2 bg-[#e67e22] rounded-3xl p-8 flex flex-col justify-between text-white relative overflow-hidden group shadow-lg">
-              <div className="relative z-10">
-                <span className="text-[#1a365d] text-sm font-bold uppercase tracking-wider mb-4 block">Informasi Pendaftaran</span>
-                <h2 className="text-2xl font-bold mb-4 leading-tight">Mulai Perjalanan Akademik Anda Bersama Kami.</h2>
-              </div>
-              <div className="relative z-10">
-                <Link href="#" className="inline-flex items-center gap-2 bg-[#1a365d] text-white px-6 py-3 rounded-full font-bold text-sm transition-all">
-                  Daftar Sekarang <ArrowRight size={18} />
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 3: BEASISWA (Navy & Oranye) */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
-            <div className="lg:col-span-5 relative">
-              <div className="relative w-full aspect-[6/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-[#1a365d]">
-                <Image src="/img/beasiswa-uib.jpg" alt="Beasiswa UIB" fill className="object-cover" />
-                <div className="absolute bottom-8 left-8 bg-[#e67e22] p-4 rounded-2xl text-white shadow-xl">
-                    <GraduationCap size={32} />
-                </div>
+      {/* ─────────────────────────────────────────────
+          SECTION 3 — BEASISWA
+      ───────────────────────────────────────────── */}
+      <section className="px-6 pb-20">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            style={{ background: '#2A3955', borderRadius: '24px', overflow: 'hidden', display: 'grid', gridTemplateColumns: '1fr 1fr' }}
+            className="flex-col lg:grid"
+          >
+            {/* Kiri — gambar */}
+            <div style={{ position: 'relative', minHeight: '360px' }}>
+              <Image src="/img/C1700307.jpg" alt="Beasiswa UIB" fill className="object-cover" />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, transparent 60%, #2A3955 100%)' }} />
+              {/* Icon badge */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '28px',
+                  left: '28px',
+                  background: '#e67e22',
+                  borderRadius: '16px',
+                  padding: '12px',
+                  boxShadow: '0 8px 24px rgba(230,126,34,0.4)',
+                }}
+              >
+                <GraduationCap size={28} color="#fff" />
               </div>
-              <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#e67e22]/10 rounded-full blur-3xl -z-10" />
             </div>
 
-            <div className="lg:col-span-7 space-y-10">
-              <div className="inline-flex items-center gap-3 bg-[#1a365d] text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-[0.2em] shadow-lg">
-                <div className="w-2 h-2 bg-[#e67e22] rounded-full animate-pulse" />
+            {/* Kanan — teks */}
+            <div style={{ padding: '48px 44px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '20px' }}>
+              <div
+                className="font-dm"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', width: 'fit-content', background: 'rgba(230,126,34,0.15)', color: '#e67e22', borderRadius: '100px', padding: '6px 14px', fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' }}
+              >
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#e67e22', display: 'inline-block' }} />
                 Beasiswa Universitas
               </div>
-              
-              <div className="space-y-6">
-                <h2 className="text-[#1a365d] font-bold text-4xl leading-tight">
-                    Tidak Ada Mimpi Yang Terlalu Besar, Sekarang Kamu Juga Bisa!
-                </h2>
-                <p className="text-gray-500 leading-relaxed">
-                    Universitas Internasional Batam memiliki berbagai beasiswa yang membantu Anda menavigasi berbagai pilihan dan memastikan bahwa UIB adalah pilihan yang terjangkau untuk pendidikan Anda.
-                </p>
+
+              <h2 className="font-sora" style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 700, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.5px' }}>
+                Tidak Ada Mimpi Yang<br />Terlalu Besar Untukmu.
+              </h2>
+              <p className="font-dm" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.75 }}>
+                UIB memiliki berbagai program beasiswa yang membantu memastikan pendidikan berkualitas dapat dijangkau semua kalangan.
+              </p>
+              <Link
+                href="/landing/beasiswa"
+                className="font-dm group"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#e67e22', color: '#fff', borderRadius: '100px', padding: '12px 24px', fontSize: '13px', fontWeight: 600, textDecoration: 'none', width: 'fit-content', boxShadow: '0 8px 28px rgba(230,126,34,0.35)', marginTop: '4px' }}
+              >
+                Beasiswa Selengkapnya
+                <ArrowRight size={15} />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────
+          SECTION 4 — DOWNLOAD & ERASMUS
+      ───────────────────────────────────────────── */}
+      <section className="px-6 pb-24">
+        <div className="max-w-6xl mx-auto">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '14px', alignItems: 'start' }} className="flex flex-col lg:grid">
+
+            {/* DownloadCard */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <DownloadCard />
+            </motion.div>
+
+            {/* Erasmus Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              style={{ background: '#fff', borderRadius: '24px', overflow: 'hidden', border: '1px solid #ebebeb', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+              className="group"
+            >
+              {/* Image */}
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '21/8', overflow: 'hidden' }}>
+                <Image
+                  src="/img/TE.webp"
+                  alt="Program Erasmus"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(42,57,85,0.5) 0%, transparent 60%)' }} />
               </div>
 
-              <div className="pt-4">
-                <Link href="#" className="inline-flex items-center gap-4 bg-[#e67e22] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#d35400] transition-all group shadow-xl shadow-orange-100">
-                  Beasiswa Selengkapnya 
-                  <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" /> 
+              {/* Content */}
+              <div style={{ padding: '32px 36px' }}>
+                <div
+                  className="font-dm"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(42,57,85,0.08)', color: '#2A3955', borderRadius: '100px', padding: '6px 14px', fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '16px' }}
+                >
+                  <Globe size={12} /> Program Erasmus
+                </div>
+                <p
+                  className="font-dm"
+                  style={{ fontSize: '14px', color: 'rgba(42,57,85,0.6)', lineHeight: 1.75, marginBottom: '24px' }}
+                >
+                  Program Erasmus adalah inisiatif Uni Eropa yang melibatkan pertukaran pelajar dan staf akademik, meningkatkan kerjasama antarlembaga pendidikan tinggi dan mempromosikan mobilitas internasional.
+                </p>
+                <Link
+                  href="#"
+                  className="font-dm"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1.5px solid #2A3955', color: '#2A3955', borderRadius: '100px', padding: '10px 22px', fontSize: '12px', fontWeight: 600, textDecoration: 'none', transition: 'all 0.25s' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#2A3955'; (e.currentTarget as HTMLAnchorElement).style.color = '#fff' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'transparent'; (e.currentTarget as HTMLAnchorElement).style.color = '#2A3955' }}
+                >
+                  Selengkapnya <ChevronRight size={15} />
                 </Link>
               </div>
-            </div>
+            </motion.div>
+
           </div>
         </div>
       </section>

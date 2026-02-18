@@ -57,6 +57,8 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
+    "flowbite": "^4.0.1",
+    "flowbite-react": "^0.12.17",
     "is-hotkey": "^0.2.0",
     "lodash.throttle": "^4.1.1",
     "lucide-react": "^0.555.0",

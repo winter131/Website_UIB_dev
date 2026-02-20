@@ -8,14 +8,15 @@ import Footer from '@/components/landing/footer'
 import { motion } from 'framer-motion'
 import { Landmark, GraduationCap, ArrowRight, ChevronRight, Globe, ArrowUpRight } from 'lucide-react'
 import DownloadCard from '@/components/landing/kuliahdiuib/downloadcard'
+import { relative } from 'path'
 
 const fakultasData = [
-  { name: 'Fakultas Ekonomi', img: '/img/C1700307.jpg' },
+  { name: 'Fakultas Bisnis dan Manajemen', img: '/img/C1700307.jpg' },
   { name: 'Fakultas Hukum', img: '/img/C1700295.jpg' },
-  { name: 'Fakultas Teknik Sipil', img: '/img/DSC06279.jpg' },
+  { name: 'Fakultas Teknik Sipil dan perencanaan', img: '/img/DSC06279.jpg' },
   { name: 'Fakultas Ilmu Komputer', img: '/img/Gp.jpg' },
   { name: 'Fakultas Ilmu Pendidikan', img: '/img/story2.jpg' },
-  { name: 'Program Pascasarjana', img: '/img/TE.webp' },
+  { name: 'Program  Kesehatan dan Sains', img: '/img/TE.webp' },
 ]
 
 const fadeUp = {
@@ -137,13 +138,7 @@ export default function KuliahdiUibView() {
                 Fakultas & Program Studi
               </h2>
             </div>
-            <Link
-              href="/landing/biaya"
-              className="font-dm"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 600, color: '#2A3955', textDecoration: 'none', opacity: 0.6, transition: 'opacity 0.2s' }}
-            >
-              Lihat Biaya Pendidikan <ArrowUpRight size={15} />
-            </Link>
+            
           </motion.div>
 
           {/* Grid */}
@@ -272,17 +267,11 @@ export default function KuliahdiUibView() {
 
             {/* Kanan — teks */}
             <div style={{ padding: '48px 44px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '20px' }}>
-              <div
-                className="font-dm"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', width: 'fit-content', background: 'rgba(230,126,34,0.15)', color: '#e67e22', borderRadius: '100px', padding: '6px 14px', fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' }}
-              >
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#e67e22', display: 'inline-block' }} />
-                Beasiswa Universitas
-              </div>
+              
 
-              <h2 className="font-sora" style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 700, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.5px' }}>
-                Tidak Ada Mimpi Yang<br />Terlalu Besar Untukmu.
-              </h2>
+              <h1 className="font-sora" style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 700, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.5px' }}>
+                Fakultas Kedokteran
+              </h1>
               <p className="font-dm" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.75 }}>
                 UIB memiliki berbagai program beasiswa yang membantu memastikan pendidikan berkualitas dapat dijangkau semua kalangan.
               </p>
@@ -291,7 +280,7 @@ export default function KuliahdiUibView() {
                 className="font-dm group"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#e67e22', color: '#fff', borderRadius: '100px', padding: '12px 24px', fontSize: '13px', fontWeight: 600, textDecoration: 'none', width: 'fit-content', boxShadow: '0 8px 28px rgba(230,126,34,0.35)', marginTop: '4px' }}
               >
-                Beasiswa Selengkapnya
+                Lebih Lengkap
                 <ArrowRight size={15} />
               </Link>
             </div>
@@ -302,30 +291,45 @@ export default function KuliahdiUibView() {
       {/* ─────────────────────────────────────────────
           SECTION 4 — DOWNLOAD & ERASMUS
       ───────────────────────────────────────────── */}
-      <section className="px-6 pb-24">
-        <div className="max-w-6xl mx-auto">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '14px', alignItems: 'start' }} className="flex flex-col lg:grid">
+     
 
-            {/* DownloadCard */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+          <section className="px-6 pb-24">
+        <div className="max-w-6xl mx-auto">
+          {/* Gunakan items-start dan pastikan tidak ada padding top pada grid ini */}
+          <div 
+            style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '24px' }} 
+            className="flex flex-col lg:grid items-start pt-0"
+          >
+
+            {/* SISI KIRI: DownloadCard - Paksa margin dan padding ke 0 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 0 }} 
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.5 }}
+              className="m-0 p-0 flex flex-col items-stretch"
+              style={{ marginTop: 0 }} // Memastikan tidak ada margin top
             >
               <DownloadCard />
             </motion.div>
 
-            {/* Erasmus Card */}
+            {/* SISI KANAN: Erasmus Card - Pastikan y: 0 agar sejajar sejak awal */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 0 }} 
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              style={{ background: '#fff', borderRadius: '24px', overflow: 'hidden', border: '1px solid #ebebeb', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              style={{ 
+                margin: 0, 
+                background: '#fff', 
+                borderRadius: '24px', 
+                overflow: 'hidden', 
+                border: '1px solid #ebebeb', 
+                boxShadow: '0 2px 12px rgba(0,0,0,0.04)' 
+              }}
               className="group"
             >
-              {/* Image */}
+              {/* Konten Image Erasmus */}
               <div style={{ position: 'relative', width: '100%', aspectRatio: '21/8', overflow: 'hidden' }}>
                 <Image
                   src="/img/TE.webp"
@@ -336,8 +340,8 @@ export default function KuliahdiUibView() {
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(42,57,85,0.5) 0%, transparent 60%)' }} />
               </div>
 
-              {/* Content */}
               <div style={{ padding: '32px 36px' }}>
+                {/* Label & Deskripsi Erasmus */}
                 <div
                   className="font-dm"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(42,57,85,0.08)', color: '#2A3955', borderRadius: '100px', padding: '6px 14px', fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '16px' }}
@@ -348,14 +352,12 @@ export default function KuliahdiUibView() {
                   className="font-dm"
                   style={{ fontSize: '14px', color: 'rgba(42,57,85,0.6)', lineHeight: 1.75, marginBottom: '24px' }}
                 >
-                  Program Erasmus adalah inisiatif Uni Eropa yang melibatkan pertukaran pelajar dan staf akademik, meningkatkan kerjasama antarlembaga pendidikan tinggi dan mempromosikan mobilitas internasional.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae similique dignissimos explicabo?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat praesentium officia necessitatibus amet odit dolorum in illo cum sunt modi.
                 </p>
                 <Link
                   href="#"
                   className="font-dm"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1.5px solid #2A3955', color: '#2A3955', borderRadius: '100px', padding: '10px 22px', fontSize: '12px', fontWeight: 600, textDecoration: 'none', transition: 'all 0.25s' }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#2A3955'; (e.currentTarget as HTMLAnchorElement).style.color = '#fff' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'transparent'; (e.currentTarget as HTMLAnchorElement).style.color = '#2A3955' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1.5px solid #2A3955', color: '#2A3955', borderRadius: '100px', padding: '10px 22px', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}
                 >
                   Selengkapnya <ChevronRight size={15} />
                 </Link>

@@ -1,0 +1,96 @@
+
+> admisi_frontend@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+▲ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local, .env
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+/*! 🌼 daisyUI 5.5.5 */
+Found 1 warning while optimizing generated CSS:
+
+[2m│ }[22m
+[2m│ @layer base {[22m
+[2m│[22m   @property --radialprogress {
+[2m┆[22m            [33m[2m^--[22m Unknown at rule: @property[39m
+[2m┆[22m
+[2m│     syntax: "<percentage>";[22m
+[2m│     inherits: true;[22m
+
+Turbopack build encountered 1 warnings:
+./tailwind.config.mjs:1:13
+Parsing ecmascript source code failed
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m type { [33mConfig[39m } [36mfrom[39m [32m"tailwindcss"[39m[33m;[39m
+ [90m   |[39m             [31m[1m^[22m[39m
+ [90m 2 |[39m
+ [90m 3 |[39m [36mconst[39m config[33m:[39m [33mConfig[39m [33m=[39m {
+ [90m 4 |[39m   content[33m:[39m [[0m
+
+Expected ',', got '{'
+
+
+
+> Build error occurred
+Error: Turbopack build failed with 2 errors:
+./src/app/(main)/managemen-user/user/view/UserView.tsx:14:1
+Module not found: Can't resolve '@/hooks/pegawai/usePegawaiData'
+[0m [90m 12 |[39m [36mimport[39m { useUserData } [36mfrom[39m [32m"@/hooks/user/useUserData"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m { useUsergroupData } [36mfrom[39m [32m"@/hooks/Usergroup/useUsergroupData"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m { usePegawaiData } [36mfrom[39m [32m"@/hooks/pegawai/usePegawaiData"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m [36mimport[39m [33mSelectSearch[39m [36mfrom[39m [32m"@/components/SelectSearch"[39m[33m;[39m
+ [90m 16 |[39m [36mimport[39m { [33mPegawaiType[39m } [36mfrom[39m [32m"@/types/PegawaiTypes"[39m[33m;[39m
+ [90m 17 |[39m [36mimport[39m { useDebounce } [36mfrom[39m [32m"use-debounce"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/hooks/pegawai/usePegawaiData' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/(main)/managemen-user/user/view/UserView.tsx [Client Component Browser]
+    ./src/app/(main)/managemen-user/user/page.tsx [Client Component Browser]
+    ./src/app/(main)/managemen-user/user/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/(main)/managemen-user/user/view/UserView.tsx [Client Component SSR]
+    ./src/app/(main)/managemen-user/user/page.tsx [Client Component SSR]
+    ./src/app/(main)/managemen-user/user/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/(main)/managemen-user/user/view/UserView.tsx:13:1
+Module not found: Can't resolve '@/hooks/pegawai/usePegawaiData'
+[0m [90m 11 |[39m [36mimport[39m { useUserData } [36mfrom[39m [32m"@/hooks/user/useUserData"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { useUsergroupData } [36mfrom[39m [32m"@/hooks/Usergroup/useUsergroupData"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m { usePegawaiData } [36mfrom[39m [32m"@/hooks/pegawai/usePegawaiData"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m [33mSelectSearch[39m [36mfrom[39m [32m"@/components/SelectSearch"[39m[33m;[39m
+ [90m 15 |[39m [36mimport[39m { [33mPegawaiType[39m } [36mfrom[39m [32m"@/types/PegawaiTypes"[39m[33m;[39m
+ [90m 16 |[39m [36mimport[39m { useDebounce } [36mfrom[39m [32m"use-debounce"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/hooks/pegawai/usePegawaiData' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/(main)/managemen-user/user/view/UserView.tsx [Client Component Browser]
+    ./src/app/(main)/managemen-user/user/page.tsx [Client Component Browser]
+    ./src/app/(main)/managemen-user/user/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/(main)/managemen-user/user/view/UserView.tsx [Client Component SSR]
+    ./src/app/(main)/managemen-user/user/page.tsx [Client Component SSR]
+    ./src/app/(main)/managemen-user/user/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./src/app/(main)/managemen-user/user/view/UserView.tsx:14:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/(main)/managemen-user/user/view/UserView.tsx:13:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)

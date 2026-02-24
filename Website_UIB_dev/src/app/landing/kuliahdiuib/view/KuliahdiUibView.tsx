@@ -24,7 +24,7 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] } as any,
   }),
 }
 
@@ -138,7 +138,7 @@ export default function KuliahdiUibView() {
                 Fakultas & Program Studi
               </h2>
             </div>
-            
+
           </motion.div>
 
           {/* Grid */}
@@ -267,7 +267,7 @@ export default function KuliahdiUibView() {
 
             {/* Kanan — teks */}
             <div style={{ padding: '48px 44px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '20px' }}>
-              
+
 
               <h1 className="font-sora" style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 700, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.5px' }}>
                 Fakultas Kedokteran
@@ -291,19 +291,19 @@ export default function KuliahdiUibView() {
       {/* ─────────────────────────────────────────────
           SECTION 4 — DOWNLOAD & ERASMUS
       ───────────────────────────────────────────── */}
-     
 
-          <section className="px-6 pb-24">
+
+      <section className="px-6 pb-24">
         <div className="max-w-6xl mx-auto">
           {/* Gunakan items-start dan pastikan tidak ada padding top pada grid ini */}
-          <div 
-            style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '24px' }} 
+          <div
+            style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '24px' }}
             className="flex flex-col lg:grid items-start pt-0"
           >
 
             {/* SISI KIRI: DownloadCard - Paksa margin dan padding ke 0 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 0 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
@@ -315,17 +315,17 @@ export default function KuliahdiUibView() {
 
             {/* SISI KANAN: Erasmus Card - Pastikan y: 0 agar sejajar sejak awal */}
             <motion.div
-              initial={{ opacity: 0, y: 0 }} 
+              initial={{ opacity: 0, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              style={{ 
-                margin: 0, 
-                background: '#fff', 
-                borderRadius: '24px', 
-                overflow: 'hidden', 
-                border: '1px solid #ebebeb', 
-                boxShadow: '0 2px 12px rgba(0,0,0,0.04)' 
+              style={{
+                margin: 0,
+                background: '#fff',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                border: '1px solid #ebebeb',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.04)'
               }}
               className="group"
             >

@@ -17,15 +17,15 @@ import AcademicPrograms from '@/components/landing/programs'
 import DirectorySection from '@/components/landing/directory'
 import LatestArticles from '@/components/landing/articles'
 import StudentAchievements from '@/components/landing/student-achievements'
-import Footer from '@/components/landing/footer' 
+import Footer from '@/components/landing/footer'
 
 // --- KONFIGURASI ANIMASI ---
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: "easeOut" } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" } as any
   }
 };
 
@@ -40,22 +40,22 @@ const staggerContainer = {
 export default function LandingPage() {
   // Data Menu: Memudahkan update rute di masa depan
   const quickLinks = [
-    { 
-      title: 'Pendaftaran Beasiswa', 
-      desc: 'Informasi lengkap persyaratan pendaftaran beasiswa UIB.', 
-      icon: <FaGraduationCap size={44}/>,
+    {
+      title: 'Pendaftaran Beasiswa',
+      desc: 'Informasi lengkap persyaratan pendaftaran beasiswa UIB.',
+      icon: <FaGraduationCap size={44} />,
       href: '/landing' // Ganti ke rute spesifik nanti
     },
-    { 
-      title: 'Program Studi', 
-      desc: 'Daftar program studi unggulan dengan kurikulum berbasis industri.', 
-      icon: <FaInfoCircle size={44}/>,
+    {
+      title: 'Program Studi',
+      desc: 'Daftar program studi unggulan dengan kurikulum berbasis industri.',
+      icon: <FaInfoCircle size={44} />,
       href: '/landing' // Ganti ke rute spesifik nanti
     },
-    { 
-      title: 'Informasi Pendaftaran', 
-      desc: 'Pusat bantuan teknis dan informasi akademik mahasiswa baru.', 
-      icon: <FaHeadset size={44}/>,
+    {
+      title: 'Informasi Pendaftaran',
+      desc: 'Pusat bantuan teknis dan informasi akademik mahasiswa baru.',
+      icon: <FaHeadset size={44} />,
       href: '/landing' // Ganti ke rute spesifik nanti
     }
   ];
@@ -63,15 +63,15 @@ export default function LandingPage() {
   return (
     <main className="bg-white min-h-screen pt-[110px] overflow-x-hidden font-poppins text-[#2A3955]">
       <NavbarLanding />
-      
+
       {/* HERO SECTION */}
       <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
         <Hero />
       </motion.div>
-      
+
       {/* 1. QUICK LINKS SECTION (Rise with Stagger Effect) */}
       <section className="max-w-7xl mx-auto -mt-16 md:-mt-20 relative z-50 px-6 mb-24">
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
           initial="hidden"
           whileInView="visible"
@@ -79,8 +79,8 @@ export default function LandingPage() {
           variants={staggerContainer}
         >
           {quickLinks.map((item, i) => (
-            <motion.div 
-              key={i} 
+            <motion.div
+              key={i}
               variants={fadeInUp}
               className="bg-[#f3edd1] p-10 flex flex-row items-start gap-6 hover:-translate-y-2 transition-all duration-300 shadow-md group border-b-4 border-transparent hover:border-[#e67e22]"
             >
@@ -88,10 +88,10 @@ export default function LandingPage() {
               <div className="flex flex-col text-left">
                 <h2 className="font-bold text-[17px] leading-tight mb-2 uppercase tracking-tight">{item.title}</h2>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-light">{item.desc}</p>
-                
+
                 {/* Link Internal untuk masa depan */}
-                <Link 
-                  href={item.href} 
+                <Link
+                  href={item.href}
                   className="mt-6 inline-block w-fit text-[11px] font-black text-[#e67e22] tracking-[0.2em] hover:underline"
                 >
                   MORE
@@ -101,7 +101,7 @@ export default function LandingPage() {
           ))}
         </motion.div>
       </section>
-      
+
       {/* 2. MAIN CONTENT SECTIONS (Rise on Scroll) */}
       {[
         <LatestNews key="news" />,

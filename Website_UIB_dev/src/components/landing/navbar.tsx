@@ -19,25 +19,24 @@ export default function NavbarLanding() {
 
   // Konfigurasi Animasi Dropdown agar sangat smooth
   const dropdownVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 10,
-      transition: { duration: 0.2, ease: "easeInOut" }
+    hidden: {
+      opacity: 0,
+      y: -10,
+      transition: { duration: 0.2, ease: "easeInOut" } as any
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.3, ease: "easeOut" }
+      transition: { duration: 0.3, ease: "easeInOut" } as any
     }
   }
 
   return (
     <header className="fixed top-0 w-full z-[1000] shadow-sm bg-white font-poppins transition-all duration-300">
-      
+
       {/* 1. TOP BAR */}
-      <div className={`bg-[#f4eee0] px-4 md:px-20 hidden md:flex justify-between items-center text-[10px] text-[#434040] font-medium border-b border-[#e5decb] transition-all duration-500 ease-in-out origin-top overflow-hidden ${
-        isScrolled ? 'max-h-0 opacity-0 py-0' : 'max-h-10 opacity-100 py-4'
-      }`}>
+      <div className={`bg-[#f4eee0] px-4 md:px-20 hidden md:flex justify-between items-center text-[10px] text-[#434040] font-medium border-b border-[#e5decb] transition-all duration-500 ease-in-out origin-top overflow-hidden ${isScrolled ? 'max-h-0 opacity-0 py-0' : 'max-h-10 opacity-100 py-4'
+        }`}>
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <FaMapMarkerAlt size={10} className="text-[#a47e3c]" />
@@ -59,7 +58,7 @@ export default function NavbarLanding() {
 
       {/* 2. MAIN NAVBAR */}
       <nav className="navbar px-4 md:px-20 min-h-[80px] bg-white border-b border-gray-100 flex items-center justify-between">
-        
+
         <div className="navbar-start w-auto">
           <Link href="/landing" className="flex items-center">
             <Image src="/logo/uib.png" alt="Logo UIB" width={110} height={45} className="h-10 w-auto object-contain" priority />
@@ -70,15 +69,15 @@ export default function NavbarLanding() {
           {/* DESKTOP MENU */}
           <div className="hidden lg:flex h-full w-full justify-end">
             <ul className="menu menu-horizontal p-0 font-medium text-[#434040] text-[14px] items-center gap-8">
-              
+
               <li className="list-none">
                 <Link href="/landing" className="hover:text-[#e67e22] px-0 transition-colors duration-300 no-underline py-4">Beranda</Link>
               </li>
 
               {/* TENTANG */}
-              <li 
-                className="relative list-none" 
-                onMouseEnter={() => setHoveredMenu('tentang')} 
+              <li
+                className="relative list-none"
+                onMouseEnter={() => setHoveredMenu('tentang')}
                 onMouseLeave={() => setHoveredMenu(null)}
               >
                 <Link href="/landing/tentang" className="flex items-center gap-1 py-4 cursor-pointer no-underline group">
@@ -101,9 +100,9 @@ export default function NavbarLanding() {
               </li>
 
               {/* KULIAH DI UIB */}
-              <li 
-                className="relative list-none" 
-                onMouseEnter={() => setHoveredMenu('kuliah')} 
+              <li
+                className="relative list-none"
+                onMouseEnter={() => setHoveredMenu('kuliah')}
                 onMouseLeave={() => setHoveredMenu(null)}
               >
                 <Link href="/landing/kuliahdiuib" className="flex items-center gap-1 py-4 cursor-pointer no-underline group">
@@ -124,9 +123,9 @@ export default function NavbarLanding() {
               </li>
 
               {/* PENELITIAN & PENGABDIAN */}
-              <li 
-                className="relative list-none" 
-                onMouseEnter={() => setHoveredMenu('penelitian')} 
+              <li
+                className="relative list-none"
+                onMouseEnter={() => setHoveredMenu('penelitian')}
                 onMouseLeave={() => setHoveredMenu(null)}
               >
                 <Link href="/landing/penelitian-pengabdian" className="flex items-center gap-1 py-4 cursor-pointer whitespace-nowrap no-underline group">
@@ -161,7 +160,7 @@ export default function NavbarLanding() {
               <FaBars size={24} />
             </label>
             <ul tabIndex={0} className="dropdown-content mt-3 z-[1001] bg-white shadow-2xl w-[92vw] max-w-[380px] border-t-4 border-[#e67e22] p-0 list-none overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300">
-              
+
               <li className="border-b border-gray-100">
                 <Link href="/landing" className="block py-4 px-6 font-medium hover:bg-gray-50 no-underline text-[#434040]">Beranda</Link>
               </li>

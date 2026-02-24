@@ -1,0 +1,236 @@
+﻿
+> admisi_frontend@0.1.0 build
+> next build
+
+node.exe : 
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: ([ba  
+  seline-brows...ping@la   
+ test -D`:String) [], R    
+emoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+Γû▓ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local, .env
+
+ΓÜá The "middleware" file 
+convention is deprecated. 
+Please use "proxy" 
+instead. Learn more: https:
+//nextjs.org/docs/messages/
+middleware-to-proxy
+  Creating an optimized production build ...
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+/*! ≡ƒî╝ daisyUI 5.5.5 */
+Found 1 warning while 
+optimizing generated CSS:
+
+[2mΓöé }[22m
+[2mΓöé @layer base {[22m
+[2mΓöé[22m   @property 
+--radialprogress {
+[2mΓöå[22m            
+[33m[2m^--[22m Unknown 
+at rule: @property[39m
+[2mΓöå[22m
+[2mΓöé     syntax: 
+"<percentage>";[22m
+[2mΓöé     inherits: 
+true;[22m
+
+Γ£ô Compiled successfully in 13.4s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+[baseline-browser-mapping] 
+The data in this module is 
+over two months old.  To 
+ensure accurate Baseline 
+data, please update: `npm 
+i baseline-browser-mapping@
+latest -D`
+  Generating static pages using 11 workers (0/34) ...
+Γ¿» useSearchParams() 
+should be wrapped in a 
+suspense boundary at page 
+"/login". Read more: https:
+//nextjs.org/docs/messages/
+missing-suspense-with-csr-b
+ailout
+    at Q (C:\Users\IT - 020
+4\Documents\base_template 
+nextjs 16\Website_UIB_dev\.
+next\server\chunks\ssr\node
+_modules_next_920e7746._.js
+:2:2111)
+    at o (C:\Users\IT - 020
+4\Documents\base_template 
+nextjs 16\Website_UIB_dev\.
+next\server\chunks\ssr\node
+_modules_next_920e7746._.js
+:4:5284)
+    at s (C:\Users\IT - 020
+4\Documents\base_template 
+nextjs 16\Website_UIB_dev\.
+next\server\chunks\ssr\[roo
+t-of-the-server]__ad4b554b.
+_.js:1:8708)
+    at an (C:\Users\IT - 02
+04\Documents\base_template 
+nextjs 16\Website_UIB_dev\n
+ode_modules\next\dist\compi
+led\next-server\app-page-tu
+rbo.runtime.prod.js:2:84360
+)
+    at ai (C:\Users\IT - 02
+04\Documents\base_template 
+nextjs 16\Website_UIB_dev\n
+ode_modules\next\dist\compi
+led\next-server\app-page-tu
+rbo.runtime.prod.js:2:86179
+)
+    at al (C:\Users\IT - 02
+04\Documents\base_template 
+nextjs 16\Website_UIB_dev\n
+ode_modules\next\dist\compi
+led\next-server\app-page-tu
+rbo.runtime.prod.js:2:10795
+3)
+    at as (C:\Users\IT - 02
+04\Documents\base_template 
+nextjs 16\Website_UIB_dev\n
+ode_modules\next\dist\compi
+led\next-server\app-page-tu
+rbo.runtime.prod.js:2:10536
+8)
+    at aa (C:\Users\IT - 02
+04\Documents\base_template 
+nextjs 16\Website_UIB_dev\n
+ode_modules\next\dist\compi
+led\next-server\app-page-tu
+rbo.runtime.prod.js:2:84712
+)
+    at ai (C:\Users\IT - 02
+04\Documents\base_template 
+nextjs 16\Website_UIB_dev\n
+ode_modules\next\dist\compi
+led\next-server\app-page-tu
+rbo.runtime.prod.js:2:86228
+)
+    at ai (C:\Users\IT - 02
+04\Documents\base_template 
+nextjs 16\Website_UIB_dev\n
+ode_modules\next\dist\compi
+led\next-server\app-page-tu
+rbo.runtime.prod.js:2:10470
+8)
+Error occurred 
+prerendering page 
+"/login". Read more: https:
+//nextjs.org/docs/messages/
+prerender-error
+Export encountered an 
+error on 
+/(auth)/login/page: 
+/login, exiting the build.
+Γ¿» Next.js build worker 
+exited with code: 1 and 
+signal: null

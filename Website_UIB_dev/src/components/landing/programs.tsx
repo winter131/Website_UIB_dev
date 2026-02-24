@@ -6,9 +6,9 @@ import { GraduationCap, BookOpen, Award, School, Microscope, Landmark } from 'lu
 export default function AcademicPrograms() {
   return (
     <section className="relative py-20 font-poppins overflow-hidden">
-      
+
       {/* BACKGROUND LAYER: Motif Batik dengan Opacity Rendah */}
-      <div 
+      <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: "url('/img/batik_new.jpg')",
@@ -20,7 +20,7 @@ export default function AcademicPrograms() {
 
       <div className="container relative z-10 mx-auto px-4 md:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          
+
           {[
             { title: "Fasilitas", link: "/Fasilitas", icon: <Landmark size={24} /> },
             { title: "Batam dan Sekitarnya", link: "/Batam-dan-Sekitarnya", icon: <GraduationCap size={24} /> },
@@ -34,15 +34,15 @@ export default function AcademicPrograms() {
               <div className="h-full bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-[#0055aa]/30">
                 <div className="flex items-center gap-4 mb-5">
                   <div className="p-3 bg-blue-50 rounded-lg group-hover:bg-[#0055aa] transition-colors">
-                    {React.cloneElement(item.icon as React.ReactElement, { 
-                      className: "text-[#0055aa] group-hover:text-white transition-colors" 
-                    })}
+                    {React.cloneElement(item.icon as React.ReactElement, {
+                      className: "text-[#0055aa] group-hover:text-white transition-colors"
+                    } as any)}
                   </div>
                   <h3 className="text-[17px] font-bold text-[#434040] tracking-tight group-hover:text-[#e67e22] transition-colors">
                     {item.title}
                   </h3>
                 </div>
-                
+
                 <p className="text-gray-500 text-[13px] leading-relaxed mb-4">
                   Temukan informasi lengkap mengenai {item.title} di Universitas Internasional Batam untuk menunjang pengalaman kuliah Anda.
                 </p>
@@ -53,7 +53,7 @@ export default function AcademicPrograms() {
               </div>
             </Link>
           ))}
-          
+
         </div>
       </div>
     </section>

@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model news {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique(map: "News_slug_key")
+  tag         String
+  date        String
+  author      String
+  title       String
+  image       String
+  description String   @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
+}

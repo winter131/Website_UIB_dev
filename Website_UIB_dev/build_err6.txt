@@ -1,0 +1,53 @@
+
+> admisi_frontend@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+▲ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local, .env
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+/*! 🌼 daisyUI 5.5.5 */
+Found 1 warning while optimizing generated CSS:
+
+[2m│ }[22m
+[2m│ @layer base {[22m
+[2m│[22m   @property --radialprogress {
+[2m┆[22m            [33m[2m^--[22m Unknown at rule: @property[39m
+[2m┆[22m
+[2m│     syntax: "<percentage>";[22m
+[2m│     inherits: true;[22m
+
+✓ Compiled successfully in 19.7s
+  Running TypeScript ...
+Failed to compile.
+
+./src/app/landing/kuliahdiuib/programmagister/view/ProgramMagisterView.tsx:112:52
+Type error: Type '{ hidden: { opacity: number; y: number; }; visible: (i: number) => { opacity: number; y: number; transition: { delay: number; duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'visible' is incompatible with index signature.
+    Type '(i: number) => { opacity: number; y: number; transition: { delay: number; duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '(i: number) => { opacity: number; y: number; transition: { delay: number; duration: number; ease: number[]; }; }' is not assignable to type 'TargetResolver'.
+        Type '{ opacity: number; y: number; transition: { delay: number; duration: number; ease: number[]; }; }' is not assignable to type 'string | TargetAndTransition'.
+          Type '{ opacity: number; y: number; transition: { delay: number; duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; y: number; transition: { delay: number; duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ delay: number; duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ delay: number; duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ delay: number; duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                          Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                            Type 'number[]' is not assignable to type 'Easing[]'.
+                              Type 'number' is not assignable to type 'Easing'.
+
+[0m [90m 110 |[39m
+ [90m 111 |[39m             [36mreturn[39m (
+[31m[1m>[22m[39m[90m 112 |[39m               [33m<[39m[33mmotion[39m[33m.[39mdiv key[33m=[39m{item[33m.[39mid} custom[33m=[39m{i} variants[33m=[39m{fadeUp} initial[33m=[39m[32m"hidden"[39m animate[33m=[39m[32m"visible"[39m[33m>[39m
+ [90m     |[39m                                                    [31m[1m^[22m[39m
+ [90m 113 |[39m                 [33m<[39m[33mLink[39m href[33m=[39m{item[33m.[39mhref} className[33m=[39m[32m"block no-underline"[39m[33m>[39m
+ [90m 114 |[39m                   [33m<[39m[33mdiv[39m
+ [90m 115 |[39m                     onMouseEnter[33m=[39m{() [33m=>[39m setHovered(item[33m.[39mid)}[0m
+Next.js build worker exited with code: 1 and signal: null

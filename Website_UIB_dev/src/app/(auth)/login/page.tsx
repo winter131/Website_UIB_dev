@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,7 @@ import TopNavbarLogin from "@/components/layout/TopNavbarLogin";
 import WelcomeSectionLogin from "@/components/layout/WelcomeSectionLogin";
 import ContactUsLogin from "@/components/layout/ContactUsLogin";
 
-export default function Login() {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -123,9 +123,8 @@ export default function Login() {
               <p className="text-sm text-neutral-900 dark:text-white text-end"></p>
             </div>
             <button
-              className={`flex flex-row items-center border-none justify-center btn btn-block btn-sm rounded-lg bg-[#2A3955] text-[#F8B600] mb-3 ${
-                isLoading ? "cursor-not-allowed" : ""
-              } hover:bg-[#1f2a40] hover:text-white`}
+              className={`flex flex-row items-center border-none justify-center btn btn-block btn-sm rounded-lg bg-[#2A3955] text-[#F8B600] mb-3 ${isLoading ? "cursor-not-allowed" : ""
+                } hover:bg-[#1f2a40] hover:text-white`}
               type="submit"
               disabled={isLoading}
             >
@@ -146,11 +145,18 @@ export default function Login() {
               )}
             </button>
           </form>
-
           <ContactUsLogin />
         </div>
       </div>
     </>
+  );
+}
+
+export default function Login() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <LoginForm />
+    </Suspense>
   );
 }
 

@@ -1,0 +1,44 @@
+
+> admisi_frontend@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+▲ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local, .env
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+/*! 🌼 daisyUI 5.5.5 */
+Found 1 warning while optimizing generated CSS:
+
+[2m│ }[22m
+[2m│ @layer base {[22m
+[2m│[22m   @property --radialprogress {
+[2m┆[22m            [33m[2m^--[22m Unknown at rule: @property[39m
+[2m┆[22m
+[2m│     syntax: "<percentage>";[22m
+[2m│     inherits: true;[22m
+
+✓ Compiled successfully in 17.3s
+  Running TypeScript ...
+Failed to compile.
+
+.next/dev/types/validator.ts:243:31
+Type error: Type 'typeof import("C:/Users/IT - 0204/Documents/base_template nextjs 16/Website_UIB_dev/src/app/api/modul/delete-modul/[modulId]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/modul/delete-modul/[modulId]">'.
+  Types of property 'DELETE' are incompatible.
+    Type '(req: NextRequest, { params }: { params: { modulId: string; }; }) => Promise<NextResponse<{ message: any; }> | NextResponse<{ data: any; }>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ modulId: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ modulId: string; }>; }' is not assignable to type '{ params: { modulId: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'modulId' is missing in type 'Promise<{ modulId: string; }>' but required in type '{ modulId: string; }'.
+
+[0m [90m 241 |[39m   type __IsExpected[33m<[39m[33mSpecific[39m [36mextends[39m [33mRouteHandlerConfig[39m[33m<[39m[32m"/api/modul/delete-modul/[modulId]"[39m[33m>>[39m [33m=[39m [33mSpecific[39m
+ [90m 242 |[39m   [36mconst[39m handler [33m=[39m {} [36mas[39m [36mtypeof[39m [36mimport[39m([32m"../../../src/app/api/modul/delete-modul/[modulId]/route.js"[39m)
+[31m[1m>[22m[39m[90m 243 |[39m   type __Check [33m=[39m __IsExpected[33m<[39m[36mtypeof[39m handler[33m>[39m
+ [90m     |[39m                               [31m[1m^[22m[39m
+ [90m 244 |[39m   [90m// @ts-ignore[39m
+ [90m 245 |[39m   type __Unused [33m=[39m __Check
+ [90m 246 |[39m }[0m
+Next.js build worker exited with code: 1 and signal: null

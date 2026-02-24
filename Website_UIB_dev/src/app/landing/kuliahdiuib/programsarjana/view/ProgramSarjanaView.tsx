@@ -37,7 +37,7 @@ const getHoverStyle = (id: string, isHovered: boolean) => {
   const hoverBg = isOdd ? '#e67e22' : '#1a365d'
   const iconRestBg = isOdd ? '#fff5ec' : '#eef1f6'
   const iconRestColor = isOdd ? '#e67e22' : '#1a365d'
-  
+
   return {
     bg: isHovered ? hoverBg : '#ffffff',
     border: isHovered ? hoverBg : '#ebebeb',
@@ -55,11 +55,11 @@ const getHoverStyle = (id: string, isHovered: boolean) => {
 }
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" } as any,
   }),
 }
 
@@ -72,27 +72,27 @@ export default function ProgramSarjanaView() {
 
       {/* HERO SECTION - DISEDERHANAKAN & LEBIH GELAP */}
       <section className="relative w-full h-screen overflow-hidden bg-gray-100 flex items-center">
-        <Image 
-          src={heroData.image} 
-          alt="UIB Hero" 
-          fill 
-          priority 
+        <Image
+          src={heroData.image}
+          alt="UIB Hero"
+          fill
+          priority
           className="object-cover"
-          objectPosition="center 20%" 
+          objectPosition="center 20%"
         />
-        
+
         {/* Overlay Gradient Navy LEBIH GELAP */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/30 to-transparent z-10"></div>
-        
+
         {/* Content Area - Disederhanakan & Font Dikecilkan */}
         <div className="relative z-20 container mx-auto px-6 md:px-12 lg:px-24">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-3xl text-white"
           >
-            
+
 
             {/* Judul Besar & Bersih - Font Dikecilkan */}
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight drop-shadow-lg">
@@ -173,7 +173,7 @@ export default function ProgramSarjanaView() {
 
         {/* CTA CARD (TETAP SAMA) */}
         <div className="max-w-6xl mx-auto mt-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -185,7 +185,7 @@ export default function ProgramSarjanaView() {
               <h2 className="text-white text-2xl md:text-3xl font-bold mb-3">Masih bingung memilih jurusan?</h2>
               <p className="text-white/40 text-sm max-w-md">Konsultasikan minat dan bakatmu dengan tim akademik kami untuk masa depan yang tepat.</p>
             </div>
-            <Link 
+            <Link
               href="#"
               className="relative z-10 bg-[#e67e22] text-white px-8 py-4 rounded-full font-bold text-sm shadow-[0_10px_30px_rgba(230,126,34,0.3)] hover:bg-[#cf6d1a] transition-all flex items-center gap-2"
             >

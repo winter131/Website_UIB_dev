@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { modulId: string } }
+  { params }: { params: Promise<{ modulId: string }> }
 ) {
   const auth = req.headers.get("authorization");
-  const { modulId } = params;
+  const { modulId } = await params;
 
   try {
     const res = await axios.delete(

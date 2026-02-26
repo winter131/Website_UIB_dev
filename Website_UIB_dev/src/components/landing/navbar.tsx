@@ -71,7 +71,7 @@ export default function NavbarLanding() {
             <ul className="menu menu-horizontal p-0 font-medium text-[#434040] text-[14px] items-center gap-8">
 
               <li className="list-none">
-                <Link href="/landing" className="hover:text-[#e67e22] px-0 transition-colors duration-300 no-underline py-4">Beranda</Link>
+                <Link href="/landing" className="hover:text-[#e67e22] px-0 transition-colors duration-300 no-underline py-4 px-4">Beranda</Link>
               </li>
 
               {/* TENTANG */}
@@ -116,7 +116,9 @@ export default function NavbarLanding() {
                     <motion.ul initial="hidden" animate="visible" exit="hidden" variants={dropdownVariants} className="absolute top-full left-0 z-[1001] bg-white shadow-2xl w-56 p-2 border-t-4 border-[#e67e22] list-none">
                       <li><Link href="/landing/kuliahdiuib/programsarjana" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Program Sarjana</Link></li>
                       <li><Link href="/landing/kuliahdiuib/programmagister" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Program Magister</Link></li>
-                      <li><Link href="/landing/BiayaPendidikan" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Biaya Pendidikan</Link></li>
+                      <li><Link href="/landing/kuliahdiuib/biayapendidikan" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Biaya Pendidikan</Link></li>
+                      <li><Link href="/landing/kuliahdiuib/Kehidupankampus" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Kehidupan Kampus</Link></li>
+
                     </motion.ul>
                   )}
                 </AnimatePresence>
@@ -188,9 +190,11 @@ export default function NavbarLanding() {
                     <FaChevronDown size={10} className="text-gray-400 transition-transform group-open:rotate-180" />
                   </summary>
                   <ul className="bg-gray-50 list-none p-0">
-                    <li><Link href="/landing/kuliahdiuib/programsarjana" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Program Sarjana</Link></li>
+                    <li><Link href="/landing/kuliahdiuib/programsarjana" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Program Sarjana</Link></li>
                     <li><Link href="landing/kuliahdiuib/programmagister" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Program Magsiter</Link></li>
-                    <li><Link href="/landing/BiayaPendidikan" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Biaya Pendidikan</Link></li>
+                    <li><Link href="/landing/kuliahdiuib/biayapendidikan" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Biaya Pendidikan</Link></li>
+                    <li><Link href="/landing/kuliahdiuib/kehidupan-kampus" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Kehidupan Kampus</Link></li>
+
                   </ul>
                 </details>
               </li>

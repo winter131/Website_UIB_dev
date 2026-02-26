@@ -61,7 +61,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <main className="bg-white min-h-screen pt-[110px] overflow-x-hidden font-poppins text-[#2A3955]">
+    <main className="bg-[#FCFCFC] min-h-screen pt-[110px] overflow-x-hidden font-poppins text-[#2A3955]">
       <NavbarLanding />
 
       {/* HERO SECTION */}

@@ -5,18 +5,9 @@ import { GraduationCap, BookOpen, Award, School, Microscope, Landmark } from 'lu
 
 export default function AcademicPrograms() {
   return (
-    <section className="relative py-20 font-poppins overflow-hidden">
+    <section className="relative py-20 font-poppins overflow-hidden bg-[#FCFCFC]">
 
-      {/* BACKGROUND LAYER: Motif Batik dengan Opacity Rendah */}
-      <div
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-          backgroundImage: "url('/img/batik_new.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'fit',
-          opacity: 0.1 // Opacity rendah agar tidak mengganggu keterbacaan
-        }}
-      />
+
 
       <div className="container relative z-10 mx-auto px-4 md:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

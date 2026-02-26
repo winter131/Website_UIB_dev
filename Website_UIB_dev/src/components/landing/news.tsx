@@ -30,10 +30,9 @@ export default function LatestNews() {
     return '/' + image;
   };
 
-  // Separate data for different grids
   const mainNews = allNews.length > 0 ? allNews[0] : null;
   const secondaryNews = allNews.slice(1, 3);
-  const smallNewsItems = allNews.slice(3, 7);
+  const smallNewsItems = allNews.slice(3, 8);
 
   if (isLoading) {
     return (
@@ -46,33 +45,64 @@ export default function LatestNews() {
   }
 
   return (
-    <section className="py-12 bg-white font-poppins text-[#2A3955]">
+    <section className="py-12 bg-[#F7F7F7] font-poppins text-[#2A3955]">
       <div className="container mx-auto px-4 md:px-20">
+
         {/* Judul Section */}
         <div className='text-center font-bold text-[#2A3955] mb-10 text-3xl tracking-tight'>
           <h1>Berita Terbaru</h1>
         </div>
 
         {/* GRID UTAMA (Headline & Secondary) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
 
           {/* Headline - Sisi Kiri */}
           <div className="lg:col-span-7">
             {mainNews ? (
               <Link
                 href={`/news/${mainNews.slug}`}
-                className="relative group overflow-hidden rounded-xl h-[400px] lg:h-[450px] shadow-sm block"
+                className="relative overflow-hidden rounded-xl h-[400px] lg:h-[450px] block"
+
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+
+                  const img = el.querySelector<HTMLImageElement>('[data-main-img]');
+                  const overlay = el.querySelector<HTMLElement>('[data-overlay]');
+                  if (img) img.style.transform = 'scale(1.07)';
+                  if (overlay) overlay.style.background = 'linear-gradient(to top, rgba(26,54,93,0.97) 0%, rgba(26,54,93,0.45) 60%, transparent 100%)';
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)';
+                  const img = el.querySelector<HTMLImageElement>('[data-main-img]');
+                  const overlay = el.querySelector<HTMLElement>('[data-overlay]');
+                  if (img) img.style.transform = 'scale(1)';
+                  if (overlay) overlay.style.background = 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)';
+                }}
               >
+                {/* Gambar */}
                 <img
+                  data-main-img
                   src={getImageUrl(mainNews.image)}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover"
+                  style={{
+                    transition: 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  }}
                   alt="Main News"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
+                {/* Overlay */}
+                <div
+                  data-overlay
+                  className="absolute inset-0 p-8 flex flex-col justify-end"
+                  style={{
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)',
+                    transition: 'background 0.6s ease',
+                  }}
+                >
                   <span className="bg-[#e67e22] text-white text-[10px] font-bold px-3 py-1 rounded-sm w-fit mb-3 uppercase tracking-widest">
                     {mainNews.tag}
                   </span>
-                  <h3 className="text-white text-xl md:text-3xl font-bold leading-tight mb-3 group-hover:text-[#e67e22] transition-colors">
+                  <h3 className="text-white text-xl md:text-3xl font-bold leading-tight mb-3">
                     {mainNews.title}
                   </h3>
                   <div className="flex items-center gap-3 text-gray-300 text-xs font-medium">
@@ -84,31 +114,72 @@ export default function LatestNews() {
               </Link>
             ) : (
               <div className="bg-gray-100 rounded-xl h-[400px] lg:h-[450px] flex items-center justify-center text-gray-500">
-                Belum ada berita yang dipublikasikan.
+                Belum ada berita.
               </div>
             )}
           </div>
 
           {/* Berita Menengah - Sisi Kanan */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          <div className="lg:col-span-5 flex flex-col gap-4 ">
             {secondaryNews.map((news) => (
               <Link
                 href={`/news/${news.slug}`}
                 key={news.id}
-                className="group cursor-pointer flex flex-col sm:flex-row lg:flex-col gap-4"
+                className="group block rounded-xl overflow-hidden bg-white"
+                style={{
+                  transition: 'background-color 0.4s ease,  0.4s ease, box-shadow 0.4s ease',
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.backgroundColor = '#1a365d';
+
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.backgroundColor = '';
+
+                }}
               >
-                <div className="h-36 w-full overflow-hidden rounded-lg shadow-sm">
+                {/* Gambar */}
+                <div className="h-36 w-full overflow-hidden flex-shrink-0">
                   <img
                     src={getImageUrl(news.image)}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    alt="Secondary News"
+                    className="w-full h-full object-cover"
+                    style={{
+                      transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    }}
+                    onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.08)')}
+                    onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1)')}
+                    alt={news.title}
                   />
                 </div>
-                <div>
-                  <span className="text-[#0055aa] text-[10px] font-bold block mb-1 uppercase tracking-wider">
+
+                {/* Teks */}
+                <div className="p-3">
+                  <span
+                    className="text-[10px] font-bold block mb-1 uppercase tracking-wider"
+                    style={{ transition: 'color 0.4s ease', color: '#0055aa' }}
+                    ref={(el) => {
+                      if (!el) return;
+                      const parent = el.closest('a');
+                      if (!parent) return;
+                      parent.addEventListener('mouseenter', () => { el.style.color = '#e67e22'; });
+                      parent.addEventListener('mouseleave', () => { el.style.color = '#0055aa'; });
+                    }}
+                  >
                     {news.date}
                   </span>
-                  <h4 className="text-[15px] font-bold text-[#2A3955] leading-snug group-hover:text-[#e67e22] transition-colors line-clamp-2">
+                  <h4
+                    className="text-[14px] font-bold leading-snug line-clamp-2"
+                    style={{ color: '#2A3955', transition: 'color 0.4s ease' }}
+                    ref={(el) => {
+                      if (!el) return;
+                      const parent = el.closest('a');
+                      if (!parent) return;
+                      parent.addEventListener('mouseenter', () => { el.style.color = '#ffffff'; });
+                      parent.addEventListener('mouseleave', () => { el.style.color = '#2A3955'; });
+                    }}
+                  >
                     {news.title}
                   </h4>
                 </div>
@@ -118,37 +189,117 @@ export default function LatestNews() {
         </div>
 
         {/* GRID BAWAH (Small News) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {smallNewsItems.map((news) => (
-            <Link href={`/news/${news.slug}`} key={news.id} className="group cursor-pointer">
-              <div className="aspect-video rounded-lg overflow-hidden mb-3 shadow-sm">
+            <Link
+              href={`/news/${news.slug}`}
+              key={news.id}
+              className="group block rounded-xl overflow-hidden border-transparent bg-white"
+              style={{ transition: 'background-color 0.4s ease, box-shadow 0.4s ease' }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.backgroundColor = '#1a365d';
+
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.backgroundColor = '';
+
+              }}
+            >
+              {/* Gambar */}
+              <div className="aspect-video overflow-hidden">
                 <img
                   src={getImageUrl(news.image)}
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                  alt="Small News"
+                  className="w-full h-full object-cover"
+                  style={{
+                    transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.08)')}
+                  onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1)')}
+                  alt={news.title}
                 />
               </div>
-              <h5 className="text-[13px] font-bold text-[#2A3955] leading-tight mb-1 group-hover:text-[#e67e22] transition-colors line-clamp-2">
-                {news.title}
-              </h5>
-              <span className="text-[10px] text-[#0055aa] font-medium">{news.date}</span>
+
+              {/* Teks */}
+              <div className="p-3">
+                <span
+                  className="text-[10px] font-bold block mb-1 uppercase tracking-wider "
+                  style={{ color: '#0055aa', transition: 'color 0.4s ease' }}
+                  ref={(el) => {
+                    if (!el) return;
+                    const parent = el.closest('a');
+                    if (!parent) return;
+                    parent.addEventListener('mouseenter', () => { el.style.color = '#e67e22'; });
+                    parent.addEventListener('mouseleave', () => { el.style.color = '#0055aa'; });
+                  }}
+                >
+                  {news.date}
+                </span>
+                <h4
+                  className="text-[14px] font-bold leading-snug line-clamp-2"
+                  style={{ color: '#2A3955', transition: 'color 0.4s ease' }}
+                  ref={(el) => {
+                    if (!el) return;
+                    const parent = el.closest('a');
+                    if (!parent) return;
+                    parent.addEventListener('mouseenter', () => { el.style.color = '#ffffff'; });
+                    parent.addEventListener('mouseleave', () => { el.style.color = '#2A3955'; });
+                  }}
+                >
+                  {news.title}
+                </h4>
+              </div>
             </Link>
           ))}
 
           {/* Tombol Lihat Lainnya */}
           <Link
             href="/news"
-            className="flex flex-col items-center justify-center border-2 border-gray-100 rounded-lg p-4 hover:border-[#e67e22]/30 hover:bg-orange-50 transition-all group min-h-[120px]"
+            className="flex flex-col items-center justify-center rounded-xl p-4 min-h-[140px] border-2 border-dashed"
+            style={{
+              borderColor: '#d1d5db',
+              transition: 'background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.backgroundColor = '#1a365d';
+              el.style.borderColor = '#e67e22';
+
+              const text = el.querySelector<HTMLElement>('[data-label]');
+              const icon = el.querySelector<HTMLElement>('[data-icon]');
+              if (text) text.style.color = '#ffffff';
+              if (icon) { icon.style.backgroundColor = '#e67e22'; }
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.backgroundColor = '';
+
+              el.style.boxShadow = '';
+              const text = el.querySelector<HTMLElement>('[data-label]');
+              const icon = el.querySelector<HTMLElement>('[data-icon]');
+              if (text) text.style.color = '#2A3955';
+              if (icon) { icon.style.backgroundColor = '#1a365d'; }
+            }}
           >
-            <span className="text-[#2A3955] group-hover:text-[#e67e22] font-bold text-[11px] mb-2 transition-colors text-center uppercase tracking-tighter">
+            <span
+              data-label
+              className="font-bold text-[10px] mb-3 text-center uppercase tracking-wider"
+              style={{ color: '#2A3955', transition: 'color 0.4s ease' }}
+            >
               Lihat Berita Lainnya
             </span>
-            <div className="bg-[#2A3955] group-hover:bg-[#e67e22] text-white p-2.5 rounded-full transition-all group-hover:translate-x-1">
-              <FaArrowRight size={12} />
+            <div
+              data-icon
+              className="text-white p-3 rounded-full"
+              style={{ backgroundColor: '#1a365d', transition: 'background-color 0.4s ease' }}
+            >
+              <FaArrowRight size={14} />
             </div>
           </Link>
         </div>
+
       </div>
     </section>
-  )
+  );
 }

@@ -10,8 +10,8 @@ import { Poppins } from 'next/font/google'
 import BiayaPendidikanView from './view/BiayaPendidikanView'
 
 
-export default function Biaya () {
-        
+export default function BiayaPendidikan() {
+
   return <BiayaPendidikanView />
-   
+
 }

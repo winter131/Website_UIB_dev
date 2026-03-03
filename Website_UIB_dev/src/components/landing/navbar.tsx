@@ -117,7 +117,7 @@ export default function NavbarLanding() {
                       <li><Link href="/landing/kuliahdiuib/programsarjana" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Program Sarjana</Link></li>
                       <li><Link href="/landing/kuliahdiuib/programmagister" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Program Magister</Link></li>
                       <li><Link href="/landing/kuliahdiuib/biayapendidikan" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Biaya Pendidikan</Link></li>
-                      <li><Link href="/landing/kuliahdiuib/Kehidupankampus" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Kehidupan Kampus</Link></li>
+                      <li><Link href="/landing/kuliahdiuib/kehidupankampus" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Kehidupan Kampus</Link></li>
 
                     </motion.ul>
                   )}
@@ -191,9 +191,9 @@ export default function NavbarLanding() {
                   </summary>
                   <ul className="bg-gray-50 list-none p-0">
                     <li><Link href="/landing/kuliahdiuib/programsarjana" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Program Sarjana</Link></li>
-                    <li><Link href="landing/kuliahdiuib/programmagister" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Program Magsiter</Link></li>
+                    <li><Link href="/landing/kuliahdiuib/programmagister" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Program Magister</Link></li>
                     <li><Link href="/landing/kuliahdiuib/biayapendidikan" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Biaya Pendidikan</Link></li>
-                    <li><Link href="/landing/kuliahdiuib/kehidupan-kampus" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Kehidupan Kampus</Link></li>
+                    <li><Link href="/landing/kuliahdiuib/kehidupankampus" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Kehidupan Kampus</Link></li>
 
                   </ul>
                 </details>

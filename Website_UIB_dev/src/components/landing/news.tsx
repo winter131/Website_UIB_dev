@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { FaArrowRight } from 'react-icons/fa'
+import { getLatestNews } from './newsActions'
 
 export default function LatestNews() {
   const [allNews, setAllNews] = useState<any[]>([]);
@@ -10,11 +11,8 @@ export default function LatestNews() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('/api/news');
-        if (response.ok) {
-          const data = await response.json();
-          setAllNews(data);
-        }
+        const data = await getLatestNews();
+        setAllNews(data || []);
       } catch (error) {
         console.error("Failed to fetch news:", error);
       } finally {

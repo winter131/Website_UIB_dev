@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, Clock, User, Tag, Calendar, Share2, ChevronLeft } from 'lucide-react'
 import NavbarLanding from '@/components/landing/navbar'
 import Footer from '@/components/landing/footer'
+import { getNewsBySlug, getAllNews } from '@/components/landing/newsActions'
 import Image from 'next/image'
 import { FaMapMarkerAlt, FaPhoneAlt, FaSearch, FaChevronDown, FaBars } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -22,19 +23,15 @@ export default function NewsDetail() {
 
         const fetchDetail = async () => {
             try {
-                const response = await fetch(`/api/news/${slug}`)
-                if (response.ok) {
-                    const data = await response.json()
+                const data = await getNewsBySlug(slug as string)
+                if (data) {
                     setNews(data)
 
                     // Fetch related news
-                    const relatedRes = await fetch('/api/news')
-                    if (relatedRes.ok) {
-                        const allData = await relatedRes.json()
-                        // Ambil 4 berita terbaru, tapi jangan tampilkan berita yang sedang dibaca ini
-                        const filtered = allData.filter((item: any) => item.slug !== slug).slice(0, 4)
-                        setRelatedNews(filtered)
-                    }
+                    const allData = await getAllNews()
+                    // Ambil 4 berita terbaru, tapi jangan tampilkan berita yang sedang dibaca ini
+                    const filtered = (allData || []).filter((item: any) => item.slug !== slug).slice(0, 4)
+                    setRelatedNews(filtered)
                 } else {
                     // Gagal dapat data, kembali ke home atau tampilkan error
                     router.push('/landing/news')

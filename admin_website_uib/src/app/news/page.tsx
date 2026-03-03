@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
-import type { News } from '@prisma/client';
+import type { news as NewsType } from '@prisma/client';
 import NewsActions from './components/NewsActions';
+
+
+export const dynamic = 'force-dynamic'
 
 export default async function NewsManagement() {
     const newsList = await prisma.news.findMany({
@@ -34,15 +37,16 @@ export default async function NewsManagement() {
                                 </td>
                             </tr>
                         ) : (
-                            newsList.map((news: News) => (
-                                <tr key={news.id} className="hover:bg-gray-50 transition-colors">
-                                    <td className="p-4 text-gray-800 font-medium">{news.title}</td>
+                            newsList.map((newsItem: NewsType) => (
+                                <tr key={newsItem.id} className="hover:bg-gray-50 transition-colors">
+                                    <td className="p-4 text-gray-800 font-medium">{newsItem.title}</td>
                                     <td className="p-4">
                                         <span className="px-2 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Published</span>
                                     </td>
-                                    <td className="p-4 text-gray-500 text-sm">{news.date}</td>
-                                    <NewsActions id={news.id} title={news.title} />
+                                    <td className="p-4 text-gray-500 text-sm">{newsItem.date}</td>
+                                    <NewsActions id={newsItem.id} title={newsItem.title} />
                                 </tr>
+
                             ))
                         )}
                     </tbody>

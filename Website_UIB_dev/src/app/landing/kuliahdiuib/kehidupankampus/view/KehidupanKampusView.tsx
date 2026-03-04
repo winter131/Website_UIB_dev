@@ -97,7 +97,29 @@ export default function KehidupanKampusView() {
                     </div>
                 </div>
             </section>
-
+            {/* 2. TENTANG BATAM SECTION */}
+            <section className="pt-16 md:pt-24 pb-20">
+                <div className="container mx-auto px-6 md:px-12 lg:px-24">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        {/* Image Barelang */}
+                        <div className="lg:col-span-5">
+                            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-xl">
+                                <Image src="/img/C1700307.jpg" alt="Barelang Bridge" fill={true} className="object-cover" />
+                            </div>
+                        </div>
+                        {/* Text Content */}
+                        <div className="lg:col-span-7 space-y-6">
+                            <h2 className="text-3xl font-bold text-[#1a365d]">Tentang Batam</h2>
+                            <p className="text-gray-600 text-sm leading-relaxed text-justify">
+                                Batam merupakan kota dengan letak strategis yang berada di jalur pelayaran Internasional, dan berjarak sangat dekat dengan Singapura dan Malaysia. Kota Batam merupakan bagian dari kawasan khusus perdagangan bebas Batam - Bintan - Karimun (BBK). Salah satu ikon yang menjadi pusat perhatian bagi pendatang adalah <strong>Jembatan Barelang</strong>, yang menghubungkan Batam, Rempang, dan Galang yang selesai dibangun pada tahun 1998.
+                            </p>
+                            <Link href='/landing/' className="bg-[#1a365d] text-white px-6 py-2 rounded-md text-xs font-medium hover:bg-[#e67e22] transition-colors shadow-lg">
+                                Selengkapnya
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <Footer />
         </main>
     )

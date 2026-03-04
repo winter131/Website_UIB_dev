@@ -9,7 +9,7 @@ import { FaGraduationCap, FaInfoCircle, FaHeadset } from 'react-icons/fa'
 // Import Custom Components (Pastikan path file sesuai dengan proyek Anda)
 import NavbarLanding from '@/components/landing/navbar'
 import Hero from '@/components/landing/hero'
-import LatestNews from '@/components/landing/news'
+import LatestNews from '@/components/news/LatestNews'
 import CompanyProfile from '@/components/landing/profile'
 import SambutanRektor from '@/components/landing/welcome'
 import Rankings from '@/components/landing/rankings'

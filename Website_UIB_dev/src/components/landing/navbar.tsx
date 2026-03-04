@@ -130,7 +130,7 @@ export default function NavbarLanding() {
                 onMouseEnter={() => setHoveredMenu('penelitian')}
                 onMouseLeave={() => setHoveredMenu(null)}
               >
-                <Link href="/landing/penelitian-pengabdian" className="flex items-center gap-1 py-4 cursor-pointer whitespace-nowrap no-underline group">
+                <Link href="/landing/penelitianpengabdian" className="flex items-center gap-1 py-4 cursor-pointer whitespace-nowrap no-underline group">
                   <span className={`font-medium transition-colors ${hoveredMenu === 'penelitian' ? 'text-[#e67e22]' : 'text-[#434040]'}`}>Penelitian & Pengabdian</span>
                   <motion.div animate={{ rotate: hoveredMenu === 'penelitian' ? 180 : 0 }} transition={{ duration: 0.3 }}>
                     <FaChevronDown size={10} className={`${hoveredMenu === 'penelitian' ? 'text-[#e67e22]' : 'text-gray-400'}`} />
@@ -139,8 +139,8 @@ export default function NavbarLanding() {
                 <AnimatePresence>
                   {hoveredMenu === 'penelitian' && (
                     <motion.ul initial="hidden" animate="visible" exit="hidden" variants={dropdownVariants} className="absolute top-full left-0 z-[1001] bg-white shadow-2xl w-60 p-2 border-t-4 border-[#e67e22] list-none">
-                      <li><Link href="/landing/penelitian" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Penelitian</Link></li>
-                      <li><Link href="/landing/pengabdian" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Pengabdian</Link></li>
+                      <li><Link href="/landing/penelitianpengabdian/penelitian" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Penelitian</Link></li>
+                      <li><Link href="/landing/penelitianpengabdian/pengabdian" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Pengabdian</Link></li>
                     </motion.ul>
                   )}
                 </AnimatePresence>
@@ -202,12 +202,12 @@ export default function NavbarLanding() {
               <li className="border-b border-gray-100">
                 <details className="group w-full">
                   <summary className="flex items-center justify-between py-4 px-6 font-medium cursor-pointer hover:bg-gray-50 list-none">
-                    <Link href="/landing/penelitian-pengabdian" className="no-underline flex-grow text-[#434040]">Penelitian & Pengabdian</Link>
+                    <Link href="/landing/penelitianpengabdian" className="no-underline flex-grow text-[#434040]">Penelitian & Pengabdian</Link>
                     <FaChevronDown size={10} className="text-gray-400 transition-transform group-open:rotate-180" />
                   </summary>
                   <ul className="bg-gray-50 list-none p-0">
-                    <li><Link href="/landing/penelitian" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Penelitian</Link></li>
-                    <li><Link href="/landing/pengabdian" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Pengabdian</Link></li>
+                    <li><Link href="/landing/penelitianpengabdian/penelitian" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Penelitian</Link></li>
+                    <li><Link href="/landing/penelitianpengabdian/pengabdian" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Pengabdian</Link></li>
                   </ul>
                 </details>
               </li>

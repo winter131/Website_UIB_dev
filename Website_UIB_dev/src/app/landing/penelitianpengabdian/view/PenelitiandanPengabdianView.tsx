@@ -8,7 +8,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
     FileDown, Award, Search, BookOpen, Eye,
     TrendingUp, Users, Newspaper, ChevronRight,
-    Database, ArrowUpRight, GraduationCap, Sparkles
+    Database, ArrowUpRight, GraduationCap, Sparkles, Calendar,
+    PlayCircle
 } from 'lucide-react'
 
 const heroData = {
@@ -17,7 +18,34 @@ const heroData = {
     desc: "Mendorong inovasi melalui riset unggulan dan kontribusi nyata kepada masyarakat untuk masa depan yang lebih baik."
 };
 
+const researchNews = [
+    { title: "Dosen UIB Raih Hibah Penelitian Internasional 2026", date: "12 Februari 2026", img: "/img/DSC06279.jpg" },
+    { title: "Workshop Penulisan Jurnal Scopus Q1 Berstandar Global", date: "10 Februari 2026", img: "/img/story2.jpg" },
+    { title: "Pengabdian Masyarakat: Digitalisasi UMKM di Batam", date: "08 Februari 2026", img: "/img/gedungUIB.jpg" },
+    { title: "Kolaborasi Riset Maritim dengan National University", date: "05 Februari 2026", img: "/img/C1700307.jpg" }
+];
 
+interface ModernLinkProps {
+    text: string;
+    href: string;
+    light?: boolean;
+}
+
+/**
+ * Komponen ModernLink: Versi lebih ringkas dengan animasi ultra-smooth.
+ * Menggunakan cubic-bezier untuk efek pergerakan yang lebih organik.
+ */
+const ModernLink = ({ text, href, light = false }: ModernLinkProps) => (
+    <Link href={href} className="group relative inline-flex flex-col items-start pt-3 w-fit cursor-pointer">
+        <div className={`flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider transition-transform duration-300 ease-out group-hover:translate-x-2 ${light ? 'text-white' : 'text-[#2A3955]'}`}>
+            {text}
+            <ChevronRight size={16} className="transition-transform duration-300 ease-out" />
+        </div>
+
+        {/* Underline: Memanjang secara proporsional sesuai keinginan Anda, ditambah trik will-change agar smooth */}
+        <div className="mt-1 h-[2px] bg-[#f1c40f] rounded-full transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] will-change-[width] w-10 group-hover:w-[calc(100%+12px)]" />
+    </Link>
+)
 
 export default function PenelitiandanPengabdianView() {
     const [activeTab, setActiveTab] = useState('penelitian')
@@ -26,9 +54,9 @@ export default function PenelitiandanPengabdianView() {
         <main className="min-h-screen bg-[#FDFDFD] font-poppins selection:bg-[#2A3955] selection:text-white">
             <NavbarLanding />
 
-            {/* HERO SECTION - COMPACT & CLEAN */}
+            {/* HERO SECTION */}
             <section className="relative w-full h-[350px] md:h-[650px] overflow-hidden flex items-center">
-                <Image src={heroData.image} alt="UIB Hero" fill priority className="object-cover" objectPosition="center 30%" />
+                <Image src={heroData.image} alt="UIB Hero" fill priority className="object-cover" objectPosition="center 10%" />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#1A253A]/90 via-[#1A253A]/60 to-transparent z-10"></div>
                 <div className="relative z-20 container mx-auto px-6 md:px-12 lg:px-24">
                     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl text-white">
@@ -62,100 +90,102 @@ export default function PenelitiandanPengabdianView() {
                 </div>
             </section>
 
-            {/* MAIN CONTENT AREA */}
-            <section className="py-20">
+            {/* INTRO SECTION */}
+            <section className="py-20 bg-white border-b border-gray-100">
                 <div className="container mx-auto px-6 md:px-12 lg:px-24">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <h2 className="text-3xl font-black text-[#1a365d] mb-4">Mendorong Inovasi & Kontribusi Nyata</h2>
+                    <div className="w-16 h-1.5 bg-[#e67e22] rounded-full mb-12"></div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 text-gray-500 text-justify leading-relaxed font-light">
+                        <p>Universitas Internasional Batam berkomitmen untuk memajukan ilmu pengetahuan melalui ekosistem **Penelitian** yang berorientasi pada inovasi dan solusi industri. Kami mendorong sivitas akademika untuk menghasilkan publikasi ilmiah berkualitas yang diakui di tingkat nasional maupun internasional.</p>
+                        <p>Melalui program **Pengabdian kepada Masyarakat**, UIB berupaya mentransformasikan hasil-hasil riset menjadi manfaat praktis bagi warga Kepulauan Riau. Fokus kami adalah pemberdayaan masyarakat, digitalisasi UMKM, dan penyelesaian masalah sosial ekonomi secara berkelanjutan.</p>
+                    </div>
+                </div>
+            </section>
 
-                        {/* KIRI: Daftar Proyek (8 Kolom) */}
-                        <div className="lg:col-span-8 space-y-8">
-                            <div className="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
-                                <div className="p-8 bg-slate-50/50 border-b border-slate-100 flex justify-between items-center">
-                                    <div className="flex p-1 bg-slate-200/50 rounded-2xl">
-                                        {['penelitian', 'pengabdian'].map((tab) => (
-                                            <button
-                                                key={tab}
-                                                onClick={() => setActiveTab(tab)}
-                                                className={`px-8 py-2.5 rounded-xl text-xs font-bold capitalize transition-all ${activeTab === tab ? 'bg-[#2A3955] text-white shadow-lg' : 'text-slate-500 hover:text-[#2A3955]'}`}
-                                            >
-                                                {tab}
-                                            </button>
-                                        ))}
+            {/* NEWS SECTION */}
+            <section className="py-20 bg-[#FDFDFD]">
+                <div className="container mx-auto px-6 md:px-12 lg:px-24">
+                    <div className="flex justify-between items-end mb-10">
+                        <div>
+                            <h3 className="text-2xl font-black text-[#2A3955] mb-2 uppercase tracking-tight">Berita & Publikasi</h3>
+                            <div className="w-12 h-1 bg-[#e67e22]"></div>
+                        </div>
+                        <Link href="/landing" className="text-xs font-bold text-[#2A3955] hover:text-[#e67e22] flex items-center gap-1 transition-colors uppercase tracking-widest">
+                            Lihat Semua <ChevronRight size={16} />
+                        </Link>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {researchNews.map((news, i) => (
+                            <Link href="#" key={i} className="group block h-full">
+                                <motion.div whileHover={{ y: -5 }} className="bg-white h-full rounded-[2rem] overflow-hidden shadow-xl shadow-slate-200/50 border border-slate-50 transition-all duration-500 hover:bg-[#2A3955]">
+                                    <div className="aspect-[4/3] overflow-hidden relative">
+                                        <Image src={news.img} alt={news.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                                     </div>
-                                    <div className="relative hidden md:block">
-                                        <Search className="absolute left-4 top-3 text-slate-300" size={16} />
-                                        <input type="text" placeholder="Cari judul..." className="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-[#2A3955]/10" />
+                                    <div className="p-6 transition-colors duration-500">
+                                        <div className="flex items-center gap-2 text-[#0055aa] group-hover:text-[#e67e22] text-[10px] font-bold mb-3 transition-colors uppercase"><Calendar size={12} /> {news.date}</div>
+                                        <h4 className="text-sm font-bold text-[#2A3955] group-hover:text-white leading-snug transition-colors line-clamp-2">{news.title}</h4>
                                     </div>
-                                </div>
+                                </motion.div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-                                <div className="p-4 md:p-8">
-                                    {[1, 2, 3].map((item) => (
-                                        <div key={item} className="flex items-start gap-6 p-6 hover:bg-slate-50 rounded-3xl transition-all group border-b border-slate-50 last:border-0">
-                                            <div className="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-[#2A3955] group-hover:text-white transition-all duration-500">
-                                                <Database size={24} />
-                                            </div>
-                                            <div className="flex-1">
-                                                <div className="flex items-center gap-3 mb-2">
-                                                    <span className="text-[10px] font-black text-[#e67e22] uppercase tracking-widest bg-orange-50 px-2 py-0.5 rounded">Hibah 2026</span>
-                                                    <span className="text-[10px] text-slate-400 font-medium italic">Selesai • Mar 2026</span>
-                                                </div>
-                                                <h4 className="text-base font-bold text-[#2A3955] leading-snug mb-2 group-hover:text-[#e67e22] transition-colors line-clamp-2">
-                                                    Optimasi Arsitektur YOLOv11 dengan Space-to-Depth (SPD-Conv) Module untuk Objek Kecil
-                                                </h4>
-                                                <p className="text-xs text-slate-500 font-medium">Oleh: Dr. Jaya Ridho Nugroho, S.T., M.T.</p>
-                                            </div>
-                                            <button className="self-center p-3 bg-slate-100 rounded-full text-[#2A3955] hover:bg-[#2A3955] hover:text-white transition-all">
-                                                <ArrowUpRight size={20} />
-                                            </button>
-                                        </div>
-                                    ))}
-                                    <div className="mt-8 text-center">
-                                        <button className="text-xs font-black uppercase tracking-widest text-[#2A3955] hover:text-[#e67e22] transition-colors border-b-2 border-slate-100 hover:border-[#e67e22] pb-1">
-                                            Lihat Arsip Selengkapnya
-                                        </button>
-                                    </div>
-                                </div>
+            {/* PROGRAM & LAYANAN UNGGULAN (BENTO GRID) */}
+            <section className="py-16 bg-slate-50">
+                <div className="container mx-auto px-6 md:px-12 lg:px-24">
+                    <div className="mb-10 text-center">
+                        <h2 className="text-2xl md:text-3xl font-black text-[#1a365d] mb-3">Program & Layanan Unggulan</h2>
+                        <div className="w-16 h-1.5 bg-[#e67e22] mx-auto rounded-full"></div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* Card 1: Sosialisasi */}
+                        <div className="md:col-span-2 relative bg-[#0055aa] rounded-2xl p-8 md:p-10 text-white overflow-hidden flex flex-col justify-end min-h-[350px] shadow-lg border border-white/10 group">
+                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
+                            <div className="absolute -top-6 -right-6 opacity-10 transition-transform duration-1000 group-hover:scale-105"><PlayCircle size={220} /></div>
+                            <div className="relative z-10 w-full md:w-3/4">
+                                <div className="bg-white/10 w-12 h-12 rounded-xl flex items-center justify-center mb-6 backdrop-blur-md border border-white/20"><PlayCircle size={24} /></div>
+                                <h3 className="text-2xl md:text-3xl font-bold mb-3 leading-tight">Sosialisasi dan Workshop</h3>
+                                <p className="text-[13px] text-white/80 mb-6 leading-relaxed">Rekaman video sosialisasi dan kegiatan workshop penelitian tahun 2026/2027.</p>
+                                <ModernLink text="Pelajari Lebih Lanjut" href="/sosialisasi" light={true} />
                             </div>
                         </div>
 
-                        {/* KANAN: Sidebar (4 Kolom) */}
-                        <div className="lg:col-span-4 space-y-8">
-                            {/* PUSAT DOKUMEN */}
-                            <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100">
-                                <h3 className="text-sm font-black text-[#2A3955] uppercase tracking-widest mb-6 flex items-center gap-2">
-                                    <FileDown className="text-[#e67e22]" size={18} /> Pusat Dokumen
-                                </h3>
-                                <div className="space-y-4">
-                                    {[
-                                        { title: "Panduan Hibah Internal", size: "2.4MB" },
-                                        { title: "Template Laporan Akhir", size: "1.1MB" },
-                                        { title: "SOP Pengabdian", size: "850KB" }
-                                    ].map((doc, i) => (
-                                        <div key={i} className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl hover:bg-slate-100 transition-all cursor-pointer group">
-                                            <div className="flex flex-col">
-                                                <span className="text-xs font-bold text-slate-700 group-hover:text-[#2A3955] transition-colors">{doc.title}</span>
-                                                <span className="text-[9px] text-slate-400 font-medium uppercase tracking-tighter">PDF • {doc.size}</span>
-                                            </div>
-                                            <FileDown size={18} className="text-slate-300 group-hover:text-[#e67e22] transition-all" />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* PORTAL LINK */}
-                            <div className="bg-[#2A3955] rounded-[2.5rem] p-8 text-white relative overflow-hidden group">
-                                <div className="relative z-10">
-                                    <TrendingUp className="text-[#e67e22] mb-4" size={32} />
-                                    <h3 className="text-xl font-black mb-2">Sinta Score</h3>
-                                    <p className="text-white/60 text-[11px] leading-relaxed mb-6 font-light">Monitor kinerja penelitian dan publikasi jurnal melalui portal resmi Sinta Ristekdikti.</p>
-                                    <button className="w-full py-3 bg-white text-[#2A3955] rounded-xl font-bold text-xs hover:bg-[#e67e22] hover:text-white transition-all">
-                                        Buka Portal Sinta
-                                    </button>
-                                </div>
-                                <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-white/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+                        {/* Card 2: EQUITY */}
+                        <div className="md:col-span-1 relative bg-white rounded-2xl p-8 text-[#2A3955] flex flex-col justify-end min-h-[350px] border border-slate-100 shadow-md group overflow-hidden">
+                            <div className="absolute -top-6 -right-6 opacity-[0.03] text-[#0055aa] transition-transform duration-1000 group-hover:scale-105"><BookOpen size={150} /></div>
+                            <div className="relative z-10">
+                                <div className="bg-blue-50 w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-[#0055aa] border border-blue-100"><BookOpen size={24} /></div>
+                                <h3 className="text-xl font-bold mb-3 leading-tight">Program EQUITY</h3>
+                                <p className="text-[13px] text-slate-500 mb-6 leading-relaxed">Enhancing Quality Education for International Impacts 2025.</p>
+                                <ModernLink text="Pelajari Lebih Lanjut" href="/equity" />
                             </div>
                         </div>
 
+                        {/* Card 3: Panduan */}
+                        <div className="md:col-span-1 relative bg-[#1a365d] rounded-2xl p-8 text-white flex flex-col justify-end min-h-[350px] shadow-lg border border-white/10 group overflow-hidden">
+                            <div className="absolute -top-6 -right-6 opacity-10 transition-transform duration-1000 group-hover:scale-105"><GraduationCap size={150} /></div>
+                            <div className="relative z-10">
+                                <div className="bg-white/10 w-12 h-12 rounded-xl flex items-center justify-center mb-6 backdrop-blur-md border border-white/20 text-[#f1c40f]"><GraduationCap size={24} /></div>
+                                <h3 className="text-xl font-bold mb-3 leading-tight">Panduan 2026</h3>
+                                <p className="text-[13px] text-white/60 mb-6 leading-relaxed">Panduan resmi penelitian dan publikasi Direktorat Penelitian UIB.</p>
+                                <ModernLink text="Pelajari Lebih Lanjut" href="/panduan" light={true} />
+                            </div>
+                        </div>
+
+                        {/* Card 4: Klinik */}
+                        <div className="md:col-span-2 relative bg-gradient-to-br from-[#e67e22] to-[#d35400] rounded-2xl p-8 md:p-10 text-white overflow-hidden flex flex-col justify-end min-h-[350px] shadow-lg group">
+                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
+                            <div className="absolute -bottom-10 -right-10 opacity-10 transition-transform duration-1000 group-hover:-translate-y-4"><TrendingUp size={250} /></div>
+                            <div className="relative z-10 w-full md:w-3/4">
+                                <div className="bg-white/20 w-12 h-12 rounded-xl flex items-center justify-center mb-6 backdrop-blur-sm border border-white/20"><TrendingUp size={24} /></div>
+                                <h3 className="text-2xl md:text-3xl font-bold mb-3 leading-tight">Klinik Publikasi</h3>
+                                <p className="text-[13px] text-white/80 mb-6 leading-relaxed">Layanan pendampingan penulisan artikel ilmiah hingga sukses submit jurnal bereputasi.</p>
+                                <ModernLink text="Pelajari Lebih Lanjut" href="/klinik" light={true} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

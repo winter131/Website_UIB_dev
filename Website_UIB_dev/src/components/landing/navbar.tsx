@@ -141,6 +141,7 @@ export default function NavbarLanding() {
                     <motion.ul initial="hidden" animate="visible" exit="hidden" variants={dropdownVariants} className="absolute top-full left-0 z-[1001] bg-white shadow-2xl w-60 p-2 border-t-4 border-[#e67e22] list-none">
                       <li><Link href="/landing/penelitianpengabdian/penelitian" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Penelitian</Link></li>
                       <li><Link href="/landing/penelitianpengabdian/pengabdian" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Pengabdian</Link></li>
+                      <li><Link href="/landing/penelitianpengabdian/seminar" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Seminar</Link></li>
                     </motion.ul>
                   )}
                 </AnimatePresence>
@@ -207,7 +208,8 @@ export default function NavbarLanding() {
                   </summary>
                   <ul className="bg-gray-50 list-none p-0">
                     <li><Link href="/landing/penelitianpengabdian/penelitian" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Penelitian</Link></li>
-                    <li><Link href="/landing/penelitianpengabdian/pengabdian" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Pengabdian</Link></li>
+                    <li><Link href="/landing/penelitianpengabdian/pengabdian" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Pengabdian</Link></li>
+                    <li><Link href="/landing/penelitianpengabdian/seminar" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Seminar</Link></li>
                   </ul>
                 </details>
               </li>

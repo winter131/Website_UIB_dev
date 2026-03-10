@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import NavbarLanding from '@/components/landing/navbar'
@@ -36,7 +36,7 @@ interface ModernLinkProps {
  * Menggunakan cubic-bezier untuk efek pergerakan yang lebih organik.
  */
 const ModernLink = ({ text, href, light = false }: ModernLinkProps) => (
-    <Link href={href} className="group relative inline-flex flex-col items-start pt-3 w-fit cursor-pointer">
+    <Link href={href} className="group relative inline-flex flex-col items-start pt-4 w-fit cursor-pointer">
         <div className={`flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider transition-transform duration-300 ease-out group-hover:translate-x-2 ${light ? 'text-white' : 'text-[#2A3955]'}`}>
             {text}
             <ChevronRight size={16} className="transition-transform duration-300 ease-out" />
@@ -46,6 +46,41 @@ const ModernLink = ({ text, href, light = false }: ModernLinkProps) => (
         <div className="mt-1 h-[2px] bg-[#f1c40f] rounded-full transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] will-change-[width] w-10 group-hover:w-[calc(100%+12px)]" />
     </Link>
 )
+
+const AnimatedStat = ({ endValue, suffix, label, Icon }: { endValue: number, suffix: string, label: string, Icon: any }) => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        let current = 0;
+        const duration = 2000;
+        const stepTime = 30; // ms per frame
+        const steps = duration / stepTime;
+        const increment = endValue / steps;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= endValue) {
+                setCount(endValue);
+                clearInterval(timer);
+            } else {
+                setCount(Math.ceil(current));
+            }
+        }, stepTime);
+        return () => clearInterval(timer);
+    }, [endValue]);
+
+    return (
+        <div className="flex items-center gap-4 border-r border-white/10 last:border-0">
+            <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-[#e67e22]">
+                <Icon size={24} />
+            </div>
+            <div>
+                <div className="text-2xl font-black">{count}{suffix}</div>
+                <div className="text-[10px] uppercase tracking-widest font-bold text-white/40">{label}</div>
+            </div>
+        </div>
+    );
+};
 
 export default function PenelitiandanPengabdianView() {
     const [activeTab, setActiveTab] = useState('penelitian')
@@ -73,19 +108,11 @@ export default function PenelitiandanPengabdianView() {
             <section className="relative z-30 -mt-10 px-6 md:px-12 lg:px-24">
                 <div className="bg-[#2A3955] rounded-[2rem] p-8 shadow-2xl border border-white/10 grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
                     {[
-                        { label: "Total Penelitian", value: "240+", icon: BookOpen },
-                        { label: "Pengabdian", value: "115+", icon: Users },
-                        { label: "Publikasi Sinta", value: "85+", icon: Award }
+                        { label: "Total Penelitian", endValue: 240, suffix: "+", icon: BookOpen },
+                        { label: "Pengabdian", endValue: 115, suffix: "+", icon: Users },
+                        { label: "Publikasi Sinta", endValue: 85, suffix: "+", icon: Award }
                     ].map((stat, i) => (
-                        <div key={i} className="flex items-center gap-4 border-r border-white/10 last:border-0">
-                            <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-[#e67e22]">
-                                <stat.icon size={24} />
-                            </div>
-                            <div>
-                                <div className="text-2xl font-black">{stat.value}</div>
-                                <div className="text-[10px] uppercase tracking-widest font-bold text-white/40">{stat.label}</div>
-                            </div>
-                        </div>
+                        <AnimatedStat key={i} endValue={stat.endValue} suffix={stat.suffix} label={stat.label} Icon={stat.icon} />
                     ))}
                 </div>
             </section>

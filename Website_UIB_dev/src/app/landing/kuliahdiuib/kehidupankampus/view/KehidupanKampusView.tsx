@@ -104,7 +104,7 @@ export default function KehidupanKampusView() {
                         {/* Image Barelang */}
                         <div className="lg:col-span-5">
                             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-xl">
-                                <Image src="/img/C1700307.jpg" alt="Barelang Bridge" fill={true} className="object-cover" />
+                                <Image src="/img/TE.webp" alt="Barelang Bridge" fill={true} className="object-cover" />
                             </div>
                         </div>
                         {/* Text Content */}

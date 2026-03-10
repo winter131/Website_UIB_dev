@@ -62,7 +62,8 @@ export default function Footer() {
 
           {/* KOLOM 2: LAYANAN */}
           <div className="flex flex-col gap-3">
-            <Link href="#" className="hover:text-[#e67e22] transition-colors">Kemitraan</Link>
+            <Link href="/landing/footer/kemitraan" className="hover:text-[#e67e22] transition-colors">Kemitraan</Link>
+            <Link href="/landing/footer/kemahasiswaan" className="hover:text-[#e67e22] transition-colors">Kemahasiswaan</Link>
             <Link href="#" className="hover:text-[#e67e22] transition-colors">Unduh Dokumen</Link>
             <Link href="#" className="hover:text-[#e67e22] transition-colors">Perpustakaan</Link>
             <Link href="#" className="hover:text-[#e67e22] transition-colors">Penjamin Mutu Internal</Link>

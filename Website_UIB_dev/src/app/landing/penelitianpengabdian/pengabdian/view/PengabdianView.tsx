@@ -30,12 +30,24 @@ const testimonialData = [
 ];
 
 function MiniPhotoSlider() {
-    const [index, setIndex] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
-    const photos = ["/img/DSC06279.jpg", "/img/story2.jpg", "/img/gedungUIB.jpg", "/img/story1.jpg"];
+    const rawPhotos = ["/img/story3.jpg", "/img/story2.jpg", "/img/gedungUIB.jpg", "/img/story1.jpg", "/img/C1700307.JPG", "/img/TE.webp"];
+    // Clone array to allow infinite-like feeling or enough items to slide
+    const photos = [...rawPhotos, ...rawPhotos];
 
-    const nextSlide = () => setIndex((prev) => (prev + 1) % photos.length);
-    const prevSlide = () => setIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
+    const [startIndex, setStartIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+
+    // Number of items to show at once
+    const itemsToShow = 3;
+    const maxIndex = rawPhotos.length; // Slide by raw physical length
+
+    const nextSlide = () => {
+        setStartIndex((prev) => (prev + 1) % maxIndex);
+    };
+
+    const prevSlide = () => {
+        setStartIndex((prev) => (prev === 0 ? maxIndex - 1 : prev - 1));
+    };
 
     useEffect(() => {
         if (isHovered) return;
@@ -43,58 +55,64 @@ function MiniPhotoSlider() {
             nextSlide();
         }, 3000);
         return () => clearInterval(timer);
-    }, [isHovered]);
+    }, [isHovered, maxIndex]);
 
     return (
         <div
-            className="relative w-full h-full overflow-hidden rounded-xl group bg-slate-900 min-h-[250px]"
+            className="relative w-full h-full overflow-hidden flex items-center bg-[#2A3955]"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <AnimatePresence mode='wait'>
-                <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="absolute inset-0"
-                >
-                    <Image src={photos[index]} alt="Kegiatan Pengabdian" fill className="object-cover" />
-                </motion.div>
-            </AnimatePresence>
-            {/* Dark gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2A3955]/90 via-[#2A3955]/20 to-transparent pointer-events-none" />
+
+            {/* Carousel Track Edge-to-Edge */}
+            <div
+                className="flex w-full h-full transition-transform duration-700 ease-[0.33,1,0.68,1]"
+                style={{ transform: `translateX(-${startIndex * (100 / itemsToShow)}%)` }}
+            >
+                {photos.map((src, i) => (
+                    <div
+                        key={i}
+                        className="relative flex-none w-[33.333333%] h-full overflow-hidden group/item cursor-pointer border-r border-[#2A3955]"
+                    >
+                        <Image src={src} alt={`Kegiatan Pengabdian ${i}`} fill className="object-cover transition-transform duration-700 group-hover/item:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#2A3955]/80 via-transparent to-transparent pointer-events-none opacity-80" />
+
+                        {/* Hover Overlay Text */}
+                        <div className="absolute inset-0 p-6 flex flex-col justify-end translate-y-8 group-hover/item:translate-y-0 opacity-0 group-hover/item:opacity-100 transition-all duration-500">
+                            <div className="w-8 h-1 bg-[#f1c40f] rounded-full mb-3" />
+                            <h4 className="text-white font-bold text-lg leading-tight mb-1 shadow-black">Dokumentasi Lapangan</h4>
+                            <p className="text-white/80 text-xs">Pemberdayaan dan pendampingan di desa mitra</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
 
             {/* Navigation Arrows (visible on hover) */}
-            <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-3 opacity-0 group-hover:opacity-100 transition-opacity z-20">
+            <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-6 opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none">
                 <button
                     onClick={(e) => { e.stopPropagation(); prevSlide(); }}
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-black/30 hover:bg-[#2A3955] text-white backdrop-blur-sm transition-all shadow-md"
+                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/90 hover:bg-[#2A3955] hover:text-white text-[#2A3955] backdrop-blur-sm transition-all shadow-xl border border-slate-100 pointer-events-auto active:scale-95"
                 >
-                    <ChevronLeft size={16} />
+                    <ChevronLeft size={24} />
                 </button>
                 <button
                     onClick={(e) => { e.stopPropagation(); nextSlide(); }}
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-black/30 hover:bg-[#2A3955] text-white backdrop-blur-sm transition-all shadow-md"
+                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/90 hover:bg-[#2A3955] hover:text-white text-[#2A3955] backdrop-blur-sm transition-all shadow-xl border border-slate-100 pointer-events-auto active:scale-95"
                 >
-                    <ChevronRight size={16} />
+                    <ChevronRight size={24} />
                 </button>
             </div>
 
-            <div className="absolute bottom-6 left-6 right-6 z-10 flex flex-col justify-end">
-                <h4 className="text-white font-bold text-lg mb-1 leading-tight transform group-hover:-translate-y-1 transition-transform cursor-default">Kilas Kegiatan</h4>
-                <p className="text-white/80 text-[11px] font-medium leading-relaxed opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all cursor-default">Pemberdayaan dan pendampingan di desa mitra</p>
-                <div className="flex gap-1.5 mt-4 z-20">
-                    {photos.map((_, i) => (
-                        <button
-                            key={i}
-                            onClick={(e) => { e.stopPropagation(); setIndex(i); }}
-                            className={`h-1.5 rounded-full transition-all duration-500 hover:bg-white/80 ${i === index ? 'w-5 bg-[#f1c40f]' : 'w-2 bg-white/30'}`}
-                            aria-label={`Go to slide ${i + 1}`}
-                        />
-                    ))}
-                </div>
+            {/* Pagination Dots */}
+            <div className="absolute bottom-4 left-0 right-0 z-10 flex justify-center gap-2">
+                {rawPhotos.map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={(e) => { e.stopPropagation(); setStartIndex(i); }}
+                        className={`h-2 rounded-full transition-all duration-500 ${i === startIndex ? 'w-8 bg-[#f1c40f] shadow-sm' : 'w-2 bg-slate-300 hover:bg-[#2A3955]/50'}`}
+                        aria-label={`Go to group ${i + 1}`}
+                    />
+                ))}
             </div>
         </div>
     );
@@ -248,78 +266,14 @@ export default function PenelitianUIB() {
                         </p>
 
                     </div>
-
-                    {/* Bento Box Layout Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[220px]">
-
-                        {/* Large Box 1: Slider (Spans 2 cols, 2 rows) */}
-                        <div className="md:col-span-2 lg:col-span-2 row-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-2 hover:shadow-lg transition-all group">
-                            <MiniPhotoSlider />
-                        </div>
-
-                        {/* Box 2: Kolaborasi */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all group lg:col-span-1 row-span-1 flex flex-col justify-between">
-                            <div className="flex justify-between items-start">
-                                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                    <Users size={24} />
-                                </div>
-                                <div className="w-8 h-8 rounded-full border border-slate-100 flex items-center justify-center text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <ChevronRight size={14} />
-                                </div>
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-[#2A3955] text-base mb-1">Kolaborasi Pentahelix</h3>
-                                <p className="text-xs text-slate-500 leading-relaxed">Sinergi multipihak di desa mitra & pemerintah</p>
-                            </div>
-                        </div>
-
-                        {/* Box 3: Inkubasi */}
-                        <div className="bg-[#2A3955] p-6 rounded-2xl shadow-sm border border-[#2A3955] hover:shadow-xl hover:-translate-y-1 transition-all group lg:col-span-1 row-span-1 flex flex-col justify-between text-white relative overflow-hidden">
-                            {/* Decorative glow */}
-                            <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#f1c40f]/20 blur-2xl rounded-full"></div>
-                            <div className="flex justify-between items-start relative z-10">
-                                <div className="w-12 h-12 bg-white/10 text-[#f1c40f] rounded-xl flex items-center justify-center group-hover:bg-[#f1c40f] group-hover:text-[#2A3955] transition-colors">
-                                    <Lightbulb size={24} />
-                                </div>
-                                <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/50 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <ChevronRight size={14} />
-                                </div>
-                            </div>
-                            <div className="relative z-10">
-                                <h3 className="font-bold text-white text-base mb-1">Inkubasi Bisnis</h3>
-                                <p className="text-xs text-blue-200 leading-relaxed">Bisnis sirkular hijau & berkelanjutan</p>
-                            </div>
-                        </div>
-
-                        {/* Box 4: Pelatihan */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all group md:col-span-1 lg:col-span-1 row-span-1 flex flex-col justify-between">
-                            <div className="flex justify-between items-start">
-                                <div className="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition-colors">
-                                    <GraduationCap size={24} />
-                                </div>
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-[#2A3955] text-base mb-1">Pelatihan Vokasi</h3>
-                                <p className="text-xs text-slate-500 leading-relaxed">Kecakapan untuk kelompok rentan</p>
-                            </div>
-                        </div>
-
-                        {/* Box 5: Advokasi */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all group md:col-span-1 lg:col-span-1 row-span-1 flex flex-col justify-between">
-                            <div className="flex justify-between items-start">
-                                <div className="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center group-hover:bg-red-600 group-hover:text-white transition-colors">
-                                    <Heart size={24} />
-                                </div>
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-[#2A3955] text-base mb-1">Sadar Hukum</h3>
-                                <p className="text-xs text-slate-500 leading-relaxed">Pendampingan dan advokasi lingkungan hidup</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </section>
+
+                {/* Full-width Carousel Area */}
+                <div className="w-full mt-16 h-[300px] md:h-[450px] shadow-2xl relative overflow-hidden group">
+                    <MiniPhotoSlider />
+                </div>
+            </section >
             <Footer />
-        </main>
+        </main >
     )
 }

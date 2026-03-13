@@ -48,21 +48,14 @@ function AnimatedStat({ target, label }: { target: number; label: string }) {
 }
 
 const organizations = [
-    {
-        name: "BEM UIB",
-        full: "Badan Eksekutif Mahasiswa",
-        desc: "Organisasi mahasiswa tertinggi sebagai wadah aspirasi dan pembinaan kepemimpinan di UIB.",
-        icon: Users,
-        color: "from-blue-600 to-blue-800",
-        href: "#"
-    },
+    
     {
         name: "HMPS",
         full: "Himpunan Mahasiswa Program Studi",
         desc: "Organisasi per-prodi yang memfasilitasi pengembangan akademik dan non-akademik mahasiswa.",
         icon: GraduationCap,
         color: "from-[#2A3955] to-[#1A253A]",
-        href: "#"
+        href: "/landing/"
     },
     {
         name: "UKM",
@@ -70,7 +63,7 @@ const organizations = [
         desc: "Wadah pengembangan bakat dan minat di bidang olahraga, seni, penalaran, dan keagamaan.",
         icon: Star,
         color: "from-orange-500 to-orange-700",
-        href: "#"
+        href: "/landing/tentang/"
     },
 ]
 
@@ -108,31 +101,28 @@ export default function KemahasiswaanView() {
         <main className="mt-20 bg-white font-sans text-slate-900">
             <NavbarLanding />
 
-            {/* HERO */}
-            <section className="relative w-full h-[300px] md:h-[450px] overflow-hidden">
-                <Image
-                    src="/img/C1700295.jpg"
-                    alt="Kemahasiswaan UIB"
-                    fill
-                    priority
-                    className="object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#2A3955]/90 via-[#2A3955]/50 to-transparent z-10" />
-                <div className="absolute inset-0 z-20 flex items-center">
-                    <div className="container mx-auto px-8 md:px-20">
-                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                            <p className="text-white/60 text-xs uppercase tracking-[0.2em] font-bold mb-3">Direktorat</p>
-                            <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight">
-                                Kemahasiswaan <br />
-                                <span className="text-[#f1c40f]">& Alumni</span>
-                            </h1>
-                            <p className="text-white/70 text-sm md:text-base mt-4 max-w-md font-light">
-                                Mendukung pertumbuhan holistik mahasiswa melalui organisasi, layanan, dan program yang berdampak.
-                            </p>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
+           {/* 1. HERO IMAGE SECTION - ENHANCED WITH OVERLAY */}
+                       <section className="w-full relative overflow-hidden">
+                           <div className="relative h-[250px] md:h-[400px] w-full">
+                               <Image
+                                   src="/img/DSC06279.jpg"
+                                   alt="Hero Kemitraan"
+                                   fill
+                                   priority
+                                   className="object-cover object-[center_10%]"
+                               />
+                               {/* Gradient Overlay Premium */}
+                               <div className="absolute inset-0 bg-gradient-to-r from-[#1A253A]/90 via-[#1A253A]/40 to-transparent z-10 flex items-center">
+                                   <div className="container mx-auto px-6 md:px-20">
+                                       <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+                                           <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-tighter">
+                                               Kemahasiswaan <br /> <span className="text-[#f1c40f]">dan Alumni.</span>
+                                           </h1>
+                                       </motion.div>
+                                   </div>
+                               </div>
+                           </div>
+                       </section>
 
             {/* STATS BAR */}
             <section className="bg-[#2A3955] py-10">
@@ -173,7 +163,7 @@ export default function KemahasiswaanView() {
                         <h2 className="text-3xl md:text-4xl font-black text-[#2A3955] mb-3">Organisasi Mahasiswa</h2>
                         <div className="w-16 h-1.5 bg-[#f1c40f] mx-auto rounded-full"></div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
                         {organizations.map((org, i) => (
                             <Link href={org.href} key={i} className="group block">
                                 <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition-all duration-300 hover:-translate-y-1">
@@ -241,6 +231,7 @@ export default function KemahasiswaanView() {
                     </div>
                 </div>
             </section>
+            
 
             {/* CTA BOTTOM */}
             <section className="bg-[#2A3955] py-16 text-white text-center relative overflow-hidden">

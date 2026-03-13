@@ -64,15 +64,14 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <Link href="/landing/footer/kemitraan" className="hover:text-[#e67e22] transition-colors">Kemitraan</Link>
             <Link href="/landing/footer/kemahasiswaan" className="hover:text-[#e67e22] transition-colors">Kemahasiswaan</Link>
-            <Link href="#" className="hover:text-[#e67e22] transition-colors">Unduh Dokumen</Link>
+            <Link href="/landing/footer/unduhdokumen" className="hover:text-[#e67e22] transition-colors">Unduh Dokumen</Link>
             <Link href="#" className="hover:text-[#e67e22] transition-colors">Perpustakaan</Link>
-            <Link href="#" className="hover:text-[#e67e22] transition-colors">Penjamin Mutu Internal</Link>
+            <Link href="/landing/conference/" className="hover:text-[#e67e22] transition-colors">UIB Conference</Link>
           </div>
 
           {/* KOLOM 3: INFORMASI PUBLIK */}
           <div className="flex flex-col gap-3">
             <Link href="#" className="hover:text-[#e67e22] transition-colors">Pusat Pengemgbangan Akademik</Link>
-            <Link href="#" className="hover:text-[#e67e22] transition-colors">Kemahasiswaan</Link>
             <Link href="#" className="hover:text-[#e67e22] transition-colors">Kalender Akademik</Link>
             <Link href="#" className="hover:text-[#e67e22] transition-colors">My Portal</Link>
           </div>

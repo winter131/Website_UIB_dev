@@ -148,7 +148,7 @@ export default function NavbarLanding() {
               </li>
 
               <li className="list-none">
-                <Link href="/landing/international" className="hover:text-[#e67e22] px-0 transition-colors duration-300 no-underline py-4">Program Internasional</Link>
+                <Link href="/landing/international" className="hover:text-[#e67e22] flex items-center gap-1 py-4 cursor-pointer no-underline group">Program Internasional</Link>
               </li>
 
               <li className="ml-2 list-none">

@@ -7,8 +7,13 @@ import Footer from '@/components/landing/footer'
 import AboutHeader from '@/components/landing/tentang/about-header'
 import { FileDown, Award, Search, BookOpen, X, Eye } from 'lucide-react'
 import { Poppins } from 'next/font/google'
-import KemahasiswaanView from './view/KemahasiswaanView';
+import UnduhDokumenView from './view/UnduhDokumenView';
 
-export default function KemahasiswaanPage() {
-    return <KemahasiswaanView />
+
+
+
+export default function UnduhDokumenPage() {
+
+    return <UnduhDokumenView />
+
 }

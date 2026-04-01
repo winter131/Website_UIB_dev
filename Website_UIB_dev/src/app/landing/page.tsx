@@ -44,19 +44,19 @@ export default function LandingPage() {
       title: 'Pendaftaran Beasiswa',
       desc: 'Informasi lengkap persyaratan pendaftaran beasiswa UIB.',
       icon: <FaGraduationCap size={44} />,
-      href: '/landing' // Ganti ke rute spesifik nanti
+      href: '/landing/informasi/daftarbeasiswa'
     },
     {
       title: 'Program Studi',
       desc: 'Daftar program studi unggulan dengan kurikulum berbasis industri.',
       icon: <FaInfoCircle size={44} />,
-      href: '/landing' // Ganti ke rute spesifik nanti
+      href: 'landing/kuliahdiuib'
     },
     {
       title: 'Informasi Pendaftaran',
       desc: 'Pusat bantuan teknis dan informasi akademik mahasiswa baru.',
       icon: <FaHeadset size={44} />,
-      href: '/landing' // Ganti ke rute spesifik nanti
+      href: '/landing/informasi/informasipendaftaran'
     }
   ];
 

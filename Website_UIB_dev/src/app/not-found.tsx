@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Login() {
+export default function NotFound() {
   return (
     <>
       <div className="flex flex-row flex-wrap items-start min-h-screen bg-[#F9F9F9] dark:bg-[#212121] pb-1 px-10 pt-10 sm:pt-16">
@@ -12,6 +12,7 @@ export default function Login() {
               alt="Logo"
               width={200}
               height={200}
+              priority
             />
           </div>
           <div className="hidden dark:flex dark:flex-1">
@@ -20,6 +21,7 @@ export default function Login() {
               alt="Logo"
               width={200}
               height={200}
+              priority
             />
           </div>
           <div className="flex-none">
@@ -28,23 +30,27 @@ export default function Login() {
               alt="Logo"
               width={200}
               height={200}
+              priority
             />
           </div>
         </div>
+
         <div className="-mt-24 flex flex-1 h-96 w-screen flex-col lg:p-10 justify-center items-center">
           <Image
             src={"/img/404.svg"}
-            alt="UIB Admission"
+            alt="404 Not Found"
             width={300}
             height={300}
             className="mb-3"
           />
-          <h1 className="text-2xl font-light">Halaman Tidak Ditemukan</h1>
-          <p className="text-lg font-light">
-            Halaman yang Anda cari tidak ada.
+          <h1 className="text-2xl font-light text-[#1A365D]">Halaman Tidak Ditemukan</h1>
+          <p className="text-lg font-light text-slate-500">
+            Maaf, halaman yang Anda cari tidak tersedia atau telah dipindahkan.
           </p>
-          <Link href="/" className="btn btn-[#FF8C00] mt-5 btn-sm">
-            <span className="bx bx-arrow-back"></span>
+          <Link 
+            href="/" 
+            className="mt-8 px-8 py-3 bg-[#e67e22] hover:bg-[#d35400] text-white rounded-full font-bold transition-all shadow-lg shadow-orange-500/20 flex items-center gap-2"
+          >
             Kembali ke Beranda
           </Link>
         </div>

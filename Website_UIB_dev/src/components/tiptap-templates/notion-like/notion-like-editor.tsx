@@ -24,6 +24,7 @@ import { TextAlign } from "@tiptap/extension-text-align";
 import { Mathematics } from "@tiptap/extension-mathematics";
 import { UniqueID } from "@tiptap/extension-unique-id";
 import { Emoji, gitHubEmojis } from "@tiptap/extension-emoji";
+import { FontFamily } from "@tiptap/extension-font-family";
 
 // --- Hooks ---
 import { useUiEditorState } from "@/hooks/use-ui-editor-state";
@@ -235,6 +236,7 @@ export const EditorProvider = forwardRef<
         ],
       }),
       Typography,
+      FontFamily,
       UiState,
     ],
   });
@@ -263,7 +265,7 @@ export const EditorProvider = forwardRef<
   return (
     <div className="notion-like-editor-wrapper">
       <EditorContext.Provider value={{ editor }}>
-        {/* <NotionEditorHeader /> */}
+        <NotionEditorHeader />
         <EditorContentArea />
 
         <TableExtendRowColumnButtons />

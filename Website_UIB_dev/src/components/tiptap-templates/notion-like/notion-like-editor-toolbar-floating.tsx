@@ -25,6 +25,7 @@ import {
   TextAlignButton,
 } from "@/components/tiptap-ui/text-align-button"
 import { TurnIntoDropdown } from "@/components/tiptap-ui/turn-into-dropdown"
+import { FontFamilyDropdown } from "@/components/tiptap-ui/font-family-dropdown/font-family-dropdown"
 
 // --- Utils ---
 import { isSelectionValid } from "@/lib/tiptap-collab-utils"
@@ -81,6 +82,21 @@ export function NotionToolbarFloating() {
           <MarkButton type="underline" hideWhenUnavailable={true} />
           <MarkButton type="strike" hideWhenUnavailable={true} />
           <MarkButton type="code" hideWhenUnavailable={true} />
+        </ToolbarGroup>
+
+        <ToolbarSeparator />
+
+        <ToolbarGroup>
+          <TextAlignButton align="left" hideWhenUnavailable={true} />
+          <TextAlignButton align="center" hideWhenUnavailable={true} />
+          <TextAlignButton align="right" hideWhenUnavailable={true} />
+          <TextAlignButton align="justify" hideWhenUnavailable={true} />
+        </ToolbarGroup>
+
+        <ToolbarSeparator />
+
+        <ToolbarGroup>
+          <FontFamilyDropdown />
         </ToolbarGroup>
 
         <ToolbarSeparator />

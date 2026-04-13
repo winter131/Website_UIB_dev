@@ -13,12 +13,12 @@ export default function AcademicPrograms() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {[
-            { title: "Fasilitas", link: "/Fasilitas", icon: <Landmark size={24} /> },
-            { title: "Batam dan Sekitarnya", link: "/Batam-dan-Sekitarnya", icon: <GraduationCap size={24} /> },
-            { title: "Diskon Mahasiswa", link: "/Diskon-Mahasiswa", icon: <Award size={24} /> },
-            { title: "Kemahasiswaan", link: "/Kemahasiswaan", icon: <BookOpen size={24} /> },
-            { title: "Akreditasi", link: "/Akreditasi", icon: <Microscope size={24} /> },
-            { title: "Panduan", link: "/Panduan", icon: <School size={24} /> },
+            { title: "Fasilitas", link: "landing/informasi/fasilitas", icon: <Landmark size={24} /> },
+            { title: "Batam dan Sekitarnya", link: "/landing/informasi/batamdansekitarnya", icon: <GraduationCap size={24} /> },
+            { title: "Diskon Mahasiswa", link: "landing/informasi/diskonmahasiswa", icon: <Award size={24} /> },
+            { title: "Kemahasiswaan", link: "landing/informasi/kemahasiswaan", icon: <BookOpen size={24} /> },
+            { title: "Akreditasi", link: "landing/informasi/akreditasi", icon: <Microscope size={24} /> },
+            { title: "Panduan", link: "landing/informasi/panduan", icon: <School size={24} /> },
           ].map((item, idx) => (
             <Link key={idx} href={item.link} className="block group">
               {/* CARD: Menggunakan bg-white solid untuk menutupi batik di area kartu */}

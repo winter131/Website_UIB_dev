@@ -46,9 +46,11 @@ export default function LatestNews() {
         <section className="py-12 bg-[#F7F7F7] font-poppins text-[#2A3955]">
             <div className="container mx-auto px-4 md:px-20">
 
-                {/* Judul Section */}
-                <div className='text-center font-bold text-[#2A3955] mb-10 text-3xl tracking-tight'>
-                    <h1>Berita Terbaru</h1>
+                {/* Judul Section & Admin Actions */}
+                <div className='flex flex-col md:flex-row justify-between items-center mb-10 gap-4'>
+                    <h1 className="font-bold text-[#2A3955] text-3xl tracking-tight">
+                        Berita Terbaru
+                    </h1>
                 </div>
 
                 {/* GRID UTAMA (Headline & Secondary) */}
@@ -103,10 +105,12 @@ export default function LatestNews() {
                                     <h3 className="text-white text-xl md:text-3xl font-bold leading-tight mb-3">
                                         {mainNews.title}
                                     </h3>
-                                    <div className="flex items-center gap-3 text-gray-300 text-xs font-medium">
-                                        <span>{mainNews.date}</span>
-                                        <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
-                                        <span className="italic">Oleh: {mainNews.author}</span>
+                                        <div className="flex items-center justify-between text-gray-300 text-xs font-medium">
+                                        <div className="flex items-center gap-3">
+                                            <span>{mainNews.date}</span>
+                                            <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
+                                            <span className="italic">Oleh: {mainNews.author}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </Link>
@@ -180,6 +184,7 @@ export default function LatestNews() {
                                     >
                                         {news.title}
                                     </h4>
+
                                 </div>
                             </Link>
                         ))}
@@ -247,6 +252,7 @@ export default function LatestNews() {
                                 >
                                     {news.title}
                                 </h4>
+
                             </div>
                         </Link>
                     ))}

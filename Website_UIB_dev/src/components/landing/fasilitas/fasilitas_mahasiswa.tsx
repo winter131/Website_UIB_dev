@@ -32,7 +32,7 @@ const fasilitasUIB = [
     }
 ]
 
-export default function FasilitasView() {
+export default function FasilitasMahasiswa() {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const toggleAccordion = (id: number) => {
@@ -44,28 +44,6 @@ export default function FasilitasView() {
             <div className="container mx-auto px-6 md:px-20">
 
                 <div className="flex flex-col lg:flex-row items-start gap-16">
-
-                    {/* --- BAGIAN KIRI: GAMBAR KAMPUS (Sticky on Desktop) --- */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="lg:w-1/2 lg:sticky lg:top-32"
-                    >
-                        <div className="relative rounded-[2rem] overflow-hidden shadow-2xl group">
-                            <img
-                                src="/img/gym.JPG"
-                                alt="Gedung UIB"
-                                className="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#2A3955]/40 to-transparent" />
-                        </div>
-
-                        {/* Dekorasi Aksen */}
-                        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#e67e22] rounded-3xl -z-10 hidden md:block" />
-                    </motion.div>
-
                     {/* --- BAGIAN KANAN: LIST FASILITAS (Accordion) --- */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
@@ -133,6 +111,28 @@ export default function FasilitasView() {
                             ))}
                         </div>
                     </motion.div>
+                    {/* --- BAGIAN KIRI: GAMBAR KAMPUS (Sticky on Desktop) --- */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="lg:w-1/2 lg:sticky lg:top-32"
+                    >
+                        <div className="relative rounded-[2rem] overflow-hidden shadow-2xl group">
+                            <img
+                                src="/img/gym.JPG"
+                                alt="Gedung UIB"
+                                className="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#2A3955]/40 to-transparent" />
+                        </div>
+
+                        {/* Dekorasi Aksen */}
+                        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#e67e22] rounded-3xl -z-10 hidden md:block" />
+                    </motion.div>
+
+
 
                 </div>
             </div>

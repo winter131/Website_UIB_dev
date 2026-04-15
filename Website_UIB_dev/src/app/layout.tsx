@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import ClientSessionProvider from "./clientSessionProvider";
@@ -8,14 +8,15 @@ import Notifikasi from "@/components/Notifikasi";
 import QueryProvider from "./QueryProvider";
 import ConfirmationBox from "@/components/ConfirmationBox";
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
+const poppins = Poppins({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600', '700'],
+    variable: '--font-poppins',
 });
 
 export const metadata: Metadata = {
   title:
-    "Universitas Internasional Batam - Prospective Student Registration Platform",
+    "Universitas Internasional Batam",
   description:
     "Sistem Pendaftaran Mahasiswa Baru Universitas Internasional Batam",
   icons: {
@@ -29,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html lang="id">
       <head>
         <link
           href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -38,13 +39,15 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          "min-h-screen bg-background font-poppins antialiased",
+          poppins.variable
         )}
       >
         <ThemeProvider>
           <ClientSessionProvider>
-            <QueryProvider>{children}</QueryProvider>
+            <QueryProvider>
+              {children}
+            </QueryProvider>
             <Notifikasi />
             <ConfirmationBox />
           </ClientSessionProvider>

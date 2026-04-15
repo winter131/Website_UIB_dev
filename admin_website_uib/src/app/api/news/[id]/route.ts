@@ -3,14 +3,36 @@ import prisma from '@/lib/prisma';
 import fs from 'fs';
 import path from 'path';
 
+export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
+    try {
+        const { id } = await context.params;
+        const news = await prisma.news.findUnique({
+            where: { id: BigInt(id) }
+        });
+
+        if (!news) {
+            return NextResponse.json({ error: "News not found" }, { status: 404 });
+        }
+
+        // Properly serialize BigInt for JSON response
+        const serializedNews = {
+            ...news,
+            id: news.id.toString()
+        };
+
+        return NextResponse.json(serializedNews);
+    } catch (error) {
+        console.error("Error fetching news:", error);
+        return NextResponse.json({ error: "Failed to fetch news" }, { status: 500 });
+    }
+}
+
 export async function DELETE(request: Request, context: { params: Promise<{ id: string }> }) {
     try {
         const { id } = await context.params;
 
-        // Optionally, fetch the news to delete its image file from disk if desired
-        // For now, we'll just delete the DB record.
         await prisma.news.delete({
-            where: { id: parseInt(id) }
+            where: { id: BigInt(id) }
         });
 
         return NextResponse.json({ success: true }, { status: 200 });
@@ -19,6 +41,8 @@ export async function DELETE(request: Request, context: { params: Promise<{ id: 
         return NextResponse.json({ error: "Failed to delete news" }, { status: 500 });
     }
 }
+
+
 
 export async function PUT(request: Request, context: { params: Promise<{ id: string }> }) {
     try {
@@ -33,15 +57,19 @@ export async function PUT(request: Request, context: { params: Promise<{ id: str
         const description = formData.get('description') as string;
         const imageFile = formData.get('image') as File | null;
         const existingImage = formData.get('existingImage') as string;
+        const metaTitle = formData.get('metaTitle') as string;
+        const metaDescription = formData.get('metaDescription') as string;
 
-        // Validate minimum required fields
+        const category = formData.get('category') as string;
+        const summary = formData.get('summary') as string;
+        const source = formData.get('source') as string;
+
         if (!title || !slug || !tag) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        let imageUrl = existingImage || '';
+        let imageUrl = existingImage;
 
-        // If a new image was uploaded
         if (imageFile && imageFile.name) {
             const bytes = await imageFile.arrayBuffer();
             const buffer = Buffer.from(bytes);
@@ -69,24 +97,44 @@ export async function PUT(request: Request, context: { params: Promise<{ id: str
         }
 
         const updatedPost = await prisma.news.update({
-            where: { id: parseInt(id) },
+            where: { id: BigInt(id) },
             data: {
                 title,
                 slug,
                 tag,
+                category,
+                summary,
+                source,
                 date,
                 author,
                 image: imageUrl,
                 description,
+                metaTitle,
+                metaDescription,
             }
         });
 
-        return NextResponse.json(updatedPost, { status: 200 });
+        const serializedPost = {
+            ...updatedPost,
+            id: updatedPost.id.toString()
+        };
+
+        return NextResponse.json(serializedPost, { status: 200 });
     } catch (error: any) {
         console.error("Error updating news post:", error);
+        
+        // Handle unique constraint error on slug
         if (error.code === 'P2002') {
             return NextResponse.json({ error: "A post with this slug already exists" }, { status: 409 });
         }
-        return NextResponse.json({ error: "Failed to update news post" }, { status: 500 });
+        
+        // Handle Prisma specific errors for better debugging
+        if (error.code) {
+            return NextResponse.json({ 
+                error: `Database error (${error.code}): ${error.message || 'Operation failed'}` 
+            }, { status: 500 });
+        }
+
+        return NextResponse.json({ error: `Internal Server Error: ${error.message || 'Failed to update news post'}` }, { status: 500 });
     }
 }

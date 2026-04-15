@@ -27,9 +27,11 @@ export async function getNewsBySlug(slug: string) {
     }
 }
 
-export async function getAllNews() {
+export async function getAllNews(category?: string) {
     try {
+        const whereClause = category && category !== 'Semua' ? { category } : {};
         const allNews = await prisma.news.findMany({
+            where: whereClause,
             orderBy: { createdAt: 'desc' }
         });
         return allNews;
@@ -63,6 +65,9 @@ export async function updateNews(id: number | string, data: any) {
             data: {
                 title: data.title,
                 tag: data.tag,
+                category: data.category,
+                summary: data.summary,
+                source: data.source,
                 author: data.author,
                 slug: data.slug,
                 image: data.image,
@@ -89,6 +94,9 @@ export async function createNews(data: any) {
             data: {
                 title: data.title,
                 tag: data.tag,
+                category: data.category,
+                summary: data.summary,
+                source: data.source,
                 author: data.author,
                 slug: data.slug,
                 image: data.image,

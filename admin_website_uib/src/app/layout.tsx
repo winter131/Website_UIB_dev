@@ -1,5 +1,9 @@
 import './globals.css';
+import './editor-theme.css';
 import Link from 'next/link';
+import Header from '@/components/Header';
+import Notifikasi from '@/components/Notifikasi';
+import ConfirmationBox from '@/components/ConfirmationBox';
 
 export default function RootLayout({
   children,
@@ -9,6 +13,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased flex h-screen bg-gray-50">
+        <Notifikasi />
+        <ConfirmationBox />
+        
         {/* Sidebar */}
         <aside className="w-64 bg-slate-900 text-white flex flex-col">
           <div className="p-6 text-2xl font-bold tracking-wider border-b border-slate-800">

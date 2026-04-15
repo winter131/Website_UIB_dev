@@ -1,0 +1,23 @@
+export type FormIsiWawancaraType = {
+  tahunLulusan: string;
+  prestasi: string;
+  catatanLatarBelakang: string;
+  catatanPerilaku: string;
+  keperluanKerja: string;
+  sumberInformasi: string;
+  namaGuruBK: string;
+  pemberiRekomendasi: string;
+  rekomendasiBeasiswa: string;
+  rekomendasiPeringkat: string;
+  rekomendasiDiterima: string;
+  alasanRaguRagu: string;
+  sumberInformasiLainnya: string;
+  disabilitasCaMaba: string[];
+  disabilitasAyah: string[];
+  disabilitasIbu: string[];
+  hasilWawancaraPsikotest: string;
+  parameterEtikaKomunikasi: string;
+  parameterKemampuanAnalisa: string;
+  parameterProblemSolving: string;
+  parameterProfesionalisme: string;
+};

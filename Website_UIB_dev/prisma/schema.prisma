@@ -12,6 +12,9 @@ model news {
   title           String    @db.VarChar(255)
   slug            String    @unique(map: "news_slug_unique") @db.VarChar(255)
   tag             String    @db.VarChar(255)
+  category        String?   @db.VarChar(255)
+  summary         String?   @db.LongText
+  source          String?   @db.VarChar(255)
   date            String    @db.VarChar(255)
   author          String    @db.VarChar(255)
   image           String?   @db.VarChar(255)

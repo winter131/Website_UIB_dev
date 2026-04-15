@@ -1,0 +1,44 @@
+export type TagihanLOASarjanaType = {
+  id_tagihan: string;
+  detail_gelombang: number;
+  PeriodeTagihan: string;
+  GelombangTagihan: string;
+  id_peringkat: number;
+  PeringkatDicapai: string;
+  program_studi: number;
+  ProgramStudiTagihan: string;
+  waktu_kuliah: string;
+  biaya_spp: number;
+  biaya_ppl: number;
+  biaya_bpp: number;
+  biaya_sks: number;
+  biaya_toeic: number;
+  biaya_praktikum: number;
+  potongan_spp: number;
+  potongan_bpp: number;
+  potongan_sks: number;
+  potongan_praktikum: number;
+  TanggalUjian: string;
+  TanggalBayar: string;
+  TanggalCetak: string;
+  LokasiUjian: string;
+  IsBeasiswa: string;
+};
+
+export type TagihanLOAMagisterType = {
+  id_tagihan: string;
+  detail_gelombang: number;
+  PeriodeTagihan: string;
+  GelombangTagihan: string;
+  program_studi: number;
+  ProgramStudiTagihan: string;
+  jalur_daftar: string;
+  biaya_semester_1: number;
+  biaya_semester_2: number;
+  biaya_semester_3: number;
+  biaya_matrikulasi: number;
+  TanggalUjian: string;
+  TanggalBayar: string;
+  TanggalCetak: string;
+  LokasiUjian: string;
+};

@@ -1,0 +1,24 @@
+export type DetailGelombangType = {
+  detail_gelombang_id: number;
+  gelombang_id: number;
+  NamaGelombang: string;
+  periode_id: number;
+  NamaPeriode: string;
+  biaya_formulir: number;
+  mulai_daftar: string;
+  akhir_daftar: string;
+  mulai_verifikasi: string;
+  akhir_verifikasi: string;
+  tanggal_ujian: string;
+  jam_mulai_ujian: string;
+  jam_akhir_ujian: string;
+  tanggal_pengumuman: string;
+  tanggal_daftar_ulang: string;
+  lokasi_ujian: number;
+  LokasiNama: string;
+  jenjang_gelombang: string;
+  jenis_pendaftaran: string;
+  cicilan_gelombang: string;
+  Cicilan: any;
+  IsBeasiswa: string;
+};

@@ -9,7 +9,6 @@ export default withAuth(mainMiddleware);
 
 export const config = {
   matcher: [
-    "/",
     "/login",
     "/dashboard/:path*",
     "/managemen-user/:path*",

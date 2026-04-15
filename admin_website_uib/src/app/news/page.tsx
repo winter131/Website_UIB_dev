@@ -3,7 +3,6 @@ import prisma from '@/lib/prisma';
 import type { news as NewsType } from '@prisma/client';
 import NewsActions from './components/NewsActions';
 
-
 export const dynamic = 'force-dynamic'
 
 export default async function NewsManagement() {
@@ -44,7 +43,7 @@ export default async function NewsManagement() {
                                         <span className="px-2 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Published</span>
                                     </td>
                                     <td className="p-4 text-gray-500 text-sm">{newsItem.date}</td>
-                                    <NewsActions id={newsItem.id} title={newsItem.title} />
+                                    <NewsActions id={String(newsItem.id)} title={newsItem.title} />
                                 </tr>
 
                             ))

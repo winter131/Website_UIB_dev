@@ -1,0 +1,60 @@
+:root {
+  /* Base Colors */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Tiptap Grays (Light) */
+  --tt-gray-light-50: #f9fafb;
+  --tt-gray-light-100: #f3f4f6;
+  --tt-gray-light-200: #e5e7eb;
+  --tt-gray-light-300: #d1d5db;
+  --tt-gray-light-400: #9ca3af;
+  --tt-gray-light-500: #6b7280;
+  --tt-gray-light-600: #4b5563;
+  --tt-gray-light-700: #374151;
+  --tt-gray-light-800: #1f2937;
+  --tt-gray-light-900: #111827;
+
+  /* Tiptap Alpha Grays (Light) */
+  --tt-gray-light-a-100: rgba(0, 0, 0, 0.05);
+  --tt-gray-light-a-200: rgba(0, 0, 0, 0.1);
+  --tt-gray-light-a-300: rgba(0, 0, 0, 0.2);
+  --tt-gray-light-a-400: rgba(0, 0, 0, 0.4);
+  --tt-gray-light-a-800: rgba(0, 0, 0, 0.8);
+
+  /* Tiptap Grays (Dark) */
+  --tt-gray-dark-50: #111827;
+  --tt-gray-dark-100: #1f2937;
+  --tt-gray-dark-900: #f9fafb;
+
+  /* Tiptap Brand Colors */
+  --tt-brand-color-400: #60a5fa;
+  --tt-brand-color-500: #3b82f6;
+  --tt-brand-color-600: #2563eb;
+
+  /* UI Tokens */
+  --tt-bg-color: var(--white);
+  --tt-scrollbar-color: var(--tt-gray-light-300);
+  --tt-selection-color: rgba(195, 189, 255, 0.4);
+  --tt-cursor-color: var(--tt-brand-color-500);
+  --tt-radius-xs: 0.25rem;
+  --tt-radius-sm: 0.375rem;
+  --tt-radius-md: 0.5rem;
+  --tt-radius-lg: 0.75rem;
+  --tt-radius-xl: 1rem;
+
+  /* Elevation */
+  --tt-shadow-elevated-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  /* Colors for specific node highlights */
+  --tt-color-yellow-base: #facc15;
+  --tt-color-yellow-inc-2: #fef9c3;
+  --tt-color-yellow-dec-2: #713f12;
+}
+
+.dark {
+  --tt-bg-color: #0d1117;
+  --tt-scrollbar-color: var(--tt-gray-dark-100);
+  --tt-gray-light-a-100: rgba(255, 255, 255, 0.1);
+  --tt-gray-light-a-200: rgba(255, 255, 255, 0.2);
+}

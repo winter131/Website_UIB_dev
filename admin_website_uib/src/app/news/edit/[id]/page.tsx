@@ -1,29 +1,44 @@
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
-import EditNewsForm from './EditForm';
-import { notFound } from 'next/navigation';
+'use client';
 
-export default async function EditNewsPage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = await params;
+import React, { use, useEffect, useState } from 'react';
+import EditForm from './EditForm';
+import { useNotifikasi } from '@/store/useNotifikasi';
 
-    const news = await prisma.news.findUnique({
-        where: { id: parseInt(id) }
-    });
+export default function EditNewsPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params);
+    const [initialData, setInitialData] = useState<any>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const showNotification = useNotifikasi.getState().show || ((notif: any) => console.log(notif));
 
-    if (!news) {
-        notFound();
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch(`/api/news/${id}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setInitialData(data);
+                } else {
+                    showNotification({
+                        status: "text-red-500",
+                        header: "Error",
+                        message: "Gagal mengambil data berita"
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, [id]);
+
+    if (isLoading) return <div className="p-8">Memuat data...</div>;
+    if (!initialData) return <div className="p-8 text-red-500">Data tidak ditemukan.</div>;
 
     return (
-        <div className="max-w-4xl mx-auto space-y-6">
-            <div className="flex items-center gap-4">
-                <Link href="/news" className="text-gray-500 hover:text-gray-900 transition-colors">
-                    &larr; Kembali
-                </Link>
-                <h1 className="text-3xl font-bold text-gray-900">Edit Berita</h1>
-            </div>
-
-            <EditNewsForm initialData={news} />
+        <div className="min-h-screen bg-gray-50/50 py-8 px-4 sm:px-6 lg:px-8">
+            <EditForm initialData={initialData} />
         </div>
     );
 }

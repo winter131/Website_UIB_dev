@@ -57,7 +57,16 @@ export default function Sidebar({
             ModulUrutan: 0,
             SubMenu: null,
           },
-          ...baseData,
+          ...baseData.map((m: any) => ({
+            ...m,
+            ModulLink: m.ModulLink === "/news" ? "/berita" : m.ModulLink,
+            SubMenu: m.SubMenu
+              ? m.SubMenu.map((sm: any) => ({
+                  ...sm,
+                  ModulLink: sm.ModulLink === "/news" ? "/berita" : sm.ModulLink,
+                }))
+              : null,
+          })),
         ];
 
         setModul(data);

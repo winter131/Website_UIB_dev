@@ -43,7 +43,7 @@ export function DatePicker({
             mode="single"
             selected={value ? new Date(value) : undefined}
             captionLayout="dropdown"
-            onSelect={(date) => {
+            onSelect={(date: Date | undefined) => {
               setValue(date!.toISOString());
               setOpen(false);
             }}

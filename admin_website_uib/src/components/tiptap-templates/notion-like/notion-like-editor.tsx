@@ -21,7 +21,7 @@ import { Highlight } from "@tiptap/extension-highlight";
 import { Superscript } from "@tiptap/extension-superscript";
 import { Subscript } from "@tiptap/extension-subscript";
 import { TextAlign } from "@tiptap/extension-text-align";
-import { Mathematics } from "@tiptap/extension-mathematics";
+// import { Mathematics } from "@tiptap/extension-mathematics";
 import { UniqueID } from "@tiptap/extension-unique-id";
 import { Emoji, gitHubEmojis } from "@tiptap/extension-emoji";
 import { FontFamily } from "@tiptap/extension-font-family";
@@ -218,7 +218,7 @@ export const EditorProvider = forwardRef<
       NodeBackground,
       NodeAlignment,
       TextStyle,
-      Mathematics,
+      // Mathematics,
       Superscript,
       Subscript,
       Color,

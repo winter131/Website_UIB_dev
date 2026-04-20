@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "daisyui";
+@plugin "flowbite/plugin";
 @import "../styles/_variables.scss";
 @import "../styles/_keyframe-animations.scss";
 
@@ -44,6 +45,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --spacing-25: 6.25rem;
+  --spacing-42: 10.5rem;
 }
 
 :root {

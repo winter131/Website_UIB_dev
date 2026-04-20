@@ -90,7 +90,7 @@ export default function NavbarLanding() {
                   {hoveredMenu === 'tentang' && (
                     <motion.ul initial="hidden" animate="visible" exit="hidden" variants={dropdownVariants} className="absolute top-full left-0 z-[1001] bg-white shadow-2xl w-56 p-2 border-t-4 border-[#e67e22] list-none">
                       <li><Link href="/tentang/sejarah" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Sejarah</Link></li>
-                      <li><Link href="/tentang/akreditasi-tes" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Akreditasi</Link></li>
+                      <li><Link href="/tentang/akreditasi" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Akreditasi</Link></li>
                       <li><Link href="/tentang/ymti" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Ymti-batam</Link></li>
                       <li><Link href="/tentang/pimpinan" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Pimpinan</Link></li>
                       <li><Link href="/tentang/alumni" className="block py-3 px-4 hover:bg-orange-50 hover:text-[#e67e22] transition-colors rounded-md no-underline text-[#434040]">Alumni</Link></li>
@@ -176,7 +176,7 @@ export default function NavbarLanding() {
                   </summary>
                   <ul className="bg-gray-50 list-none p-0">
                     <li><Link href="/tentang/sejarah" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Sejarah</Link></li>
-                    <li><Link href="/tentang/akreditasi-tes" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Akreditasi</Link></li>
+                    <li><Link href="/tentang/akreditasi" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Akreditasi</Link></li>
                     <li><Link href="/tentang/ymti" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Ymti-batam</Link></li>
                     <li><Link href="/tentang/pimpinan" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Pimpinan</Link></li>
                     <li><Link href="/tentang/alumni" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Alumni</Link></li>

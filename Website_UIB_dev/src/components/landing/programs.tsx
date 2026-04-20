@@ -16,8 +16,8 @@ export default function AcademicPrograms() {
             { title: "Fasilitas", link: "landing/informasi/fasilitas", icon: <Landmark size={24} /> },
             { title: "Batam dan Sekitarnya", link: "/landing/informasi/batamdansekitarnya", icon: <GraduationCap size={24} /> },
             { title: "Diskon Mahasiswa", link: "landing/informasi/diskonmahasiswa", icon: <Award size={24} /> },
-            { title: "Kemahasiswaan", link: "landing/informasi/kemahasiswaan", icon: <BookOpen size={24} /> },
-            { title: "Akreditasi", link: "landing/informasi/akreditasi", icon: <Microscope size={24} /> },
+            { title: "Kemahasiswaan", link: "/footer/kemahasiswaan", icon: <BookOpen size={24} /> },
+            { title: "Akreditasi", link: "/tentang/akreditasi", icon: <Microscope size={24} /> },
             { title: "Panduan", link: "landing/informasi/panduan", icon: <School size={24} /> },
           ].map((item, idx) => (
             <Link key={idx} href={item.link} className="block group">

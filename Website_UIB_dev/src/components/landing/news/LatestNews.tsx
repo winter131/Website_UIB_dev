@@ -63,7 +63,7 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                     <div className="lg:col-span-7">
                         {mainNews ? (
                             <Link
-                                href={`/news/${mainNews.slug}`}
+                                href={`/baca/${mainNews.slug}`}
                                 className="relative overflow-hidden rounded-xl h-[400px] lg:h-[450px] block"
                                 onMouseEnter={e => {
                                     const el = e.currentTarget as HTMLElement;
@@ -123,7 +123,7 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                     <div className="lg:col-span-5 flex flex-col gap-4">
                         {secondaryNews.map((news) => (
                             <Link
-                                href={`/news/${news.slug}`}
+                                href={`/baca/${news.slug}`}
                                 key={news.id}
                                 className="group block rounded-xl overflow-hidden bg-white"
                                 style={{
@@ -187,7 +187,7 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                     {smallNewsItems.map((news) => (
                         <Link
-                            href={`/news/${news.slug}`}
+                            href={`/baca/${news.slug}`}
                             key={news.id}
                             className="group block rounded-xl overflow-hidden border-transparent bg-white"
                             style={{ transition: 'background-color 0.4s ease, box-shadow 0.4s ease' }}
@@ -245,7 +245,7 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
 
                     {/* Tombol Lihat Lainnya */}
                     <Link
-                        href="/news"
+                        href="/berita"
                         className="flex flex-col items-center justify-center rounded-xl p-4 min-h-[140px] border-2 border-dashed"
                         style={{
                             borderColor: '#d1d5db',
@@ -306,7 +306,7 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {allNews.map((news) => (
                         <Link
-                            href={`/news/${news.slug}`}
+                            href={`/baca/${news.slug}`}
                             key={news.id}
                             className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100"
                         >

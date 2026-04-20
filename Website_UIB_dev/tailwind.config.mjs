@@ -14,6 +14,10 @@ const config = {
         'uib-navy': '#1a365d',
         'uib-orange': '#e67e22',
       },
+      spacing: {
+        '25': '6.25rem',
+        '42': '10.5rem',
+      },
       borderRadius: {
         'base': '2rem', // Menyesuaikan class 'rounded-base' di kode Anda
       }

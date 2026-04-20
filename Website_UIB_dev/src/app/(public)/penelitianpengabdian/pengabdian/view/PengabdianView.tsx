@@ -145,7 +145,7 @@ export default function PenelitianUIB() {
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/img/DSC06279.jpg"
+                        src="/img/DSC06279.JPG"
                         alt="Penelitian UIB Background"
                         fill
                         className="object-cover opacity-30 mix-blend-overlay"

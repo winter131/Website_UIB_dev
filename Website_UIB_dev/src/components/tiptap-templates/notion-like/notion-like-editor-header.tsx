@@ -12,6 +12,7 @@ import { FontFamilyDropdown } from "@/components/tiptap-ui/font-family-dropdown/
 import { TextAlignButton } from "@/components/tiptap-ui/text-align-button/text-align-button"
 import { ColorTextPopover } from "@/components/tiptap-ui/color-text-popover"
 import { MarkButton } from "@/components/tiptap-ui/mark-button"
+import { UndoRedoButton } from "@/components/tiptap-ui/undo-redo-button/undo-redo-button"
 
 // --- Styles ---
 import "@/components/tiptap-templates/notion-like/notion-like-editor-header.scss"

@@ -45,11 +45,9 @@ export default function Hero() {
               alt={slide.title}
             />
 
-            {/* Overlay Gradient: Dibuat lebih halus agar detail gambar di kanan tetap terlihat */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 
 
-            {/* Navigasi Panah: Diposisikan lebih ke pinggir dan dikecilkan agar tidak menutupi konten */}
             <div className="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 md:left-5 md:right-5 top-1/2 z-20">
               <button
                 onClick={(e) => { e.preventDefault(); scrollToSlide(index === 0 ? slides.length - 1 : index - 1); }}

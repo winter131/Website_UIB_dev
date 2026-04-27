@@ -3,11 +3,11 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-// Import Icons
+
 import { FaGraduationCap, FaInfoCircle, FaHeadset } from 'react-icons/fa'
 
-// Import Custom Components (Pastikan path file sesuai dengan proyek Anda)
-import NavbarLanding from '@/components/landing/navbar'
+
+
 import Hero from '@/components/landing/hero'
 import LatestNews from '@/components/landing/news/LatestNews'
 import CompanyProfile from '@/components/landing/profile'
@@ -17,9 +17,9 @@ import AcademicPrograms from '@/components/landing/programs'
 import DirectorySection from '@/components/landing/directory'
 import LatestArticles from '@/components/landing/articles'
 import StudentAchievements from '@/components/landing/student-achievements'
-import Footer from '@/components/landing/footer'
 
-// --- KONFIGURASI ANIMASI ---
+
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
   visible: {
@@ -38,7 +38,6 @@ const staggerContainer = {
 };
 
 export default function LandingPage() {
-  // Data Menu: Memudahkan update rute di masa depan
   const quickLinks = [
     {
       title: 'Pendaftaran Beasiswa',
@@ -50,7 +49,7 @@ export default function LandingPage() {
       title: 'Program Studi',
       desc: 'Daftar program studi unggulan dengan kurikulum berbasis industri.',
       icon: <FaInfoCircle size={44} />,
-      href: '/kuliahdiuib'
+      href: '/akademik'
     },
     {
       title: 'Informasi Pendaftaran',
@@ -62,14 +61,12 @@ export default function LandingPage() {
 
   return (
     <main className="bg-[#FCFCFC] min-h-screen pt-[110px] overflow-x-hidden font-poppins text-[#2A3955]">
-      <NavbarLanding />
 
-      {/* HERO SECTION */}
+
       <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
         <Hero />
       </motion.div>
 
-      {/* 1. QUICK LINKS SECTION (Rise with Stagger Effect) */}
       <section className="max-w-7xl mx-auto -mt-16 md:-mt-20 relative z-50 px-6 mb-24">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -89,7 +86,6 @@ export default function LandingPage() {
                 <h2 className="font-bold text-[17px] leading-tight mb-2 uppercase tracking-tight">{item.title}</h2>
                 <p className="text-[13px] text-gray-600 leading-relaxed font-light">{item.desc}</p>
 
-                {/* Link Internal untuk masa depan */}
                 <Link
                   href={item.href}
                   className="mt-6 inline-block w-fit text-[11px] font-black text-[#e67e22] tracking-[0.2em] hover:underline"
@@ -102,7 +98,6 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* 2. MAIN CONTENT SECTIONS (Rise on Scroll) */}
       {[
         <LatestNews key="news" />,
         <CompanyProfile key="profile" />,
@@ -124,7 +119,7 @@ export default function LandingPage() {
         </motion.div>
       ))}
 
-      <Footer />
+
     </main>
   )
 }

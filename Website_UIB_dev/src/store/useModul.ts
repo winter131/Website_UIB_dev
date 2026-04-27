@@ -1,15 +1,15 @@
-// import { ModulType } from "@/types/ModulType";
-// import { create } from "zustand";
 
-// interface ModulState {
-//   modul: ModulType[];
-//   setModul: (modul: ModulType[]) => void;
-// }
 
-// export const useModul = create<ModulState>((set) => ({
-//   modul: [],
-//   setModul: (modul: ModulType[]) => set({ modul: modul }),
-// }));
+
+
+
+
+
+
+
+
+
+
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -29,7 +29,7 @@ export const useModul = create<ModulState>()(
       clearModul: () => set({ modul: [] }),
     }),
     {
-      name: "modul", // key in localStorage
+      name: "modul", 
     }
   )
 );

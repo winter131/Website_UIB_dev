@@ -30,7 +30,7 @@ import { UserType } from "@/types/UserTypes";
 
 const globalFilterFn: FilterFn<any> = (
   row: Row<any>,
-  columnId: string, // walaupun tidak dipakai, tetap harus ditulis
+  columnId: string, 
   filterValue: string
 ) => {
   const value = row.getValue("search") as string;
@@ -98,7 +98,6 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  // Search module
   React.useEffect(() => {
     if (searchQuery !== "") {
       setGlobalFilter(String(searchQuery));
@@ -107,7 +106,6 @@ export function DataTable<TData, TValue>({
     }
   }, [searchQuery]);
 
-  // Proses preselect modul yang sudah aktif di usergroup
   useEffect(() => {
     if (!data) return;
 
@@ -127,7 +125,6 @@ export function DataTable<TData, TValue>({
     setRowSelection(selectedRows);
   }, [data]);
 
-  // Kirim data modul yang dipilih ke parent component
   useEffect(() => {
     catchChangedModul && catchChangedModul(rowSelection);
   }, [rowSelection]);

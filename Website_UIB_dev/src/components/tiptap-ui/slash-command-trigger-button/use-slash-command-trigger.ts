@@ -5,14 +5,14 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import type { Node } from "@tiptap/pm/model"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Icons ---
+
 import { PlusIcon } from "@/components/tiptap-icons/plus-icon"
 
-// --- Lib ---
+
 import {
   findNodePosition,
   isNodeTypeSelected,
@@ -21,41 +21,17 @@ import {
 
 export const SLASH_COMMAND_TRIGGER_SHORTCUT_KEY = "mod+/"
 
-/**
- * Configuration for the slash command functionality
- */
+
 export interface UseSlashCommandTriggerConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * The node to apply trigger to
-   */
   node?: Node | null
-  /**
-   * The position of the node in the document
-   */
   nodePos?: number | null
-  /**
-   * The trigger text to insert
-   * @default "/"
-   */
   trigger?: string
-  /**
-   * Whether the button should hide when insertion is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful trigger insertion.
-   */
   onTriggered?: (trigger: string) => void
 }
 
-/**
- * Checks if a slash command can be inserted in the current editor state
- */
+
 export function canInsertSlashCommand(
   editor: Editor | null,
   node?: Node | null,
@@ -76,9 +52,7 @@ export function canInsertSlashCommand(
   return true
 }
 
-/**
- * Inserts a slash command at a specified node position or after the current selection
- */
+
 export function insertSlashCommand(
   editor: Editor | null,
   trigger: string = "/",
@@ -113,7 +87,7 @@ export function insertSlashCommand(
           .insertText(trigger, insertPos, insertPos)
       )
 
-      const triggerLength = trigger.length + 1 // +1 for the space after the trigger
+      const triggerLength = trigger.length + 1 
       const focusPos = isEmpty
         ? foundPos.pos + triggerLength
         : foundPos.pos + foundPos.node.nodeSize + triggerLength
@@ -127,9 +101,6 @@ export function insertSlashCommand(
     const isEmpty = currentNode.textContent.length === 0
     const isStartOfBlock = $from.parentOffset === 0
 
-    // Check if we're at the document node level
-    // This is important if we dont have focus on the editor
-    // and we want to insert the slash at the end of the document
     const isTopLevel = $from.depth === 0
 
     if (!isEmpty || !isStartOfBlock) {
@@ -157,9 +128,7 @@ export function insertSlashCommand(
   }
 }
 
-/**
- * Determines if the slash command button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -177,42 +146,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides slash command functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage - no params needed
- * function MySimpleSlashButton() {
- *   const { isVisible, handleSlashCommand } = useSlashCommandTrigger()
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleSlashCommand}>Insert Block</button>
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedSlashButton() {
- *   const { isVisible, handleSlashCommand, label } = useSlashCommandTrigger({
- *     editor: myEditor,
- *     trigger: "/",
- *     hideWhenUnavailable: true,
- *     onTriggered: (trigger) => console.log('Inserted:', trigger)
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleSlashCommand}
- *       aria-label={label}
- *     >
- *       Insert Block
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useSlashCommandTrigger(config?: UseSlashCommandTriggerConfig) {
   const {
     editor: providedEditor,

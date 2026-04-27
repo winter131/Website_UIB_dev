@@ -64,9 +64,11 @@ export async function PUT(request: Request, context: { params: Promise<{ id: str
         const summary = formData.get('summary') as string;
         const source = formData.get('source') as string;
 
-        if (!title || !slug || !tag) {
-            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+        if (!title || !slug) {
+            return NextResponse.json({ error: "Missing required fields (Title and Slug are mandatory)" }, { status: 400 });
         }
+
+        const finalTag = tag || category || 'Berita';
 
         let imageUrl = existingImage;
 
@@ -101,7 +103,7 @@ export async function PUT(request: Request, context: { params: Promise<{ id: str
             data: {
                 title,
                 slug,
-                tag,
+                tag: finalTag,
                 category,
                 summary,
                 source,

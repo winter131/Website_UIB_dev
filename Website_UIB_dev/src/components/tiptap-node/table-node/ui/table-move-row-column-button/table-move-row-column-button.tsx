@@ -2,54 +2,24 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseTableMoveRowColumnConfig } from "@/components/tiptap-node/table-node/ui/table-move-row-column-button"
 import { useTableMoveRowColumn } from "@/components/tiptap-node/table-node/ui/table-move-row-column-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 
 export interface TableMoveRowColumnButtonProps
   extends Omit<ButtonProps, "type">,
     UseTableMoveRowColumnConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
 }
 
-/**
- * Button component for moving a table row/column in a Tiptap editor.
- *
- * Supports moving:
- * - Rows up or down
- * - Columns left or right
- *
- * For custom button implementations, use the `useTableMoveRowColumn` hook instead.
- *
- * @example
- * ```tsx
- * // Move row up
- * <TableMoveRowColumnButton
- *   index={0}
- *   orientation="row"
- *   direction="up"
- * />
- *
- * // Move column right
- * <TableMoveRowColumnButton
- *   index={2}
- *   orientation="column"
- *   direction="right"
- *   hideWhenUnavailable={true}
- *   onMoved={() => console.log("Column moved!")}
- * />
- * ```
- */
+
 export const TableMoveRowColumnButton = forwardRef<
   HTMLButtonElement,
   TableMoveRowColumnButtonProps

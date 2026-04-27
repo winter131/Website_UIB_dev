@@ -6,11 +6,11 @@ import type { Node } from "@tiptap/pm/model"
 import { TableMap } from "@tiptap/pm/tables"
 import { FloatingPortal } from "@floating-ui/react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useTableHandleState } from "@/components/tiptap-node/table-node/hooks/use-table-handle-state"
 
-// --- Lib ---
+
 import type { Orientation } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 import {
   EMPTY_CELL_HEIGHT,
@@ -23,10 +23,10 @@ import {
 } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 import { cn } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { PlusSmallIcon } from "@/components/tiptap-icons/plus-small-icon"
 
-// --- Internal ---
+
 import { useTableExtendRowColumnButtonsPositioning } from "@/components/tiptap-node/table-node/ui/table-extend-row-column-button/use-table-extend-row-column"
 import "./table-extend-row-column-button.scss"
 
@@ -39,9 +39,7 @@ interface TableExtendRowColumnButtonProps {
   children?: React.ReactNode
 }
 
-/**
- * Simplified button component for extending/reducing table dimensions
- */
+
 export const TableExtendRowColumnButton: React.FC<
   TableExtendRowColumnButtonProps
 > = ({
@@ -121,7 +119,6 @@ export const TableExtendRowColumnButton: React.FC<
 
       if (delta === 0) return
 
-      // Add rows/columns
       if (delta > 0) {
         runPreservingCursor(editor, () => {
           selectLastCell(editor, state.block, state.blockPos, orientation)
@@ -135,7 +132,6 @@ export const TableExtendRowColumnButton: React.FC<
           }
         })
       }
-      // Remove rows/columns - but only if they're empty
       else {
         runPreservingCursor(editor, () => {
           const absDelta = Math.abs(delta)
@@ -144,7 +140,6 @@ export const TableExtendRowColumnButton: React.FC<
             ? countEmptyRowsFromEnd(editor, state.blockPos)
             : countEmptyColumnsFromEnd(editor, state.blockPos)
 
-          // Only remove up to the number of empty cells, and keep at least 1
           const safeToRemove = Math.min(absDelta, emptyCount, currentCount - 1)
 
           selectLastCell(editor, state.block, state.blockPos, orientation)

@@ -3,8 +3,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import {
     ChevronLeft, ChevronRight, FileText, Download, Send,
     LayoutTemplate, Users, Calendar, MapPin,
@@ -52,7 +52,7 @@ export default function ConesintechView() {
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
-            const offset = 100; // Account for sticky header
+            const offset = 100; 
             const bodyRect = document.body.getBoundingClientRect().top;
             const elementRect = element.getBoundingClientRect().top;
             const elementPosition = elementRect - bodyRect;
@@ -67,9 +67,7 @@ export default function ConesintechView() {
 
     return (
         <main className="mt-15 bg-[#fcfcfc] font-sans text-[#2A3955] min-h-screen selection:bg-[#e67e22] selection:text-white">
-            <NavbarLanding />
             <header className="relative pt-24 pb-16 overflow-hidden bg-white">
-                {/* Refined Background Pattern */}
                 <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]"
                     style={{
                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232A3955' fill-opacity='1'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3Cpath d='M40 0h1v15h-1V0zm0 85h1v15h-1V85zM0 40h15v1H0v-1zm85 0h15v1H85v-1z'/%3E%3C/g%3E%3C/svg%3E")`,
@@ -80,7 +78,6 @@ export default function ConesintechView() {
                 <div className="container mx-auto px-6 lg:px-20 relative z-10">
                     <div className="flex flex-col lg:grid lg:grid-cols-12 gap-16 items-center">
 
-                        {/* 1. BRANDING & TAGLINE */}
                         <div className="lg:col-span-12 flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-6 mb-4">
                             <Link
                                 href="/landing/conference"
@@ -93,7 +90,6 @@ export default function ConesintechView() {
                             </div>
                         </div>
 
-                        {/* 2. MAIN TYPOGRAPHY */}
                         <div className="lg:col-span-6">
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
@@ -122,16 +118,13 @@ export default function ConesintechView() {
                             </motion.div>
                         </div>
 
-                        {/* 3. IMPROVED EVENT SCHEDULE CARD */}
                         <div className="lg:col-span-6 w-full">
                             <div className="relative group">
-                                {/* Decorative Background Element */}
                                 <div className="absolute -inset-4 bg-gradient-to-tr from-[#e67e22]/10 to-transparent rounded-[3rem] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
 
                                 <div className="relative bg-white border border-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/40">
                                     <div className="flex flex-col md:flex-row">
 
-                                        {/* Left Side: Date Accent */}
                                         <div className="bg-[#2A3955] md:w-32 flex flex-row md:flex-col items-center justify-center p-6 text-white gap-4 md:gap-2">
                                             <span className="text-4xl font-black">20</span>
                                             <div className="flex flex-col items-start md:items-center">
@@ -140,7 +133,6 @@ export default function ConesintechView() {
                                             </div>
                                         </div>
 
-                                        {/* Right Side: Details */}
                                         <div className="flex-1 p-8 md:p-10 space-y-8">
                                             <div className="flex flex-wrap items-center gap-4 justify-between">
                                                 <div className="space-y-1">
@@ -154,7 +146,6 @@ export default function ConesintechView() {
                                             </div>
 
                                             <div className="grid gap-6">
-                                                {/* Location 1 */}
                                                 <div className="flex gap-4 group/item">
                                                     <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-[#2A3955] group-hover/item:bg-[#e67e22] group-hover/item:text-white transition-colors">
                                                         <MapPin size={18} />
@@ -165,7 +156,6 @@ export default function ConesintechView() {
                                                     </div>
                                                 </div>
 
-                                                {/* Location 2 */}
                                                 <div className="flex gap-4 group/item">
                                                     <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-[#2A3955] group-hover/item:bg-[#2A3955] group-hover/item:text-white transition-colors">
                                                         <Building2 size={18} />
@@ -190,7 +180,6 @@ export default function ConesintechView() {
                     </div>
                 </div>
             </header>
-            {/* --- ACTION BUTTONS (DOCK STYLE) --- */}
             <section className="sticky top-24 z-30 py-4 pointer-events-none">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="bg-white/80 backdrop-blur-xl border border-slate-100 p-2 rounded-2xl shadow-2xl inline-flex flex-wrap gap-2 pointer-events-auto">
@@ -228,7 +217,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- EXPLANATION SECTION --- */}
             <section id="about" className="py-32 container mx-auto px-6 md:px-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div className="relative">
@@ -256,7 +244,6 @@ export default function ConesintechView() {
                     <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 text-center">In Collaboration With</h3>
                 </div>
 
-                {/* MARQUEE CONTAINER */}
                 <div className="flex overflow-hidden relative">
                     <motion.div
                         animate={{ x: ["0%", "-50%"] }}
@@ -267,7 +254,6 @@ export default function ConesintechView() {
                         }}
                         className="flex gap-12 whitespace-nowrap items-center min-w-full"
                     >
-                        {/* Duplicate content for seamless loop */}
                         {[...universities, ...universities, ...universities, ...universities].map((u, i) => (
                             <div key={i} className="flex flex-col items-center gap-4 group shrink-0 w-40">
                                 <div className="h-16 w-32 relative transition-transform duration-500 group-hover:scale-110">
@@ -284,11 +270,9 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- KEYNOTE SPEAKERS (MINIMALIST CLEAN GRID) --- */}
             <section id="speakers" className="py-24 bg-white border-t border-slate-100">
                 <div className="container mx-auto px-6 md:px-20">
 
-                    {/* HEADER AREA - CLEAN & LEFT ALIGNED */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                         <div className="max-w-xl">
                             <span className="text-[#e67e22] font-black text-[10px] tracking-[0.4em] uppercase mb-4 block">
@@ -303,7 +287,6 @@ export default function ConesintechView() {
                         </p>
                     </div>
 
-                    {/* COMPACT SPEAKER GRID */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
                         {speakers.slice(0, 8).map((s, i) => (
                             <motion.div
@@ -314,7 +297,6 @@ export default function ConesintechView() {
                                 viewport={{ once: true }}
                                 className="group"
                             >
-                                {/* PHOTO CONTAINER */}
                                 <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden mb-6 bg-slate-100 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:shadow-[#2A3955]/10">
                                     <Image
                                         src={s.img}
@@ -322,11 +304,9 @@ export default function ConesintechView() {
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
-                                    {/* ACCENT STRIPE ON HOVER */}
                                     <div className="absolute bottom-0 left-0 w-full h-1 bg-[#e67e22] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                                 </div>
 
-                                {/* TEXT CONTENT - CLEAN & SIMPLE */}
                                 <div className="space-y-1">
                                     <p className="text-[10px] font-black tracking-[0.2em] text-[#e67e22] uppercase">
                                         {s.role}
@@ -339,7 +319,6 @@ export default function ConesintechView() {
                                     </p>
                                 </div>
 
-                                {/* MINIMAL LINK */}
                                 <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button className="text-[9px] font-black uppercase tracking-widest text-[#2A3955] flex items-center gap-2 border-b border-[#2A3955]">
                                         View Profile <ArrowUpRight size={10} />
@@ -353,7 +332,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- TIMELINE (MODERN CARD STRIP) --- */}
             <section id="timeline" className="py-32 bg-white overflow-hidden">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
@@ -381,7 +359,6 @@ export default function ConesintechView() {
                                 viewport={{ once: true }}
                                 className="group relative p-8 bg-slate-50 rounded-[2.5rem] hover:bg-[#2A3955] transition-all duration-500 overflow-hidden flex flex-col justify-between min-h-[280px]"
                             >
-                                {/* BACKGROUND NUMBER */}
                                 <span className="absolute -right-4 -top-4 text-9xl font-black text-[#2A3955]/5 group-hover:text-white/5 transition-colors duration-500">
                                     {i + 1}
                                 </span>
@@ -402,14 +379,12 @@ export default function ConesintechView() {
                                     {step.desc}
                                 </p>
 
-                                {/* DECORATIVE DOT */}
                                 <div className="absolute bottom-6 right-8 w-2 h-2 rounded-full bg-[#e67e22] opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
-            {/* --- ACADEMIC PARTNERS & MEMBERS --- */}
             <section id="partners" className="py-32 bg-slate-50 border-t border-slate-200">
                 <div className="container mx-auto px-6 md:px-20 text-center">
                     <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-16">Academic Partners & Membership</h3>
@@ -423,7 +398,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            <Footer />
         </main >
     )
 }

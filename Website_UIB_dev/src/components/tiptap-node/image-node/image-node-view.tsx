@@ -24,7 +24,6 @@ export interface ResizableImageProps extends React.HTMLAttributes<HTMLDivElement
   showCaption?: boolean
   hasContent?: boolean
   onImageResize?: (width?: number) => void
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onUpdateAttributes?: (attrs: Record<string, any>) => void
   getPos: () => number | undefined
   nodeSize?: number
@@ -76,7 +75,6 @@ export const ResizableImage: React.FC<ResizableImageProps> = ({
   const rightResizeHandleRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
 
-  // Listen to editor selection changes to detect when focus leaves the caption
   useEffect(() => {
     if (!editor || !showCaption) return
 
@@ -88,7 +86,6 @@ export const ResizableImage: React.FC<ResizableImageProps> = ({
       const nodeStart = pos
       const nodeEnd = pos + nodeSize
 
-      // Check if selection is outside this image node
       const isOutsideNode = to < nodeStart || from > nodeEnd
 
       if (isOutsideNode && !hasContent && onUpdateAttributes) {
@@ -102,8 +99,6 @@ export const ResizableImage: React.FC<ResizableImageProps> = ({
     }
   }, [editor, showCaption, hasContent, getPos, nodeSize, onUpdateAttributes])
 
-  // Had to manually set the node selection on image click because
-  // We treat the image-node-extension.ts as content: "inline*"
   const handleImageClick = useCallback(
     (event: React.MouseEvent) => {
       if (!editor || !getPos || resizeParams) return
@@ -182,13 +177,8 @@ export const ResizableImage: React.FC<ResizableImageProps> = ({
       }
       onImageResize?.(width)
 
-      // Restore the node selection after resizing
-      // This because we treat the image-node-extension.ts as content: "inline*"
       const pos = getPos()
 
-      // Had to use isResizingRef flag because during resizing,
-      // the selection gets lost and cannot be detected here
-      // Its because image-node-extension.ts contain content: "inline*"
       if (isValidPosition(pos) && wasNodeSelection && isMountedRef.current) {
         editor.chain().focus().setNodeSelection(pos).run()
       }

@@ -4,18 +4,18 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { flip, offset, shift, size } from "@floating-ui/react"
 import { PluginKey } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useFloatingElement } from "@/hooks/use-floating-element"
 import { useMenuNavigation } from "@/hooks/use-menu-navigation"
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap Editor ---
+
 import type { Range } from "@tiptap/react"
 
-// --- Tiptap UI ---
+
 import { Suggestion } from "@tiptap/suggestion"
 
-// --- UI Primitives ---
+
 import {
   SuggestionPluginKey,
   type SuggestionKeyDownProps,
@@ -28,10 +28,7 @@ import type {
   SuggestionMenuProps,
 } from "@/components/tiptap-ui-utils/suggestion-menu/suggestion-menu-types"
 
-/**
- * A component that renders a suggestion menu for Tiptap editors.
- * Displays a floating menu when a trigger character is typed.
- */
+
 export const SuggestionMenu = ({
   editor: providedEditor,
   floatingOptions,
@@ -45,11 +42,6 @@ export const SuggestionMenu = ({
 
   const [show, setShow] = useState<boolean>(false)
 
-  // If later we want the floating stick to the position while browser is scrolling,
-  // we can uncomment this part and pass the getBoundingClientRect prop to FloatingElement instead of referenceElement.
-  // const [internalClientRect, setInternalClientRect] = useState<DOMRect | null>(
-  //   null
-  // )
   const [internalDecorationNode, setInternalDecorationNode] =
     useState<HTMLElement | null>(null)
   const [internalCommand, setInternalCommand] = useState<
@@ -126,10 +118,9 @@ export const SuggestionMenu = ({
       allow(props) {
         const $from = editor.state.doc.resolve(props.range.from)
 
-        // Check if we're inside an image node
         for (let depth = $from.depth; depth > 0; depth--) {
           if ($from.node(depth).type.name === "image") {
-            return false // Don't allow slash command inside image (since we support captions)
+            return false 
           }
         }
 
@@ -196,7 +187,6 @@ export const SuggestionMenu = ({
             setInternalItems(props.items)
             setInternalQuery(props.query)
             setInternalRange(props.range)
-            // setInternalClientRect(props.clientRect?.() ?? null)
             setShow(true)
           },
 
@@ -208,7 +198,6 @@ export const SuggestionMenu = ({
             setInternalItems(props.items)
             setInternalQuery(props.query)
             setInternalRange(props.range)
-            // setInternalClientRect(props.clientRect?.() ?? null)
           },
 
           onKeyDown: (props: SuggestionKeyDownProps) => {
@@ -225,7 +214,6 @@ export const SuggestionMenu = ({
             setInternalItems([])
             setInternalQuery("")
             setInternalRange(null)
-            // setInternalClientRect(null)
             setShow(false)
           },
         }

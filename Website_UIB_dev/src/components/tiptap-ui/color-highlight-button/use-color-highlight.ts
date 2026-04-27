@@ -4,18 +4,18 @@ import { useCallback, useEffect, useState } from "react"
 import { type Editor } from "@tiptap/react"
 import { useHotkeys } from "react-hotkeys-hook"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Lib ---
+
 import {
   isMarkInSchema,
   isNodeTypeSelected,
   isExtensionAvailable,
 } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { HighlighterIcon } from "@/components/tiptap-icons/highlighter-icon"
 
 export const COLOR_HIGHLIGHT_SHORTCUT_KEY = "mod+shift+h"
@@ -75,37 +75,13 @@ export type HighlightColor = (typeof HIGHLIGHT_COLORS)[number]
 
 export type HighlightMode = "mark" | "node"
 
-/**
- * Configuration for the color highlight functionality
- */
+
 export interface UseColorHighlightConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * The color to apply when toggling the highlight.
-   */
   highlightColor?: string
-  /**
-   * Optional label to display alongside the icon.
-   */
   label?: string
-  /**
-   * Whether the button should hide when the mark is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * The highlighting mode to use.
-   * - "mark": Uses the highlight mark extension (default)
-   * - "node": Uses the node background extension
-   * @default "mark"
-   */
   mode?: HighlightMode
-  /**
-   * Called when the highlight is applied.
-   */
   onApplied?: ({
     color,
     label,
@@ -126,9 +102,7 @@ export function pickHighlightColorsByValue(values: string[]) {
     .filter((color): color is (typeof HIGHLIGHT_COLORS)[number] => !!color)
 }
 
-/**
- * Checks if highlight can be applied based on the mode and current editor state
- */
+
 export function canColorHighlight(
   editor: Editor | null,
   mode: HighlightMode = "mark"
@@ -154,9 +128,7 @@ export function canColorHighlight(
   }
 }
 
-/**
- * Checks if highlight is currently active
- */
+
 export function isColorHighlightActive(
   editor: Editor | null,
   highlightColor?: string,
@@ -189,9 +161,7 @@ export function isColorHighlightActive(
   }
 }
 
-/**
- * Removes highlight based on the mode
- */
+
 export function removeHighlight(
   editor: Editor | null,
   mode: HighlightMode = "mark"
@@ -206,9 +176,7 @@ export function removeHighlight(
   }
 }
 
-/**
- * Determines if the highlight button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean

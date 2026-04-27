@@ -24,7 +24,7 @@ export const useNotifikasi = create<NotificationState>((set, get) => ({
   show: (notification) => {
     const { visible, current, queue } = get();
 
-    const duration = notification.duration ?? 3000; // default 3s
+    const duration = notification.duration ?? 3000; 
 
     if (!visible && !current) {
       set({ current: notification, visible: true });
@@ -53,6 +53,6 @@ export const useNotifikasi = create<NotificationState>((set, get) => ({
       } else {
         set({ current: null });
       }
-    }, 300); // animation delay
+    }, 300); 
   },
 }));

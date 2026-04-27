@@ -5,46 +5,29 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import { TextSelection } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Utils ---
+
 import { getAnchorNodeAndPos } from "@/lib/tiptap-advanced-utils"
 
-// --- Icons ---
+
 import { AlignTopIcon } from "@/components/tiptap-icons/align-top-icon"
 import { AlignBottomIcon } from "@/components/tiptap-icons/align-bottom-icon"
 
 export const MOVE_UP_SHORTCUT_KEY = "mod+shift+ArrowUp"
 export const MOVE_DOWN_SHORTCUT_KEY = "mod+shift+ArrowDown"
 
-/**
- * Configuration for the move node functionality
- */
+
 export interface UseMoveNodeConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the button should hide when moving is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * The direction to move the node.
-   */
   direction: "up" | "down"
-  /**
-   * Callback function called after a successful move.
-   */
   onMoved?: (direction: "up" | "down") => void
 }
 
-/**
- * Checks if a node can be moved in the specified direction
- */
+
 export function canMoveNode(
   editor: Editor | null,
   direction: "up" | "down"
@@ -65,9 +48,7 @@ export function canMoveNode(
   }
 }
 
-/**
- * Moves a node in the editor
- */
+
 export function moveNode(
   editor: Editor | null,
   direction: "up" | "down"
@@ -117,9 +98,7 @@ export function moveNode(
   }
 }
 
-/**
- * Determines if the move button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   direction: "up" | "down"
@@ -135,9 +114,7 @@ export function shouldShowButton(props: {
   return hideWhenUnavailable ? hasNode && movable : hasNode
 }
 
-/**
- * Custom hook that provides move node functionality for Tiptap editor
- */
+
 export function useMoveNode(config: UseMoveNodeConfig) {
   const {
     editor: providedEditor,

@@ -3,15 +3,15 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import {
     ChevronRight, Award, Globe2, Building2,
     Handshake, Users, Sparkles, MapPin,
     ArrowRight, FileDown, GraduationCap
 } from 'lucide-react'
 
-// --- COMPONENT: MODERN LINK (ULTRA SMOOTH) ---
+
 const ModernLink = ({ text, href, light = false }: { text: string, href: string, light?: boolean }) => (
     <Link href={href} className="group relative inline-flex flex-col items-start pt-3 w-fit cursor-pointer overflow-visible">
         <div className={`flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.12em] transition-all duration-500 ease-[0.33,1,0.68,1] group-hover:translate-x-3 ${light ? 'text-white' : 'text-[#1A253A]'}`}>
@@ -34,9 +34,7 @@ export default function KemitraanView() {
 
     return (
         <main className="mt-20 bg-white font-poppins selection:bg-[#1A253A] selection:text-white">
-            <NavbarLanding />
 
-            {/* 1. HERO IMAGE SECTION - ENHANCED WITH OVERLAY */}
             <section className="w-full relative overflow-hidden">
                 <div className="relative h-[250px] md:h-[400px] w-full">
                     <Image
@@ -46,7 +44,6 @@ export default function KemitraanView() {
                         priority
                         className="object-cover object-[center_10%]"
                     />
-                    {/* Gradient Overlay Premium */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1A253A]/90 via-[#1A253A]/40 to-transparent z-10 flex items-center">
                         <div className="container mx-auto px-6 md:px-20">
                             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
@@ -59,7 +56,6 @@ export default function KemitraanView() {
                 </div>
             </section>
 
-            {/* 2. DESKRIPSI TEKS - REFINED TYPOGRAPHY */}
             <section className="py-20 container mx-auto px-6 md:px-20 border-b border-slate-100">
                 <div className="max-w-6xl mx-auto">
                     <div className="flex flex-col md:flex-row gap-10 items-start">
@@ -81,10 +77,8 @@ export default function KemitraanView() {
                 </div>
             </section>
 
-            {/* 3. SECTION PENGHARGAAN - PREMIUM CARD STYLE */}
             <section className="py-24 bg-[#F8FAFC]">
                 <div className="container mx-auto px-6 md:px-20 space-y-24">
-                    {/* Award 1 */}
                     <div className="flex flex-col md:flex-row items-center gap-16 max-w-6xl mx-auto">
                         <div className="flex-1 space-y-6">
                             <div className="inline-flex items-center gap-2 bg-[#1A253A]/5 text-[#1A253A] px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest">
@@ -127,7 +121,6 @@ export default function KemitraanView() {
                 </div>
             </section>
 
-            {/* 4. GRID KEMITRAAN - MODERN BENTO CARDS */}
             <section className="py-24 container mx-auto px-6 md:px-20">
                 <div className="mb-16 text-center">
                     <h2 className="text-3xl md:text-4xl font-black text-[#1A253A] mb-4">Kategori Kerjasama</h2>
@@ -149,7 +142,6 @@ export default function KemitraanView() {
                 </div>
             </section>
 
-            {/* 5. BLUE CTA SECTION - GLASSMORPHISM */}
             <section className="bg-[#e67e22] py-16 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
                 <div className="container mx-auto px-6 md:px-20 relative z-10 flex flex-col md:flex-row gap-12 items-center max-w-6xl">
@@ -171,7 +163,6 @@ export default function KemitraanView() {
                 </div>
             </section>
 
-            {/* 6. BOTTOM CTA - DARK & BOLD */}
             <section className="bg-[#1A253A] py-20 text-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
                 <div className="relative z-10 border border-white/10 inline-block p-10 rounded-2xl bg-white/5 backdrop-blur-sm max-w-xl mx-auto group">
@@ -184,7 +175,6 @@ export default function KemitraanView() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     )
 }

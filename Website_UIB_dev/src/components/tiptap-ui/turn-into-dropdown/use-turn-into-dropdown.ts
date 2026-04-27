@@ -4,13 +4,13 @@ import { useCallback, useEffect, useState } from "react"
 import type { Editor } from "@tiptap/react"
 import { NodeSelection } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Icons ---
+
 import { ChevronDownIcon } from "@/components/tiptap-icons/chevron-down-icon"
 
-// --- Tiptap UI ---
+
 import type { Level } from "@/components/tiptap-ui/heading-button"
 
 export const TURN_INTO_BLOCKS = [
@@ -23,27 +23,11 @@ export const TURN_INTO_BLOCKS = [
   "codeBlock",
 ]
 
-/**
- * Configuration for the turn into dropdown functionality
- */
+
 export interface UseTurnIntoDropdownConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the dropdown should hide when no options are available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Which block types to show in the dropdown
-   * @default ["paragraph", "heading", "bulletList", "orderedList", "taskList", "blockquote", "codeBlock"]
-   */
   blockTypes?: string[]
-  /**
-   * Callback function called when the dropdown state changes.
-   */
   onOpenChange?: (isOpen: boolean) => void
 }
 
@@ -105,9 +89,7 @@ export const blockTypeOptions = [
   },
 ]
 
-/**
- * Checks if turn into functionality can be used in the current editor state
- */
+
 export function canTurnInto(
   editor: Editor | null,
   allowedBlockTypes?: string[]
@@ -127,9 +109,7 @@ export function canTurnInto(
   return blockTypes.includes(nodeType)
 }
 
-/**
- * Gets filtered block type options based on available types
- */
+
 export function getFilteredBlockTypeOptions(blockTypes?: string[]) {
   if (!blockTypes) return blockTypeOptions
 
@@ -138,9 +118,7 @@ export function getFilteredBlockTypeOptions(blockTypes?: string[]) {
   })
 }
 
-/**
- * Gets the currently active block type from the available options
- */
+
 export function getActiveBlockType(
   editor: Editor | null,
   blockTypes?: string[]
@@ -152,9 +130,7 @@ export function getActiveBlockType(
   return activeOption || filteredOptions[0]
 }
 
-/**
- * Determines if the turn into dropdown should be visible
- */
+
 export function shouldShowTurnInto(params: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -173,47 +149,7 @@ export function shouldShowTurnInto(params: {
   return true
 }
 
-/**
- * Custom hook that provides turn into dropdown functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage
- * function MyTurnIntoDropdown() {
- *   const {
- *     isVisible,
- *     canToggle,
- *     activeBlockType,
- *     handleOpenChange,
- *     label,
- *     Icon,
- *   } = useTurnIntoDropdown()
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <DropdownMenu onOpenChange={handleOpenChange}>
- *       // dropdown content
- *     </DropdownMenu>
- *   )
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedTurnIntoDropdown() {
- *   const {
- *     isVisible,
- *     activeBlockType,
- *   } = useTurnIntoDropdown({
- *     editor: myEditor,
- *     blockTypes: ["paragraph", "heading", "bulletList"],
- *     hideWhenUnavailable: true,
- *     onOpenChange: (isOpen) => console.log("Dropdown toggled", isOpen),
- *   })
- *
- *   // component implementation
- * }
- * ```
- */
+
 export function useTurnIntoDropdown(config?: UseTurnIntoDropdownConfig) {
   const {
     editor: providedEditor,

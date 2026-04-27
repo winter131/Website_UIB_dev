@@ -4,40 +4,26 @@ import { useCallback, useEffect, useState } from "react"
 import { type Editor } from "@tiptap/react"
 import { NodeSelection } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import {
   isExtensionAvailable,
   isNodeTypeSelected,
 } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { ImageCaptionIcon } from "@/components/tiptap-icons/image-caption-icon"
 
-/**
- * Configuration for the image caption functionality
- */
+
 export interface UseImageCaptionConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the button should hide when caption toggle is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful caption set.
-   */
   onSet?: () => void
 }
 
-/**
- * Checks if image caption can be toggled in the current editor state
- */
+
 export function canToggleImageCaption(editor: Editor | null): boolean {
   if (!editor || !editor.isEditable) return false
   if (!isExtensionAvailable(editor, ["image"])) return false
@@ -45,9 +31,7 @@ export function canToggleImageCaption(editor: Editor | null): boolean {
   return isNodeTypeSelected(editor, ["image"])
 }
 
-/**
- * Checks if the currently selected image has caption enabled
- */
+
 export function isImageCaptionActive(editor: Editor | null): boolean {
   if (!editor) return false
 
@@ -67,9 +51,7 @@ export function isImageCaptionActive(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Toggles the image caption in the editor
- */
+
 export function setImageCaption(editor: Editor | null): boolean {
   if (!editor?.isEditable || !canToggleImageCaption(editor)) {
     return false
@@ -107,9 +89,7 @@ export function setImageCaption(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Determines if the image caption button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -126,42 +106,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides image caption functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage
- * function MyImageCaptionButton() {
- *   const { isVisible, handleToggleCaption } = useImageCaption()
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleToggleCaption}>Toggle Caption</button>
- * }
- *
- * // Advanced usage
- * function MyAdvancedImageCaptionButton() {
- *   const { isVisible, handleToggleCaption, label, canToggle } = useImageCaption({
- *     editor: myEditor,
- *     hideWhenUnavailable: true,
- *     onSet: () => console.log('Caption set!')
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleToggleCaption}
- *       disabled={!canToggle}
- *       aria-label={label}
- *     >
- *       Toggle Caption
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useImageCaption(config?: UseImageCaptionConfig) {
   const {
     editor: providedEditor,

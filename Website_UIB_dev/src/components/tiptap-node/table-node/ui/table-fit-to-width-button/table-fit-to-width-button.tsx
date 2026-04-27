@@ -2,12 +2,12 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Hooks ---
+
 import { useTableFitToWidth } from "@/components/tiptap-node/table-node/ui/table-fit-to-width-button/use-table-fit-to-width"
 import type { UseTableFitToWidthConfig } from "@/components/tiptap-node/table-node/ui/table-fit-to-width-button/use-table-fit-to-width"
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 
@@ -17,21 +17,7 @@ export interface TableFitToWidthButtonProps
   text?: string
 }
 
-/**
- * Button component for fitting table to container width.
- *
- * This component provides a user interface for toggling table width between
- * fixed column widths and container-fitting behavior. It integrates with the
- * Tiptap table extension to modify table layout properties.
- *
- * @example
- * ```tsx
- * <TableFitToWidthButton
- *   editor={editor}
- *   onWidthAdjusted={() => console.log('Width changed')}
- * />
- * ```
- */
+
 export const TableFitToWidthButton = forwardRef<
   HTMLButtonElement,
   TableFitToWidthButtonProps

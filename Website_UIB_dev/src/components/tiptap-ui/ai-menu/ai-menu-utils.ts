@@ -103,13 +103,11 @@ export function findAiMarkedDOMElement(editor: Editor): HTMLElement | null {
 }
 
 export function findPrioritizedAIElement(editor: Editor): HTMLElement | null {
-  // AI marked elements
   const aiMarkedElement = findAiMarkedDOMElement(editor)
   if (aiMarkedElement) {
     return aiMarkedElement
   }
 
-  // Currently selected element
   const selectedElement = getSelectedDOMElement(editor)
   if (selectedElement) {
     return selectedElement

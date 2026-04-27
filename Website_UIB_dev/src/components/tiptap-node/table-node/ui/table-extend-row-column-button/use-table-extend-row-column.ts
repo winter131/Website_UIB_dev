@@ -30,9 +30,7 @@ const ORIENTATION_CONFIG = {
   },
 } as const
 
-/**
- * Custom hook for positioning extend buttons using Floating UI
- */
+
 function useTableExtendRowColumnButtonPosition(
   orientation: Orientation,
   show: boolean,
@@ -50,7 +48,6 @@ function useTableExtendRowColumnButtonPosition(
           const floating = elements.floating
           if (!floating) return
 
-          // Apply size based on orientation
           const sizeValue = `${rects.reference[config.sizeProperty]}px`
           floating.style[config.sizeProperty] = sizeValue
         },
@@ -88,9 +85,7 @@ function useTableExtendRowColumnButtonPosition(
   )
 }
 
-/**
- * Hook for managing positioning of both row and column extend buttons
- */
+
 export function useTableExtendRowColumnButtonsPositioning(
   showAddOrRemoveColumnsButton: boolean,
   showAddOrRemoveRowsButton: boolean,

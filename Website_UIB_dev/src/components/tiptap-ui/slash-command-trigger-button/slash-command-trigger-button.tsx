@@ -2,20 +2,20 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseSlashCommandTriggerConfig } from "@/components/tiptap-ui/slash-command-trigger-button"
 import {
   SLASH_COMMAND_TRIGGER_SHORTCUT_KEY,
   useSlashCommandTrigger,
 } from "@/components/tiptap-ui/slash-command-trigger-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -23,14 +23,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface SlashCommandTriggerButtonProps
   extends Omit<ButtonProps, "type">,
     UseSlashCommandTriggerConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -42,11 +35,7 @@ export function SlashCommandShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for inserting slash commands in a Tiptap editor.
- *
- * For custom button implementations, use the `useSlashCommand` hook instead.
- */
+
 export const SlashCommandTriggerButton = forwardRef<
   HTMLButtonElement,
   SlashCommandTriggerButtonProps

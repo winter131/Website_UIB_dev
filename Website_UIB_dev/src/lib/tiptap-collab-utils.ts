@@ -3,7 +3,7 @@ import { CellSelection } from "@tiptap/pm/tables"
 import type { JSONContent, Editor } from "@tiptap/react"
 import { isTextSelection, isNodeSelection, posToDOMRect } from "@tiptap/react"
 
-// TipTap Collaboration
+
 export const TIPTAP_COLLAB_DOC_PREFIX =
   process.env.NEXT_PUBLIC_TIPTAP_COLLAB_DOC_PREFIX || ""
 export const TIPTAP_COLLAB_APP_ID =
@@ -11,7 +11,7 @@ export const TIPTAP_COLLAB_APP_ID =
 export const TIPTAP_COLLAB_TOKEN =
   process.env.NEXT_PUBLIC_TIPTAP_COLLAB_TOKEN || ""
 
-// TipTap AI
+
 export const TIPTAP_AI_APP_ID = process.env.NEXT_PUBLIC_TIPTAP_AI_APP_ID || ""
 export const TIPTAP_AI_TOKEN = process.env.NEXT_PUBLIC_TIPTAP_AI_TOKEN || ""
 
@@ -28,20 +28,14 @@ const NODE_TYPE_LABELS: Record<string, string> = {
 }
 export type OverflowPosition = "none" | "top" | "bottom" | "both"
 
-/**
- * Utility function to get URL parameters
- */
+
 export const getUrlParam = (param: string): string | null => {
   if (typeof window === "undefined") return null
   const params = new URLSearchParams(window.location.search)
   return params.get(param)
 }
 
-/**
- * Returns a display name for the current node in the editor
- * @param editor The Tiptap editor instance
- * @returns The display name of the current node
- */
+
 export const getNodeDisplayName = (editor: Editor | null): string => {
   if (!editor) return "Node"
 
@@ -61,9 +55,7 @@ export const getNodeDisplayName = (editor: Editor | null): string => {
   return NODE_TYPE_LABELS[nodeType] || nodeType.toLowerCase()
 }
 
-/**
- * Removes empty paragraph nodes from content
- */
+
 export const removeEmptyParagraphs = (content: JSONContent) => ({
   ...content,
   content: content.content?.filter(
@@ -73,9 +65,7 @@ export const removeEmptyParagraphs = (content: JSONContent) => ({
   ),
 })
 
-/**
- * Determines how a target element overflows relative to a container element
- */
+
 export function getElementOverflowPosition(
   targetElement: Element,
   containerElement: HTMLElement
@@ -92,9 +82,7 @@ export function getElementOverflowPosition(
   return "none"
 }
 
-/**
- * Checks if the current selection is valid for a given editor
- */
+
 export const isSelectionValid = (
   editor: Editor | null,
   selection?: Selection,
@@ -126,12 +114,7 @@ export const isSelectionValid = (
   )
 }
 
-/**
- * Checks if the current text selection is valid for editing
- * - Not empty
- * - Not a code block
- * - Not a node selection
- */
+
 export const isTextSelectionValid = (editor: Editor | null): boolean => {
   if (!editor) return false
   const { state } = editor
@@ -145,9 +128,7 @@ export const isTextSelectionValid = (editor: Editor | null): boolean => {
   return isValid
 }
 
-/**
- * Gets the bounding rect of the current selection in the editor.
- */
+
 export const getSelectionBoundingRect = (editor: Editor): DOMRect | null => {
   const { state } = editor.view
   const { selection } = state
@@ -166,9 +147,7 @@ export const getSelectionBoundingRect = (editor: Editor): DOMRect | null => {
   return posToDOMRect(editor.view, from, to)
 }
 
-/**
- * Generates a deterministic avatar URL from a user name
- */
+
 export const getAvatar = (name: string) => {
   if (!name) {
     return "/avatars/memoji_01.png"
@@ -186,14 +165,10 @@ export const getAvatar = (name: string) => {
   return `/avatars/memoji_${idString}.png`
 }
 
-/**
- * Fetch collaboration JWT token from the API
- */
+
 export const fetchCollabToken = async () => {
   if (USE_JWT_TOKEN_API_ENDPOINT) {
     try {
-      // Example API endpoint that returns a JWT token.
-      // TODO: implement this API endpoint in your app
       const response = await fetch(`/api/collaboration`, {
         method: "POST",
         headers: {
@@ -213,11 +188,6 @@ export const fetchCollabToken = async () => {
     }
   }
 
-  // TODO: as a developer, use the example JWT token provided in the Tiptap
-  // Cloud dashboard for local development only. In production, implement an API
-  // endpoint that generates a new JWT token in the server. Then, call that API
-  // endpoint from this function.
-  // When you've implemented the API endpoint, remove the code below.
   if (!TIPTAP_COLLAB_TOKEN) {
     alert(`Set up your environment variables to connect to Tiptap Cloud:
 - NEXT_PUBLIC_TIPTAP_COLLAB_DOC_PREFIX - Prefix for identifying collaborative documents
@@ -232,19 +202,13 @@ Follow this guide: https://tiptap.dev/docs/ui-components/templates/notion-like-e
     )
   }
 
-  // A hardcoded token for demonstration purposes.
-  // TODO: remove this in production and use the API endpoint instead
   return TIPTAP_COLLAB_TOKEN
 }
 
-/**
- * Fetch AI JWT token from the API
- */
+
 export const fetchAiToken = async () => {
   if (USE_JWT_TOKEN_API_ENDPOINT) {
     try {
-      // Example API endpoint that returns a JWT token.
-      // TODO: implement this API endpoint in your app
       const response = await fetch(`/api/ai`, {
         method: "POST",
         headers: {
@@ -264,11 +228,6 @@ export const fetchAiToken = async () => {
     }
   }
 
-  // TODO: as a developer, use the example JWT token provided in the Tiptap
-  // Cloud dashboard for local development only. In production, implement an API
-  // endpoint that generates a new JWT token in the server. Then, call that API
-  // endpoint from this function.
-  // When you've implemented the API endpoint, remove the code below.
   if (!TIPTAP_AI_TOKEN) {
     alert(`Set up your environment variables to connect to Tiptap Cloud:
 - NEXT_PUBLIC_TIPTAP_COLLAB_DOC_PREFIX - Prefix for identifying collaborative documents
@@ -283,7 +242,5 @@ Follow this guide: https://tiptap.dev/docs/ui-components/templates/notion-like-e
     )
   }
 
-  // A hardcoded token for demonstration purposes.
-  // TODO: remove this in production and use the API endpoint instead
   return TIPTAP_AI_TOKEN
 }

@@ -2,31 +2,24 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseTableAddRowColumnConfig } from "@/components/tiptap-node/table-node/ui/table-add-row-column-button"
 import { useTableAddRowColumn } from "@/components/tiptap-node/table-node/ui/table-add-row-column-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 
 export interface TableAddRowColumnButtonProps
   extends Omit<ButtonProps, "type">,
     UseTableAddRowColumnConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
 }
 
-/**
- * Button component for adding a table row/column in a Tiptap editor.
- *
- * For custom button implementations, use the `useTableAddRowColumn` hook instead.
- */
+
 export const TableAddRowColumnButton = forwardRef<
   HTMLButtonElement,
   TableAddRowColumnButtonProps

@@ -5,10 +5,10 @@ import type { Editor } from "@tiptap/react"
 import { CellSelection, toggleHeader } from "@tiptap/pm/tables"
 import type { Transaction } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import {
   isExtensionAvailable,
   isValidPosition,
@@ -21,39 +21,16 @@ import {
   selectCellsByCoords,
 } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --- Icons ---
+
 import { TableHeaderRowIcon } from "@/components/tiptap-icons/table-header-row-icon"
 import { TableHeaderColumnIcon } from "@/components/tiptap-icons/table-header-column-icon"
 
 export interface UseTableHeaderRowColumnConfig {
-  /**
-   * The Tiptap editor instance. If omitted, the hook will use
-   * the context/editor from `useTiptapEditor`.
-   */
   editor?: Editor | null
-  /**
-   * The index of the row or column. Header functionality only applies to index 0.
-   * If omitted, will use the current selection.
-   */
   index?: number
-  /**
-   * Whether you're toggling header for a row or a column.
-   * If omitted, will use the current selection.
-   */
   orientation?: Orientation
-  /**
-   * The position of the table in the document.
-   * Used when there's no cell selection so we can target a specific table.
-   */
   tablePos?: number
-  /**
-   * Hide the button when header toggle isn't currently possible.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful header toggle.
-   */
   onToggled?: () => void
 }
 
@@ -69,10 +46,7 @@ export const tableHeaderRowColumnIcons = {
   column: TableHeaderColumnIcon,
 }
 
-/**
- * Checks if a table header row/column toggle can be performed
- * in the current editor state (or at tablePos when no selection).
- */
+
 function canToggleHeader({
   editor,
   index,
@@ -103,10 +77,7 @@ function canToggleHeader({
   return selectionType.index === 0
 }
 
-/**
- * Executes the header row/column toggle. If there is no cell selection,
- * it will derive the target from (index, orientation) and the table at tablePos.
- */
+
 function toggleTableHeader({
   editor,
   index,
@@ -162,10 +133,7 @@ function toggleTableHeader({
   }
 }
 
-/**
- * Determines if the header toggle button should be shown
- * based on editor state and config.
- */
+
 function shouldShowButton({
   editor,
   index,
@@ -190,11 +158,7 @@ function shouldShowButton({
   return Boolean(selectionType)
 }
 
-/**
- * Custom hook that provides **table header row/column toggle**
- * functionality for the Tiptap editor. Supports `tablePos` when
- * no cell is selected.
- */
+
 export function useTableHeaderRowColumn(config: UseTableHeaderRowColumnConfig) {
   const {
     editor: providedEditor,

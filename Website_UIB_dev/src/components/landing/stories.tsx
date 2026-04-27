@@ -31,24 +31,18 @@ export default function SuccessStories() {
   const prevSlide = () => setCurrent(current === 0 ? length - 1 : current - 1)
 
   return (
-// Bagian Utama: Putih
+
     <section className="relative py-24 bg-white overflow-hidden font-poppins">
-      
-      {/* 1. BACKGROUND SPLIT: Setengah Atas Putih, Setengah Bawah Abu-abu */}
       <div className="absolute bottom-0 left-0 w-full h-1/2 bg-[#efefef] z-0"></div>
 
       <div className="container mx-auto px-4 md:px-20 relative z-10">
         <div className="relative overflow-hidden shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] bg-white">
-          
-          {/* Main Slider Container */}
           <div 
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${current * 100}%)` }}
           >
             {storiesData.map((story, index) => (
               <div key={index} className="w-full flex-none flex flex-col md:flex-row min-h-[500px]">
-                
-                {/* Sisi Kiri: Foto */}
                 <div className="w-full md:w-1/2 relative h-80 md:h-auto overflow-hidden">
                   <img 
                     src={story.image} 
@@ -57,7 +51,6 @@ export default function SuccessStories() {
                   />
                 </div>
 
-                {/* Sisi Kanan: Konten Biru LPDP */}
                 <div className="w-full md:w-1/2 bg-[#e67e22] p-10 md:p-20 flex flex-col justify-center text-white relative">
                   <div className="flex items-center gap-3 mb-6">
                     <span className="border border-white/40 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">
@@ -65,7 +58,6 @@ export default function SuccessStories() {
                     </span>
                     <span className="text-[11px] opacity-60 tracking-wider">{story.date}</span>
                   </div>
-                  
                   <h3 className="text-2xl md:text-4xl font-bold leading-tight mb-12  font-poppins">
                     {story.title}
                   </h3>
@@ -78,7 +70,6 @@ export default function SuccessStories() {
             ))}
           </div>
 
-          {/* Navigasi Panah - Simple & Elegan */}
           <button 
             onClick={prevSlide}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-4 text-white backdrop-blur-sm transition-all z-20"
@@ -92,7 +83,6 @@ export default function SuccessStories() {
             <FaChevronRight size={20} />
           </button>
 
-          {/* Indikator Titik (Dots) di Bawah */}
           <div className="absolute bottom-6 right-10 flex gap-2">
             {storiesData.map((_, i) => (
               <div 

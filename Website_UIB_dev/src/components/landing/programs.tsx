@@ -18,10 +18,9 @@ export default function AcademicPrograms() {
             { title: "Diskon Mahasiswa", link: "landing/informasi/diskonmahasiswa", icon: <Award size={24} /> },
             { title: "Kemahasiswaan", link: "/footer/kemahasiswaan", icon: <BookOpen size={24} /> },
             { title: "Akreditasi", link: "/tentang/akreditasi", icon: <Microscope size={24} /> },
-            { title: "Panduan", link: "landing/informasi/panduan", icon: <School size={24} /> },
+            { title: "Panduan", link: "/informasi/panduan", icon: <School size={24} /> },
           ].map((item, idx) => (
             <Link key={idx} href={item.link} className="block group">
-              {/* CARD: Menggunakan bg-white solid untuk menutupi batik di area kartu */}
               <div className="h-full bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-[#0055aa]/30">
                 <div className="flex items-center gap-4 mb-5">
                   <div className="p-3 bg-blue-50 rounded-lg group-hover:bg-[#0055aa] transition-colors">

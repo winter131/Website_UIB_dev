@@ -13,24 +13,10 @@ export type AppContextValue = {
   activeThread: string | null
   setActiveThread: (threadId: string | null) => void
 
-  /**
-   * A map of thread ids to their respective bubble elements
-   */
   threadBubbles: Record<string, HTMLElement[]>
 
-  /**
-   * Add new thread bubbles to the map
-   * @param threadIds The thread IDs attached to the bubble
-   * @param element The bubble element
-   * @returns void
-   */
   addThreadBubble: (threadIds: string | string[], element: HTMLElement) => void
 
-  /**
-   * Remove a thread bubble from the map
-   * @param threadId The thread ID to remove
-   * @returns void
-   */
   removeThreadBubble: (threadIdOrElement: string | HTMLElement) => void
 }
 
@@ -95,16 +81,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         Object.keys(threadBubblesRef.current).forEach((id) => {
           const threadBubble = threadBubblesRef.current[id]
 
-          // if the element is included in the thread bubble
-          // we'll remove it from the array
           if (threadBubble && threadBubble.includes(element)) {
             threadBubblesRef.current[id] = threadBubble.filter(
               (el) => el !== element
             )
           }
 
-          // if there are no more elements in the thread bubble
-          // we'll remove the thread bubble data
           if (
             threadBubblesRef.current[id] &&
             threadBubblesRef.current[id].length === 0
@@ -143,10 +125,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-/**
- * Hook to access the app state.
- * @returns {AppContextValue}
- */
+
 export const useAppState = (): AppContextValue => {
   const context = useContext(AppContext)
   if (!context) {

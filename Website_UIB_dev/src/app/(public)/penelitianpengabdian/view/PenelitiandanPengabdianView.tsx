@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import { motion, AnimatePresence } from 'framer-motion'
 import {
     FileDown, Award, Search, BookOpen, Eye,
@@ -31,10 +31,7 @@ interface ModernLinkProps {
     light?: boolean;
 }
 
-/**
- * Komponen ModernLink: Versi lebih ringkas dengan animasi ultra-smooth.
- * Menggunakan cubic-bezier untuk efek pergerakan yang lebih organik.
- */
+
 const ModernLink = ({ text, href, light = false }: ModernLinkProps) => (
     <Link href={href} className="group relative inline-flex flex-col items-start pt-4 w-fit cursor-pointer">
         <div className={`flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider transition-transform duration-300 ease-out group-hover:translate-x-2 ${light ? 'text-white' : 'text-[#2A3955]'}`}>
@@ -42,7 +39,6 @@ const ModernLink = ({ text, href, light = false }: ModernLinkProps) => (
             <ChevronRight size={16} className="transition-transform duration-300 ease-out" />
         </div>
 
-        {/* Underline: Memanjang secara proporsional sesuai keinginan Anda, ditambah trik will-change agar smooth */}
         <div className="mt-1 h-[2px] bg-[#f1c40f] rounded-full transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] will-change-[width] w-10 group-hover:w-[calc(100%+12px)]" />
     </Link>
 )
@@ -53,7 +49,7 @@ const AnimatedStat = ({ endValue, suffix, label, Icon }: { endValue: number, suf
     useEffect(() => {
         let current = 0;
         const duration = 2000;
-        const stepTime = 30; // ms per frame
+        const stepTime = 30; 
         const steps = duration / stepTime;
         const increment = endValue / steps;
 
@@ -87,9 +83,7 @@ export default function PenelitiandanPengabdianView() {
 
     return (
         <main className="min-h-screen bg-[#FDFDFD] font-poppins selection:bg-[#2A3955] selection:text-white">
-            <NavbarLanding />
 
-            {/* HERO SECTION */}
             <section className="relative w-full h-[350px] md:h-[650px] overflow-hidden flex items-center">
                 <Image src={heroData.image} alt="UIB Hero" fill priority className="object-cover" objectPosition="center 10%" />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#1A253A]/90 via-[#1A253A]/60 to-transparent z-10"></div>
@@ -104,7 +98,6 @@ export default function PenelitiandanPengabdianView() {
                 </div>
             </section>
 
-            {/* QUICK STATS BAR */}
             <section className="relative z-30 -mt-10 px-6 md:px-12 lg:px-24">
                 <div className="bg-[#2A3955] rounded-[2rem] p-8 shadow-2xl border border-white/10 grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
                     {[
@@ -117,7 +110,6 @@ export default function PenelitiandanPengabdianView() {
                 </div>
             </section>
 
-            {/* INTRO SECTION */}
             <section className="py-20 bg-white border-b border-gray-100">
                 <div className="container mx-auto px-6 md:px-12 lg:px-24">
                     <h2 className="text-3xl font-black text-[#1a365d] mb-4">Mendorong Inovasi & Kontribusi Nyata</h2>
@@ -129,7 +121,6 @@ export default function PenelitiandanPengabdianView() {
                 </div>
             </section>
 
-            {/* NEWS SECTION */}
             <section className="py-20 bg-[#FDFDFD]">
                 <div className="container mx-auto px-6 md:px-12 lg:px-24">
                     <div className="flex justify-between items-end mb-10">
@@ -159,7 +150,6 @@ export default function PenelitiandanPengabdianView() {
                 </div>
             </section>
 
-            {/* PROGRAM & LAYANAN UNGGULAN (BENTO GRID) */}
             <section className="py-16 bg-slate-50">
                 <div className="container mx-auto px-6 md:px-12 lg:px-24">
                     <div className="mb-10 text-center">
@@ -168,7 +158,6 @@ export default function PenelitiandanPengabdianView() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {/* Card 1: Sosialisasi */}
                         <div className="md:col-span-2 relative bg-[#0055aa] rounded-2xl p-8 md:p-10 text-white overflow-hidden flex flex-col justify-end min-h-[350px] shadow-lg border border-white/10 group">
                             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
                             <div className="absolute -top-6 -right-6 opacity-10 transition-transform duration-1000 group-hover:scale-105"><PlayCircle size={220} /></div>
@@ -180,7 +169,6 @@ export default function PenelitiandanPengabdianView() {
                             </div>
                         </div>
 
-                        {/* Card 2: EQUITY */}
                         <div className="md:col-span-1 relative bg-white rounded-2xl p-8 text-[#2A3955] flex flex-col justify-end min-h-[350px] border border-slate-100 shadow-md group overflow-hidden">
                             <div className="absolute -top-6 -right-6 opacity-[0.03] text-[#0055aa] transition-transform duration-1000 group-hover:scale-105"><BookOpen size={150} /></div>
                             <div className="relative z-10">
@@ -191,7 +179,6 @@ export default function PenelitiandanPengabdianView() {
                             </div>
                         </div>
 
-                        {/* Card 3: Panduan */}
                         <div className="md:col-span-1 relative bg-[#1a365d] rounded-2xl p-8 text-white flex flex-col justify-end min-h-[350px] shadow-lg border border-white/10 group overflow-hidden">
                             <div className="absolute -top-6 -right-6 opacity-10 transition-transform duration-1000 group-hover:scale-105"><GraduationCap size={150} /></div>
                             <div className="relative z-10">
@@ -202,7 +189,6 @@ export default function PenelitiandanPengabdianView() {
                             </div>
                         </div>
 
-                        {/* Card 4: Klinik */}
                         <div className="md:col-span-2 relative bg-gradient-to-br from-[#e67e22] to-[#d35400] rounded-2xl p-8 md:p-10 text-white overflow-hidden flex flex-col justify-end min-h-[350px] shadow-lg group">
                             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
                             <div className="absolute -bottom-10 -right-10 opacity-10 transition-transform duration-1000 group-hover:-translate-y-4"><TrendingUp size={250} /></div>
@@ -217,7 +203,6 @@ export default function PenelitiandanPengabdianView() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     )
 }

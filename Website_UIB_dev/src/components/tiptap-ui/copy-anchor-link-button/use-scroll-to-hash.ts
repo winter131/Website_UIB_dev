@@ -7,29 +7,12 @@ import { getEditorExtension } from "@/lib/tiptap-advanced-utils"
 import { selectNodeAndHideFloating } from "@/hooks/use-floating-toolbar-visibility"
 
 export interface UseScrollToHashConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Callback called when the target node is found.
-   * @param nodeId The ID of the found node
-   */
   onTargetFound?: (nodeId: string) => void
-  /**
-   * Callback called when the target node is not found.
-   * @param hash The hash that was attempted to be scrolled to
-   */
   onTargetNotFound?: (hash: string) => void
 }
 
-/**
- * Hook to scroll to a specific hash in the Tiptap editor.
- * It finds the node with the given ID and scrolls it into view.
- *
- * @param config Configuration for the scroll behavior
- * @returns Function to scroll to a specific hash
- */
+
 export function useScrollToHash(config: UseScrollToHashConfig = {}) {
   const {
     editor: providedEditor,
@@ -92,7 +75,6 @@ export function useScrollToHash(config: UseScrollToHashConfig = {}) {
   useEffect(() => {
     if (!editor) return
 
-    // Handle collaboration sync or immediate scroll
     const provider = editor.extensionManager.extensions.find(
       (ext) => ext.name === "collaborationCaret"
     )?.options?.provider

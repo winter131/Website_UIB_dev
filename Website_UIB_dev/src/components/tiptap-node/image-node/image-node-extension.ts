@@ -133,18 +133,15 @@ export const Image = TiptapImage.extend<ImageOptions>({
           const nodeAtDepth = $from.node(depth)
           if (nodeAtDepth.type === this.type) {
             imageNode = nodeAtDepth
-            // posBefore is the resolved position *before* this node
             imagePos = depth === 0 ? 0 : $from.before(depth)
             break
           }
         }
 
-        // Not inside an Image → let default behavior happen
         if (!imageNode || imagePos == null) {
           return false
         }
 
-        // If the caption/content is empty, allow the default progressive select-all
         const contentIsEmpty =
           imageNode.content.size === 0 || imageNode.textContent.length === 0
 
@@ -152,8 +149,6 @@ export const Image = TiptapImage.extend<ImageOptions>({
           return false
         }
 
-        // Compute the content range of the image node:
-        // content starts at (nodePos + 1) and ends at (nodePos + node.nodeSize - 1)
         const start = imagePos + 1
         const end = imagePos + imageNode.nodeSize - 1
 

@@ -2,31 +2,24 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseTableDeleteRowColumnConfig } from "@/components/tiptap-node/table-node/ui/table-delete-row-column-button"
 import { useTableDeleteRowColumn } from "@/components/tiptap-node/table-node/ui/table-delete-row-column-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 
 export interface TableDeleteRowColumnButtonProps
   extends Omit<ButtonProps, "type">,
     UseTableDeleteRowColumnConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
 }
 
-/**
- * Button component for deleting a table row/column in a Tiptap editor.
- *
- * For custom button implementations, use the `useTableDeleteRowColumn` hook instead.
- */
+
 export const TableDeleteRowColumnButton = forwardRef<
   HTMLButtonElement,
   TableDeleteRowColumnButtonProps

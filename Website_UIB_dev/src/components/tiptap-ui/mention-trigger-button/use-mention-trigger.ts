@@ -5,57 +5,33 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import type { Node } from "@tiptap/pm/model"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Lib ---
+
 import {
   findNodePosition,
   isNodeTypeSelected,
   isValidPosition,
 } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { AtSignIcon } from "@/components/tiptap-icons/at-sign-icon"
 
 export const MENTION_TRIGGER_SHORTCUT_KEY = "mod+shift+2"
 
-/**
- * Configuration for the mention functionality
- */
+
 export interface UseMentionTriggerConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * The node to apply trigger to
-   */
   node?: Node | null
-  /**
-   * The position of the node in the document
-   */
   nodePos?: number | null
-  /**
-   * The trigger text to insert
-   * @default "@"
-   */
   trigger?: string
-  /**
-   * Whether the button should hide when insertion is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful trigger insertion.
-   */
   onTriggered?: (trigger: string) => void
 }
 
-/**
- * Checks if a mention can be inserted in the current editor state
- */
+
 export function canInsertMention(
   editor: Editor | null,
   node?: Node | null,
@@ -76,9 +52,7 @@ export function canInsertMention(
   return true
 }
 
-/**
- * Inserts a trigger in a block node at a specified position or after the current selection
- */
+
 function insertTriggerInBlockNode(
   editor: Editor,
   trigger: string,
@@ -103,7 +77,7 @@ function insertTriggerInBlockNode(
       ? foundPos.pos
       : foundPos.pos + foundPos.node.nodeSize
 
-    const triggerLength = trigger.length + 1 // +1 for the space after the trigger
+    const triggerLength = trigger.length + 1 
     const focusPos = isEmpty
       ? foundPos.pos + triggerLength
       : foundPos.pos + foundPos.node.nodeSize + triggerLength
@@ -130,9 +104,7 @@ function insertTriggerInBlockNode(
     .run()
 }
 
-/**
- * Inserts a trigger in a text node at the current selection
- */
+
 function insertTriggerInTextNode(
   editor: Editor,
   trigger: string,
@@ -163,7 +135,7 @@ function insertTriggerInTextNode(
         .insertText(trigger, insertPos, insertPos)
     )
 
-    const triggerLength = trigger.length + 1 // +1 for the space after the trigger
+    const triggerLength = trigger.length + 1 
     const focusPos = isEmpty
       ? foundPos.pos + triggerLength
       : foundPos.pos + foundPos.node.nodeSize + triggerLength
@@ -188,9 +160,7 @@ function insertTriggerInTextNode(
     .run()
 }
 
-/**
- * Adds a mention trigger at the current selection or specified node position
- */
+
 export function addMentionTrigger(
   editor: Editor | null,
   trigger: string = "@",
@@ -215,9 +185,7 @@ export function addMentionTrigger(
   }
 }
 
-/**
- * Determines if the mention button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -235,42 +203,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides mention functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage - no params needed
- * function MySimpleMentionButton() {
- *   const { isVisible, handleMention } = useMentionTrigger()
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleMention}>Add Mention</button>
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedMentionButton() {
- *   const { isVisible, handleMention, label } = useMentionTrigger({
- *     editor: myEditor,
- *     trigger: "@",
- *     hideWhenUnavailable: true,
- *     onTriggered: (trigger) => console.log('Inserted:', trigger)
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleMention}
- *       aria-label={label}
- *     >
- *       Add Mention
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useMentionTrigger(config?: UseMentionTriggerConfig) {
   const {
     editor: providedEditor,

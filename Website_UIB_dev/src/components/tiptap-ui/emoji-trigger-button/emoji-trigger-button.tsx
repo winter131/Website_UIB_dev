@@ -2,20 +2,20 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseEmojiTriggerConfig } from "@/components/tiptap-ui/emoji-trigger-button"
 import {
   EMOJI_TRIGGER_SHORTCUT_KEY,
   useEmojiTrigger,
 } from "@/components/tiptap-ui/emoji-trigger-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -23,14 +23,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface EmojiTriggerButtonProps
   extends Omit<ButtonProps, "type">,
     UseEmojiTriggerConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -42,11 +35,7 @@ export function EmojiTriggerShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for adding emoji trigger in a Tiptap editor.
- *
- * For custom button implementations, use the `useEmojiTrigger` hook instead.
- */
+
 export const EmojiTriggerButton = forwardRef<
   HTMLButtonElement,
   EmojiTriggerButtonProps

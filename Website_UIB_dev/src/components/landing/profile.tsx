@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { FaPlayCircle, FaTimes } from 'react-icons/fa'
 
 export default function CompanyProfile() {
-  const [isOpen, setIsOpen] = useState(false) // State untuk kontrol modal
+  const [isOpen, setIsOpen] = useState(false) 
 
   const data = [
     {
@@ -22,7 +22,6 @@ export default function CompanyProfile() {
     <section className="w-full bg-white overflow-hidden font-poppins">
       <div className="flex flex-col md:flex-row min-h-[600px]">
 
-        {/* SISI KIRI: IMAGE & PLAY BUTTON */}
         <div className="w-full md:w-1/2 relative group">
           <img
             src="img\gedungUIB.jpg"
@@ -30,7 +29,6 @@ export default function CompanyProfile() {
             className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
           />
 
-          {/* TOMBOL PLAY VIDEO (DIUBAH DARI <a> MENJADI <button>) */}
           <div className="absolute inset-0 flex items-center justify-center">
             <button
               onClick={() => setIsOpen(true)}
@@ -45,7 +43,6 @@ export default function CompanyProfile() {
           </div>
         </div>
 
-        {/* SISI KANAN: KONTEN TEKS & STATISTIK (Tetap) */}
         <div className="w-full md:w-1/2 bg-[#2A3955] p-10 md:p-20 text-white flex flex-col justify-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 uppercase tracking-tight">
             Tentang UIB
@@ -92,10 +89,8 @@ export default function CompanyProfile() {
 
       </div>
 
-      {/* MODAL POPUP VIDEO */}
       {isOpen && (
         <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-          {/* Tombol Close */}
           <button
             onClick={() => setIsOpen(false)}
             className="absolute top-6 right-6 text-white hover:text-[#e67e22] transition-colors"
@@ -103,7 +98,6 @@ export default function CompanyProfile() {
             <FaTimes size={30} />
           </button>
 
-          {/* Container Video */}
           <div className="relative w-full max-w-4xl aspect-video">
             <iframe
               className="w-full h-full rounded-xl shadow-2xl"

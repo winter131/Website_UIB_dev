@@ -21,14 +21,12 @@ export default function SetModulView({
   const showNotification = useNotifikasi.getState().show;
   const { data: session, status }: { data: any; status: string } = useSession();
 
-  // console.log(session);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
   const [usergroup, setUsergroup] = useState<ModulAlternateType[]>([]);
   const [selectedModul, setSelectedModul] = useState<{}>({});
 
-  // Get data usergroup
   const { data, isLoading, refetch } = useModulGroupData(
     session?.user?.accessToken,
     usergroupId,
@@ -55,7 +53,6 @@ export default function SetModulView({
     }
   );
 
-  // Submit form tambah dan edit user
   const handleSubmit = async () => {
     updateModulGroupMutation({
       token: session?.user?.accessToken,
@@ -83,7 +80,6 @@ export default function SetModulView({
         Set Modul {usergroupName}
       </h1>
 
-      {/* Breadcrumbs */}
       <div className="breadcrumbs text-sm text-black">
         <ul>
           <li>
@@ -106,7 +102,6 @@ export default function SetModulView({
         </ul>
       </div>
 
-      {/* Search */}
       <div className="mt-2 flex flex-wrap gap-4">
         <span className="font-normal text-black">
           Atur modul yang dapat diakses oleh grup <b>{usergroupName}</b>
@@ -121,9 +116,7 @@ export default function SetModulView({
         />
       </div>
 
-      {/* Main Content - Table modul */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-        {/* Table modul */}
         <div className="col-span-3">
           <DataTable
             columns={columns}

@@ -3,8 +3,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import {
     ChevronLeft, ChevronRight, FileText, Download, Send,
     LayoutTemplate, Users, Calendar, MapPin,
@@ -52,7 +52,7 @@ export default function ConesintechView() {
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
-            const offset = 100; // Account for sticky header
+            const offset = 100; 
             const bodyRect = document.body.getBoundingClientRect().top;
             const elementRect = element.getBoundingClientRect().top;
             const elementPosition = elementRect - bodyRect;
@@ -67,19 +67,15 @@ export default function ConesintechView() {
 
     return (
         <main className="mt-5 bg-[#fcfcfc] font-sans text-[#2A3955] min-h-screen selection:bg-[#e67e22] selection:text-white">
-            <NavbarLanding />
 
             <header className="relative pt-32 pb-20 overflow-hidden bg-white">
-                {/* PATTERN OVERLAY */}
                 <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.10]"
                     style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232A3955' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}>
                 </div>
 
-                {/* DECORATIVE BLUR BLOB */}
                 <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#e67e22]/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
 
                 <div className="container mx-auto px-6 md:px-20 relative z-10">
-                    {/* BACK BUTTON */}
                     <Link
                         href="/landing/conference"
                         className="inline-flex items-center gap-4 text-[10px] font-black tracking-[0.3em] text-slate-400 hover:text-[#e67e22] transition-all mb-16 group"
@@ -90,7 +86,6 @@ export default function ConesintechView() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                         <div className="lg:col-span-8 space-y-8">
-                            {/* SUBTITLE */}
                             <div className="space-y-2">
                                 <span className="text-[#e67e22] font-bold text-xs tracking-widest uppercase">
                                     International Conference
@@ -100,7 +95,6 @@ export default function ConesintechView() {
                                 </h4>
                             </div>
 
-                            {/* MAIN TITLE */}
                             <div className="text-[#2A3955] text-5xl md:text-7xl font-black tracking-tighter leading-[0.9]">
                                 <h1 className="inline-block">
                                     The 5th <br />
@@ -108,7 +102,6 @@ export default function ConesintechView() {
                                 </h1>
                             </div>
 
-                            {/* DATE BADGE & THEME */}
                             <div className="flex flex-col md:flex-row md:items-center gap-6 pt-4">
                                 <div className="flex items-center gap-3 bg-[#e67e22] text-white px-5 py-3 rounded-full w-fit shadow-lg shadow-[#e67e22]/20">
                                     <Calendar size={18} />
@@ -123,15 +116,12 @@ export default function ConesintechView() {
                             </div>
                         </div>
 
-                        {/* QUOTE / SIDE TEXT - Layout tetap dipertahankan meskipun kosong di kodingan Anda */}
                         <div className="lg:col-span-4 flex flex-col justify-end">
-                            {/* Space for future side content */}
                         </div>
                     </div>
                 </div>
             </header>
 
-            {/* --- ACTION BUTTONS (DOCK STYLE) --- */}
             <section className="sticky top-24 z-30 py-4 pointer-events-none">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="bg-white/80 backdrop-blur-xl border border-slate-100 p-2 rounded-2xl shadow-2xl inline-flex flex-wrap gap-2 pointer-events-auto">
@@ -169,7 +159,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- EXPLANATION SECTION --- */}
             <section id="about" className="py-32 container mx-auto px-6 md:px-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div className="relative">
@@ -197,7 +186,6 @@ export default function ConesintechView() {
                     <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 text-center">In Collaboration With</h3>
                 </div>
 
-                {/* MARQUEE CONTAINER */}
                 <div className="flex overflow-hidden relative">
                     <motion.div
                         animate={{ x: ["0%", "-50%"] }}
@@ -208,7 +196,6 @@ export default function ConesintechView() {
                         }}
                         className="flex gap-12 whitespace-nowrap items-center min-w-full"
                     >
-                        {/* Duplicate content for seamless loop */}
                         {[...universities, ...universities, ...universities, ...universities].map((u, i) => (
                             <div key={i} className="flex flex-col items-center gap-4 group shrink-0 w-40">
                                 <div className="h-16 w-32 relative transition-transform duration-500 group-hover:scale-110">
@@ -225,7 +212,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- KEYNOTE SPEAKERS (MANUAL SLIDER) --- */}
             <section id="speakers" className="py-32 bg-slate-900 text-white overflow-hidden">
                 <div className="container mx-auto px-6 md:px-20 mb-20">
                     <div className="flex justify-between items-end">
@@ -247,7 +233,6 @@ export default function ConesintechView() {
                     </div>
                 </div>
 
-                {/* SLIDER CONTAINER */}
                 <div
                     ref={scrollRef}
                     className="flex gap-8 overflow-x-auto scrollbar-hide px-6 md:px-20 pb-10 snap-x snap-mandatory"
@@ -270,7 +255,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- TIMELINE (SIMPLE VERSION) --- */}
             <section id="timeline" className="py-32 container mx-auto px-6 md:px-20">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-4xl font-black mb-16 tracking-tighter uppercase text-[#2A3955]">
@@ -287,7 +271,6 @@ export default function ConesintechView() {
                                 viewport={{ once: true }}
                                 className="relative pl-10 pb-12 last:pb-0"
                             >
-                                {/* DOT INDICATOR */}
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-[#e67e22] z-10"></div>
 
                                 <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
@@ -309,7 +292,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- ACADEMIC PARTNERS & MEMBERS --- */}
             <section id="partners" className="py-32 bg-slate-50 border-t border-slate-200">
                 <div className="container mx-auto px-6 md:px-20 text-center">
                     <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-16">Academic Partners & Membership</h3>
@@ -323,7 +305,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     )
 }

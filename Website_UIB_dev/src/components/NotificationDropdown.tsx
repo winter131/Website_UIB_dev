@@ -3,7 +3,6 @@ import React from "react";
 const NotificationDropdown = () => {
   return (
     <>
-      {/* <div className="dropdown-content relative inline-block"> */}
       <div className="dropdown-content absolute right-0 z-20 w-64 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-lg sm:w-80 dark:bg-[#2F2F2F]">
         <div className="py-2">
           <a
@@ -76,7 +75,6 @@ const NotificationDropdown = () => {
           See all notifications
         </a>
       </div>
-      {/* </div> */}
     </>
   );
 };

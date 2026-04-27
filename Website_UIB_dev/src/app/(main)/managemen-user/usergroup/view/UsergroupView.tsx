@@ -34,12 +34,10 @@ export default function UsergroupView() {
     keterangan: "",
   });
 
-  // Get data usergroup
   const { data, isLoading, refetch } = useUsergroupData(
     session.user?.accessToken,
     status
   );
-  // Mutation create usergroup
   const { mutate: createUsergroupMutation } = useCreateUsergroup(
     () => {
       showNotification({
@@ -103,11 +101,9 @@ export default function UsergroupView() {
     }
   );
 
-  // Submit form tambah dan edit user
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // console.log(isEditing);
 
     !isEditing
       ? createUsergroupMutation({
@@ -128,7 +124,6 @@ export default function UsergroupView() {
           },
         });
   };
-  // Open editing state
   const handleEdit = (data: UsergroupType) => {
     setIsEditing(true);
     setUsergroup({
@@ -138,7 +133,6 @@ export default function UsergroupView() {
       keterangan: data.keterangan_group,
     });
   };
-  // Handle delete
   const handleDelete = (data: UsergroupType) => {
     showConfirmation({
       title: "Hapus Usergroup?",
@@ -156,7 +150,6 @@ export default function UsergroupView() {
     });
   };
 
-  // Filter usergroup
   useEffect(() => {
     if (!data) return;
 
@@ -172,7 +165,6 @@ export default function UsergroupView() {
     <div className="px-8 py-4">
       <h1 className="w-full text-4xl font-bold text-black">Usergroup</h1>
 
-      {/* Breadcrumbs */}
       <div className="breadcrumbs text-sm text-black">
         <ul>
           <li>
@@ -192,7 +184,6 @@ export default function UsergroupView() {
         </ul>
       </div>
 
-      {/* Search */}
       <div className="mt-2 flex flex-wrap gap-4">
         <span className="font-normal text-black">
           Modul untuk manajemen usergroup SIM Admisi
@@ -207,9 +198,7 @@ export default function UsergroupView() {
         />
       </div>
 
-      {/* Main Content - Table modul dan form modul */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-        {/* Table modul */}
         <div className="col-span-2">
           <DataTable
             columns={columns}
@@ -222,7 +211,6 @@ export default function UsergroupView() {
           />
         </div>
 
-        {/* Form usergroup */}
         <div className="col-span-1">
           <div className="w-full card h-auto bg-white text-black p-4 shadow">
             <h2 className="text-l font-bold mb-4">
@@ -230,7 +218,6 @@ export default function UsergroupView() {
             </h2>
 
             <form id="form" onSubmit={handleSubmit}>
-              {/* Nama usergroup */}
               <div className="form-control">
                 <label className="label" htmlFor="namaUsergroup">
                   <span className="label-text text-black font-medium text-sm">
@@ -251,7 +238,6 @@ export default function UsergroupView() {
                 />
               </div>
 
-              {/* Level usergroup */}
               <div className="form-control">
                 <label className="label" htmlFor="level">
                   <span className="label-text text-black font-medium text-sm">
@@ -276,7 +262,6 @@ export default function UsergroupView() {
                 </select>
               </div>
 
-              {/* Keterangan usergroup */}
               <div className="form-control">
                 <label className="label" htmlFor="keterangan">
                   <span className="label-text text-black font-medium text-sm">
@@ -296,7 +281,6 @@ export default function UsergroupView() {
                 />
               </div>
 
-              {/* Tombol simpan dan reset */}
               <div className="mt-4 flex justify-end gap-2">
                 <button
                   onClick={() => {

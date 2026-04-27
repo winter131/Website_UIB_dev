@@ -5,16 +5,16 @@ import { type Editor } from "@tiptap/react"
 import type { TextOptions } from "@tiptap-pro/extension-ai"
 import { type Language } from "@tiptap-pro/extension-ai"
 
-// -- Hooks --
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// -- Tiptap UI --
+
 import {
   getContextAndInsertAt,
   useAiMenuState,
 } from "@/components/tiptap-ui/ai-menu"
 
-// -- UI Primitives --
+
 import {
   type Action,
   filterMenuGroups,
@@ -44,7 +44,7 @@ import type {
   NestedMenuAction,
 } from "@/components/tiptap-ui/ai-menu/ai-menu-items/ai-menu-items-types"
 
-// -- Icons --
+
 import { ChevronRightIcon } from "@/components/tiptap-icons/chevron-right-icon"
 import { SummarizeTextIcon } from "@/components/tiptap-icons/summarize-text-icon"
 import { Simplify2Icon } from "@/components/tiptap-icons/simplify-2-icon"
@@ -570,7 +570,6 @@ export function AiMenuItems({
         availableMenuActions[menuItem.value as MenuActionIdentifier]
       if (!editorAction) return false
 
-      // For nested menu items with filterItems=true, check their internal filtering
       if (
         isNestedMenuItem(editorAction) &&
         editorAction.filterItems &&

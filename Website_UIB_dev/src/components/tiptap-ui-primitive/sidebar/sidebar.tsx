@@ -63,8 +63,6 @@ const SidebarProvider = forwardRef<
     const isMobile = useIsBreakpoint()
     const [openMobile, setOpenMobile] = useState(false)
 
-    // This is the internal state of the sidebar.
-    // We use openProp and setOpenProp for control from outside the component.
     const [_open, _setOpen] = useState(defaultOpen)
     const open = openProp ?? _open
     const setOpen = useCallback(
@@ -76,20 +74,17 @@ const SidebarProvider = forwardRef<
           _setOpen(openState)
         }
 
-        // This sets the cookie to keep the sidebar state.
         document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
       },
       [setOpenProp, open]
     )
 
-    // Helper to toggle the sidebar.
     const toggleSidebar = useCallback(() => {
       return isMobile
         ? setOpenMobile((open) => !open)
         : setOpen((open) => !open)
     }, [isMobile, setOpen, setOpenMobile])
 
-    // Adds a keyboard shortcut to toggle the sidebar.
     useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
         if (
@@ -105,8 +100,6 @@ const SidebarProvider = forwardRef<
       return () => window.removeEventListener("keydown", handleKeyDown)
     }, [toggleSidebar])
 
-    // We add a state so that we can do data-state="expanded" or "collapsed".
-    // This makes it easier to style the sidebar with Tailwind classes.
     const state = open ? "expanded" : "collapsed"
 
     const contextValue = useMemo<SidebarContext>(
@@ -164,7 +157,6 @@ const Sidebar = forwardRef<
         data-collapsible={state === "collapsed" ? collapsible : ""}
         data-side={side}
       >
-        {/* This is what handles the sidebar gap on desktop */}
         <div
           className="sidebar-gap"
           data-collapsible={state === "collapsed" ? collapsible : ""}

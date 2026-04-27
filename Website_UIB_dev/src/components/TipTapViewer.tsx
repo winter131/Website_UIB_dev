@@ -2,7 +2,7 @@
 
 import { EditorContent, useEditor } from "@tiptap/react";
 
-// --- Tiptap Core Extensions ---
+
 import { StarterKit } from "@tiptap/starter-kit";
 import { Mention } from "@tiptap/extension-mention";
 import { TaskList, TaskItem } from "@tiptap/extension-list";
@@ -17,21 +17,21 @@ import { Mathematics } from "@tiptap/extension-mathematics";
 import { UniqueID } from "@tiptap/extension-unique-id";
 import { Emoji, gitHubEmojis } from "@tiptap/extension-emoji";
 
-// --- Hooks ---
+
 import { useUiEditorState } from "@/hooks/use-ui-editor-state";
 import { useScrollToHash } from "@/components/tiptap-ui/copy-anchor-link-button/use-scroll-to-hash";
 
-// --- Custom Extensions ---
+
 import { HorizontalRule } from "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node-extension";
 import { UiState } from "@/components/tiptap-extension/ui-state-extension";
 import { Image } from "@/components/tiptap-node/image-node/image-node-extension";
 import { NodeBackground } from "@/components/tiptap-extension/node-background-extension";
 import { NodeAlignment } from "@/components/tiptap-extension/node-alignment-extension";
 
-// --- Tiptap Node ---
+
 import { ImageUploadNode } from "@/components/tiptap-node/image-upload-node/image-upload-node-extension";
 
-// --- Table Node ---
+
 import { TableKit } from "@/components/tiptap-node/table-node/extensions/table-node-extension";
 import { TableHandleExtension } from "@/components/tiptap-node/table-node/extensions/table-handle";
 import { TableHandle } from "@/components/tiptap-node/table-node/ui/table-handle/table-handle";
@@ -49,7 +49,7 @@ import "@/components/tiptap-node/image-node/image-node.scss";
 import "@/components/tiptap-node/heading-node/heading-node.scss";
 import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
 
-// --- Tiptap UI ---
+
 import { EmojiDropdownMenu } from "@/components/tiptap-ui/emoji-dropdown-menu";
 import { MentionDropdownMenu } from "@/components/tiptap-ui/mention-dropdown-menu";
 import { SlashDropdownMenu } from "@/components/tiptap-ui/slash-dropdown-menu";

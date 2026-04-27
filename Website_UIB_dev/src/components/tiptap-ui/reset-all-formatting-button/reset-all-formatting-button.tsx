@@ -2,20 +2,20 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseResetAllFormattingConfig } from "@/components/tiptap-ui/reset-all-formatting-button"
 import {
   RESET_ALL_FORMATTING_SHORTCUT_KEY,
   useResetAllFormatting,
 } from "@/components/tiptap-ui/reset-all-formatting-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -23,14 +23,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface ResetAllFormattingButtonProps
   extends Omit<ButtonProps, "type">,
     UseResetAllFormattingConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -42,12 +35,7 @@ export function ResetAllFormattingShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for resetting formatting of a node in a Tiptap editor.
- * Removes all marks and converts non-paragraph nodes to paragraphs.
- *
- * For custom button implementations, use the `useResetAllFormatting` hook instead.
- */
+
 export const ResetAllFormattingButton = forwardRef<
   HTMLButtonElement,
   ResetAllFormattingButtonProps

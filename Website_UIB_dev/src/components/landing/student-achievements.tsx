@@ -5,7 +5,7 @@ import { Trophy, ArrowRight, Award, Globe, ChevronLeft, ChevronRight } from 'luc
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade, Navigation } from 'swiper/modules'
 
-// Import CSS Swiper Dasar
+
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
@@ -37,14 +37,13 @@ export default function FeaturedAchievement() {
 
   return (
     <section className="relative py-20 font-poppins overflow-hidden">
-      {/* Background Motif Batik Global */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: "url('/img/batik_new.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'fit',
-          opacity: 0.1 // Opacity rendah agar tidak mengganggu keterbacaan
+          opacity: 0.1 
         }}
       />
 
@@ -62,13 +61,9 @@ export default function FeaturedAchievement() {
         >
           {slides.map((item, index) => (
             <SwiperSlide key={index} className="h-full">
-              {/* FIXED: Menggunakan h-full agar konten slide mengisi seluruh tinggi Swiper */}
               <div className="flex flex-col lg:flex-row items-stretch bg-[#2A3955] relative min-h-[500px] lg:h-full">
-                
-                {/* Aksen Batik dalam kartu */}
                 <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('/img/batik-new.jpg')] bg-repeat bg-[length:300px_300px]"></div>
 
-                {/* SISI KIRI: KONTEN TEKS */}
                 <div className="w-full lg:w-1/2 p-10 md:p-16 flex flex-col justify-center relative z-20">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/20">
@@ -89,24 +84,19 @@ export default function FeaturedAchievement() {
                   </div>
                 </div>
 
-                {/* SISI KANAN: GAMBAR (FIXED: Menghilangkan celah bawah) */}
                 <div className="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-full overflow-hidden self-stretch">
                   <img 
                     src={item.image} 
                     alt={item.title} 
-                    /* h-full w-full + absolute inset-0 memaksa gambar memenuhi container pembungkusnya */
                     className="absolute inset-0 w-full h-full object-cover object-center grayscale-[20%] hover:grayscale-0 transition-all duration-700" 
                   />
-                  {/* Overlay Gradasi menyatu dengan sisi kiri */}
                   <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#2A3955] hidden lg:block"></div>
-                  {/* Overlay Mobile */}
                   <div className="absolute inset-0 bg-gradient-to-b from-[#2A3955] via-transparent to-transparent lg:hidden"></div>
                 </div>
               </div>
             </SwiperSlide>
           ))}
 
-          {/* NAVIGASI PANAH */}
           <button className="swiper-button-prev-custom absolute left-6 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-black/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-[#e67e22] hover:border-[#e67e22] transition-all duration-500 opacity-0 group-hover:opacity-100 hidden md:flex">
             <ChevronLeft size={30} />
           </button>
@@ -117,11 +107,9 @@ export default function FeaturedAchievement() {
       </div>
 
       <style jsx global>{`
-        /* Menghapus celah putih/hitam di bawah swiper-wrapper */
         .swiper { height: auto !important; }
         .swiper-wrapper { display: flex !important; }
         .swiper-slide { height: auto !important; }
-        
         .swiper-pagination { display: none !important; }
         .swiper-button-next::after, .swiper-button-prev::after { content: "" !important; }
       `}</style>

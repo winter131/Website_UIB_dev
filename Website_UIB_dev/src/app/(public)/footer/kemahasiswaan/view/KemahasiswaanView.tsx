@@ -3,15 +3,15 @@ import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import {
     ChevronRight, Users, BookOpen, Trophy, Star,
     GraduationCap, Heart, Globe2, Award, Music,
     Dumbbell, Microscope, ArrowRight
 } from 'lucide-react'
 
-// --- ANIMATED STAT COUNTER ---
+
 function AnimatedStat({ target, label }: { target: number; label: string }) {
     const [count, setCount] = useState(0)
     const ref = useRef<HTMLDivElement>(null)
@@ -48,7 +48,6 @@ function AnimatedStat({ target, label }: { target: number; label: string }) {
 }
 
 const organizations = [
-    
     {
         name: "HMPS",
         full: "Himpunan Mahasiswa Program Studi",
@@ -74,7 +73,7 @@ const services = [
     { icon: Globe2, title: "Program Internasional", desc: "Kesempatan pertukaran pelajar, magang luar negeri, dan program mobilitas global." },
 ]
 
-// TODO: Ganti dengan data dinamis dari API/backend
+
 const beritaList = [
     {
         title: "Biro Pengembangan Kemahasiswaan dan Alumni Laksanakan Evaluasi Program 2025",
@@ -99,9 +98,7 @@ const beritaList = [
 export default function KemahasiswaanView() {
     return (
         <main className="mt-20 bg-white font-sans text-slate-900">
-            <NavbarLanding />
 
-           {/* 1. HERO IMAGE SECTION - ENHANCED WITH OVERLAY */}
                        <section className="w-full relative overflow-hidden">
                            <div className="relative h-[250px] md:h-[400px] w-full">
                                <Image
@@ -111,7 +108,6 @@ export default function KemahasiswaanView() {
                                    priority
                                    className="object-cover object-[center_10%]"
                                />
-                               {/* Gradient Overlay Premium */}
                                <div className="absolute inset-0 bg-gradient-to-r from-[#1A253A]/90 via-[#1A253A]/40 to-transparent z-10 flex items-center">
                                    <div className="container mx-auto px-6 md:px-20">
                                        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
@@ -124,7 +120,6 @@ export default function KemahasiswaanView() {
                            </div>
                        </section>
 
-            {/* STATS BAR */}
             <section className="bg-[#2A3955] py-10">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
@@ -136,7 +131,6 @@ export default function KemahasiswaanView() {
                 </div>
             </section>
 
-            {/* INTRO SECTION */}
             <section className="py-20 container mx-auto px-6 md:px-20 border-b border-slate-100">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-start">
                     <div className="md:w-1/3">
@@ -156,7 +150,6 @@ export default function KemahasiswaanView() {
                 </div>
             </section>
 
-            {/* ORGANISASI MAHASISWA */}
             <section className="py-20 bg-slate-50">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="text-center mb-14">
@@ -187,7 +180,6 @@ export default function KemahasiswaanView() {
 
 
 
-            {/* BERITA KEMAHASISWAAN */}
             <section className="py-20 bg-slate-50">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="text-center mb-12">
@@ -199,7 +191,6 @@ export default function KemahasiswaanView() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                         {beritaList.map((news, i) => (
                             <Link href={news.href} key={i} className="group block bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                                {/* Thumbnail */}
                                 <div className="relative h-48 overflow-hidden">
                                     <Image
                                         src={news.img}
@@ -209,7 +200,6 @@ export default function KemahasiswaanView() {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                                 </div>
-                                {/* Content */}
                                 <div className="p-5">
                                     <p className="text-[11px] text-slate-400 font-medium mb-2">{news.date}</p>
                                     <h4 className="font-black text-[#2A3955] text-sm leading-snug line-clamp-3 group-hover:text-[#e67e22] transition-colors mb-4">
@@ -223,7 +213,6 @@ export default function KemahasiswaanView() {
                         ))}
                     </div>
 
-                    {/* Load More Button */}
                     <div className="text-center mt-12">
                         <button className="inline-flex items-center gap-2 border-2 border-[#2A3955] text-[#2A3955] px-8 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-[#2A3955] hover:text-white transition-all duration-300">
                             Tampilkan Lebih Banyak <ArrowRight size={14} />
@@ -231,9 +220,7 @@ export default function KemahasiswaanView() {
                     </div>
                 </div>
             </section>
-            
 
-            {/* CTA BOTTOM */}
             <section className="bg-[#2A3955] py-16 text-white text-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
                 <div className="relative z-10 max-w-2xl mx-auto px-6">
@@ -246,7 +233,6 @@ export default function KemahasiswaanView() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     )
 }

@@ -19,11 +19,11 @@ import {
 } from "@floating-ui/react"
 import { Selection } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useFloatingElement } from "@/hooks/use-floating-element"
 
-// --- Lib ---
+
 import {
   getSelectionBoundingRect,
   isSelectionValid,
@@ -33,50 +33,17 @@ import { isElementWithinEditor } from "@/components/tiptap-ui-utils/floating-ele
 import { isValidPosition } from "@/lib/tiptap-utils"
 
 export interface FloatingElementProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * The Tiptap editor instance to attach to.
-   */
   editor?: Editor | null
-  /**
-   * Controls whether the floating element should be visible.
-   * @default undefined
-   */
   shouldShow?: boolean
-  /**
-   * Additional options to pass to the floating UI.
-   */
   floatingOptions?: Partial<UseFloatingOptions>
-  /**
-   * Z-index for the floating element.
-   * @default 50
-   */
   zIndex?: number
-  /**
-   * Callback fired when the visibility state changes.
-   */
   onOpenChange?: (open: boolean) => void
-  /**
-   * Reference element to position the floating element relative to.
-   * If provided, this takes precedence over getBoundingClientRect.
-   */
   referenceElement?: HTMLElement | null
-  /**
-   * Custom function to determine the position of the floating element.
-   * Only used if referenceElement is not provided.
-   * @default getSelectionBoundingRect
-   */
   getBoundingClientRect?: (editor: Editor) => DOMRect | null
-  /**
-   * Whether to close the floating element when Escape key is pressed.
-   * @default true
-   */
   closeOnEscape?: boolean
 }
 
-/**
- * A floating UI element that positions itself relative to the current selection in a Tiptap editor.
- * Used for floating toolbars, menus, and other UI elements that need to appear near the text cursor.
- */
+
 export const FloatingElement = forwardRef<HTMLDivElement, FloatingElementProps>(
   (
     {
@@ -106,7 +73,6 @@ export const FloatingElement = forwardRef<HTMLDivElement, FloatingElementProps>(
 
     const { editor } = useTiptapEditor(providedEditor)
 
-    // Keep refs up to date
     useEffect(() => {
       editorRef.current = editor
       getBoundingClientRectRef.current = getBoundingClientRect
@@ -122,9 +88,6 @@ export const FloatingElement = forwardRef<HTMLDivElement, FloatingElementProps>(
 
     const handleFloatingOpenChange = (open: boolean) => {
       if (!open && editor) {
-        // When the floating element closes, reset the selection.
-        // This lets the user place the cursor again and ensures the drag handle reappears,
-        // as it's intentionally hidden during valid text selections.
         const tr = editor.state.tr.setSelection(
           Selection.near(editor.state.doc.resolve(0))
         )
@@ -134,7 +97,6 @@ export const FloatingElement = forwardRef<HTMLDivElement, FloatingElementProps>(
       handleOpenChange(open)
     }
 
-    // Use referenceElement if provided, otherwise create dynamic rect function
     const reference = useMemo(() => {
       if (referenceElement) {
         return referenceElement

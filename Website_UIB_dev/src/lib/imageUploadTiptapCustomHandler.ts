@@ -16,10 +16,6 @@ export const imageUploadTiptapCustomHandler = async (
       },
     }
   );
-  //   const res = await axios.post(
-  //     `${process.env.SERVICE_URL}/v2/utility/save-image-texteditor`,
-  //     formData
-  //   );
 
   if (res.data && res.data.data.s3_url) {
     return res.data.data.s3_url;

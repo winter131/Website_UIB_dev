@@ -5,13 +5,13 @@ import type { Node as TiptapNode } from "@tiptap/pm/model"
 import { offset } from "@floating-ui/react"
 import { DragHandle } from "@tiptap/extension-drag-handle-react"
 
-// Hooks
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 import { useUiEditorState } from "@/hooks/use-ui-editor-state"
 import { selectNodeAndHideFloating } from "@/hooks/use-floating-toolbar-visibility"
 
-// Primitive UI Components
+
 import { Button, ButtonGroup } from "@/components/tiptap-ui-primitive/button"
 import { Spacer } from "@/components/tiptap-ui-primitive/spacer"
 import {
@@ -25,7 +25,7 @@ import {
 import { Combobox, ComboboxList } from "@/components/tiptap-ui-primitive/combobox"
 import { Separator } from "@/components/tiptap-ui-primitive/separator"
 
-// Tiptap UI
+
 import { useImageDownload } from "@/components/tiptap-ui/image-download-button"
 import {
   DuplicateShortcutBadge,
@@ -59,7 +59,7 @@ import { TableAlignMenu } from "@/components/tiptap-node/table-node/ui/table-ali
 import { useTableFitToWidth } from "@/components/tiptap-node/table-node/ui/table-fit-to-width-button"
 import { useTableClearRowColumnContent } from "@/components/tiptap-node/table-node/ui/table-clear-row-column-content-button"
 
-// Utils
+
 import {
   getNodeDisplayName,
   isTextSelectionValid,
@@ -72,7 +72,7 @@ import type {
   NodeChangeData,
 } from "@/components/tiptap-ui/drag-context-menu/drag-context-menu-types"
 
-// Icons
+
 import { GripVerticalIcon } from "@/components/tiptap-icons/grip-vertical-icon"
 import { ChevronRightIcon } from "@/components/tiptap-icons/chevron-right-icon"
 import { Repeat2Icon } from "@/components/tiptap-icons/repeat-2-icon"
@@ -386,7 +386,6 @@ export const DragContextMenu: React.FC<DragContextMenuProps> = ({
 
           return {
             mainAxis: mainAxisOffset,
-            // if height is more than 40px, then it's likely a block node
             crossAxis: nodeHeight > 40 ? 0 : crossAxis,
           }
         }),

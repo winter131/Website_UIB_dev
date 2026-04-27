@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react"
 import { type Editor } from "@tiptap/react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useUiEditorState } from "@/hooks/use-ui-editor-state"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 import { useFloatingToolbarVisibility } from "@/hooks/use-floating-toolbar-visibility"
 
-// --- Node ---
+
 import { ImageNodeFloating } from "@/components/tiptap-node/image-node/image-node-floating"
 
-// --- Icons ---
+
 import { MoreVerticalIcon } from "@/components/tiptap-icons/more-vertical-icon"
 
-// --- UI ---
+
 import { ColorTextPopover } from "@/components/tiptap-ui/color-text-popover"
 import { ImproveDropdown } from "@/components/tiptap-ui/improve-dropdown"
 import { LinkPopover } from "@/components/tiptap-ui/link-popover"
@@ -27,10 +27,10 @@ import {
 import { TurnIntoDropdown } from "@/components/tiptap-ui/turn-into-dropdown"
 import { FontFamilyDropdown } from "@/components/tiptap-ui/font-family-dropdown/font-family-dropdown"
 
-// --- Utils ---
+
 import { isSelectionValid } from "@/lib/tiptap-collab-utils"
 
-// --- Primitive UI Components ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import {
@@ -44,7 +44,7 @@ import {
   ToolbarSeparator,
 } from "@/components/tiptap-ui-primitive/toolbar"
 
-// --- UI Utils ---
+
 import { FloatingElement } from "@/components/tiptap-ui-utils/floating-element"
 
 export function NotionToolbarFloating() {
@@ -153,14 +153,7 @@ function shouldShowMoreOptions(params: {
 }
 
 export interface MoreOptionsProps extends Omit<ButtonProps, "type"> {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether to hide the dropdown when no options are available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
 }
 

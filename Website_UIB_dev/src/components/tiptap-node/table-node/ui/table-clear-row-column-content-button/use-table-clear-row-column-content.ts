@@ -8,10 +8,10 @@ import {
   deleteCellSelection,
 } from "@tiptap/pm/tables"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import { isExtensionAvailable } from "@/lib/tiptap-utils"
 import type { Orientation } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 import {
@@ -22,42 +22,16 @@ import {
   isCellEmpty,
 } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --- Icons ---
+
 import { SquareXIcon } from "@/components/tiptap-icons/square-x-icon"
 
 export interface UseTableClearRowColumnContentConfig {
-  /**
-   * The Tiptap editor instance. If omitted, the hook will use
-   * the context/editor from `useTiptapEditor`.
-   */
   editor?: Editor | null
-  /**
-   * The index of the row or column to clear.
-   * If omitted, will clear the currently selected cells.
-   */
   index?: number
-  /**
-   * Whether you're clearing a row or a column.
-   * If omitted, will clear the currently selected cells.
-   */
   orientation?: Orientation
-  /**
-   * The position of the table in the document.
-   */
   tablePos?: number
-  /**
-   * Hide the button when clearing isn't currently possible.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Whether to reset cell attributes (backgroundColor, nodeVerticalAlign, nodeTextAlign) when clearing.
-   * @default false
-   */
   resetAttrs?: boolean
-  /**
-   * Callback function called after a successful clear.
-   */
   onCleared?: () => void
 }
 
@@ -68,18 +42,14 @@ export const tableClearRowColumnContentLabels: Record<Orientation, string> = {
   column: "Clear column contents",
 }
 
-/**
- * Default cell attributes to reset when clearing content
- */
+
 const DEFAULT_CELL_ATTRS = {
   backgroundColor: null,
   nodeVerticalAlign: null,
   nodeTextAlign: null,
 }
 
-/**
- * Resets cell attributes to default values
- */
+
 function resetCellAttributes(editor: Editor): boolean {
   try {
     return setCellAttr(DEFAULT_CELL_ATTRS)(editor.state, editor.view.dispatch)
@@ -89,10 +59,7 @@ function resetCellAttributes(editor: Editor): boolean {
   }
 }
 
-/**
- * Checks if a table row/column content clearing can be performed
- * in the current editor state.
- */
+
 function canClearRowColumnContent({
   editor,
   index,
@@ -148,7 +115,6 @@ function canClearRowColumnContent({
         return hasContent
       }
 
-      // Single cell case
       const { $anchor } = selection
       const cell = cellAround($anchor)
       if (!cell) return false
@@ -161,9 +127,7 @@ function canClearRowColumnContent({
   }
 }
 
-/**
- * Clears content from selected cells and optionally resets attributes.
- */
+
 function clearSelectedCells(
   editor: Editor,
   resetAttrs: boolean = false
@@ -181,7 +145,6 @@ function clearSelectedCells(
       return true
     }
 
-    // Handle single cell
     const { $anchor } = selection
     const cell = cellAround($anchor)
     if (!cell) return false
@@ -206,9 +169,7 @@ function clearSelectedCells(
   }
 }
 
-/**
- * Clears content from all cells in a specific row or column and optionally resets attributes.
- */
+
 function clearRowColumnCells({
   editor,
   index,
@@ -263,9 +224,7 @@ function clearRowColumnCells({
   }
 }
 
-/**
- * Executes the row/column content clearing in the editor.
- */
+
 function tableClearRowColumnContent({
   editor,
   index,
@@ -311,10 +270,7 @@ function tableClearRowColumnContent({
   }
 }
 
-/**
- * Determines if the clear button should be shown
- * based on editor state and config.
- */
+
 function shouldShowButton({
   editor,
   index,
@@ -351,57 +307,7 @@ function shouldShowButton({
     : true
 }
 
-/**
- * Custom hook that provides **table row/column content clearing**
- * functionality for the Tiptap editor.
- *
- * @example
- * ```tsx
- * // Clear currently selected cells (no parameters needed)
- * function ClearSelectedButton() {
- *   const { isVisible, handleClear } = useTableClearRowColumnContent()
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleClear}>Clear Selection</button>
- * }
- *
- * // Clear specific row with attribute reset
- * function ClearRowButton({ rowIndex }: { rowIndex: number }) {
- *   const { isVisible, handleClear, label, canClearRowColumnContent } = useTableClearRowColumnContent({
- *     index: rowIndex,
- *     orientation: "row",
- *     resetAttrs: true,
- *     hideWhenUnavailable: true,
- *     onCleared: () => console.log("Row cleared and attributes reset!"),
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <button
- *       onClick={handleClear}
- *       disabled={!canClearRowColumnContent}
- *       aria-label={label}
- *     >
- *       {label}
- *     </button>
- *   )
- * }
- *
- * // Clear content based on current table selection (row/column/cells)
- * function SmartClearButton() {
- *   const { isVisible, handleClear, label } = useTableClearRowColumnContent({
- *     resetAttrs: true,
- *     hideWhenUnavailable: true
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleClear}>{label}</button>
- * }
- * ```
- */
+
 export function useTableClearRowColumnContent(
   config: UseTableClearRowColumnContentConfig = {}
 ) {

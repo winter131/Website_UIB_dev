@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import FasilitasMahasiswa from '@/components/landing/fasilitas/fasilitas_mahasiswa'
 import FasilitasPendukung from '@/components/landing/fasilitas/fasilitas_pendukung'
 import FasilitasDisabilitas from '@/components/landing/fasilitas/fasilitas_disabilitas'
@@ -24,7 +24,6 @@ import {
 export default function FasilitasView() {
     return (
         <main className="min-h-screen bg-white font-poppins text-[#2A3955]">
-            <NavbarLanding />
             <section className="relative w-full h-[300px] md:h-[500px] bg-white overflow-hidden">
                 <div
                     className="absolute inset-0  pointer-events-none "
@@ -34,16 +33,12 @@ export default function FasilitasView() {
                         backgroundPosition: 'top'
                     }}
                 ></div>
-                {/* Overlay gradasi putih dari atas ke bawah */}
                 <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/10 to-white/5 z-0"></div>
 
-                {/* Container Utama */}
                 <div className="container mx-auto px-6 md:px-12 lg:px-20 h-full flex items-end relative z-10">
 
-                    {/* Konten Utama */}
                     <div className="flex flex-col md:flex-row justify-between items-start w-full pb-8 md:pb-12 gap-4">
 
-                        {/* Sisi Kiri: Judul Halaman dan Subtitle */}
                         <div className="max--2xl space-y-2">
                         </div>
                     </div>
@@ -68,7 +63,6 @@ export default function FasilitasView() {
             <FasilitasMahasiswa />
             <FasilitasPendukung />
             <FasilitasDisabilitas />
-            <Footer />
         </main>
     )
 }

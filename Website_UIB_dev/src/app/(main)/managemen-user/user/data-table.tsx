@@ -30,7 +30,7 @@ import { UserType } from "@/types/UserTypes";
 
 const globalFilterFn: FilterFn<any> = (
   row: Row<any>,
-  columnId: string, // walaupun tidak dipakai, tetap harus ditulis
+  columnId: string, 
   filterValue: string
 ) => {
   const value = row.getValue("search") as string;
@@ -98,22 +98,6 @@ export function DataTable<TData, TValue>({
   return (
     <div className="rounded-lg text-black dark:text-white shadow bg-white dark:bg-[#171717]">
       <Table>
-        {/* <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader> */}
         <TableBody>
           {isLoading ? (
             <TableRow>

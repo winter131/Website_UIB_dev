@@ -9,10 +9,8 @@ export default function Rankings() {
 
 
       <div className="container relative z-10 mx-auto py-5 px-4 md:px-20">
-        {/* Kontainer Utama */}
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-12 justify-center">
 
-          {/* SISI KIRI: JUDUL PEMERINGKATAN */}
           <div className="flex items-center gap-5 min-w-fit">
             <div className="flex flex-col justify-center">
               <h3>
@@ -27,10 +25,8 @@ export default function Rankings() {
             </div>
           </div>
 
-          {/* SISI KANAN: STATISTIK */}
           <div className="flex flex-wrap justify-center lg:justify-end items-start gap-10 lg:gap-16">
 
-            {/* Webometrics Ranking */}
             <div className="flex items-start gap-3 h-full self-center">
               <Trophy className="text-[#18191A] w-10 h-10 stroke-[1.5px] mt-1 flex-shrink-0" />
               <div className="flex flex-col">
@@ -41,7 +37,6 @@ export default function Rankings() {
               </div>
             </div>
 
-            {/* UI Green Metrics Stack */}
             <div className="flex flex-col gap-6 border-l border-gray-300 pl-8 h-full justify-start">
               <div className="flex flex-col">
                 <span className="text-[18px] font-black text-[#0055aa] leading-none">1491</span>
@@ -53,7 +48,6 @@ export default function Rankings() {
               </div>
             </div>
 
-            {/* THE & QS Stack */}
             <div className="flex flex-col gap-6 border-l border-gray-300 pl-8 h-full justify-start">
               <div className="flex flex-col">
                 <span className="text-[18px] font-black text-[#0055aa] leading-none">601-800</span>

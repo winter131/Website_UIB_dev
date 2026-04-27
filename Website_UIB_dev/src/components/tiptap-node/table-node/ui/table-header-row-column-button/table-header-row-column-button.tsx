@@ -2,32 +2,24 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseTableHeaderRowColumnConfig } from "@/components/tiptap-node/table-node/ui/table-header-row-column-button"
 import { useTableHeaderRowColumn } from "@/components/tiptap-node/table-node/ui/table-header-row-column-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 
 export interface TableHeaderRowColumnButtonProps
   extends Omit<ButtonProps, "type">,
     UseTableHeaderRowColumnConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
 }
 
-/**
- * Button component for toggling table header row/column in a Tiptap editor.
- * Only works for the first row (index 0) or first column (index 0).
- *
- * For custom button implementations, use the `useTableHeaderRowColumn` hook instead.
- */
+
 export const TableHeaderRowColumnButton = forwardRef<
   HTMLButtonElement,
   TableHeaderRowColumnButtonProps

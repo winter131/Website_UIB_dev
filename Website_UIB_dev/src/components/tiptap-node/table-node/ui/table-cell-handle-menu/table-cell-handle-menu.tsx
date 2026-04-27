@@ -3,19 +3,19 @@
 import { forwardRef, useCallback, useEffect, useState } from "react"
 import type { Editor } from "@tiptap/react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import { cn, SR_ONLY } from "@/lib/tiptap-utils"
 
-// --- UI ---
+
 import { ColorMenu } from "@/components/tiptap-ui/color-menu"
 import { TableAlignMenu } from "@/components/tiptap-node/table-node/ui/table-alignment-menu"
 import { useTableClearRowColumnContent } from "@/components/tiptap-node/table-node/ui/table-clear-row-column-content-button"
 import { useTableMergeSplitCell } from "@/components/tiptap-node/table-node/ui/table-merge-split-cell-button"
 
-// --- UI Primitives ---
+
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Combobox, ComboboxList } from "@/components/tiptap-ui-primitive/combobox"
 import {
@@ -27,7 +27,7 @@ import {
 } from "@/components/tiptap-ui-primitive/menu"
 import { Separator } from "@/components/tiptap-ui-primitive/separator"
 
-// --- Icons ---
+
 import { Grip4Icon } from "@/components/tiptap-icons/grip-4-icon"
 
 import "./table-cell-handle-menu.scss"
@@ -41,9 +41,7 @@ interface TableAction {
   shortcutBadge?: React.ReactNode
 }
 
-/**
- * Hook to manage all table actions and their availability
- */
+
 function useTableActions() {
   const mergeCellAction = useTableMergeSplitCell({ action: "merge" })
   const splitCellAction = useTableMergeSplitCell({ action: "split" })
@@ -77,9 +75,7 @@ function useTableActions() {
   }
 }
 
-/**
- * Hook to manage table handle menu state and interactions
- */
+
 function useTableCellHandleMenu({ editor }: { editor: Editor | null }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 

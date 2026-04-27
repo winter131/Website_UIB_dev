@@ -4,32 +4,22 @@ import { useCallback, useEffect, useState } from "react"
 import { isNodeSelection, type Editor } from "@tiptap/react"
 import { useHotkeys } from "react-hotkeys-hook"
 
-// --- Lib ---
+
 import {
   isExtensionAvailable,
   isNodeTypeSelected,
 } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Icons ---
+
 import { AiSparklesIcon } from "@/components/tiptap-icons/ai-sparkles-icon"
 
 export interface UseAiAskConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the button should hide when blockquote is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after AI ask is successfully triggered
-   */
   onAiAsked?: () => void
 }
 
@@ -39,7 +29,6 @@ export const EXCLUDED_SELECTION_TYPES = ["codeBlock", "image", "imageUpload"]
 
 export const canPerformAiAsk = (editor: Editor | null): boolean => {
   if (!editor || !editor.isEditable) return false
-  // TODO: Wait until AI extensions support for image
   if (
     !isExtensionAvailable(editor, AI_EXTENSIONS) ||
     isNodeTypeSelected(editor, ["image", "horizontalRule"])
@@ -75,34 +64,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides AI ask functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage
- * function MyAiButton() {
- *   const { isVisible, handleAiAsk } = useAiAsk()
- *   if (!isVisible) return null
- *   return <button onClick={handleAiAsk}>Ask AI</button>
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedAiButton() {
- *   const { isVisible, handleAiAsk, label } = useAiAsk({
- *     editor: myEditor,
- *     hideWhenUnavailable: true,
- *     onAiAsked: () => console.log('AI triggered!')
- *   })
- *
- *   return isVisible ? (
- *     <button onClick={handleAiAsk} aria-label={label}>
- *       Ask AI Assistant
- *     </button>
- *   ) : null
- * }
- * ```
- */
+
 export function useAiAsk(config: UseAiAskConfig = {}) {
   const {
     editor: providedEditor,

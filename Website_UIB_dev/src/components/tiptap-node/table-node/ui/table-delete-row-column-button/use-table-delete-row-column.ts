@@ -5,10 +5,10 @@ import type { Editor } from "@tiptap/react"
 import { deleteRow, deleteColumn, CellSelection } from "@tiptap/pm/tables"
 import type { Transaction } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import { isExtensionAvailable } from "@/lib/tiptap-utils"
 import type { Orientation } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 import {
@@ -17,35 +17,15 @@ import {
   selectCellsByCoords,
 } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --- Icons ---
+
 import { TrashIcon } from "@/components/tiptap-icons/trash-icon"
 
 export interface UseTableDeleteRowColumnConfig {
-  /**
-   * The Tiptap editor instance. If omitted, the hook will use
-   * the context/editor from `useTiptapEditor`.
-   */
   editor?: Editor | null
-  /**
-   * The index of the row or column to delete.
-   */
   index?: number
-  /**
-   * Whether you're deleting a row or a column.
-   */
   orientation?: Orientation
-  /**
-   * The position of the table in the document.
-   */
   tablePos?: number
-  /**
-   * Hide the button when deletion isn't currently possible.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful delete.
-   */
   onDeleted?: () => void
 }
 
@@ -56,10 +36,7 @@ export const tableDeleteRowColumnLabels: Record<Orientation, string> = {
   column: "Delete column",
 }
 
-/**
- * Checks if a table row/column delete can be performed
- * in the current editor state.
- */
+
 function canDeleteRowColumn({
   editor,
   index,
@@ -92,9 +69,7 @@ function canDeleteRowColumn({
   }
 }
 
-/**
- * Executes the row/column deletion in the editor.
- */
+
 function tableDeleteRowColumn({
   editor,
   index,
@@ -147,10 +122,7 @@ function tableDeleteRowColumn({
   }
 }
 
-/**
- * Determines if the delete button should be shown
- * based on editor state and config.
- */
+
 function shouldShowButton({
   editor,
   index,
@@ -171,48 +143,7 @@ function shouldShowButton({
     : true
 }
 
-/**
- * Custom hook that provides **table row/column deletion**
- * functionality for the Tiptap editor.
- *
- * @example
- * ```tsx
- * // Simple usage with default editor context
- * function DeleteRowButton() {
- *   const { isVisible, handleDelete } = useTableDeleteRowColumn({
- *     index: 0,
- *     orientation: "row",
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleDelete}>Delete Row</button>
- * }
- *
- * // Advanced usage with custom editor instance
- * function DeleteColumnButton({ editor }: { editor: Editor }) {
- *   const { isVisible, handleDelete, label, canDeleteRowColumn, Icon } = useTableDeleteRowColumn({
- *     editor,
- *     index: 1,
- *     orientation: "column",
- *     hideWhenUnavailable: true,
- *     onDeleted: () => console.log("Column deleted!"),
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <button
- *       onClick={handleDelete}
- *       aria-disabled={!canDeleteRowColumn}
- *       aria-label={label}
- *     >
- *       <Icon /> Delete Column
- *     </button>
- *   )
- * }
- * ```
- */
+
 export function useTableDeleteRowColumn(config: UseTableDeleteRowColumnConfig) {
   const {
     editor: providedEditor,

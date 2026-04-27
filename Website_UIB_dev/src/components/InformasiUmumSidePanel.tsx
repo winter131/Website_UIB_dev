@@ -22,7 +22,6 @@ export default function InformasiUmumSidePanel({
   const showConfirmation = useConfirmation.getState().show;
   return (
     <aside className="w-full lg:w-[320px] space-y-4">
-      {/* Ringkasan */}
       <div className="rounded-xl border bg-white p-4 shadow-sm">
         <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
           📊 Ringkasan
@@ -47,7 +46,6 @@ export default function InformasiUmumSidePanel({
         </div>
       </div>
 
-      {/* Quick Action */}
       <div className="rounded-xl border bg-white p-4 shadow-sm">
         <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
           ⚡ Aksi Cepat
@@ -98,7 +96,6 @@ export default function InformasiUmumSidePanel({
         </div>
       </div>
 
-      {/* Tips */}
       <div className="rounded-xl border bg-white p-4 shadow-sm">
         <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
           <Info size={16} /> Tips

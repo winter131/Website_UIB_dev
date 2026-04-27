@@ -3,12 +3,12 @@
 import { cloneElement, useEffect, useMemo, useRef, useState } from "react"
 import { type Editor } from "@tiptap/react"
 
-// --- Hooks ---
+
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 import { useWindowSize } from "@/hooks/use-window-size"
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import {
   ColorHighlightPopover,
   ColorHighlightPopoverButton,
@@ -43,14 +43,14 @@ import { AiAskButton } from "@/components/tiptap-ui/ai-ask-button"
 import { DuplicateButton } from "@/components/tiptap-ui/duplicate-button"
 import { CopyToClipboardButton } from "@/components/tiptap-ui/copy-to-clipboard-button"
 
-// --- Utils ---
+
 import { getNodeDisplayName } from "@/lib/tiptap-collab-utils"
 
-// --- Icons ---
+
 import { PaintBucketIcon } from "@/components/tiptap-icons/paint-bucket-icon"
 import { Repeat2Icon } from "@/components/tiptap-icons/repeat-2-icon"
 
-// --- UI Primitives ---
+
 import {
   Card,
   CardBody,
@@ -84,9 +84,9 @@ import { MoveNodeButton } from "@/components/tiptap-ui/move-node-button"
 import { useCursorVisibility } from "@/hooks/use-cursor-visibility"
 import { ImageNodeFloating } from "@/components/tiptap-node/image-node/image-node-floating"
 
-// =============================================================================
-// Types & Constants
-// =============================================================================
+
+
+
 
 const TOOLBAR_VIEWS = {
   MAIN: "main",
@@ -119,9 +119,9 @@ interface ToolbarState {
   showView: (id: ToolbarViewId) => void
 }
 
-// =============================================================================
-// Hooks
-// =============================================================================
+
+
+
 
 function useToolbarState(isMobile: boolean): ToolbarState {
   const [viewId, setViewId] = useState<ToolbarViewId>(TOOLBAR_VIEWS.MAIN)
@@ -148,9 +148,9 @@ function hasTextSelection(editor: Editor | null): boolean {
   return !selection.empty
 }
 
-// =============================================================================
-// Toolbar View Registry
-// =============================================================================
+
+
+
 
 function createToolbarViewRegistry(): ToolbarViewRegistry {
   return {
@@ -181,9 +181,9 @@ function createToolbarViewRegistry(): ToolbarViewRegistry {
   }
 }
 
-// =============================================================================
-// Sub-Components
-// =============================================================================
+
+
+
 
 function AlignmentGroup() {
   return (
@@ -367,9 +367,9 @@ function TransformActionGroup() {
   )
 }
 
-// =============================================================================
-// Dropdown Menu Components
-// =============================================================================
+
+
+
 
 interface DropdownMenuActionsProps {
   editor: Editor | null
@@ -448,9 +448,9 @@ function MoreActionsDropdown({ editor }: DropdownMenuActionsProps) {
   )
 }
 
-// =============================================================================
-// Toolbar View Components
-// =============================================================================
+
+
+
 
 interface ToolbarViewButtonProps {
   view: ToolbarViewType
@@ -521,9 +521,9 @@ function ToolbarViewsGroup({
   )
 }
 
-// =============================================================================
-// Main Toolbar Content
-// =============================================================================
+
+
+
 
 interface MainToolbarContentProps {
   editor: Editor | null
@@ -588,9 +588,9 @@ function MainToolbarContent({
   )
 }
 
-// =============================================================================
-// Specialized Toolbar Content
-// =============================================================================
+
+
+
 
 interface SpecializedToolbarContentProps {
   view: ToolbarViewType
@@ -617,9 +617,9 @@ function SpecializedToolbarContent({
   )
 }
 
-// =============================================================================
-// Main Component
-// =============================================================================
+
+
+
 
 export interface MobileToolbarProps {
   editor?: Editor | null

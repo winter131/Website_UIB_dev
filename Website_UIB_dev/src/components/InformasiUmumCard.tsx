@@ -18,7 +18,6 @@ export function InformasiUmumCard({
 }: InformasiCardProps) {
   return (
     <div className="overflow-hidden rounded-xl border bg-white shadow-sm hover:shadow-md transition col-span-3">
-      {/* Header Image */}
       {data.header_gambar && (
         <div className="h-44 w-full overflow-hidden bg-gray-100">
           <img
@@ -29,9 +28,7 @@ export function InformasiUmumCard({
         </div>
       )}
 
-      {/* Content */}
       <div className="p-5">
-        {/* Status */}
         <div className="mb-2 flex items-center justify-between">
           <span
             className={`text-xs font-medium px-2 py-1 rounded-full ${
@@ -48,17 +45,14 @@ export function InformasiUmumCard({
           </span>
         </div>
 
-        {/* Title */}
         <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
           {data.judul_informasi}
         </h3>
 
-        {/* Description */}
         <p className="mt-2 text-sm text-gray-600 line-clamp-3">
           {data.keterangan_info || data.body_informasi}
         </p>
 
-        {/* Actions */}
         <div className="mt-4 flex items-center justify-between">
           <button
             onClick={() => onView && onView(data.id_informasi)}

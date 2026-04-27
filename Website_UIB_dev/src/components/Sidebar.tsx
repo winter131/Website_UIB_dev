@@ -25,7 +25,6 @@ export default function Sidebar({
   const { modul, setModul }: any = useModul();
 
   const getModul = async () => {
-    // if (modul.length > 0) return modul;
 
     try {
       const res = await axiosClient.post(

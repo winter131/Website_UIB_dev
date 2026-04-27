@@ -2,20 +2,20 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseDeleteNodeConfig } from "@/components/tiptap-ui/delete-node-button"
 import {
   DELETE_NODE_SHORTCUT_KEY,
   useDeleteNode,
 } from "@/components/tiptap-ui/delete-node-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -23,14 +23,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface DeleteNodeButtonProps
   extends Omit<ButtonProps, "type">,
     UseDeleteNodeConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -42,11 +35,7 @@ export function DeleteNodeShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for deleting a node in a Tiptap editor.
- *
- * For custom button implementations, use the `useDeleteNode` hook instead.
- */
+
 export const DeleteNodeButton = forwardRef<
   HTMLButtonElement,
   DeleteNodeButtonProps

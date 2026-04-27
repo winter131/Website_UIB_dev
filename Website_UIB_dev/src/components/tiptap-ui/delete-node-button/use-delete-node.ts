@@ -5,37 +5,23 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import { NodeSelection } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Icons ---
+
 import { TrashIcon } from "@/components/tiptap-icons/trash-icon"
 
 export const DELETE_NODE_SHORTCUT_KEY = "backspace"
 
-/**
- * Configuration for the delete node functionality
- */
+
 export interface UseDeleteNodeConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the button should hide when node deletion is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful deletion.
-   */
   onDeleted?: () => void
 }
 
-/**
- * Checks if a node can be deleted based on the current selection
- */
+
 export function canDeleteNode(editor: Editor | null): boolean {
   if (!editor || !editor.isEditable) return false
 
@@ -52,7 +38,6 @@ export function canDeleteNode(editor: Editor | null): boolean {
     const node = $pos.node(depth)
     const pos = $pos.before(depth)
 
-    // Check if we could delete the range from pos to pos + nodeSize
     const tr = state.tr.delete(pos, pos + node.nodeSize)
     if (tr.doc !== state.doc) {
       return true
@@ -62,9 +47,7 @@ export function canDeleteNode(editor: Editor | null): boolean {
   return false
 }
 
-/**
- * Helper function to delete a node with fallback strategy
- */
+
 export function deleteNodeAtPosition(
   editor: Editor,
   pos: number,
@@ -75,13 +58,10 @@ export function deleteNodeAtPosition(
 
   if (success) return true
 
-  // Fallback
   return chain.setNodeSelection(pos).deleteSelection().run()
 }
 
-/**
- * Deletes the selected node in the editor using current selection
- */
+
 export function deleteNode(editor: Editor | null): boolean {
   if (!editor || !editor.isEditable) return false
 
@@ -121,9 +101,7 @@ export function deleteNode(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Determines if the delete node button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -139,41 +117,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides delete node functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage - no params needed
- * function MySimpleDeleteButton() {
- *   const { isVisible, handleDeleteNode } = useDeleteNode()
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleDeleteNode}>Delete</button>
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedDeleteButton() {
- *   const { isVisible, handleDeleteNode, label } = useDeleteNode({
- *     editor: myEditor,
- *     hideWhenUnavailable: true,
- *     onDeleted: () => console.log('Node deleted!')
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleDeleteNode}
- *       aria-label={label}
- *     >
- *       Delete Node
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useDeleteNode(config?: UseDeleteNodeConfig) {
   const {
     editor: providedEditor,

@@ -12,11 +12,10 @@ export default function EditNewsForm({ initialData }: { initialData: any }) {
     const [formData, setFormData] = useState({
         title: initialData.title || '',
         slug: initialData.slug || '',
-        tag: initialData.tag || '',
         date: initialData.date || '',
         author: initialData.author || '',
         description: initialData.description || '',
-        category: initialData.category || 'Berita Kampus',
+        category: initialData.category || 'Berita',
         summary: initialData.summary || '',
         source: initialData.source || 'UIB.AC.ID',
         metaTitle: initialData.metaTitle || '',
@@ -45,7 +44,6 @@ export default function EditNewsForm({ initialData }: { initialData: any }) {
             const formPayload = new FormData();
             formPayload.append('title', formData.title);
             formPayload.append('slug', formData.slug);
-            formPayload.append('tag', formData.tag);
             formPayload.append('date', formData.date);
             formPayload.append('author', formData.author);
             formPayload.append('description', formData.description);
@@ -119,13 +117,7 @@ export default function EditNewsForm({ initialData }: { initialData: any }) {
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white"
                     >
-                        <option value="Pengumuman">Pengumuman</option>
-                        <option value="Ilmu Hukum">Ilmu Hukum</option>
-                        <option value="Manajemen">Manajemen</option>
-                        <option value="Sistem Informasi">Sistem Informasi</option>
-                        <option value="Teknologi Informasi">Teknologi Informasi</option>
-                        <option value="Artikel">Artikel</option>
-                        <option value="Akuntansi">Akuntansi</option>
+                        <option value="Berita">Berita</option>
                     </select>
                 </div>
                 <div className="space-y-2">
@@ -142,23 +134,7 @@ export default function EditNewsForm({ initialData }: { initialData: any }) {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700">Jenis Berita (Tag) *</label>
-                    <select
-                        name="tag"
-                        required
-                        value={formData.tag}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white"
-                    >
-                        <option value="">Pilih...</option>
-                        <option value="Liputan Utama">Liputan Utama</option>
-                        <option value="Prestasi">Prestasi</option>
-                        <option value="Akademik">Akademik</option>
-                        <option value="Kemahasiswaan">Kemahasiswaan</option>
-                    </select>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700">Tanggal Publikasi *</label>
                     <input

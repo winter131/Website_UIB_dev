@@ -4,10 +4,10 @@ import { useCallback, useEffect, useState } from "react"
 import { type Editor } from "@tiptap/react"
 import { NodeSelection, TextSelection } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import {
   findNodePosition,
   isNodeInSchema,
@@ -16,33 +16,19 @@ import {
   selectionWithinConvertibleTypes,
 } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { CodeBlockIcon } from "@/components/tiptap-icons/code-block-icon"
 
 export const CODE_BLOCK_SHORTCUT_KEY = "mod+alt+c"
 
-/**
- * Configuration for the code block functionality
- */
+
 export interface UseCodeBlockConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the button should hide when code block is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful code block toggle.
-   */
   onToggled?: () => void
 }
 
-/**
- * Checks if code block can be toggled in the current editor state
- */
+
 export function canToggle(
   editor: Editor | null,
   turnInto: boolean = true
@@ -58,7 +44,6 @@ export function canToggle(
     return editor.can().toggleNode("codeBlock", "paragraph")
   }
 
-  // Ensure selection is in nodes we're allowed to convert
   if (
     !selectionWithinConvertibleTypes(editor, [
       "paragraph",
@@ -72,17 +57,13 @@ export function canToggle(
   )
     return false
 
-  // Either we can toggle code block directly on the selection,
-  // or we can clear formatting/nodes to arrive at a code block.
   return (
     editor.can().toggleNode("codeBlock", "paragraph") ||
     editor.can().clearNodes()
   )
 }
 
-/**
- * Toggles code block in the editor
- */
+
 export function toggleCodeBlock(editor: Editor | null): boolean {
   if (!editor || !editor.isEditable) return false
   if (!canToggle(editor)) return false
@@ -92,7 +73,6 @@ export function toggleCodeBlock(editor: Editor | null): boolean {
     let state = view.state
     let tr = state.tr
 
-    // No selection, find the the cursor position
     if (state.selection.empty || state.selection instanceof TextSelection) {
       const pos = findNodePosition({
         editor,
@@ -109,7 +89,6 @@ export function toggleCodeBlock(editor: Editor | null): boolean {
 
     let chain = editor.chain().focus()
 
-    // Handle NodeSelection
     if (selection instanceof NodeSelection) {
       const firstChild = selection.node.firstChild?.firstChild
       const lastChild = selection.node.lastChild?.lastChild
@@ -144,9 +123,7 @@ export function toggleCodeBlock(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Determines if the code block button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -163,49 +140,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides code block functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage - no params needed
- * function MySimpleCodeBlockButton() {
- *   const { isVisible, isActive, handleToggle } = useCodeBlock()
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <button
- *       onClick={handleToggle}
- *       aria-pressed={isActive}
- *     >
- *       Code Block
- *     </button>
- *   )
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedCodeBlockButton() {
- *   const { isVisible, isActive, handleToggle, label } = useCodeBlock({
- *     editor: myEditor,
- *     hideWhenUnavailable: true,
- *     onToggled: (isActive) => console.log('Code block toggled:', isActive)
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleToggle}
- *       aria-label={label}
- *       aria-pressed={isActive}
- *     >
- *       Toggle Code Block
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useCodeBlock(config?: UseCodeBlockConfig) {
   const {
     editor: providedEditor,

@@ -3,7 +3,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { MapPin, Compass, Anchor, ShoppingBag, Utensils } from 'lucide-react'
 
-// --- DATA DESTINASI ---
+
 const destinasiBatam = [
     { id: 1, desc: 'Ikon kebanggaan Batam yang menghubungkan rangkaian pulau (Batam, Rempang, Galang).', img: '/img/d7a22392b6340cb4f22cc8fa29ff977e.jpg' },
     { id: 2, desc: 'Pusat perbelanjaan barang impor dan elektronik terlengkap dengan harga kompetitif.', img: '/img/dataran-engku-putri.JPEG' },
@@ -22,7 +22,7 @@ const destinasiBatam = [
     { id: 15, desc: 'Taman hiburan tepi pantai lengkap dengan berbagai wahana dan festival musik.', img: '/img/972844_720.JPG' }
 ]
 
-// --- SUB-COMPONENT: DESTINATION CARD ---
+
 const DestinationCard = ({ item, dark = false }: { item: any; dark?: boolean }) => (
     <motion.div
         whileHover={{ y: -5 }}
@@ -49,7 +49,6 @@ export default function BatamdanSekitarnya() {
     return (
         <div className="font-poppins bg-white selection:bg-[#e67e22]/30">
 
-            {/* --- SECTION 1: INTRO & IKONIK --- */}
             <section className="pt-20 pb-10 bg-white">
                 <div className="container mx-auto px-10 md:px-20">
                     <div className="text-center">
@@ -84,7 +83,6 @@ export default function BatamdanSekitarnya() {
                 </div>
             </section>
 
-            {/* --- SECTION 2: MODERN LIFESTYLE (DARK MODE) --- */}
             <section className="py-16 bg-[#1A365D] border-t border-white/10">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="text-center mb-12">
@@ -103,7 +101,6 @@ export default function BatamdanSekitarnya() {
                 </div>
             </section>
 
-            {/* --- SECTION 3: WISATA & KULINER --- */}
             <section className="py-16 bg-white border-t border-slate-100">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="text-center mb-12">
@@ -122,7 +119,6 @@ export default function BatamdanSekitarnya() {
                 </div>
             </section>
 
-            {/* --- Nagoya Thamrin City --- */}
             <section className="py-16 bg-slate-50 border-t border-slate-200">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="text-center mb-12">
@@ -140,7 +136,6 @@ export default function BatamdanSekitarnya() {
                     </div>
                 </div>
             </section>
-            {/* --- Nagoya Thamrin City --- */}
             <section className="py-16 bg-slate-50 border-t border-slate-200">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="text-center mb-12">

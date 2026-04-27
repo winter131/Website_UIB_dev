@@ -2,32 +2,24 @@
 
 import * as React from "react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseImageCaptionConfig } from "@/components/tiptap-ui/image-caption-button"
 import { useImageCaption } from "@/components/tiptap-ui/image-caption-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 
 export interface ImageCaptionButtonProps
   extends Omit<ButtonProps, "type">,
     UseImageCaptionConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
 }
 
-/**
- * Button component for toggling image captions in a Tiptap editor.
- * Only appears when an image is selected in the editor.
- *
- * For custom button implementations, use the `useImageCaption` hook instead.
- */
+
 export const ImageCaptionButton = React.forwardRef<
   HTMLButtonElement,
   ImageCaptionButtonProps

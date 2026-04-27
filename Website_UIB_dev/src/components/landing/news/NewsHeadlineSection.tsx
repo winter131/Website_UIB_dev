@@ -46,16 +46,13 @@ export default function NewsHeadlineSection() {
     return (
         <section className="py-12 bg-[#F7F7F7] font-poppins text-[#2A3955]">
             <div className="container mx-auto px-4 md:px-20">
-                {/* Judul Section */}
                 <div className='flex flex-col md:flex-row justify-between items-center mb-10 gap-4'>
                     <h1 className="font-bold text-[#2A3955] text-3xl tracking-tight">
                         Berita Terbaru
                     </h1>
                 </div>
 
-                {/* GRID UTAMA (Headline & Secondary) */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
-                    {/* Headline - Sisi Kiri */}
                     <div className="lg:col-span-7">
                         {mainNews ? (
                             <Link
@@ -116,7 +113,6 @@ export default function NewsHeadlineSection() {
                         )}
                     </div>
 
-                    {/* Berita Menengah - Sisi Kanan */}
                     <div className="lg:col-span-5 flex flex-col gap-4">
                         {secondaryNews.map((news) => (
                             <Link
@@ -164,7 +160,6 @@ export default function NewsHeadlineSection() {
                     </div>
                 </div>
 
-                {/* GRID BAWAH (Small News) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                     {smallNewsItems.map((news) => (
                         <Link
@@ -208,7 +203,6 @@ export default function NewsHeadlineSection() {
                         </Link>
                     ))}
 
-                    {/* Tombol Lihat Lainnya */}
                     <Link
                         href="/news"
                         className="flex flex-col items-center justify-center rounded-xl p-4 min-h-[140px] border-2 border-dashed"

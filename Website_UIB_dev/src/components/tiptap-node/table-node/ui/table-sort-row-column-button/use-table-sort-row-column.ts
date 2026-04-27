@@ -4,10 +4,10 @@ import { useCallback, useMemo } from "react"
 import type { Editor } from "@tiptap/react"
 import type { Node } from "@tiptap/pm/model"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import { isExtensionAvailable } from "@/lib/tiptap-utils"
 import type { Orientation } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 import {
@@ -18,44 +18,19 @@ import {
   isCellEmpty,
 } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --- Icons ---
+
 import { ArrowDownAZIcon } from "@/components/tiptap-icons/arrow-down-a-z-icon"
 import { ArrowDownZAIcon } from "@/components/tiptap-icons/arrow-down-z-a-icon"
 
 export type SortDirection = "asc" | "desc"
 
 export interface UseTableSortRowColumnConfig {
-  /**
-   * The Tiptap editor instance. If omitted, the hook will use
-   * the context/editor from `useTiptapEditor`.
-   */
   editor?: Editor | null
-  /**
-   * The index of the row or column to sort.
-   * If omitted, will use the current selection.
-   */
   index?: number
-  /**
-   * Whether you're sorting a row or a column.
-   * If omitted, will use the current selection.
-   */
   orientation?: Orientation
-  /**
-   * The position of the table in the document.
-   */
   tablePos?: number
-  /**
-   * The sort direction (ascending or descending).
-   */
   direction: SortDirection
-  /**
-   * Hide the button when sorting isn't currently possible.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful sort.
-   */
   onSorted?: () => void
 }
 
@@ -80,9 +55,7 @@ export const tableSortRowColumnIcons = {
   desc: ArrowDownZAIcon,
 }
 
-/**
- * Check if a specific cell is a header cell
- */
+
 function isCellHeader(cellNode: Node | null): boolean {
   if (!cellNode) return false
 
@@ -93,9 +66,7 @@ function isCellHeader(cellNode: Node | null): boolean {
   )
 }
 
-/**
- * Extract text content from a cell node for sorting comparison
- */
+
 function getCellSortText(cellNode: Node | null): string {
   if (!cellNode) return ""
 
@@ -110,9 +81,7 @@ function getCellSortText(cellNode: Node | null): string {
   return text.trim().toLowerCase()
 }
 
-/**
- * Create a sortable item with all necessary data for restoration
- */
+
 interface SortableCell {
   sortText: string
   originalNode: Node | null
@@ -122,10 +91,7 @@ interface SortableCell {
   isEmpty: boolean
 }
 
-/**
- * Checks if a table row/column sort can be performed
- * in the current editor state.
- */
+
 function canSortRowColumn({
   editor,
   index,
@@ -151,7 +117,6 @@ function canSortRowColumn({
 
     const cellData = getRowOrColumnCells(editor, index, orientation, tablePos)
 
-    // Need at least 2 items to sort
     if (cellData.orientation === "row") {
       if (table.map.width < 2) return false
     } else {
@@ -162,7 +127,6 @@ function canSortRowColumn({
       return false
     }
 
-    // Check if there's actual content to sort (excluding headers)
     const hasContent = cellData.cells.some(
       (cellInfo) =>
         cellInfo.node &&
@@ -180,11 +144,7 @@ function canSortRowColumn({
   }
 }
 
-/**
- * Executes the row/column sort in the editor while preserving marks and attributes.
- * Header cells are excluded from sorting and remain in their original positions.
- * Empty cells are always sorted to the end.
- */
+
 function tableSortRowColumn({
   editor,
   index,
@@ -216,7 +176,6 @@ function tableSortRowColumn({
       return false
     }
 
-    // Create sortable items, marking headers, data cells, and empty cells
     const allItems: SortableCell[] = cellData.cells.map(
       (cellInfo, originalIndex) => {
         const isHeader = isCellHeader(cellInfo.node)
@@ -239,14 +198,11 @@ function tableSortRowColumn({
       return false
     }
 
-    // Sort data items with special handling for empty cells
     dataItems.sort((a, b) => {
-      // Empty cells always go to the end, regardless of sort direction
       if (a.isEmpty && !b.isEmpty) return 1
       if (!a.isEmpty && b.isEmpty) return -1
       if (a.isEmpty && b.isEmpty) return 0
 
-      // For non-empty cells, sort normally
       const comparison = a.sortText.localeCompare(b.sortText, undefined, {
         sensitivity: "base",
       })
@@ -265,10 +221,8 @@ function tableSortRowColumn({
       let nodeToPlace: Node | null = null
 
       if (originalItem.isHeader) {
-        // Keep header in its original position
         nodeToPlace = originalItem.originalNode
       } else {
-        // Use the next sorted data cell
         const sortedDataItem = dataItems[dataIndex]
         nodeToPlace = sortedDataItem?.originalNode || null
         dataIndex++
@@ -287,15 +241,12 @@ function tableSortRowColumn({
       }
     }
 
-    // Replace each cell with the new cell (headers preserved, data sorted)
-    // We need to go in reverse order to maintain correct positions
     const cellsToReplace = [...cellData.cells].reverse()
     const newNodesToPlace = [...newCellNodes].reverse()
 
     cellsToReplace.forEach((targetCell, reverseIndex) => {
       const newNode = newNodesToPlace[reverseIndex]
       if (newNode && targetCell.node) {
-        // Replace the entire cell node
         const cellEnd = targetCell.pos + targetCell.node.nodeSize
         tr.replaceWith(targetCell.pos, cellEnd, newNode)
       }
@@ -313,10 +264,7 @@ function tableSortRowColumn({
   }
 }
 
-/**
- * Determines if the sort button should be shown
- * based on editor state and config.
- */
+
 function shouldShowButton({
   editor,
   index,
@@ -349,68 +297,7 @@ function shouldShowButton({
     : true
 }
 
-/**
- * Custom hook that provides **table row/column sorting**
- * functionality for the Tiptap editor.
- *
- * **Header Handling:** Header cells are automatically detected and excluded
- * from sorting. During a sort operation, header cells remain in their original
- * positions while only data cells are rearranged. Headers are identified by
- * node type (`tableHeader`) or attributes (`header: true`).
- *
- * **Empty Cell Handling:** Empty cells are always sorted to the end,
- * regardless of sort direction (A-Z or Z-A).
- *
- * @example
- * ```tsx
- * // Sort currently selected row/column (smart mode)
- * function SortButton() {
- *   const { isVisible, handleSort } = useTableSortRowColumn({ direction: "asc" })
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleSort}>Sort A-Z</button>
- * }
- *
- * // Sort specific row, headers will be preserved
- * function SortRowButton({ rowIndex }: { rowIndex: number }) {
- *   const { isVisible, handleSort, label, canSortRowColumn } = useTableSortRowColumn({
- *     index: rowIndex,
- *     orientation: "row",
- *     direction: "asc",
- *     hideWhenUnavailable: true,
- *     onSorted: () => console.log("Row sorted! Headers stayed in place."),
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <button
- *       onClick={handleSort}
- *       disabled={!canSortRowColumn}
- *       aria-label={label}
- *     >
- *       {label}
- *     </button>
- *   )
- * }
- *
- * // Sort with callback to handle the result
- * function SmartSortButton() {
- *   const { isVisible, handleSort, label } = useTableSortRowColumn({
- *     direction: "desc",
- *     hideWhenUnavailable: true,
- *     onSorted: () => {
- *       console.log("Sort completed! Headers were automatically preserved.")
- *     }
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleSort}>{label}</button>
- * }
- * ```
- */
+
 export function useTableSortRowColumn(
   config: UseTableSortRowColumnConfig = { direction: "asc" }
 ) {

@@ -3,12 +3,12 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import AboutHeader from '@/components/landing/tentang/about-header'
 import { User, GraduationCap, Building2, Briefcase, Landmark, BookOpen } from 'lucide-react'
 
-// 1. DATA PIMPINAN: Terbagi berdasarkan kategori sesuai image_331fbd.jpg
+
 const pimpinanData = {
   Rektorat: [
     { name: 'Dr. Iskandar Itan', role: 'Rektor', image: '/rektorat/pak itan.webp' },
@@ -63,13 +63,12 @@ export default function PimpinanView() {
 
   return (
     <main className="min-h-screen bg-white font-poppins">
-      <NavbarLanding />
+
       <AboutHeader title="Pimpinan UIB" />
 
       <section className="py-20 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-6 md:px-20 max-w-7xl">
 
-          {/* Header Section */}
           <div className="text-center mb-16">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
@@ -81,7 +80,6 @@ export default function PimpinanView() {
             <div className="w-24 h-1.5 bg-[#f6a623] mx-auto rounded-full"></div>
           </div>
 
-          {/* Navigasi Tabs: Desain menarik seperti image_331fbd.jpg */}
           <div className="flex flex-wrap justify-center gap-3 mb-16">
             {(Object.keys(pimpinanData) as Category[]).map((tab) => (
               <button
@@ -97,8 +95,6 @@ export default function PimpinanView() {
             ))}
           </div>
 
-          {/* Konten Area dengan Animasi */}
-          {/* Konten Area dengan Animasi */}
           <div className="flex justify-center w-full min-h-[500px]">
             <AnimatePresence mode="wait">
               <motion.div
@@ -107,13 +103,9 @@ export default function PimpinanView() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98, y: -10 }}
                 transition={{ duration: 0.4 }}
-                /* Ganti 'grid' menjadi 'flex flex-wrap justify-center' 
-                    agar item selalu berada di tengah halaman
-                */
                 className="flex flex-wrap justify-center gap-x-10 gap-y-16 w-full"
               >
                 {pimpinanData[activeTab].map((person, index) => (
-                  /* Gunakan basis lebar agar tetap terlihat seperti kolom tapi bisa fleksibel ke tengah */
                   <div key={index} className="w-full sm:w-[calc(50%-2.5rem)] lg:w-[calc(33.33%-2.5rem)] xl:w-[calc(20%-2.5rem)] max-w-[250px]">
                     <PimpinanCard
                       name={person.name}
@@ -129,19 +121,18 @@ export default function PimpinanView() {
         </div>
       </section>
 
-      <Footer />
+
     </main>
   )
 }
 
-// SUB-KOMPONEN: Kartu Pimpinan (Desain Bulat sesuai image_331fbd.jpg)
+
 function PimpinanCard({ name, role, image }: { name: string, role: string, image: string }) {
   return (
     <motion.div
       whileHover={{ y: -10 }}
       className="flex flex-col items-center text-center group"
     >
-      {/* Container Gambar Melingkar */}
       <div className="relative w-48 h-48 mb-6 p-1 rounded-full border-2 border-gray-200 group-hover:border-[#f6a623] transition-colors duration-500 overflow-hidden shadow-lg bg-white">
         <div className="relative w-full h-full rounded-full overflow-hidden  transition-all duration-700">
           <Image
@@ -150,7 +141,6 @@ function PimpinanCard({ name, role, image }: { name: string, role: string, image
             fill
             className="object-cover"
             onError={(e) => {
-              // Fallback jika gambar tidak ditemukan
               const target = e.target as HTMLImageElement;
               target.src = "https://ui-avatars.com/api/?name=" + name + "&background=1a365d&color=fff";
             }}
@@ -158,7 +148,6 @@ function PimpinanCard({ name, role, image }: { name: string, role: string, image
         </div>
       </div>
 
-      {/* Detail Informasi */}
       <h3 className="text-[#1a365d] font-bold text-base md:text-lg leading-tight mb-2 group-hover:text-[#f6a623] transition-colors duration-300 min-h-[3rem] flex items-center justify-center">
         {name}
       </h3>
@@ -167,7 +156,6 @@ function PimpinanCard({ name, role, image }: { name: string, role: string, image
         {role}
       </p>
 
-      {/* Dekorasi Aksen */}
       <div className="w-8 h-1 bg-[#f6a623] mt-4 rounded-full opacity-0 group-hover:opacity-100 group-hover:w-16 transition-all duration-500"></div>
     </motion.div>
   )

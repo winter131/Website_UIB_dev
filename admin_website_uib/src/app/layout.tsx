@@ -28,7 +28,7 @@ export default function RootLayout({
             <Link href="/berita" className="px-4 py-2 hover:bg-slate-800 rounded-md transition-colors font-medium">
               News Management
             </Link>
-            <Link href="/berita" className="px-4 py-2 hover:bg-slate-800 rounded-md transition-colors font-medium">
+            <Link href="/artikel" className="px-4 py-2 hover:bg-slate-800 rounded-md transition-colors font-medium">
               Article Management
             </Link>
           </nav>

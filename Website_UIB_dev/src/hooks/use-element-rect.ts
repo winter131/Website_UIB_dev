@@ -6,22 +6,9 @@ import { useThrottledCallback } from "@/hooks/use-throttled-callback"
 export type RectState = Omit<DOMRect, "toJSON">
 
 export interface ElementRectOptions {
-  /**
-   * The element to track. Can be an Element, ref, or selector string.
-   * Defaults to document.body if not provided.
-   */
   element?: Element | React.RefObject<Element> | string | null
-  /**
-   * Whether to enable rect tracking
-   */
   enabled?: boolean
-  /**
-   * Throttle delay in milliseconds for rect updates
-   */
   throttleMs?: number
-  /**
-   * Whether to use ResizeObserver for more accurate tracking
-   */
   useResizeObserver?: boolean
 }
 
@@ -39,17 +26,10 @@ const initialRect: RectState = {
 const isSSR = typeof window === "undefined"
 const hasResizeObserver = !isSSR && typeof ResizeObserver !== "undefined"
 
-/**
- * Helper function to check if code is running on client side
- */
+
 const isClientSide = (): boolean => !isSSR
 
-/**
- * Custom hook that tracks an element's bounding rectangle and updates on resize, scroll, etc.
- *
- * @param options Configuration options for element rect tracking
- * @returns The current bounding rectangle of the element
- */
+
 export function useElementRect({
   element,
   enabled = true,
@@ -143,9 +123,7 @@ export function useElementRect({
   return rect
 }
 
-/**
- * Convenience hook for tracking document.body rect
- */
+
 export function useBodyRect(
   options: Omit<ElementRectOptions, "element"> = {}
 ): RectState {
@@ -155,9 +133,7 @@ export function useBodyRect(
   })
 }
 
-/**
- * Convenience hook for tracking a ref element's rect
- */
+
 export function useRefRect<T extends Element>(
   ref: React.RefObject<T>,
   options: Omit<ElementRectOptions, "element"> = {}

@@ -1,191 +1,148 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CheckCircle2, ChevronRight, Info, CreditCard } from 'lucide-react'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+import { 
+    CheckCircle2, 
+    ChevronRight, 
+    Info, 
+    CreditCard,
+    ArrowRight
+} from 'lucide-react'
+
+
 import DiskonMahasiswa from '@/components/landing/informasi/diskonmahasiswa'
 
 export default function DiskonMahasiswaView() {
+    const identities = [
+        { title: 'KTM Mahasiswa', img: '/img/Kartu Tanda Mahasiswa UIB.webp' },
+        { title: 'Kartu Alumni', img: '/img/Kartu Alumni UIB.webp' },
+        { title: 'KTM Magang', img: '/img/Kartu Tanda Mahasiswa Magang UIB.webp' },
+        { title: 'Dosen / Karyawan', img: '/img/Kartu Tanda Dosenkaryawan.webp' },
+    ]
+
+    const benefits = [
+        {
+            title: "Potongan Harga",
+            desc: "Diskon berkisar antara 5% hingga 20% untuk berbagai produk dan jasa.",
+            items: ["Pembelian produk di outlet", "Event khusus UIB", "Promo Buy 1 Get 1"]
+        },
+        {
+            title: "Fasilitas & Hadiah",
+            desc: "Manfaat tambahan di luar potongan harga tunai.",
+            items: ["Merchandise eksklusif", "Antrean prioritas", "Ekstra durasi jasa"]
+        }
+    ]
+
     return (
-        <main className="min-h-screen bg-white font-poppins text-slate-700">
-            <NavbarLanding />
+        <main className="min-h-screen bg-white font-poppins selection:bg-[#1a365d] selection:text-white">
 
-            {/* --- 1. TOP BANNER (UIB Discount Card Partner) --- */}
-            <section className="container mx-auto px-6 md:px-20 pt-32">
-                <div className="w-full rounded-2xl overflow-hidden shadow-lg border border-slate-100 italic">
-                    <img
-                        src="/img/Discount-card-new-1024x480.webp"
-                        alt="UIB Discount Card Partner Banner"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-            </section>
-
-            {/* --- SECTION: TENTANG PROGRAM (FLOATING OVERLAP STYLE) --- */}
-            <section className="py-20 bg-white overflow-hidden">
-                <div className="container mx-auto px-6 md:px-20 relative">
-                    <div className="flex flex-col lg:flex-row items-center">
-
-                        {/* Sisi Kiri: Foto Kegiatan (60% Width) */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="w-full lg:w-[60%] z-0"
-                        >
-                            <div className="rounded-2xl overflow-hidden shadow-lg border-4 border-white">
-                                <img
-                                    src="/img/diskon.webp"
-                                    alt="Pertemuan Program UIB Discount Card"
-                                    className="w-full h-[300px] md:h-[450px] object-cover"
-                                />
-                            </div>
-                        </motion.div>
-
-                        {/* Sisi Kanan: Kotak Informasi Biru (Floating Overlap) */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2, duration: 0.8 }}
-                            className="w-full lg:w-[50%] lg:-ml-28 z-10 bg-[#1A365D] p-8 md:p-14 shadow-2xl relative mt-[-40px] lg:mt-0"
-                        >
-                            {/* Aksen Garis Vertikal Oranye di Sisi Kanan Luar (Sesuai Gambar) */}
-                            <div className="absolute top-0 right-0 h-full w-1.5 bg-[#e67e22]" />
-
-                            <div className="relative">
-                                {/* Judul dengan ukuran yang lebih terkontrol (text-xl ke text-2xl) */}
-                                <h2 className="text-xl md:text-2xl font-black mb-6 uppercase text-white leading-tight tracking-tight">
-                                    <span className=" rounded">Tentang Program UIB Discount Card</span>
-                                </h2>
-
-                                <div className="space-y-4">
-                                    {/* Menggunakan text-xs pada mobile dan text-sm pada desktop agar tidak kebesaran */}
-                                    <p className="text-xs md:text-sm leading-relaxed text-white/90 font-normal">
-                                        Universitas Internasional Batam (UIB) Discount Card merupakan program pemberian manfaat dari mitra yang bisa berupa diskon/potongan harga atau penawaran istimewa kepada pemegang kartu penanda sivitas akademika UIB, baik sebagai dosen, mahasiswa, alumni serta karyawan.
-                                    </p>
-                                </div>
-                            </div>
-                        </motion.div>
-
+            <section className="pt-32 pb-12">
+                <div className="container mx-auto px-6 md:px-20">
+                    <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img
+                            src="/img/Discount-card-new-1024x480.webp"
+                            alt="UIB Discount Card"
+                            className="w-full h-auto object-cover"
+                        />
                     </div>
                 </div>
             </section>
 
-            {/* --- 3. MANFAAT DISCOUNT CARD --- */}
-            <section className="py-4 container mx-auto px-6 md:px-20">
-                <h3 className="text-xl font-black text-[#1A365D] mb-4 uppercase tracking-tight flex items-center gap-3">
-                    <div className="w-12 h-1.5 bg-[#e67e22] rounded-full" /> Manfaat Discount Card
-                </h3>
-                <p className='text-sm font-normal text-slate-600 leading-relaxed mb-4'>
-                    Adapun manfaat dari program UIB Discount Card ini adalah:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {[
-                        'Media publikasi dan promosi bagi para mitra dalam memasarkan produknya melalui potongan harga, promo, maupun penawaran lainnya.',
-                        'Meningkatkan jumlah mahasiswa baru/konsumen baru bagi kedua belah pihak.',
-                        'Memberikan benefit dan fasilitas yang lebih luas bagi pemegang kartu sivitas akademika.',
-                        'Meningkatkan word of mouth bagi kedua belah pihak di masyarakat tentang produk dan jasa yang ditawarkan masing-masing.'
-                    ].map((item, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="flex gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-100 italic group hover:border-[#e67e22]/30 transition-colors"
-                        >
-                            <CheckCircle2 size={24} className="text-[#e67e22] shrink-0" />
-                            <p className="text-sm font-bold text-slate-600 leading-relaxed">{item}</p>
-                        </motion.div>
-                    ))}
+            <section className="py-16">
+                <div className="container mx-auto px-6 md:px-20">
+                    <div className="flex flex-col lg:flex-row gap-12 items-start">
+                        <div className="w-full lg:w-1/2">
+                            <h1 className="text-3xl font-black text-[#1a365d] mb-6 uppercase tracking-tight">
+                                Tentang Program <br/>
+                                <span className="text-[#f6a623]">UIB Discount Card</span>
+                            </h1>
+                            <p className="text-slate-600 leading-relaxed mb-8">
+                                Universitas Internasional Batam (UIB) Discount Card merupakan program pemberian manfaat dari mitra yang bisa berupa diskon atau penawaran istimewa kepada pemegang kartu penanda sivitas akademika UIB.
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {[
+                                    "Publikasi & Promosi Strategis",
+                                    "Akuisisi Konsumen Baru",
+                                    "Benefit Luas Sivitas UIB",
+                                    "Memperkuat Word-of-Mouth"
+                                ].map((txt, i) => (
+                                    <div key={i} className="flex items-center gap-2 text-sm font-semibold text-slate-500">
+                                        <CheckCircle2 size={16} className="text-[#f6a623]" /> {txt}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="w-full lg:w-1/2">
+                            <div className="rounded-2xl overflow-hidden shadow-md">
+                                <img src="/img/diskon.webp" alt="Kegiatan Program" className="w-full h-auto" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section className="py-24 bg-slate-50 mt-10">
-                <div className="container mx-auto px-6 md:px-20 text-center">
-                    <h3 className="text-2xl font-black text-[#1A365D] mb-16 uppercase tracking-widest">
-                        Identitas Pemegang Kartu
-                    </h3>
-
+            <section className="py-16 bg-slate-50">
+                <div className="container mx-auto px-6 md:px-20">
+                    <div className="mb-12">
+                        <h2 className="text-2xl font-black text-[#1a365d] uppercase tracking-tight mb-2">Identitas Pemegang Kartu</h2>
+                        <div className="w-12 h-1 bg-[#f6a623] rounded-full" />
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            { t: 'Kartu Tanda Mahasiswa UIB', img: '/img/Kartu Tanda Mahasiswa UIB.webp' },
-                            { t: 'Kartu Alumni UIB', img: '/img/Kartu Alumni UIB.webp' },
-                            { t: 'Kartu Tanda Mahasiswa Magang', img: '/img/Kartu Tanda Mahasiswa Magang UIB.webp' },
-                            { t: 'Kartu Tanda Dosen/Karyawan', img: '/img/Kartu Tanda Dosenkaryawan.webp' },
-                        ].map((card, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: i * 0.1 }}
-                                className="relative bg-white rounded-3xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-500 flex flex-col items-center text-center"
-                            >
-                                {/* Area Gambar: Center Aligned */}
-                                <div className="w-full flex items-center justify-center p-6 bg-white min-h-[180px]">
-                                    <img
-                                        src={card.img}
-                                        alt={card.t}
-                                        className="max-w-full h-auto transition-transform duration-700 group-hover:scale-110"
-                                    />
+                        {identities.map((card, i) => (
+                            <div key={i} className="bg-white p-6 rounded-xl border border-slate-200 text-center space-y-4">
+                                <div className="aspect-[1.6/1] flex items-center justify-center p-2">
+                                    <img src={card.img} alt={card.title} className="max-w-full h-auto drop-shadow-sm" />
                                 </div>
-
-                                {/* Judul Pindah ke Bawah Gambar */}
-                                <div className="w-full p-4 bg-slate-50 border-t border-slate-100 mt-auto">
-                                    <p className="text-[10px] font-black uppercase text-[#1A365D] tracking-widest leading-tight">
-                                        {card.t}
-                                    </p>
-                                </div>
-
-                                {/* Garis Oranye Bawah */}
-                                <div className="h-1.5 w-full bg-[#e67e22] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center" />
-                            </motion.div>
+                                <p className="text-[10px] font-black uppercase text-[#1a365d] tracking-widest">{card.title}</p>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* --- 5. BENTUK BENEFIT & KETENTUAN --- */}
-            <section className="py-24 container mx-auto px-6 md:px-20">
-                <div className="max-w-4xl">
-                    <h3 className="text-3xl font-black text-[#1A365D] mb-12 uppercase">Bentuk-bentuk benefit dari pihak mitra:</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div className="pl-8 border-l-4 border-[#e67e22]">
-                            <h4 className="text-xl font-black text-[#1A365D] mb-6">1. Potongan Harga (Diskon 5% - 20%)</h4>
-                            <ul className="text-sm space-y-4 text-slate-500 font-bold italic">
-                                <li className="flex items-center gap-3"><ChevronRight size={14} className="text-[#e67e22]" /> Potongan harga pembelian langsung.</li>
-                                <li className="flex items-center gap-3 text-[#1A365D]"><ChevronRight size={14} className="text-[#e67e22]" /> Potongan harga pembelian khusus (Event tertentu).</li>
-                                <li className="flex items-center gap-3"><ChevronRight size={14} className="text-[#e67e22]" /> Buy 1 Get 1 / Penawaran paket khusus.</li>
-                            </ul>
-                        </div>
-                        <div className="pl-8 border-l-4 border-[#1A365D]">
-                            <h4 className="text-xl font-black text-[#1A365D] mb-6">2. Pemberian Fasilitas/Hadiah</h4>
-                            <ul className="text-sm space-y-4 text-slate-500 font-bold italic">
-                                <li className="flex items-center gap-3"><ChevronRight size={14} className="text-[#1A365D]" /> Hadiah langsung (Merchandise).</li>
-                                <li className="flex items-center gap-3 text-[#1A365D]"><ChevronRight size={14} className="text-[#1A365D]" /> Prioritas pelayanan atau antrean khusus.</li>
-                                <li className="flex items-center gap-3"><ChevronRight size={14} className="text-[#1A365D]" /> Tambahan durasi penggunaan jasa.</li>
-                            </ul>
+            <section className="py-20 container mx-auto px-6 md:px-20">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div className="space-y-8">
+                        <h3 className="text-2xl font-black text-[#1a365d] uppercase tracking-tight">Bentuk Benefit Mitra</h3>
+                        <div className="space-y-6">
+                            {benefits.map((b, i) => (
+                                <div key={i} className="border-l-4 border-slate-100 pl-6 space-y-3 hover:border-[#f6a623] transition-colors">
+                                    <h4 className="text-lg font-bold text-[#1a365d]">{b.title}</h4>
+                                    <p className="text-sm text-slate-500 italic">{b.desc}</p>
+                                    <div className="flex flex-wrap gap-x-4 gap-y-2">
+                                        {b.items.map((item, idx) => (
+                                            <div key={idx} className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400">
+                                                <ArrowRight size={10} className="text-[#f6a623]" /> {item}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
 
-                    <div className="mt-20 p-10 bg-blue-50/50 rounded-[2.5rem] border border-blue-100 flex flex-col md:flex-row gap-8 items-center shadow-inner">
-                        <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm shrink-0">
-                            <Info className="text-blue-600" size={32} />
+                    <div className="bg-[#1a365d] p-10 rounded-2xl text-white">
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[#f6a623]">
+                                <Info size={20} />
+                            </div>
+                            <h5 className="text-lg font-black uppercase tracking-tight">Informasi Penting</h5>
                         </div>
-                        <p className="text-base font-bold text-blue-800 leading-relaxed italic text-center md:text-left">
+                        <p className="text-sm leading-relaxed opacity-80 border-l border-white/20 pl-6 italic">
                             "Setiap calon pendaftar atau pendaftar wajib menunjukkan identitas diri (KTM/Karyawan) sebelum melakukan pembayaran untuk mendapatkan manfaat benefit yang telah disepakati bersama."
                         </p>
                     </div>
                 </div>
             </section>
 
-            {/* --- 6. BAGIAN TABEL --- */}
-            <DiskonMahasiswa />
+            <section className="pb-32 container mx-auto px-6 md:px-20">
+                <div className="mb-10">
+                    <h3 className="text-2xl font-black text-[#1a365d] uppercase tracking-tight">Daftar Mitra Resmi</h3>
+                    <div className="w-12 h-1 bg-[#f6a623] rounded-full mt-2" />
+                </div>
+                <DiskonMahasiswa />
+            </section>
 
-            <Footer />
         </main>
     )
 }

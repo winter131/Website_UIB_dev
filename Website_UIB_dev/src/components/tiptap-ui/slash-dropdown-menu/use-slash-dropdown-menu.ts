@@ -3,7 +3,7 @@
 import { useCallback } from "react"
 import type { Editor } from "@tiptap/react"
 
-// --- Icons ---
+
 import { CodeBlockIcon } from "@/components/tiptap-icons/code-block-icon"
 import { HeadingOneIcon } from "@/components/tiptap-icons/heading-one-icon"
 import { HeadingTwoIcon } from "@/components/tiptap-icons/heading-two-icon"
@@ -20,7 +20,7 @@ import { AtSignIcon } from "@/components/tiptap-icons/at-sign-icon"
 import { SmilePlusIcon } from "@/components/tiptap-icons/smile-plus-icon"
 import { TableIcon } from "@/components/tiptap-icons/table-icon"
 
-// --- Lib ---
+
 import {
   isExtensionAvailable,
   isNodeInSchema,
@@ -30,7 +30,7 @@ import {
   hasContentAbove,
 } from "@/lib/tiptap-advanced-utils"
 
-// --- Tiptap UI ---
+
 import type { SuggestionItem } from "@/components/tiptap-ui-utils/suggestion-menu"
 import { addEmojiTrigger } from "@/components/tiptap-ui/emoji-trigger-button"
 import { addMentionTrigger } from "@/components/tiptap-ui/mention-trigger-button"
@@ -45,7 +45,6 @@ export interface SlashMenuConfig {
 }
 
 const texts = {
-  // AI
   continue_writing: {
     title: "Continue Writing",
     subtext: "Continue writing from the current position",
@@ -61,7 +60,6 @@ const texts = {
     group: "AI",
   },
 
-  // Style
   text: {
     title: "Text",
     subtext: "Regular text paragraph",
@@ -126,7 +124,6 @@ const texts = {
     group: "Style",
   },
 
-  // Insert
   mention: {
     title: "Mention",
     subtext: "Mention a user or item",
@@ -156,7 +153,6 @@ const texts = {
     group: "Insert",
   },
 
-  // Upload
   image: {
     title: "Image",
     subtext: "Resizable image with caption",
@@ -178,7 +174,6 @@ export type SlashMenuItemType = keyof typeof texts
 
 const getItemImplementations = () => {
   return {
-    // AI
     continue_writing: {
       check: (editor: Editor) => {
         const { hasContent } = hasContentAbove(editor)
@@ -241,7 +236,6 @@ const getItemImplementations = () => {
       },
     },
 
-    // Style
     text: {
       check: (editor: Editor) => isNodeInSchema("paragraph", editor),
       action: ({ editor }: { editor: Editor }) => {
@@ -297,7 +291,6 @@ const getItemImplementations = () => {
       },
     },
 
-    // Insert
     mention: {
       check: (editor: Editor) =>
         isExtensionAvailable(editor, ["mention", "mentionAdvanced"]),
@@ -329,7 +322,6 @@ const getItemImplementations = () => {
       },
     },
 
-    // Upload
     image: {
       check: (editor: Editor) => isNodeInSchema("image", editor),
       action: ({ editor }: { editor: Editor }) => {
@@ -355,7 +347,6 @@ function organizeItemsByGroups(
 
   const groups: { [groupLabel: string]: SuggestionItem[] } = {}
 
-  // Group items
   items.forEach((item) => {
     const groupLabel = item.group || ""
     if (!groups[groupLabel]) {
@@ -364,7 +355,6 @@ function organizeItemsByGroups(
     groups[groupLabel].push(item)
   })
 
-  // Flatten groups in order (this maintains the visual order for keyboard navigation)
   const organizedItems: SuggestionItem[] = []
   Object.entries(groups).forEach(([, groupItems]) => {
     organizedItems.push(...groupItems)
@@ -373,9 +363,7 @@ function organizeItemsByGroups(
   return organizedItems
 }
 
-/**
- * Custom hook for slash dropdown menu functionality
- */
+
 export function useSlashDropdownMenu(config?: SlashMenuConfig) {
   const getSlashMenuItems = useCallback(
     (editor: Editor) => {
@@ -411,7 +399,6 @@ export function useSlashDropdownMenu(config?: SlashMenuConfig) {
         items.push(...config.customItems)
       }
 
-      // Reorganize items by groups to ensure keyboard navigation works correctly
       return organizeItemsByGroups(items, showGroups)
     },
     [config]

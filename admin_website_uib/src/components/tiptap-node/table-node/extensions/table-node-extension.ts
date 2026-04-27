@@ -1,12 +1,12 @@
 import type { ViewMutationRecord } from "@tiptap/pm/view"
-import { Table } from "@tiptap/extension-table/table"
-import type {
-  TableCellOptions,
-  TableHeaderOptions,
-  TableOptions,
-  TableRowOptions,
-} from "@tiptap/extension-table"
-import { TableCell, TableHeader, TableRow } from "@tiptap/extension-table"
+import { Table } from "@tiptap/extension-table"
+import type { TableOptions } from "@tiptap/extension-table"
+import { TableCell } from "@tiptap/extension-table-cell"
+import type { TableCellOptions } from "@tiptap/extension-table-cell"
+import { TableHeader } from "@tiptap/extension-table-header"
+import type { TableHeaderOptions } from "@tiptap/extension-table-header"
+import { TableRow } from "@tiptap/extension-table-row"
+import type { TableRowOptions } from "@tiptap/extension-table-row"
 import type { Node } from "@tiptap/pm/model"
 import { Extension } from "@tiptap/core"
 import {

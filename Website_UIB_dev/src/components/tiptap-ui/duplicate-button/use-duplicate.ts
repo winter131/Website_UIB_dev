@@ -5,37 +5,23 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import { NodeSelection } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Icons ---
+
 import { CopyIcon } from "@/components/tiptap-icons/copy-icon"
 
 export const DUPLICATE_SHORTCUT_KEY = "mod+d"
 
-/**
- * Configuration for the duplicate functionality
- */
+
 export interface UseDuplicateConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the button should hide when duplication is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful duplication.
-   */
   onDuplicated?: () => void
 }
 
-/**
- * Checks if a node can be duplicated in the current editor state
- */
+
 export function canDuplicateNode(editor: Editor | null): boolean {
   if (!editor || !editor.isEditable) return false
 
@@ -55,9 +41,7 @@ export function canDuplicateNode(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Duplicates a node in the editor
- */
+
 export function duplicateNode(editor: Editor | null): boolean {
   if (!editor || !editor.isEditable) return false
 
@@ -74,14 +58,11 @@ export function duplicateNode(editor: Editor | null): boolean {
       return true
     }
 
-    // Handle text selection or cursor position
-    // Find the appropriate parent node to duplicate
     const $anchor = selection.$anchor
 
     for (let depth = 1; depth <= $anchor.depth; depth++) {
       const node = $anchor.node(depth)
 
-      // Skip document and other non-duplicatable nodes
       if (node.type.name === "doc" || !node.type.spec.group) {
         continue
       }
@@ -102,9 +83,7 @@ export function duplicateNode(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Determines if the duplicate button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -120,41 +99,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides duplicate functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage - no params needed
- * function MySimpleDuplicateButton() {
- *   const { isVisible, handleDuplicate } = useDuplicate()
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleDuplicate}>Duplicate</button>
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedDuplicateButton() {
- *   const { isVisible, handleDuplicate, label } = useDuplicate({
- *     editor: myEditor,
- *     hideWhenUnavailable: true,
- *     onDuplicated: () => console.log('Node duplicated!')
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleDuplicate}
- *       aria-label={label}
- *     >
- *       Duplicate Node
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useDuplicate(config?: UseDuplicateConfig) {
   const {
     editor: providedEditor,
@@ -196,7 +141,7 @@ export function useDuplicate(config?: UseDuplicateConfig) {
   useHotkeys(
     DUPLICATE_SHORTCUT_KEY,
     (event) => {
-      event.preventDefault() // prevent browser default bookmarking
+      event.preventDefault() 
       handleDuplicate()
     },
     {

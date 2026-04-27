@@ -2,17 +2,17 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseTextConfig } from "@/components/tiptap-ui/text-button"
 import { TEXT_SHORTCUT_KEY, useText } from "@/components/tiptap-ui/text-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -20,14 +20,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface TextButtonProps
   extends Omit<ButtonProps, "type">,
     UseTextConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -39,11 +32,7 @@ export function TextShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for converting to text/paragraph in a Tiptap editor.
- *
- * For custom button implementations, use the `useText` hook instead.
- */
+
 export const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>(
   (
     {

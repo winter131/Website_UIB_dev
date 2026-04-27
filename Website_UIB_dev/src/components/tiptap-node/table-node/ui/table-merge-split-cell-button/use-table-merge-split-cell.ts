@@ -4,36 +4,22 @@ import { useCallback } from "react"
 import type { Editor } from "@tiptap/react"
 import { mergeCells, splitCell } from "@tiptap/pm/tables"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import { isExtensionAvailable } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { TableCellMergeIcon } from "@/components/tiptap-icons/table-cell-merge-icon"
 import { TableCellSplitIcon } from "@/components/tiptap-icons/table-cell-split-icon"
 
 export type MergeSplitAction = "merge" | "split"
 
 export interface UseTableMergeSplitCellConfig {
-  /**
-   * The Tiptap editor instance. If omitted, the hook will use
-   * the context/editor from `useTiptapEditor`.
-   */
   editor?: Editor | null
-  /**
-   * The action to perform - merge or split cells.
-   */
   action: MergeSplitAction
-  /**
-   * Hide the button when the action isn't currently possible.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful merge or split.
-   */
   onExecuted?: (action: MergeSplitAction) => void
 }
 
@@ -49,10 +35,7 @@ export const tableMergeSplitCellIcons = {
   split: TableCellSplitIcon,
 }
 
-/**
- * Checks if a table cell merge can be performed
- * in the current editor state.
- */
+
 function canMergeCells(editor: Editor | null): boolean {
   if (
     !editor ||
@@ -69,10 +52,7 @@ function canMergeCells(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Checks if a table cell split can be performed
- * in the current editor state.
- */
+
 function canSplitCell(editor: Editor | null): boolean {
   if (
     !editor ||
@@ -89,9 +69,7 @@ function canSplitCell(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Executes the cell merge operation in the editor.
- */
+
 function tableMergeCells(editor: Editor | null): boolean {
   if (!canMergeCells(editor) || !editor) return false
 
@@ -104,9 +82,7 @@ function tableMergeCells(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Executes the cell split operation in the editor.
- */
+
 function tableSplitCell(editor: Editor | null): boolean {
   if (!canSplitCell(editor) || !editor) return false
 
@@ -119,9 +95,7 @@ function tableSplitCell(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Executes the merge/split operation in the editor.
- */
+
 function tableMergeSplitCell({
   editor,
   action,
@@ -139,10 +113,7 @@ function tableMergeSplitCell({
   }
 }
 
-/**
- * Determines if the merge/split button should be shown
- * based on editor state and config.
- */
+
 function shouldShowButton({
   editor,
   action,
@@ -162,91 +133,7 @@ function shouldShowButton({
   return true
 }
 
-/**
- * Custom hook that provides **table cell merge/split**
- * functionality for the Tiptap editor.
- *
- * @example
- * ```tsx
- * // Simple merge button
- * function MergeCellsButton() {
- *   const { isVisible, handleExecute, canExecute, label, Icon } = useTableMergeSplitCell({
- *     action: "merge",
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <button
- *       onClick={handleExecute}
- *       disabled={!canExecute}
- *       aria-label={label}
- *     >
- *       <Icon /> {label}
- *     </button>
- *   )
- * }
- *
- * // Split cell button with callback
- * function SplitCellButton({ editor }: { editor: Editor }) {
- *   const { isVisible, handleExecute, label, canExecute, Icon } = useTableMergeSplitCell({
- *     editor,
- *     action: "split",
- *     hideWhenUnavailable: true,
- *     onExecuted: (action) => console.log(`${action} completed!`),
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <button
- *       onClick={handleExecute}
- *       disabled={!canExecute}
- *       aria-label={label}
- *     >
- *       <Icon /> {label}
- *     </button>
- *   )
- * }
- *
- * // Dynamic merge/split button based on context
- * function MergeSplitButton() {
- *   const mergeAction = useTableMergeSplitCell({
- *     action: "merge",
- *     hideWhenUnavailable: true,
- *   })
- *
- *   const splitAction = useTableMergeSplitCell({
- *     action: "split",
- *     hideWhenUnavailable: true,
- *   })
- *
- *   if (mergeAction.isVisible) {
- *     return (
- *       <button
- *         onClick={mergeAction.handleExecute}
- *         disabled={!mergeAction.canExecute}
- *       >
- *         {mergeAction.label}
- *       </button>
- *     )
- *   }
- *
- *   if (splitAction.isVisible) {
- *     return (
- *       <button
- *         onClick={splitAction.handleExecute}
- *         disabled={!splitAction.canExecute}
- *       >
- *         {splitAction.label}
- *       </button>
- *     )
- *   }
- *
- *   return null
- * }
- * ```
- */
+
 export function useTableMergeSplitCell(config: UseTableMergeSplitCellConfig) {
   const {
     editor: providedEditor,

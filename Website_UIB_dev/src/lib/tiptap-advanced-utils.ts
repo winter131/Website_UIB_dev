@@ -3,18 +3,14 @@ import { findNodePosition, isValidPosition } from "@/lib/tiptap-utils"
 import { type Editor } from "@tiptap/react"
 import { NodeSelection, TextSelection } from "@tiptap/pm/state"
 
-/**
- * Splits an array into chunks of specified size
- */
+
 export function chunkArray<T>(array: Array<T>, size: number): Array<Array<T>> {
   return Array.from({ length: Math.ceil(array.length / size) }, (_, index) =>
     array.slice(index * size, index * size + size)
   )
 }
 
-/**
- * Helper function to check if there's content above the current position
- */
+
 export function hasContentAbove(editor: Editor | null): {
   hasContent: boolean
   content: string
@@ -36,13 +32,7 @@ export function hasContentAbove(editor: Editor | null): {
   return { hasContent: false, content: "" }
 }
 
-/**
- * Gets the active attributes of a specific mark in the current editor selection.
- *
- * @param editor - The Tiptap editor instance.
- * @param markName - The name of the mark to look for (e.g., "highlight", "link").
- * @returns The attributes of the active mark, or `null` if the mark is not active.
- */
+
 export function getActiveMarkAttrs(
   editor: Editor | null,
   markName: string
@@ -74,11 +64,7 @@ export function getActiveMarkAttrs(
   return foundAttrs
 }
 
-/**
- * Finds the position of a node in the editor selection
- * @param params Object containing editor, node (optional), and nodePos (optional)
- * @returns The position of the node in the selection or null if not found
- */
+
 export function findSelectionPosition(params: {
   editor: Editor
   node?: Node | null
@@ -103,11 +89,7 @@ export function findSelectionPosition(params: {
   return selectedNode ? resolvedPos.before(nodeDepth) : null
 }
 
-/**
- * Gets the currently selected DOM element in the editor
- * @param editor The Tiptap editor instance
- * @returns The selected DOM element or null if no selection is present
- */
+
 export function getSelectedDOMElement(editor: Editor): HTMLElement | null {
   const { state, view } = editor
   const { selection } = state
@@ -119,7 +101,6 @@ export function getSelectedDOMElement(editor: Editor): HTMLElement | null {
   if (selection instanceof TextSelection) {
     const $anchor = selection.$anchor
 
-    // Ensure the depth is sufficient to avoid errors
     if ($anchor.depth >= 1) {
       const dom = view.nodeDOM($anchor.before(1))
       if (dom instanceof HTMLElement) {
@@ -131,12 +112,7 @@ export function getSelectedDOMElement(editor: Editor): HTMLElement | null {
   return null
 }
 
-/**
- * Gets the closest node from the current selection in the editor based on criteria
- * @param editor The Tiptap editor instance
- * @param options Configuration options for finding the node
- * @returns An object containing the closest matching node, its position, and depth, or null if not found
- */
+
 export function getClosestNode(
   editor: Editor | null,
   options?: {
@@ -149,13 +125,12 @@ export function getClosestNode(
 
   const { selection } = editor.state
   const { $from } = selection
-  const { nodeName, isBlock = true, predicate } = options || {} // Default to block nodes
+  const { nodeName, isBlock = true, predicate } = options || {} 
 
   let depth = $from.depth
   while (depth > 0) {
     const node = $from.node(depth)
 
-    // Check all conditions
     const matchesName = !nodeName || node.type.name === nodeName
     const matchesBlock = node.type.isBlock === isBlock
     const matchesPredicate = !predicate || predicate(node)
@@ -169,13 +144,7 @@ export function getClosestNode(
   return null
 }
 
-/**
- * Gets the closest node from a specific position in the document
- * @param editor The Tiptap editor instance
- * @param pos The position to search from
- * @param options Configuration options for finding the node
- * @returns An object containing the closest matching node, its position, and depth, or null if not found
- */
+
 export function getClosestNodeByPos(
   editor: Editor | null,
   pos: number,
@@ -218,23 +187,17 @@ export function getClosestNodeByPos(
   }
 }
 
-/**
- * Convenience function to find closest block node (maintains backward compatibility)
- */
+
 export function getClosestBlockNode(editor: Editor | null) {
   return getClosestNode(editor, { isBlock: true })
 }
 
-/**
- * Convenience function to find closest node by name
- */
+
 export function getClosestNodeByName(editor: Editor | null, nodeName: string) {
   return getClosestNode(editor, { nodeName })
 }
 
-/**
- * Find multiple matching nodes up the tree
- */
+
 export function getAllMatchingNodes(
   editor: Editor | null,
   options?: {
@@ -283,12 +246,7 @@ export function getAllMatchingNodes(
   return matches
 }
 
-/**
- * Gets the anchor node and its position in the editor.
- * @param editor The Tiptap editor instance
- * @param allowEmptySelection If true, still returns the node at the cursor position even if selection is empty
- * @returns An object containing the anchor node and its position, or null if not found
- */
+
 export function getAnchorNodeAndPos(
   editor: Editor | null,
   allowEmptySelection: boolean = true
@@ -310,19 +268,14 @@ export function getAnchorNodeAndPos(
   if (selection.empty && !allowEmptySelection) return null
 
   const $anchor = selection.$anchor
-  const depth = 1 // explicitly use depth 1
+  const depth = 1 
   const node = $anchor.node(depth)
   const pos = $anchor.before(depth)
 
   return { node, pos }
 }
 
-/**
- * Checks if the current selection in the editor contains any text.
- *
- * @param editor - The Tiptap editor instance.
- * @returns `true` if the selection contains text, `false` otherwise.
- */
+
 export function selectionHasText(editor: Editor | null): boolean {
   if (!editor) return false
 
@@ -335,12 +288,7 @@ export function selectionHasText(editor: Editor | null): boolean {
   return text.trim().length > 0
 }
 
-/**
- * Retrieves a specific extension by name from the Tiptap editor.
- * @param editor - The Tiptap editor instance
- * @param extensionName - The name of the extension to retrieve
- * @returns The extension instance if found, otherwise null
- */
+
 export function getEditorExtension(
   editor: Editor | null,
   extensionName: string

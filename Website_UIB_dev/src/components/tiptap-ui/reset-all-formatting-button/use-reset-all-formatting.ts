@@ -5,44 +5,24 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import type { Transaction } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Icons ---
+
 import { RotateCcwIcon } from "@/components/tiptap-icons/rotate-ccw-icon"
 
 export const RESET_ALL_FORMATTING_SHORTCUT_KEY = "mod+r"
 
-/**
- * Configuration for the reset formatting functionality
- */
+
 export interface UseResetAllFormattingConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the button should hide when resetting is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Marks to preserve when resetting formatting.
-   */
   preserveMarks?: string[]
-  /**
-   * Callback function called after formatting is successfully reset.
-   */
   onResetAllFormatting?: () => void
 }
 
-/**
- * Removes all marks from the transaction except those specified in the skip array
- * @param tr The Tiptap transaction to modify
- * @param skip Array of mark names to skip when removing marks
- * @returns The modified transaction with specified marks removed
- */
+
 export function removeAllMarksExcept(tr: Transaction, skip: string[] = []) {
   const { selection } = tr
   const { empty, ranges } = selection
@@ -69,12 +49,7 @@ export function removeAllMarksExcept(tr: Transaction, skip: string[] = []) {
   return tr
 }
 
-/**
- * Checks whether the current selection has marks that can be reset (removed)
- * @param tr The Tiptap transaction to check
- * @param skip Array of mark names to skip when checking for removable marks
- * @returns True if there are marks that can be removed, false otherwise
- */
+
 export function canResetMarks(tr: Transaction, skip: string[] = []): boolean {
   const { selection } = tr
   const { empty, ranges } = selection
@@ -108,9 +83,7 @@ export function canResetMarks(tr: Transaction, skip: string[] = []): boolean {
   return false
 }
 
-/**
- * Checks if formatting can be reset for a node
- */
+
 export function canResetFormatting(
   editor: Editor | null,
   preserveMarks?: string[]
@@ -121,9 +94,7 @@ export function canResetFormatting(
   return canResetMarks(tr, preserveMarks)
 }
 
-/**
- * Resets formatting for a node or selection
- */
+
 export function resetFormatting(
   editor: Editor | null,
   preserveMarks?: string[]
@@ -143,9 +114,7 @@ export function resetFormatting(
   }
 }
 
-/**
- * Determines if the reset formatting button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -162,41 +131,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides reset formatting functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage - no params needed
- * function MySimpleResetButton() {
- *   const { isVisible, handleResetFormatting } = useResetAllFormatting()
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleResetFormatting}>Reset</button>
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedResetButton() {
- *   const { isVisible, handleResetFormatting, label } = useResetAllFormatting({
- *     editor: myEditor,
- *     hideWhenUnavailable: true,
- *     onResetAllFormatting: () => console.log('Formatting reset!')
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleResetFormatting}
- *       aria-label={label}
- *     >
- *       Reset Formatting
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useResetAllFormatting(config?: UseResetAllFormattingConfig) {
   const {
     editor: providedEditor,
@@ -241,7 +176,7 @@ export function useResetAllFormatting(config?: UseResetAllFormattingConfig) {
   useHotkeys(
     RESET_ALL_FORMATTING_SHORTCUT_KEY,
     (event) => {
-      event.preventDefault() // prevent browser default refresh
+      event.preventDefault() 
       handleResetFormatting()
     },
     {

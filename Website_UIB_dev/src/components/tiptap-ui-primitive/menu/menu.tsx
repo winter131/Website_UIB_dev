@@ -3,21 +3,21 @@
 import { forwardRef, useCallback, useMemo, useRef, useState } from "react"
 import * as Ariakit from "@ariakit/react"
 
-// -- Hooks --
+
 import { useOnClickOutside } from "@/hooks/use-on-click-outside"
 import { useComposedRef } from "@/hooks/use-composed-ref"
 
-// -- Utils --
+
 import { cn } from "@/lib/tiptap-utils"
 
-// -- UI Primitives --
+
 import {
   ComboboxItem,
   ComboboxProvider,
 } from "@/components/tiptap-ui-primitive/combobox"
 import { Label } from "@/components/tiptap-ui-primitive/label"
 
-// -- Local imports --
+
 import type {
   MenuProps,
   MenuContentProps,
@@ -34,7 +34,7 @@ import {
   useMenuItemClick,
 } from "@/components/tiptap-ui-primitive/menu"
 
-// -- Styles --
+
 import "@/components/tiptap-ui-primitive/menu/menu.scss"
 
 export function Menu({

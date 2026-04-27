@@ -5,13 +5,11 @@ interface HasilUSMCardProps {
 }
 
 export default function HasilUSMCard({ mahasiswa }: HasilUSMCardProps) {
-  // Status ujian
   const statusUjian = mahasiswa.WaktuSelesai ? "Selesai" : "Sedang Ujian";
 
   return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 overflow-hidden">
       <div className="p-6">
-        {/* Header dengan Nomor Daftar dan Status Badge */}
         <div className="flex justify-between items-start mb-6">
           <div>
             <span className="text-sm font-medium text-gray-500 block mb-1">
@@ -39,7 +37,6 @@ export default function HasilUSMCard({ mahasiswa }: HasilUSMCardProps) {
           </div>
         </div>
 
-        {/* Nama Mahasiswa dengan garis pemisah */}
         <div className="mb-6 pb-6 border-b border-gray-100">
           <span className="text-sm font-medium text-gray-500 block mb-1">
             Nama Mahasiswa
@@ -49,9 +46,7 @@ export default function HasilUSMCard({ mahasiswa }: HasilUSMCardProps) {
           </h2>
         </div>
 
-        {/* Informasi Ujian dalam grid 2 kolom */}
         <div className="space-y-4">
-          {/* Baris 1: Mulai Ujian */}
           <div className="grid grid-cols-12 items-center">
             <div className="col-span-4">
               <span className="text-sm font-medium text-gray-500">
@@ -78,7 +73,6 @@ export default function HasilUSMCard({ mahasiswa }: HasilUSMCardProps) {
             </div>
           </div>
 
-          {/* Baris 2: Selesai Ujian */}
           <div className="grid grid-cols-12 items-center">
             <div className="col-span-4">
               <span className="text-sm font-medium text-gray-500">
@@ -105,7 +99,6 @@ export default function HasilUSMCard({ mahasiswa }: HasilUSMCardProps) {
             </div>
           </div>
 
-          {/* Baris 3: Durasi atau Status Berlangsung */}
           <div className="grid grid-cols-12 items-center">
             <div className="col-span-4">
               <span className="text-sm font-medium text-gray-500">
@@ -146,7 +139,6 @@ export default function HasilUSMCard({ mahasiswa }: HasilUSMCardProps) {
           </div>
         </div>
 
-        {/* Tombol Reset Ujian */}
         {mahasiswa.CanReset === "y" && (
           <div className="mt-8 pt-6 border-t border-gray-100">
             <button className="w-full py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-lg">

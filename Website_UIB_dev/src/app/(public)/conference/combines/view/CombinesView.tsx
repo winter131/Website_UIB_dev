@@ -3,8 +3,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import {
     ChevronLeft, ChevronRight, FileText, Download, Send,
     LayoutTemplate, Users, Calendar, MapPin,
@@ -52,7 +52,7 @@ export default function ConesintechView() {
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
-            const offset = 100; // Account for sticky header
+            const offset = 100; 
             const bodyRect = document.body.getBoundingClientRect().top;
             const elementRect = element.getBoundingClientRect().top;
             const elementPosition = elementRect - bodyRect;
@@ -67,20 +67,16 @@ export default function ConesintechView() {
 
     return (
         <main className="mt-5 bg-[#fcfcfc] font-sans text-[#2A3955] min-h-screen selection:bg-[#e67e22] selection:text-white">
-            <NavbarLanding />
             <header className="relative pt-40 pb-24 overflow-hidden bg-white">
-                {/* PATTERN OVERLAY - Menggunakan Grid Blueprint */}
                 <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08]"
                     style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath stroke='%232A3955' stroke-width='1' d='M0 40L40 0M0 0l40 40' opacity='0.5'/%3E%3C/g%3E%3C/svg%3E")` }}>
                 </div>
 
-                {/* ELEMEN DEKORATIF - Lingkaran Oranye Besar yang Samar */}
                 <div className="absolute -top-40 -left-20 w-[600px] h-[600px] bg-[#e67e22]/5 rounded-full blur-[120px] z-0 pointer-events-none"></div>
 
                 <div className="container mx-auto px-6 md:px-20 relative z-10">
                     <div className="flex flex-col lg:flex-row gap-16 items-center">
 
-                        {/* SISI KIRI: JUDUL & BRANDING */}
                         <div className="w-full lg:w-7/12 space-y-10">
                             <Link
                                 href="/landing/conference"
@@ -110,13 +106,11 @@ export default function ConesintechView() {
                             </p>
                         </div>
 
-                        {/* SISI KANAN: DETAIL INFO (CARD STYLE) */}
 
 
                     </div>
                 </div>
             </header>
-            {/* --- ACTION BUTTONS (DOCK STYLE) --- */}
             <section className="sticky top-24 z-30 py-4 pointer-events-none">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="bg-white/80 backdrop-blur-xl border border-slate-100 p-2 rounded-2xl shadow-2xl inline-flex flex-wrap gap-2 pointer-events-auto">
@@ -154,7 +148,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- EXPLANATION SECTION --- */}
             <section id="about" className="py-32 container mx-auto px-6 md:px-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div className="relative">
@@ -182,7 +175,6 @@ export default function ConesintechView() {
                     <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 text-center">In Collaboration With</h3>
                 </div>
 
-                {/* MARQUEE CONTAINER */}
                 <div className="flex overflow-hidden relative">
                     <motion.div
                         animate={{ x: ["0%", "-50%"] }}
@@ -193,7 +185,6 @@ export default function ConesintechView() {
                         }}
                         className="flex gap-12 whitespace-nowrap items-center min-w-full"
                     >
-                        {/* Duplicate content for seamless loop */}
                         {[...universities, ...universities, ...universities, ...universities].map((u, i) => (
                             <div key={i} className="flex flex-col items-center gap-4 group shrink-0 w-40">
                                 <div className="h-16 w-32 relative transition-transform duration-500 group-hover:scale-110">
@@ -210,7 +201,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- KEYNOTE SPEAKERS (MANUAL SLIDER) --- */}
             <section id="speakers" className="py-32 bg-slate-900 text-white overflow-hidden">
                 <div className="container mx-auto px-6 md:px-20 mb-20">
                     <div className="flex justify-between items-end">
@@ -232,7 +222,6 @@ export default function ConesintechView() {
                     </div>
                 </div>
 
-                {/* SLIDER CONTAINER */}
                 <div
                     ref={scrollRef}
                     className="flex gap-8 overflow-x-auto scrollbar-hide px-6 md:px-20 pb-10 snap-x snap-mandatory"
@@ -255,7 +244,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            {/* --- TIMELINE (MODERN CARD STRIP) --- */}
             <section id="timeline" className="py-32 bg-white overflow-hidden">
                 <div className="container mx-auto px-6 md:px-20">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
@@ -283,7 +271,6 @@ export default function ConesintechView() {
                                 viewport={{ once: true }}
                                 className="group relative p-8 bg-slate-50 rounded-[2.5rem] hover:bg-[#2A3955] transition-all duration-500 overflow-hidden flex flex-col justify-between min-h-[280px]"
                             >
-                                {/* BACKGROUND NUMBER */}
                                 <span className="absolute -right-4 -top-4 text-9xl font-black text-[#2A3955]/5 group-hover:text-white/5 transition-colors duration-500">
                                     {i + 1}
                                 </span>
@@ -304,14 +291,12 @@ export default function ConesintechView() {
                                     {step.desc}
                                 </p>
 
-                                {/* DECORATIVE DOT */}
                                 <div className="absolute bottom-6 right-8 w-2 h-2 rounded-full bg-[#e67e22] opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
-            {/* --- ACADEMIC PARTNERS & MEMBERS --- */}
             <section id="partners" className="py-32 bg-slate-50 border-t border-slate-200">
                 <div className="container mx-auto px-6 md:px-20 text-center">
                     <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-16">Academic Partners & Membership</h3>
@@ -325,7 +310,6 @@ export default function ConesintechView() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     )
 }

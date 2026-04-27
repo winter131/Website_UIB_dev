@@ -4,18 +4,18 @@ import { useCallback, useEffect, useState } from "react"
 import { type Editor } from "@tiptap/react"
 import { useHotkeys } from "react-hotkeys-hook"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Lib ---
+
 import {
   isMarkInSchema,
   isNodeTypeSelected,
   selectCurrentBlockContent,
 } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { TextColorSmallIcon } from "@/components/tiptap-icons/text-color-small-icon"
 
 export const COLOR_TEXT_SHORTCUT_KEY = "mod+shift+t"
@@ -72,37 +72,16 @@ export const TEXT_COLORS = [
   },
 ]
 
-/**
- * Configuration for the color text functionality
- */
+
 export interface UseColorTextConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * The text color to apply.
-   * Can be any valid CSS color value.
-   */
   textColor: string
-  /**
-   * Optional text to display alongside the icon.
-   */
   label: string
-  /**
-   * Whether the button should hide when the mark is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Called when the text color is applied.
-   */
   onApplied?: ({ color, label }: { color: string; label: string }) => void
 }
 
-/**
- * Checks if text color can be toggled in the current editor state
- */
+
 export function canColorText(editor: Editor | null): boolean {
   if (!editor || !editor.isEditable) return false
   if (
@@ -118,9 +97,7 @@ export function canColorText(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Checks if text color is active in the current selection
- */
+
 export function isColorTextActive(
   editor: Editor | null,
   textColor: string
@@ -129,9 +106,7 @@ export function isColorTextActive(
   return editor.isActive("textStyle", { color: textColor })
 }
 
-/**
- * Determines if the color text button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -148,54 +123,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides color text functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage with required textColor
- * function MySimpleTextColorButton() {
- *   const { isVisible, handleColorText, isActive } = useColorText({
- *     textColor: "red",
- *     label: "Red Text",
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <button
- *       onClick={handleColorText}
- *       style={{ color: isActive ? "red" : "inherit" }}
- *     >
- *       Red Text
- *     </button>
- *   )
- * }
- *
- * // Advanced usage
- * function MyAdvancedTextColorButton() {
- *   const { isVisible, handleColorText, label, isActive } = useColorText({
- *     editor: myEditor,
- *     textColor: "#ff0000",
- *     label: "Apply Red",
- *     hideWhenUnavailable: true,
- *     onApplied: ({ color }) => console.log("Applied:", color),
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleColorText}
- *       aria-label={label}
- *       data-active={isActive}
- *     >
- *       Apply Text Color
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useColorText(config: UseColorTextConfig) {
   const {
     editor: providedEditor,

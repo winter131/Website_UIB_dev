@@ -2,13 +2,12 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import AboutHeader from '@/components/landing/tentang/about-header'
 import { ArrowRight } from 'lucide-react'
 
 export default function TentangView() {
-  // Data Statistik untuk 5 kolom
   const stats = [
     { number: '12.450', label: 'Mahasiswa' },
     { number: '450', label: 'Dosen Tetap' },
@@ -19,12 +18,9 @@ export default function TentangView() {
 
   return (
     <main className="min-h-screen bg-white font-poppins">
-      <NavbarLanding />
-      
-      {/* 1. Banner Utama */}
+
       <AboutHeader title="Tentang UIB" />
 
-      {/* 2. Section Visi */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-6 md:px-20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -37,7 +33,6 @@ export default function TentangView() {
               </h2>
             </div>
             <div className="relative w-48 h-48 md:w-64 md:h-64 shrink-0">
-              {/* Pastikan path logo sudah benar */}
               <Image 
                 src="/logo/uib.png" 
                 alt="Logo UIB"
@@ -50,14 +45,12 @@ export default function TentangView() {
         </div>
       </section>
 
-      {/* 3. Section Misi - BG Biru Tua dengan Batik.png */}
           <section className="relative bg-[#1a365d] py-20 md:py-32 overflow-hidden border-b border-white/10">
-            {/* Background Batik Baru dengan Opacity */}
             <div 
               className="absolute inset-0 opacity-4 pointer-events-none z-0 bg-repeat"
               style={{ 
-                backgroundImage: "url('/img/batik_new.jpg')", // MENGGUNAKAN BATIK.PNG
-                backgroundSize: 'cover' // Ukuran pattern, sesuaikan jika perlu
+                backgroundImage: "url('/img/batik_new.jpg')", 
+                backgroundSize: 'cover' 
               }}
             ></div>
 
@@ -65,10 +58,7 @@ export default function TentangView() {
               <h3 className="text-center text-xs md:text-sm font-bold uppercase tracking-[0.4em] mb-16 opacity-90">
                 Misi
               </h3>
-              
-              
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-lg leading-relaxed text-center md:text-left">
-                
                 {[
                   "Secara terus menerus menerapkan pendidikan yang menyeluruh sesuai dengan standar kualitas internasional.",
                   "Mengembangkan ilmu pengetahuan, teknologi dan seni yang analitis dan inovatif melalui penelitian.",
@@ -84,14 +74,12 @@ export default function TentangView() {
             </div>
           </section>
 
-          {/* 4. Section Statistik - BG Biru Tua dengan Batik.png */}
           <section className="relative bg-[#1a365d] py-16 md:py-20 overflow-hidden">
-            {/* Background Batik Baru dengan Opacity */}
             <div 
               className="absolute inset-0 opacity-4 pointer-events-none z-0 bg-repeat"
               style={{ 
-                backgroundImage: "url('/img/batik_new.jpg')", // MENGGUNAKAN BATIK.PNG
-                backgroundSize: 'cover', // Disamakan dengan section atas agar nyambung
+                backgroundImage: "url('/img/batik_new.jpg')", 
+                backgroundSize: 'cover', 
               }}
             ></div>
 
@@ -99,9 +87,7 @@ export default function TentangView() {
               <div className="grid grid-cols-2 md:grid-cols-5 gap-y-10 gap-x-4">
                 {stats.map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    {/* Garis Vertikal Oranye */}
                     <div className="w-1.5 h-10 md:h-12 bg-[#f6a623] shrink-0"></div>
-                    
                     <div className="flex flex-col">
                       <span className="text-white text-2xl md:text-3xl font-extrabold leading-none mb-1">
                         {item.number}
@@ -115,7 +101,7 @@ export default function TentangView() {
               </div>
             </div>
           </section>
-      <Footer />
+
     </main>
   )
 }

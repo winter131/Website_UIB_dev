@@ -66,7 +66,6 @@ export const UiState = Extension.create<UiState>({
     }
 
     return {
-      // AI Generation commands
       aiGenerationSetIsSelection: createBooleanSetter(
         "aiGenerationIsSelection"
       ),
@@ -75,15 +74,12 @@ export const UiState = Extension.create<UiState>({
       aiGenerationShow: createToggle("aiGenerationActive", true),
       aiGenerationHide: createToggle("aiGenerationActive", false),
 
-      // Comment input commands
       commentInputShow: createToggle("commentInputVisible", true),
       commentInputHide: createToggle("commentInputVisible", false),
 
-      // Drag handle commands
       setLockDragHandle: createBooleanSetter("lockDragHandle"),
       setIsDragging: createBooleanSetter("isDragging"),
 
-      // Reset command
       resetUiState: () => () => {
         Object.assign(this.storage, { ...defaultUiState })
         return true

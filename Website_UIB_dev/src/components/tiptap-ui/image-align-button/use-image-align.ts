@@ -5,50 +5,27 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import { NodeSelection } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Lib ---
+
 import { isExtensionAvailable } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { AlignCenterVerticalIcon } from "@/components/tiptap-icons/align-center-vertical-icon"
 import { AlignEndVerticalIcon } from "@/components/tiptap-icons/align-end-vertical-icon"
 import { AlignStartVerticalIcon } from "@/components/tiptap-icons/align-start-vertical-icon"
 
 export type ImageAlign = "left" | "center" | "right"
 
-/**
- * Configuration for the image align functionality
- */
+
 export interface UseImageAlignConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * The image alignment to apply.
-   */
   align: ImageAlign
-  /**
-   * The name of the image extension to target.
-   * @default "image"
-   */
   extensionName?: string
-  /**
-   * The attribute name used for alignment.
-   * @default "data-align"
-   */
   attributeName?: string
-  /**
-   * Whether the button should hide when alignment is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful alignment change.
-   */
   onAligned?: () => void
 }
 
@@ -70,9 +47,7 @@ export const imageAlignLabels: Record<ImageAlign, string> = {
   right: "Image align right",
 }
 
-/**
- * Checks if image alignment can be performed in the current editor state
- */
+
 export function canSetImageAlign(
   editor: Editor | null,
   align: ImageAlign,
@@ -87,9 +62,7 @@ export function canSetImageAlign(
     .updateAttributes(extensionName, { [attributeName]: align })
 }
 
-/**
- * Checks if the image alignment is currently active
- */
+
 export function isImageAlignActive(
   editor: Editor | null,
   align: ImageAlign,
@@ -104,9 +77,7 @@ export function isImageAlignActive(
   return currentAlign === align
 }
 
-/**
- * Sets image alignment in the editor
- */
+
 export function setImageAlign(
   editor: Editor | null,
   align: ImageAlign,
@@ -138,8 +109,6 @@ export function setImageAlign(
       .updateAttributes(extensionName, { [attributeName]: align })
       .run()
 
-    // Restore node selection if it was originally selected
-    // This is the temporary solution as image-node-extension.ts contain content: "inline*"
     if (alignmentUpdated && isNodeSelection) {
       editor.commands.setNodeSelection(selectionPosition)
     }
@@ -150,9 +119,7 @@ export function setImageAlign(
   }
 }
 
-/**
- * Determines if the image align button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -178,44 +145,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides image align functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage with default "image" extension
- * function MySimpleImageAlignButton() {
- *   const { isVisible, handleImageAlign } = useImageAlign({ align: "center" })
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleImageAlign}>Align Center</button>
- * }
- *
- * // Advanced usage with custom extension name
- * function MyAdvancedImageAlignButton() {
- *   const { isVisible, handleImageAlign, label, isActive } = useImageAlign({
- *     editor: myEditor,
- *     align: "right",
- *     extensionName: "myCustomImage", // Use your custom extension name
- *     hideWhenUnavailable: true,
- *     onAligned: () => console.log('Image aligned!')
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleImageAlign}
- *       aria-pressed={isActive}
- *       aria-label={label}
- *     >
- *       Align Right
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useImageAlign(config: UseImageAlignConfig) {
   const {
     editor: providedEditor,

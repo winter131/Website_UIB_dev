@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight, Building2, Map } from 'lucide-react'
 
-// --- DATA FASILITAS ---
+
 const fasilitasUIB = [
     {
         id: 1,
@@ -44,7 +44,6 @@ export default function FasilitasMahasiswa() {
             <div className="container mx-auto px-6 md:px-20">
 
                 <div className="flex flex-col lg:flex-row items-start gap-16">
-                    {/* --- BAGIAN KANAN: LIST FASILITAS (Accordion) --- */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -62,7 +61,6 @@ export default function FasilitasMahasiswa() {
                             </p>
                         </div>
 
-                        {/* Accordion List */}
                         <div className="space-y-4">
                             {fasilitasUIB.map((item) => (
                                 <motion.div
@@ -111,7 +109,6 @@ export default function FasilitasMahasiswa() {
                             ))}
                         </div>
                     </motion.div>
-                    {/* --- BAGIAN KIRI: GAMBAR KAMPUS (Sticky on Desktop) --- */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -128,7 +125,6 @@ export default function FasilitasMahasiswa() {
                             <div className="absolute inset-0 bg-gradient-to-t from-[#2A3955]/40 to-transparent" />
                         </div>
 
-                        {/* Dekorasi Aksen */}
                         <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#e67e22] rounded-3xl -z-10 hidden md:block" />
                     </motion.div>
 

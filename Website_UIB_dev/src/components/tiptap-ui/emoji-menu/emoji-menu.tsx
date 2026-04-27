@@ -3,20 +3,20 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import type { EmojiItem } from "@tiptap/extension-emoji"
 
-// --- Hooks ---
+
 import { useMenuNavigation } from "@/hooks/use-menu-navigation"
 
-// --- Lib ---
+
 import { getElementOverflowPosition } from "@/lib/tiptap-collab-utils"
 
-// --- UI Primitives ---
+
 import { Button, ButtonGroup } from "@/components/tiptap-ui-primitive/button"
 import { Input } from "@/components/tiptap-ui-primitive/input"
 import { Card, CardBody, CardHeader } from "@/components/tiptap-ui-primitive/card"
 
 import { getFilteredEmojis } from "@/components/tiptap-ui/emoji-menu/emoji-menu-utils"
 
-// --- Styles ---
+
 import "@/components/tiptap-ui/emoji-menu/emoji-menu.scss"
 
 export interface EmojiMenuItemProps<T extends EmojiItem> {

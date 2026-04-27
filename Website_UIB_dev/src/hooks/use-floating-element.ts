@@ -15,41 +15,18 @@ import {
 import { useEffect, useMemo } from "react"
 
 interface FloatingElementReturn {
-  /**
-   * Whether the floating element is currently mounted in the DOM.
-   */
   isMounted: boolean
-  /**
-   * Ref function to attach to the floating element DOM node.
-   */
   ref: (node: HTMLElement | null) => void
-  /**
-   * Combined styles for positioning, transitions, and z-index.
-   */
   style: React.CSSProperties
-  /**
-   * Returns props that should be spread onto the floating element.
-   */
   getFloatingProps: (
     userProps?: React.HTMLProps<HTMLElement>
   ) => Record<string, unknown>
-  /**
-   * Returns props that should be spread onto the reference element.
-   */
   getReferenceProps: (
     userProps?: React.HTMLProps<Element>
   ) => Record<string, unknown>
 }
 
-/**
- * Custom hook for creating and managing floating elements relative to a reference position
- *
- * @param show - Boolean controlling visibility of the floating element
- * @param referencePos - DOMRect, function returning DOMRect, or null representing the position to anchor the floating element to
- * @param zIndex - Z-index value for the floating element
- * @param options - Additional options to pass to the underlying useFloating hook
- * @returns Object containing properties and methods to control the floating element
- */
+
 export function useFloatingElement(
   show: boolean,
   reference: HTMLElement | DOMRect | (() => DOMRect | null) | null,
@@ -85,8 +62,6 @@ export function useFloatingElement(
       return
     }
 
-    // If reference is an actual DOM element, use it directly
-    // autoUpdate will automatically observe it for scroll/resize
     if (reference instanceof HTMLElement) {
       refs.setReference(reference)
 

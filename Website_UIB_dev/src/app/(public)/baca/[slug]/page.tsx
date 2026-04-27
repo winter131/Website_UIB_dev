@@ -1,7 +1,7 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import { getNewsBySlug, getLatestNews } from '@/actions/newsActions'
 import DetailNewsView from '@/components/landing/news/DetailNewsView'
 
@@ -17,7 +17,6 @@ export default async function HalamanDetailBerita({ params }: { params: Promise<
 
     return (
         <main className="min-h-screen bg-white font-poppins text-[#2A3955] selection:bg-[#e67e22] selection:text-white">
-            <NavbarLanding />
 
             <DetailNewsView
                 news={news}
@@ -28,7 +27,6 @@ export default async function HalamanDetailBerita({ params }: { params: Promise<
                 readMorePath="/baca"
             />
 
-            <Footer />
         </main>
     )
 }

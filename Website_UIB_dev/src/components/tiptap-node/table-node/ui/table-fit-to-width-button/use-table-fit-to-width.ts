@@ -3,48 +3,29 @@
 import { useCallback } from "react"
 import type { Editor } from "@tiptap/react"
 
-// --Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --Lib ---
+
 import { isExtensionAvailable } from "@/lib/tiptap-utils"
 import {
   getTable,
   RESIZE_MIN_WIDTH,
 } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --Icons ---
+
 import { MoveHorizontalIcon } from "@/components/tiptap-icons/move-horizontal-icon"
 
 export interface UseTableFitToWidthConfig {
-  /**
-   * The Tiptap editor instance. If omitted, the hook will use
-   * the editor from `useTiptapEditor`.
-   */
   editor?: Editor | null
-  /**
-   * Hide the button when the action isn't currently possible.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Called after the table width is successfully adjusted.
-   */
   onWidthAdjusted?: () => void
 }
 
-/**
- * Required Tiptap extensions for this feature to work.
- * - `table` to target the node and update attributes
- * - `tableHandleExtension` (or your table controls) to ensure table tooling is enabled
- */
+
 const REQUIRED_EXTENSIONS = ["table", "tableHandleExtension"]
 
-/**
- * Returns whether a "fit to width" action can run in the current state.
- * Checks: editor presence, editability, required extensions,
- * and that the selection is somewhere inside a table.
- */
+
 function canFitTableToWidth(editor: Editor | null): boolean {
   if (
     !editor ||
@@ -65,16 +46,7 @@ function canFitTableToWidth(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Automatically adjusts table column widths to fit the editor's available width.
- *
- * This function finds the table containing the current selection and distributes
- * the available editor width equally across all columns, accounting for padding
- * and respecting any user-configured minimum cell width settings.
- *
- * @param editor - The ProseMirror editor instance, or null
- * @returns true if the table width was successfully set, false otherwise
- */
+
 function setTableAutoWidth(editor: Editor | null): boolean {
   if (!canFitTableToWidth(editor) || !editor) return false
 
@@ -82,7 +54,6 @@ function setTableAutoWidth(editor: Editor | null): boolean {
     const table = getTable(editor)
     if (!table) return false
 
-    // Calculate the editor width available for the table
     const editorElement = editor.view.dom as HTMLElement
     const style = getComputedStyle(editorElement)
 
@@ -98,8 +69,6 @@ function setTableAutoWidth(editor: Editor | null): boolean {
     const availableWidth = editorWidth - columnCount - 8
     colWidth = Math.floor(availableWidth / columnCount)
 
-    // We are not using what what user set cellMinWidth
-    // Instead, we use a reasonable minimum width for usability.
     const finalColWidth = Math.max(colWidth, RESIZE_MIN_WIDTH)
 
     const tr = editor.state.tr
@@ -130,10 +99,7 @@ function setTableAutoWidth(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Executes the "fit to width" operation. Safely no-ops if unavailable.
- * Returns `true` on success, `false` otherwise.
- */
+
 function tableFitToWidth({ editor }: { editor: Editor | null }) {
   if (!canFitTableToWidth(editor) || !editor) {
     return false
@@ -147,10 +113,7 @@ function tableFitToWidth({ editor }: { editor: Editor | null }) {
   }
 }
 
-/**
- * Determines whether a UI control should be visible based on the editor
- * state and `hideWhenUnavailable` setting.
- */
+
 function shouldShowButton({
   editor,
   hideWhenUnavailable,
@@ -164,49 +127,7 @@ function shouldShowButton({
   return hideWhenUnavailable ? canFitTableToWidth(editor) : true
 }
 
-/**
- * React hook that provides a **Fit table to container width** action for Tiptap.
- *
- * What it does:
- * - Sets the current table's `width` to `"100%"`
- * - Clears cell-level `colwidth` so the table can expand fluidly
- *
- * Returned API:
- * - `isVisible`: whether a button should be shown
- * - `canFitToWidth`: whether the action can execute now
- * - `handleFitToWidth()`: runs the action; returns `true` on success
- * - `label`: UI label, e.g. "Fit to width"
- * - `Icon`: a presentational icon component
- *
- * @example
- * // Minimal button
- * function FitToWidthButton() {
- *   const { isVisible, canFitToWidth, handleFitToWidth, label, Icon } =
- *     useTableFitToWidth({ hideWhenUnavailable: true })
- *
- *   if (!isVisible) return null
- *   return (
- *     <button onClick={handleFitToWidth} disabled={!canFitToWidth} aria-label={label}>
- *       <Icon /> {label}
- *     </button>
- *   )
- * }
- *
- * @example
- * // Using a provided editor instance and a success callback
- * function FitToWidthWithCallback({ editor }: { editor: Editor }) {
- *   const { handleFitToWidth, canFitToWidth } = useTableFitToWidth({
- *     editor,
- *     hideWhenUnavailable: true,
- *     onWidthAdjusted: () => console.log("Table set to auto width"),
- *   })
- *   return (
- *     <button onClick={handleFitToWidth} disabled={!canFitToWidth}>
- *       Fit to container
- *     </button>
- *   )
- * }
- */
+
 export function useTableFitToWidth(config: UseTableFitToWidthConfig = {}) {
   const {
     editor: providedEditor,

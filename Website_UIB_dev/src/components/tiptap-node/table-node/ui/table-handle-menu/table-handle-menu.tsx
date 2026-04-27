@@ -11,16 +11,16 @@ import type { Editor } from "@tiptap/react"
 import { TableMap } from "@tiptap/pm/tables"
 import type { Node } from "@tiptap/pm/model"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { cn, isValidPosition, SR_ONLY } from "@/lib/tiptap-utils"
 import type { Orientation } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 import { selectCellsByCoords } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --- Icons ---
+
 import { MoreVerticalIcon } from "@/components/tiptap-icons/more-vertical-icon"
 
-// --- UI Primitives ---
+
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Combobox, ComboboxList } from "@/components/tiptap-ui-primitive/combobox"
 import {
@@ -32,7 +32,7 @@ import {
 } from "@/components/tiptap-ui-primitive/menu"
 import { Separator } from "@/components/tiptap-ui-primitive/separator"
 
-// --- Tiptap UI ---
+
 import { useTableDuplicateRowColumn } from "@/components/tiptap-node/table-node/ui/table-duplicate-row-column-button"
 import { useTableMoveRowColumn } from "@/components/tiptap-node/table-node/ui/table-move-row-column-button"
 import { useTableClearRowColumnContent } from "@/components/tiptap-node/table-node/ui/table-clear-row-column-content-button"
@@ -47,9 +47,7 @@ import { dragEnd } from "@/components/tiptap-node/table-node/extensions/table-ha
 
 import "./table-handle-menu.scss"
 
-/* -------------------------------------------------------------------------------------------------
- * Types & Interfaces
- * ----------------------------------------------------------------------------------------------- */
+
 
 interface BaseProps {
   editor?: Editor | null
@@ -89,9 +87,7 @@ const ARIA_LABELS: Record<Orientation, string> = {
   column: "Column actions",
 }
 
-/* -------------------------------------------------------------------------------------------------
- * Context
- * ----------------------------------------------------------------------------------------------- */
+
 
 const TableHandleContext = createContext<TableHandleContextValue | null>(null)
 
@@ -105,13 +101,9 @@ function useTableHandleContext() {
   return context
 }
 
-/* -------------------------------------------------------------------------------------------------
- * Hooks
- * ----------------------------------------------------------------------------------------------- */
 
-/**
- * Hook to manage table handle menu state and interactions
- */
+
+
 function useTableHandleMenu(
   onToggleOtherHandle?: (visible: boolean) => void,
   onOpenChange?: (open: boolean) => void
@@ -191,9 +183,7 @@ function useTableHandleMenu(
   }
 }
 
-/**
- * Hook to get filtered action items based on orientation
- */
+
 function useTableActionItems() {
   const { editor, index, orientation, tablePos } = useTableHandleContext()
 
@@ -210,7 +200,6 @@ function useTableActionItems() {
     tablePos,
   })
 
-  // Sort actions
   const sortAscAction = useTableSortRowColumn({
     editor,
     tablePos,
@@ -465,13 +454,9 @@ function useTableActionItems() {
   }
 }
 
-/* -------------------------------------------------------------------------------------------------
- * Components
- * ----------------------------------------------------------------------------------------------- */
 
-/**
- * Individual action item component
- */
+
+
 const TableActionItem = ({
   icon: Icon,
   label,
@@ -493,9 +478,7 @@ const TableActionItem = ({
   </MenuItem>
 )
 
-/**
- * Action group component containing add and delete actions
- */
+
 const TableActionGroup = () => {
   const { index, orientation } = useTableHandleContext()
   const {
@@ -529,7 +512,6 @@ const TableActionGroup = () => {
 
   return (
     <>
-      {/* Header Toggle Action - Only for first row/column */}
       {hasHeaderAction && (
         <>
           <MenuGroup>
@@ -545,7 +527,6 @@ const TableActionGroup = () => {
         </>
       )}
 
-      {/* Move Actions */}
       {hasMoveItems && (
         <>
           <MenuGroup>
@@ -557,7 +538,6 @@ const TableActionGroup = () => {
         </>
       )}
 
-      {/* Add Actions */}
       {hasAddItems && (
         <>
           <MenuGroup>
@@ -569,7 +549,6 @@ const TableActionGroup = () => {
         </>
       )}
 
-      {/* Sort Actions */}
       {hasSortItems && (
         <>
           <MenuGroup>
@@ -581,7 +560,6 @@ const TableActionGroup = () => {
         </>
       )}
 
-      {/* Actions */}
       <>
         <MenuGroup>
           <ColorMenu />
@@ -623,9 +601,7 @@ const TableActionGroup = () => {
   )
 }
 
-/**
- * Menu content component
- */
+
 const TableActionMenu = () => {
   const { resetMenu } = useTableHandleMenu()
 
@@ -644,9 +620,7 @@ const TableActionMenu = () => {
   )
 }
 
-/**
- * Main table handle menu component
- */
+
 export const TableHandleMenu = ({
   editor: providedEditor,
   orientation,
@@ -681,9 +655,7 @@ export const TableHandleMenu = ({
   )
 }
 
-/**
- * Internal menu content component
- */
+
 const TableHandleMenuContent = ({
   onToggleOtherHandle,
   onOpenChange,

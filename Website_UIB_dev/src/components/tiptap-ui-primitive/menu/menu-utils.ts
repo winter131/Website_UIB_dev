@@ -2,12 +2,7 @@
 
 import type { Action } from "@/components/tiptap-ui-primitive/menu/menu-types"
 
-/**
- * Filters menu items based on search value
- * @param group - The action group containing items to filter
- * @param searchValue - The search string to filter against
- * @returns Filtered array of actions
- */
+
 export function filterMenuItems(
   { items = [], ...group }: Action,
   searchValue: string
@@ -37,12 +32,7 @@ export function filterMenuItems(
   })
 }
 
-/**
- * Filters menu groups based on search value
- * @param menuGroups - Array of action groups to filter
- * @param searchValue - The search string to filter against
- * @returns Filtered array of action groups
- */
+
 export function filterMenuGroups(
   menuGroups: Action[],
   searchValue: string

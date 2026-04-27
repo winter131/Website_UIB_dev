@@ -2,7 +2,7 @@
 
 import type { Editor } from "@tiptap/react"
 
-// Primitive UI Components
+
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Spacer } from "@/components/tiptap-ui-primitive/spacer"
 import {
@@ -16,7 +16,7 @@ import {
 import { ComboboxList } from "@/components/tiptap-ui-primitive/combobox"
 import { Separator } from "@/components/tiptap-ui-primitive/separator"
 
-// Tiptap UI
+
 import {
   TEXT_COLORS,
   useColorText,
@@ -31,7 +31,7 @@ import {
   useRecentColors,
 } from "@/components/tiptap-ui/color-text-popover"
 
-// Icons
+
 import { PaintBucketIcon } from "@/components/tiptap-icons/paint-bucket-icon"
 import { ChevronRightIcon } from "@/components/tiptap-icons/chevron-right-icon"
 import { TextColorSmallIcon } from "@/components/tiptap-icons/text-color-small-icon"
@@ -114,26 +114,12 @@ const RecentColorMenuItem: React.FC<{
 
 export interface ColorMenuProps {
   editor?: Editor | null
-  /**
-   * Custom trigger component. If not provided, uses default paint bucket button.
-   */
   trigger?: React.ReactNode
-  /**
-   * Label for the color menu trigger
-   * @default "Color"
-   */
   label?: string
-  /**
-   * Menu placement relative to trigger
-   * @default "right"
-   */
   placement?: React.ComponentProps<typeof Menu>["placement"]
 }
 
-/**
- * Reusable color menu component that provides text and highlight color options.
- * Includes recent colors, text colors, and highlight colors sections.
- */
+
 export const ColorMenu: React.FC<ColorMenuProps> = ({
   editor: providedEditor,
   trigger,
@@ -174,7 +160,6 @@ export const ColorMenu: React.FC<ColorMenuProps> = ({
     <Menu placement={placement} trigger={trigger || defaultTrigger}>
       <MenuContent portal>
         <ComboboxList>
-          {/* Recent Colors */}
           {isInitialized && recentColors.length > 0 && (
             <MenuGroup>
               <MenuGroupLabel>Recent colors</MenuGroupLabel>
@@ -185,7 +170,6 @@ export const ColorMenu: React.FC<ColorMenuProps> = ({
             </MenuGroup>
           )}
 
-          {/* Text Colors */}
           <MenuGroup>
             <MenuGroupLabel>Text color</MenuGroupLabel>
             {TEXT_COLORS.map((textColor) => (
@@ -195,7 +179,6 @@ export const ColorMenu: React.FC<ColorMenuProps> = ({
 
           <Separator orientation="horizontal" />
 
-          {/* Background Colors */}
           <MenuGroup>
             <MenuGroupLabel>Background color</MenuGroupLabel>
             {HIGHLIGHT_COLORS.map((highlightColor) => (

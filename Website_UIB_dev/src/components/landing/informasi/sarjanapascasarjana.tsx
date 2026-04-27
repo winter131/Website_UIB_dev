@@ -20,8 +20,6 @@ export default function SarjanaPascasarjana() {
     return (
         <main className="min-h-screen bg-white font-poppins text-[#2A3955]">
             <div className="container mx-auto px-6 md:px-16 max-w-6xl pt-32 pb-16">
-                
-                {/* --- HEADER --- */}
                 <div className="mb-8 text-center md:text-left">
                     <h1 className="text-3xl md:text-4xl font-black text-[#1A253A] tracking-tight uppercase leading-none">
                         Informasi <span className="text-[#e67e22]">Pendaftaran</span>
@@ -31,7 +29,6 @@ export default function SarjanaPascasarjana() {
                     </p>
                 </div>
 
-                {/* --- ACCORDION CONTROLS (RAPAT) --- */}
                 <div className="flex flex-col md:flex-row gap-3 mb-8">
                     <button
                         onClick={() => setActiveTab('s1')}
@@ -56,7 +53,6 @@ export default function SarjanaPascasarjana() {
                     </button>
                 </div>
 
-                {/* --- CONTENT AREA (LEBIH RAPAT) --- */}
                 <div className="w-full">
                     <AnimatePresence mode="wait">
                         {activeTab === 's1' ? (
@@ -67,7 +63,6 @@ export default function SarjanaPascasarjana() {
                                 exit={{ opacity: 0, y: -10 }}
                                 className="space-y-10"
                             >
-                                {/* SEKSI A - SARJANA */}
                                 <div className="space-y-4">
                                     <h2 className="text-2xl font-black uppercase tracking-widest flex items-center gap-3">
                                         <span className="text-[#e67e22]">A.</span> Persyaratan Pendaftaran
@@ -88,7 +83,6 @@ export default function SarjanaPascasarjana() {
                                     </ul>
                                 </div>
 
-                                {/* SEKSI B - USM SARJANA */}
                                 <div className="space-y-4">
                                     <h2 className="text-2xl font-black uppercase tracking-widest flex items-center gap-3"><span className="text-[#e67e22]">B.</span> Ujian Saringan Masuk (USM)</h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pl-1">
@@ -104,7 +98,6 @@ export default function SarjanaPascasarjana() {
                                     </div>
                                 </div>
 
-                                {/* SEKSI C - DAFTAR ULANG */}
                                 <div className="space-y-4">
                                     <h2 className="text-2xl font-black uppercase tracking-widest flex items-center gap-3"><span className="text-[#e67e22]">C.</span> Pendaftaran Ulang</h2>
                                     <div className="space-y-4 pl-1 text-sm font-bold">
@@ -122,7 +115,6 @@ export default function SarjanaPascasarjana() {
                                 exit={{ opacity: 0, y: -10 }}
                                 className="space-y-10"
                             >
-                                {/* --- PASCASARJANA CONTENT --- */}
                                 <div className="space-y-4">
                                     <h2 className="text-2xl font-black uppercase tracking-widest flex items-center gap-3">
                                         <span className="text-[#e67e22]">A.</span> Persyaratan & Program Studi
@@ -148,7 +140,6 @@ export default function SarjanaPascasarjana() {
                                     </div>
                                 </div>
 
-                                {/* USM S2 */}
                                 <div className="space-y-4">
                                     <h2 className="text-2xl font-black uppercase tracking-widest flex items-center gap-3"><span className="text-[#e67e22]">B.</span> Ujian Saringan Masuk (USM)</h2>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-1">
@@ -160,7 +151,6 @@ export default function SarjanaPascasarjana() {
                                     </div>
                                 </div>
 
-                                {/* KONTAK & BIAYA S2 */}
                                 <div className="pt-8 border-t border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-10">
                                     <div className="lg:col-span-5 space-y-6">
                                         <div className="space-y-4">

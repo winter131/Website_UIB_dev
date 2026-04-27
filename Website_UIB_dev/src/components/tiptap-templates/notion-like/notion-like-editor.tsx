@@ -10,7 +10,7 @@ import {
 import { Editor, EditorContent, EditorContext, useEditor } from "@tiptap/react";
 import { createPortal } from "react-dom";
 
-// --- Tiptap Core Extensions ---
+
 import { StarterKit } from "@tiptap/starter-kit";
 import { Mention } from "@tiptap/extension-mention";
 import { TaskList, TaskItem } from "@tiptap/extension-list";
@@ -26,21 +26,21 @@ import { UniqueID } from "@tiptap/extension-unique-id";
 import { Emoji, gitHubEmojis } from "@tiptap/extension-emoji";
 import { FontFamily } from "@tiptap/extension-font-family";
 
-// --- Hooks ---
+
 import { useUiEditorState } from "@/hooks/use-ui-editor-state";
 import { useScrollToHash } from "@/components/tiptap-ui/copy-anchor-link-button/use-scroll-to-hash";
 
-// --- Custom Extensions ---
+
 import { HorizontalRule } from "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node-extension";
 import { UiState } from "@/components/tiptap-extension/ui-state-extension";
 import { Image } from "@/components/tiptap-node/image-node/image-node-extension";
 import { NodeBackground } from "@/components/tiptap-extension/node-background-extension";
 import { NodeAlignment } from "@/components/tiptap-extension/node-alignment-extension";
 
-// --- Tiptap Node ---
+
 import { ImageUploadNode } from "@/components/tiptap-node/image-upload-node/image-upload-node-extension";
 
-// --- Table Node ---
+
 import { TableKit } from "@/components/tiptap-node/table-node/extensions/table-node-extension";
 import { TableHandleExtension } from "@/components/tiptap-node/table-node/extensions/table-handle";
 import { TableHandle } from "@/components/tiptap-node/table-node/ui/table-handle/table-handle";
@@ -58,23 +58,23 @@ import "@/components/tiptap-node/image-node/image-node.scss";
 import "@/components/tiptap-node/heading-node/heading-node.scss";
 import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
 
-// --- Tiptap UI ---
+
 import { EmojiDropdownMenu } from "@/components/tiptap-ui/emoji-dropdown-menu";
 import { MentionDropdownMenu } from "@/components/tiptap-ui/mention-dropdown-menu";
 import { SlashDropdownMenu } from "@/components/tiptap-ui/slash-dropdown-menu";
 import { DragContextMenu } from "@/components/tiptap-ui/drag-context-menu";
 
-// --- Contexts ---
+
 import { AppProvider } from "@/contexts/app-context";
 import { UserProvider, useUser } from "@/contexts/user-context";
 
-// --- Lib ---
+
 import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils";
 
-// --- Styles ---
+
 import "@/components/tiptap-templates/notion-like/notion-like-editor.scss";
 
-// --- Content ---
+
 import { NotionEditorHeader } from "@/components/tiptap-templates/notion-like/notion-like-editor-header";
 import { MobileToolbar } from "@/components/tiptap-templates/notion-like/notion-like-editor-mobile-toolbar";
 import { NotionToolbarFloating } from "@/components/tiptap-templates/notion-like/notion-like-editor-toolbar-floating";
@@ -97,9 +97,7 @@ export interface NotionEditorRef {
   clearContent: () => void;
 }
 
-/**
- * Loading spinner component shown while connecting to the notion server
- */
+
 export function LoadingSpinner({ text = "Connecting..." }: { text?: string }) {
   return (
     <div className="spinner-container">
@@ -114,9 +112,7 @@ export function LoadingSpinner({ text = "Connecting..." }: { text?: string }) {
   );
 }
 
-/**
- * EditorContent component that renders the actual editor
- */
+
 export function EditorContentArea() {
   const { editor } = useContext(EditorContext)!;
   const { isDragging } = useUiEditorState(editor);
@@ -147,9 +143,7 @@ export function EditorContentArea() {
   );
 }
 
-/**
- * Component that creates and provides the editor instance
- */
+
 export const EditorProvider = forwardRef<
   NotionEditorRef,
   EditorProviderProps & {
@@ -216,77 +210,7 @@ export const EditorProvider = forwardRef<
       TableHandleExtension,
       ListNormalizationExtension,
       ImageUploadNode.configure({
-        accept: "image/*",
-        maxSize: MAX_FILE_SIZE,
-        limit: 5,
-        // upload: handleImageUpload,
-        upload: imageUploadTiptapCustomHandler,
-        onError: (error) => console.error("Upload failed:", error),
-      }),
-      UniqueID.configure({
-        types: [
-          "table",
-          "paragraph",
-          "bulletList",
-          "orderedList",
-          "taskList",
-          "heading",
-          "blockquote",
-          "codeBlock",
-        ],
-      }),
-      Typography,
-      FontFamily,
-      UiState,
-    ],
-  });
-
-  useImperativeHandle(ref, () => ({
-    resetContent() {
-      editor?.commands.clearContent(true);
-      isContentLoaded.current = false;
-    },
-    clearContent() {
-      editor?.commands.clearContent(false);
-    },
-  }));
-
-  useEffect(() => {
-    if (!editor || !content || isContentLoaded.current) return;
-
-    editor.commands.setContent(content); // false = keep history
-    isContentLoaded.current = true;
-  }, [editor, content]);
-
-  if (!editor) {
-    return <LoadingSpinner />;
-  }
-
-  return (
-    <div className="notion-like-editor-wrapper">
-      <EditorContext.Provider value={{ editor }}>
-        <NotionEditorHeader />
-        <EditorContentArea />
-
-        <TableExtendRowColumnButtons />
-        <TableHandle />
-        <TableSelectionOverlay
-          showResizeHandles={true}
-          cellMenu={(props) => (
-            <TableCellHandleMenu
-              editor={props.editor}
-              onMouseDown={(e) => props.onResizeStart?.("br")(e)}
-            />
-          )}
-        />
-      </EditorContext.Provider>
-    </div>
-  );
-});
-
-/**
- * Full editor with all necessary providers, ready to use with just a room ID
- */
+        accept: "image
 export const NotionEditor = forwardRef<NotionEditorRef, NotionEditorProps>(
   (props, ref) => {
     const { onChange, placeholder = "Start writing...", content } = props;
@@ -306,9 +230,7 @@ export const NotionEditor = forwardRef<NotionEditorRef, NotionEditorProps>(
   }
 );
 
-/**
- * Internal component that handles the editor loading state
- */
+
 export function NotionEditorContent({
   placeholder,
   onChange,

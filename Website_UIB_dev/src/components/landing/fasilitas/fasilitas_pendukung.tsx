@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 
-// --- DATA FASILITAS PENDUKUNG KIRI ---
+
 const fasilitasPendukungKiri = [
     { 
         id: 1, 
@@ -32,7 +32,7 @@ const fasilitasPendukungKiri = [
     }
 ]
 
-// --- DATA FASILITAS PENDUKUNG KANAN ---
+
 const fasilitasPendukungKanan = [
     { 
         id: 6, 
@@ -72,10 +72,8 @@ export default function FasilitasPendukung() {
         <section className="py-24 bg-[#FDFDFD] overflow-hidden">
             <div className="container mx-auto px-6 md:px-20">
 
-                {/* --- HEADER SECTION: IMAGE & FLOATING BLUE BOX --- */}
                 <div className="relative flex flex-col lg:flex-row items-center mb-24">
 
-                    {/* Bagian Gambar (Kiri) */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -92,7 +90,6 @@ export default function FasilitasPendukung() {
                         </div>
                     </motion.div>
 
-                    {/* Kotak Biru Melayang (Kanan) */}
                     <motion.div
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -100,7 +97,6 @@ export default function FasilitasPendukung() {
                         viewport={{ once: true }}
                         className="lg:w-[50%] lg:-ml-12 z-10 bg-[#1A365D] p-10 md:p-14 text-white rounded-3xl shadow-2xl relative"
                     >
-                        {/* Garis Aksen Vertikal Kuning di Kanan */}
                         <div className="absolute top-0 right-0 h-full w-2 bg-[#ffc107] rounded-r-3xl" />
 
                         <h2 className="text-3xl md:text-5xl font-black mb-8 leading-tight">
@@ -112,10 +108,7 @@ export default function FasilitasPendukung() {
                     </motion.div>
                 </div>
 
-                {/* --- GRID SECTION: 2 COLUMNS ACCORDION LIST --- */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
-                    
-                    {/* Kolom Kiri */}
                     <div className="space-y-4">
                         {fasilitasPendukungKiri.map((item) => (
                             <motion.div
@@ -160,7 +153,6 @@ export default function FasilitasPendukung() {
                         ))}
                     </div>
 
-                    {/* Kolom Kanan */}
                     <div className="space-y-4">
                         {fasilitasPendukungKanan.map((item) => (
                             <motion.div

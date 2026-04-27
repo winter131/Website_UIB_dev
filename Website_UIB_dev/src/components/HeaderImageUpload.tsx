@@ -93,7 +93,6 @@ export default function HeaderImageUpload({
             const file = e.target.files?.[0];
             if (file) handleFile(file);
           }}
-          //   value={value ? undefined : ""}
         />
 
         {!preview ? (

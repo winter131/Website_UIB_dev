@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShieldCheck, Briefcase, Users, User } from 'lucide-react'
 
-// DATA: Struktur organisasi sesuai kategori
+
 const organizationData = {
   Pembina: [
     { name: 'Eddy Hussy', role: 'Ketua', level: 'top' },
@@ -11,7 +11,6 @@ const organizationData = {
     { name: 'Muljadi', role: 'Anggota', level: 'bottom' },
     { name: 'Johannes Sulistijawan Surjaatmadja', role: 'Anggota', level: 'bottom' },
     { name: 'Jim Kery', role: 'Anggota', level: 'bottom' },
-    
   ],
   Pengurus: [
     { name: 'Dr. Iskandar Itan', role: 'Ketua Umum', level: 'top' },
@@ -32,8 +31,6 @@ export default function YmtiBatam() {
   return (
     <section className="py-20 bg-gray-50 font-poppins overflow-hidden">
       <div className="container mx-auto px-6 md:px-20 max-w-7xl">
-        
-        {/* Judul Section - Dibuat Lebih Formal */}
         <div className="text-center mb-16">
           <h2 className="text-[#1a365d] text-2xl md:text-3xl font-bold mb-4 uppercase -tracking-normal">
             Struktur Organisasi YMTI
@@ -41,7 +38,6 @@ export default function YmtiBatam() {
           <div className="w-16 h-1 bg-[#f6a623] mx-auto"></div>
         </div>
 
-        {/* Menu Navigasi (Tabs) - Desain Kotak Formal */}
         <div className="flex flex-wrap justify-center mb-12 bg-white shadow-sm border border-gray-200">
           {(Object.keys(organizationData) as Category[]).map((tab) => (
             <button
@@ -61,7 +57,6 @@ export default function YmtiBatam() {
           ))}
         </div>
 
-        {/* Konten Area - Layout Bersih Tanpa Sudut Terlalu Melengkung */}
         <div className="bg-white p-10 md:p-20 border border-gray-100 shadow-sm min-h-[500px] relative">
           <AnimatePresence mode="wait">
             <motion.div
@@ -72,8 +67,6 @@ export default function YmtiBatam() {
               transition={{ duration: 0.3 }}
               className="w-full" >
               <div className="flex flex-col items-center gap-20">
-                
-                {/* Level Atas (Ketua) */}
                 <div className="flex justify-center w-full">
                   {organizationData[activeTab]
                     .filter(m => m.level === 'top')
@@ -82,7 +75,6 @@ export default function YmtiBatam() {
                   ))}
                 </div>
 
-                {/* Level Bawah (Anggota) - Grid Hirarki */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-12 w-full">
                   {organizationData[activeTab]
                     .filter(m => m.level === 'bottom')
@@ -99,20 +91,14 @@ export default function YmtiBatam() {
   )
 }
 
-/**
- * Sub-komponen Card Member
- * Desain difokuskan pada kejelasan informasi dan aksen garis dari referensi gambar.
- */
+
 function MemberCard({ name, role, isTop = false }: { name: string, role: string, isTop?: boolean }) {
   return (
     <div className={`flex flex-col items-center text-center group ${isTop ? 'max-w-2xl' : 'w-full'}`}>
-      
-      {/* Icon Placeholder - Dibuat Minimalis */}
       <div className={`mb-6 p-4 rounded-sm bg-gray-50 text-[#1a365d] border border-gray-100 transition-colors group-hover:bg-[#1a365d] group-hover:text-white ${isTop ? 'scale-110' : ''}`}>
         <User size={isTop ? 32 : 24} strokeWidth={1.5} />
       </div>
 
-      {/* Nama & Peran */}
       <h4 className={`text-[#1a365d] font-bold leading-tight mb-2 tracking-tight ${isTop ? 'text-xl md:text-2xl' : 'text-sm md:text-base'}`}>
         {name}
       </h4>
@@ -120,7 +106,6 @@ function MemberCard({ name, role, isTop = false }: { name: string, role: string,
         {role}
       </p>
 
-      {/* Aksen Garis Kuning Tipis */}
       <div className="w-6 h-[3px] bg-[#f6a623] mt-4 opacity-70 group-hover:w-12 transition-all duration-300"></div>
     </div>
   )

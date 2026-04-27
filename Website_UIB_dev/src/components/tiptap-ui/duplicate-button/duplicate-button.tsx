@@ -2,20 +2,20 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseDuplicateConfig } from "@/components/tiptap-ui/duplicate-button"
 import {
   DUPLICATE_SHORTCUT_KEY,
   useDuplicate,
 } from "@/components/tiptap-ui/duplicate-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -23,14 +23,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface DuplicateButtonProps
   extends Omit<ButtonProps, "type">,
     UseDuplicateConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -42,11 +35,7 @@ export function DuplicateShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for duplicating a node in a Tiptap editor.
- *
- * For custom button implementations, use the `useDuplicate` hook instead.
- */
+
 export const DuplicateButton = forwardRef<
   HTMLButtonElement,
   DuplicateButtonProps

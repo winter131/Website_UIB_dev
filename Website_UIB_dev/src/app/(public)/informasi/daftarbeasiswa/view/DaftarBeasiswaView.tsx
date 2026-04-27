@@ -2,8 +2,8 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import {
     GraduationCap,
     Search,
@@ -17,7 +17,7 @@ import {
     HandHelping
 } from 'lucide-react'
 
-// --- DATA BEASISWA ORIGINAL ---
+
 const beasiswaData = [
     {
         id: 'Beasiswa-Cemerlang',
@@ -89,16 +89,13 @@ export default function DaftarBeasiswaView() {
 
     return (
         <main className="min-h-screen bg-[#F8FAFC] font-poppins selection:bg-[#e67e22]/30">
-            <NavbarLanding />
 
-            {/* --- HERO SECTION --- */}
             <section className="relative pt-40 pb-24 overflow-hidden bg-[#2A3955]">
 
 
 
             </section>
 
-            {/* --- FILTER & SEARCH --- */}
             <section className="sticky top-[80px] z-[40] bg-white border-b border-slate-200">
                 <div className="container mx-auto px-6 md:px-20 py-4">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -131,7 +128,6 @@ export default function DaftarBeasiswaView() {
                     </div>
                 </div>
             </section>
-            {/* --- SCHOLARSHIP FULL INFO LIST (DESKTOP OPTIMIZED) --- */}
             <section className="py-16 bg-[#FDFDFD]">
                 <div className="container mx-auto px-6 lg:px-12">
                     <AnimatePresence mode="wait">
@@ -151,7 +147,6 @@ export default function DaftarBeasiswaView() {
                                     >
                                         <div className="flex flex-col lg:flex-row items-stretch">
 
-                                            {/* 1. SEKSI IDENTITAS (Warna & Ikon) */}
                                             <div className="lg:w-[22%] p-8 flex flex-col justify-between bg-slate-50/50 group-hover:bg-white border-b lg:border-b-0 lg:border-r border-slate-100 transition-colors duration-500">
                                                 <div>
                                                     <div className={`w-16 h-16 rounded-2xl ${item.color} flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
@@ -166,7 +161,6 @@ export default function DaftarBeasiswaView() {
                                                 </div>
                                             </div>
 
-                                            {/* 2. SEKSI DESKRIPSI & MANFAAT (What You Get) */}
                                             <div className="lg:w-[33%] p-8 border-b lg:border-b-0 lg:border-r border-slate-100 flex flex-col">
                                                 <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                                                     <HandHelping size={14} className="text-[#e67e22]" /> Cakupan Beasiswa
@@ -184,7 +178,6 @@ export default function DaftarBeasiswaView() {
                                                 </div>
                                             </div>
 
-                                            {/* 3. SEKSI PERSYARATAN (Full Info - Requirements) */}
                                             <div className="lg:w-[25%] p-8 flex flex-col bg-slate-50/20 group-hover:bg-white transition-colors">
                                                 <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                                                     <Trophy size={14} className="text-[#e67e22]" /> Persyaratan Utama
@@ -206,7 +199,6 @@ export default function DaftarBeasiswaView() {
                                 ))}
                             </motion.div>
                         ) : (
-                            /* No Results State */
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -223,7 +215,6 @@ export default function DaftarBeasiswaView() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     )
 }

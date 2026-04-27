@@ -43,23 +43,19 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
     }
 
     const renderHeadlineView = () => {
-        // Limit to 6 items: 1 Main + 2 Secondary + 3 Small
         const mainNews = allNews.length > 0 ? allNews[0] : null;
         const secondaryNews = allNews.slice(1, 3);
         const smallNewsItems = allNews.slice(3, 7);
 
         return (
             <div className="container mx-auto px-4 md:px-20">
-                {/* Judul Section */}
                 <div className='flex flex-col md:flex-row justify-between items-center mb-10 gap-4'>
                     <h1 className="font-bold text-[#2A3955] text-3xl tracking-tight">
                         Berita Terbaru
                     </h1>
                 </div>
 
-                {/* GRID UTAMA (Headline & Secondary) */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
-                    {/* Headline - Sisi Kiri */}
                     <div className="lg:col-span-7">
                         {mainNews ? (
                             <Link
@@ -97,9 +93,7 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                                         transition: 'background 0.6s ease',
                                     }}
                                 >
-                                    <span className="bg-[#e67e22] text-white text-[10px] font-bold px-3 py-1 rounded-sm w-fit mb-3 uppercase tracking-widest">
-                                        {mainNews.tag}
-                                    </span>
+
                                     <h3 className="text-white text-xl md:text-3xl font-bold leading-tight mb-3">
                                         {mainNews.title}
                                     </h3>
@@ -119,7 +113,6 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                         )}
                     </div>
 
-                    {/* Berita Menengah - Sisi Kanan */}
                     <div className="lg:col-span-5 flex flex-col gap-4">
                         {secondaryNews.map((news) => (
                             <Link
@@ -164,6 +157,7 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                                     >
                                         {news.date}
                                     </span>
+
                                     <h4
                                         className="text-[14px] font-bold leading-snug line-clamp-2"
                                         style={{ color: '#2A3955', transition: 'color 0.4s ease' }}
@@ -183,7 +177,6 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                     </div>
                 </div>
 
-                {/* GRID BAWAH (Small News) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                     {smallNewsItems.map((news) => (
                         <Link
@@ -243,7 +236,6 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                         </Link>
                     ))}
 
-                    {/* Tombol Lihat Lainnya */}
                     <Link
                         href="/berita"
                         className="flex flex-col items-center justify-center rounded-xl p-4 min-h-[140px] border-2 border-dashed"
@@ -310,21 +302,15 @@ export default function LatestNews({ viewMode = 'headline' }: LatestNewsProps) {
                             key={news.id}
                             className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100"
                         >
-                            {/* Card Image */}
                             <div className="relative aspect-[16/10] overflow-hidden">
                                 <img
                                     src={getImageUrl(news.image)}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     alt={news.title}
                                 />
-                                <div className="absolute top-3 left-3">
-                                    <span className="bg-white/90 backdrop-blur-sm text-[#0055aa] text-[9px] font-black px-2 py-1 rounded shadow-sm uppercase tracking-wider">
-                                        {news.tag}
-                                    </span>
-                                </div>
+
                             </div>
 
-                            {/* Card Content */}
                             <div className="p-4 flex flex-col flex-1">
                                 <div className="flex items-center gap-2 text-[10px] text-slate-400 mb-2 font-medium">
                                     <FaCalendarAlt className="text-slate-300" />

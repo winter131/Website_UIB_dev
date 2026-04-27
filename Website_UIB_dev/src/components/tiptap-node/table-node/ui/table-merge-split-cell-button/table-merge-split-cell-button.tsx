@@ -2,60 +2,24 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseTableMergeSplitCellConfig } from "@/components/tiptap-node/table-node/ui/table-merge-split-cell-button"
 import { useTableMergeSplitCell } from "@/components/tiptap-node/table-node/ui/table-merge-split-cell-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 
 export interface TableMergeSplitCellButtonProps
   extends Omit<ButtonProps, "type">,
     UseTableMergeSplitCellConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
 }
 
-/**
- * Button component for merging or splitting table cells in a Tiptap editor.
- *
- * **Merge Cells**: When multiple cells are selected (using CellSelection),
- * this button will merge them into a single cell.
- *
- * **Split Cell**: When a merged cell is selected, this button will split
- * it back into individual cells.
- *
- * For custom button implementations, use the `useTableMergeSplitCell` hook instead.
- *
- * @example
- * ```tsx
- * // Merge cells button
- * <TableMergeSplitCellButton
- *   action="merge"
- *   hideWhenUnavailable={true}
- * />
- *
- * // Split cell button
- * <TableMergeSplitCellButton
- *   action="split"
- *   text="Split Cell"
- *   onExecuted={(action) => console.log(`${action} completed!`)}
- * />
- *
- * // Custom styling
- * <TableMergeSplitCellButton
- *   action="merge"
- *   className="my-custom-merge-button"
- *   style={{ backgroundColor: 'blue' }}
- * />
- * ```
- */
+
 export const TableMergeSplitCellButton = forwardRef<
   HTMLButtonElement,
   TableMergeSplitCellButtonProps

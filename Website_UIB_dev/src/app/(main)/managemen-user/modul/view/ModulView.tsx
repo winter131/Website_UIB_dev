@@ -37,12 +37,10 @@ export default function ModulView() {
     { value: string; label: string }[]
   >([]);
 
-  // Get data modul
   const { data, isLoading, refetch } = useModulData(
     session.user?.accessToken,
     status
   );
-  // Mutation create user
   const { mutate: createModulMutation } = useCreateModul(
     () => {
       showNotification({
@@ -106,7 +104,6 @@ export default function ModulView() {
     }
   );
 
-  // Submit form tambah dan edit user
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -133,7 +130,6 @@ export default function ModulView() {
           },
         });
   };
-  // Open editing state
   const handleEdit = (data: ModulAlternateType) => {
     setIsEditing(true);
     setModul({
@@ -145,7 +141,6 @@ export default function ModulView() {
       urutan: String(data.modul_urutan),
     });
   };
-  // Handle delete
   const handleDelete = (data: ModulAlternateType) => {
     showConfirmation({
       title: "Hapus modul?",
@@ -163,7 +158,6 @@ export default function ModulView() {
     });
   };
 
-  // Filter modul
   useEffect(() => {
     if (!data) return;
 
@@ -192,7 +186,6 @@ export default function ModulView() {
     <div className="px-8 py-4">
       <h1 className="w-full text-4xl font-bold text-black">Modul</h1>
 
-      {/* Breadcrumbs */}
       <div className="breadcrumbs text-sm text-black">
         <ul>
           <li>
@@ -212,7 +205,6 @@ export default function ModulView() {
         </ul>
       </div>
 
-      {/* Search */}
       <div className="mt-2 flex flex-wrap gap-4">
         <span className="font-normal text-black">
           Modul untuk manajemen modul SIM Admisi
@@ -227,9 +219,7 @@ export default function ModulView() {
         />
       </div>
 
-      {/* Main Content - Table modul dan form modul */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-        {/* Table modul */}
         <div className="col-span-2">
           <DataTable
             columns={columns}
@@ -242,7 +232,6 @@ export default function ModulView() {
           />
         </div>
 
-        {/* Form user */}
         <div className="col-span-1">
           <div className="w-full card h-auto bg-white text-black p-4 shadow">
             <h2 className="text-l font-bold mb-4">
@@ -250,7 +239,6 @@ export default function ModulView() {
             </h2>
 
             <form id="form" onSubmit={handleSubmit}>
-              {/* Nama modul */}
               <div className="form-control">
                 <label className="label" htmlFor="namaModul">
                   <span className="label-text text-black font-medium text-sm">
@@ -269,7 +257,6 @@ export default function ModulView() {
                 />
               </div>
 
-              {/* Link modul */}
               <div className="form-control">
                 <label className="label" htmlFor="linkModul">
                   <span className="label-text text-black font-medium text-sm">
@@ -288,7 +275,6 @@ export default function ModulView() {
                 />
               </div>
 
-              {/* Icon modul */}
               <div className="form-control">
                 <label className="label" htmlFor="iconModul">
                   <span className="label-text text-black font-medium text-sm">
@@ -317,7 +303,6 @@ export default function ModulView() {
                 </small>
               </div>
 
-              {/* Urutan modul */}
               <div className="form-control">
                 <label className="label" htmlFor="urutanModul">
                   <span className="label-text text-black font-medium text-sm">
@@ -338,7 +323,6 @@ export default function ModulView() {
                 />
               </div>
 
-              {/* Jenis modul */}
               <div className="form-control">
                 <label className="label" htmlFor="namaUser">
                   <span className="label-text  text-black font-medium text-sm">
@@ -363,7 +347,6 @@ export default function ModulView() {
                 />
               </div>
 
-              {/* Tombol simpan dan reset */}
               <div className="mt-4 flex justify-end gap-2">
                 <button
                   onClick={() => {

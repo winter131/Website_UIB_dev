@@ -3,10 +3,10 @@
 import { useEffect, useMemo, useRef } from "react"
 import type { Editor, Range } from "@tiptap/react"
 
-// --- Lib ---
+
 import { getElementOverflowPosition } from "@/lib/tiptap-collab-utils"
 
-// --- Tiptap UI ---
+
 import type {
   SuggestionItem,
   SuggestionMenuProps,
@@ -14,7 +14,7 @@ import type {
 } from "@/components/tiptap-ui-utils/suggestion-menu"
 import { SuggestionMenu } from "@/components/tiptap-ui-utils/suggestion-menu"
 
-// --- UI Primitives ---
+
 import {
   Avatar,
   AvatarImage,

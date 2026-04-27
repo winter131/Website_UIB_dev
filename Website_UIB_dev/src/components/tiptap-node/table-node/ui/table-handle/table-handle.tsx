@@ -11,13 +11,13 @@ import {
   rowDragStart,
 } from "@/components/tiptap-node/table-node/extensions/table-handle"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useTableHandlePositioning } from "@/components/tiptap-node/table-node/ui/table-handle/use-table-handle-positioning"
 import { useTableHandleState } from "@/components/tiptap-node/table-node/hooks/use-table-handle-state"
 import { type Orientation } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --- Components ---
+
 import { TableHandleMenu } from "@/components/tiptap-node/table-node/ui/table-handle-menu"
 
 export interface TableHandleButtonProps {
@@ -40,31 +40,14 @@ export interface TableHandleRenderProps {
 }
 
 export interface TableHandleProps {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
 
-  /**
-   * Custom component to render for row handles.
-   * If not provided, uses the default TableHandleMenu.
-   */
   rowButton?: ComponentType<TableHandleButtonProps>
 
-  /**
-   * Custom component to render for column handles.
-   * If not provided, uses the default TableHandleMenu.
-   */
   columnButton?: ComponentType<TableHandleButtonProps>
 }
 
-/**
- * Main table handle component that manages the positioning and rendering
- * of table row/column handles, extend buttons, and context menus.
- *
- * This component can be extended with custom row and column buttons,
- * or completely customized using the render prop pattern.
- */
+
 export function TableHandle({
   editor: providedEditor,
   rowButton: CustomRowButton,

@@ -12,7 +12,6 @@ import {
 export default function DocumentDownload() {
     return (
         <div className="space-y-6">
-            {/* Card Biaya */}
             <div className="bg-[#2A3955] p-8 rounded-[2rem] text-white">
                 <h3 className="text-sm font-black uppercase tracking-widest mb-6 opacity-60">Biaya Pendaftaran</h3>
                 <div className="space-y-4">
@@ -31,7 +30,6 @@ export default function DocumentDownload() {
                 </p>
             </div>
 
-            {/* Berkas Syarat Minimalist */}
             <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
                 <h3 className="text-xs font-black text-[#2A3955] uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
                     <span className="w-6 h-1 bg-[#e67e22] rounded-full" /> Berkas Syarat
@@ -49,7 +47,6 @@ export default function DocumentDownload() {
                 </div>
             </div>
 
-            {/* Tombol Aksi */}
             <a
                 href="https://pendaftaran.uib.ac.id"
                 target="_blank"

@@ -2,18 +2,18 @@
 
 import { useCallback, useState } from "react"
 
-// Tiptap Core Extensions
+
 import type { Tone } from "@tiptap-pro/extension-ai"
 
-// Icons
+
 import { MicAiIcon } from "@/components/tiptap-icons/mic-ai-icon"
 import { ArrowUpIcon } from "@/components/tiptap-icons/arrow-up-icon"
 import { AiSparklesIcon } from "@/components/tiptap-icons/ai-sparkles-icon"
 
-// UI Components
+
 import { SUPPORTED_TONES } from "@/components/tiptap-ui/ai-menu"
 
-// UI Primitives
+
 import { Button, ButtonGroup } from "@/components/tiptap-ui-primitive/button"
 import { Spacer } from "@/components/tiptap-ui-primitive/spacer"
 import { Toolbar, ToolbarGroup } from "@/components/tiptap-ui-primitive/toolbar"
@@ -34,7 +34,7 @@ import {
 } from "@/components/tiptap-ui/ai-menu/ai-menu-input/ai-menu-input-hooks"
 import type { AiMenuInputTextareaProps } from "@/components/tiptap-ui/ai-menu/ai-menu-input/ai-menu-input-types"
 
-// Styles
+
 import "@/components/tiptap-ui/ai-menu/ai-menu-input/ai-menu-input.scss"
 
 export function AiMenuInputPlaceholder({

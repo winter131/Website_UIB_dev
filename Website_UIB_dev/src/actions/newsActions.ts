@@ -5,7 +5,10 @@ import prisma from '@/lib/prisma';
 export async function getLatestNews() {
     try {
         const allNews = await prisma.news.findMany({
-            orderBy: { createdAt: 'desc' },
+            where: {
+                NOT: { category: 'Artikel' }
+            },
+            orderBy: { date: 'desc' },
             take: 10
         });
         return allNews;
@@ -29,10 +32,18 @@ export async function getNewsBySlug(slug: string) {
 
 export async function getAllNews(category?: string) {
     try {
-        const whereClause = category && category !== 'Semua' ? { category } : {};
+        let whereClause: any = {};
+        if (category === 'Berita') {
+            whereClause = {
+                NOT: { category: 'Artikel' }
+            };
+        } else if (category && category !== 'Semua') {
+            whereClause = { category };
+        }
+
         const allNews = await prisma.news.findMany({
             where: whereClause,
-            orderBy: { createdAt: 'desc' }
+            orderBy: { date: 'desc' }
         });
         return allNews;
     } catch (error) {
@@ -45,12 +56,11 @@ export async function getNewsById(id: number | string) {
         const item = await prisma.news.findUnique({
             where: { id: BigInt(id) }
         });
-        
         if (!item) return null;
 
         return {
             ...item,
-            id: Number(item.id) // Convert BigInt to Number for JSON serialization
+            id: Number(item.id) 
         };
     } catch (error) {
         console.error("Failed to fetch news by ID via Prisma:", error);

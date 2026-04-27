@@ -2,64 +2,33 @@
 
 import { forwardRef, useMemo, useCallback } from "react"
 
-// --- UI Primitives ---
+
 import { Button } from "@/components/tiptap-ui-primitive/button"
 
-// --- Lib ---
+
 import { cn } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { TableColumnIcon } from "@/components/tiptap-icons/table-column-icon"
 import { TableRowIcon } from "@/components/tiptap-icons/table-row-icon"
 
 import "./table-grid-selector.scss"
 
-// --- Types ---
+
 export interface CellCoordinates {
   row: number
   col: number
 }
 
 export interface TableGridSelectorProps {
-  /**
-   * Initial number of rows to display in the grid
-   * @default 8
-   */
   maxRows?: number
-  /**
-   * Initial number of columns to display in the grid
-   * @default 8
-   */
   maxCols?: number
-  /**
-   * Currently hovered cell coordinates
-   */
   hoveredCell: CellCoordinates | null
-  /**
-   * Callback when a cell is hovered
-   */
   onCellHover: (row: number, col: number) => void
-  /**
-   * Callback when a cell is clicked
-   */
   onCellClick: (row: number, col: number) => void
-  /**
-   * Callback when mouse leaves the grid
-   */
   onMouseLeave?: () => void
-  /**
-   * Whether the grid cells should be disabled
-   * @default false
-   */
   disabled?: boolean
-  /**
-   * Additional class name for the container
-   */
   className?: string
-  /**
-   * Whether to show the size indicator
-   * @default true
-   */
   showSizeIndicator?: boolean
 }
 
@@ -130,23 +99,7 @@ const SizeIndicator = ({
   )
 }
 
-/**
- * Reusable table grid selector component for selecting table dimensions.
- *
- * @example
- * ```tsx
- * const [hoveredCell, setHoveredCell] = useState<CellCoordinates | null>(null)
- *
- * <TableGridSelector
- *   maxRows={8}
- *   maxCols={8}
- *   hoveredCell={hoveredCell}
- *   onCellHover={(row, col) => setHoveredCell({ row, col })}
- *   onCellClick={(row, col) => insertTable(row + 1, col + 1)}
- *   onMouseLeave={() => setHoveredCell(null)}
- * />
- * ```
- */
+
 export const TableGridSelector = forwardRef<
   HTMLDivElement,
   TableGridSelectorProps

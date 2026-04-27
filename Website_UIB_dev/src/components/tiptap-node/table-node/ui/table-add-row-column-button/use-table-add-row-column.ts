@@ -15,10 +15,10 @@ import {
 import type { Transaction } from "@tiptap/pm/state"
 import type { Node } from "@tiptap/pm/model"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import { isExtensionAvailable } from "@/lib/tiptap-utils"
 import type { Orientation } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 import {
@@ -28,7 +28,7 @@ import {
   updateSelectionAfterAction,
 } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --- Icons ---
+
 import { AddColLeftIcon } from "@/components/tiptap-icons/add-col-left-icon"
 import { AddColRightIcon } from "@/components/tiptap-icons/add-col-right-icon"
 import { AddRowBottomIcon } from "@/components/tiptap-icons/add-row-bottom-icon"
@@ -38,37 +38,12 @@ export type RowSide = "above" | "below"
 export type ColSide = "left" | "right"
 
 export interface UseTableAddRowColumnConfig {
-  /**
-   * The Tiptap editor instance. If omitted, the hook will use
-   * the context/editor from `useTiptapEditor`.
-   */
   editor?: Editor | null
-  /**
-   * The index of the row or column to add relative to.
-   * If omitted, will use the current selection.
-   */
   index?: number
-  /**
-   * Whether you're adding a row or a column.
-   * If omitted, will use the current selection.
-   */
   orientation?: Orientation
-  /**
-   * The side to add on - above/below for rows, left/right for columns.
-   */
   side: RowSide | ColSide
-  /**
-   * The position of the table in the document.
-   */
   tablePos?: number
-  /**
-   * Hide the button when addition isn't currently possible.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful addition.
-   */
   onAdded?: () => void
 }
 
@@ -101,10 +76,7 @@ function safeRowIsHeader(map: TableMap, node: Node, index: number): boolean {
   }
 }
 
-/**
- * Checks if a table row/column addition can be performed
- * in the current editor state.
- */
+
 function canAddRowColumn({
   editor,
   index,
@@ -136,17 +108,14 @@ function canAddRowColumn({
   const selIndex = selectionType.index
   const selOrient = selectionType.orientation
 
-  // Bounds check
   if (typeof selIndex !== "number" || selIndex < 0) return false
   if (selOrient === "column" && selIndex >= map.width) return false
   if (selOrient === "row" && selIndex >= map.height) return false
 
-  // Block inserting to the LEFT of a header column
   if (side === "left" && selOrient === "column") {
     if (safeColumnIsHeader(map, node, selIndex)) return false
   }
 
-  // Block inserting ABOVE a header row
   if (side === "above" && selOrient === "row") {
     if (safeRowIsHeader(map, node, selIndex)) return false
   }
@@ -154,28 +123,20 @@ function canAddRowColumn({
   return true
 }
 
-/**
- * Calculates the index of the newly added row or column.
- */
+
 function calculateNewIndex(
   index: number,
   orientation: Orientation,
   side: RowSide | ColSide
 ): number {
   if (orientation === "row") {
-    // For rows: above means the new row is at the same index (pushes original down)
-    // below means the new row is at index + 1
     return side === "above" ? index : index + 1
   } else {
-    // For columns: left means the new column is at the same index (pushes original right)
-    // right means the new column is at index + 1
     return side === "left" ? index : index + 1
   }
 }
 
-/**
- * Executes the row/column addition in the editor.
- */
+
 function tableAddRowColumn({
   editor,
   index,
@@ -246,10 +207,7 @@ function tableAddRowColumn({
   }
 }
 
-/**
- * Determines if the add button should be shown
- * based on editor state and config.
- */
+
 function shouldShowButton({
   editor,
   index,
@@ -276,10 +234,7 @@ function shouldShowButton({
   return Boolean(selectionType)
 }
 
-/**
- * Custom hook that provides **table row/column addition**
- * functionality for the Tiptap editor.
- */
+
 export function useTableAddRowColumn(config: UseTableAddRowColumnConfig) {
   const {
     editor: providedEditor,

@@ -4,7 +4,7 @@ import { useMemo } from "react"
 import type { Editor, Range } from "@tiptap/react"
 import type { EmojiItem } from "@tiptap/extension-emoji"
 
-// --- Tiptap UI ---
+
 import type {
   SuggestionItem,
   SuggestionMenuProps,

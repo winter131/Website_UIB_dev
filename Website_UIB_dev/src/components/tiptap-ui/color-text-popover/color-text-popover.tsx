@@ -2,14 +2,14 @@
 
 import { forwardRef, useCallback, useMemo, useRef, useState } from "react"
 
-// --- Hooks ---
+
 import { useMenuNavigation } from "@/hooks/use-menu-navigation"
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Icons ---
+
 import { ChevronDownIcon } from "@/components/tiptap-icons/chevron-down-icon"
 
-// --- Tiptap UI ---
+
 import type {
   ColorType,
   ColorItem,
@@ -30,7 +30,7 @@ import {
   ColorHighlightButton,
 } from "@/components/tiptap-ui/color-highlight-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button, ButtonGroup } from "@/components/tiptap-ui-primitive/button"
 import {
@@ -45,10 +45,10 @@ import {
   CardItemGroup,
 } from "@/components/tiptap-ui-primitive/card"
 
-// --- Utils ---
+
 import { chunkArray } from "@/lib/tiptap-advanced-utils"
 
-// --- Styles ---
+
 import "@/components/tiptap-ui/color-text-popover/color-text-popover.scss"
 
 export interface RenderColorButtonProps extends ButtonProps {
@@ -366,11 +366,7 @@ export interface ColorTextPopoverProps
   extends Omit<ButtonProps, "type">,
     UseColorTextPopoverConfig {}
 
-/**
- * Color text popover component for Tiptap editors.
- *
- * For custom popover implementations, use the `useColorTextPopover` hook instead.
- */
+
 export const ColorTextPopover = forwardRef<
   HTMLButtonElement,
   ColorTextPopoverProps

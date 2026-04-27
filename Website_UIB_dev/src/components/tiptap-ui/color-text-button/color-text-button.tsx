@@ -2,38 +2,31 @@
 
 import { forwardRef, useCallback, useMemo } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseColorTextConfig } from "@/components/tiptap-ui/color-text-button"
 import {
   COLOR_TEXT_SHORTCUT_KEY,
   useColorText,
 } from "@/components/tiptap-ui/color-text-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
 
-// --- Styles ---
+
 import "@/components/tiptap-ui/color-text-button/color-text-button.scss"
 
 export interface ColorTextButtonProps
   extends Omit<ButtonProps, "type">,
     UseColorTextConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -45,11 +38,7 @@ export function ColorTextShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for applying text colors in a Tiptap editor.
- *
- * For custom button implementations, use the `useColorText` hook instead.
- */
+
 export const ColorTextButton = forwardRef<
   HTMLButtonElement,
   ColorTextButtonProps

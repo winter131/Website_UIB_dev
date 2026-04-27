@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import { PlusSquare, FileText, Download, ExternalLink } from 'lucide-react'
 
 export default function UnduhDokumenView() {
@@ -36,9 +36,7 @@ export default function UnduhDokumenView() {
 
     return (
         <main className="mt-10 pt-20 bg-white font-sans selection:bg-[#1A253A] selection:text-white min-h-screen">
-            <NavbarLanding />
 
-            {/* HEADER SECTION */}
             <header className="bg-slate-50 border-b border-slate-200">
                 <div className="container mx-auto px-6 md:px-20 py-16">
                     <motion.div
@@ -54,11 +52,9 @@ export default function UnduhDokumenView() {
                 </div>
             </header>
 
-            {/* MAIN CONTENT GRID */}
             <section className="container mx-auto px-6 md:px-20 py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
-                    {/* KOLOM KIRI: DOKUMEN AKADEMIK */}
                     <div className="space-y-8">
                         <div>
                             <h2 className="text-2xl font-bold text-[#1A253A] mb-2 uppercase tracking-wide">Dokumen Akademik</h2>
@@ -84,9 +80,7 @@ export default function UnduhDokumenView() {
                         </div>
                     </div>
 
-                    {/* KOLOM KANAN: INFORMASI & BROSUR */}
                     <div className="space-y-12">
-                        {/* SUB-SECTION: FAKULTAS */}
                         <div>
                             <h2 className="text-2xl font-bold text-[#1A253A] mb-2 uppercase tracking-wide">Informasi Tambahan</h2>
                             <div className="w-16 h-1 bg-[#e67e22] mb-6"></div>
@@ -108,7 +102,6 @@ export default function UnduhDokumenView() {
                             </div>
                         </div>
 
-                        {/* SUB-SECTION: BROSUR */}
                         <div>
                             <h2 className="text-2xl font-bold text-[#1A253A] mb-2 uppercase tracking-wide">Brosur & Katalog</h2>
                             <div className="w-16 h-1 bg-[#e67e22] mb-6"></div>
@@ -130,7 +123,6 @@ export default function UnduhDokumenView() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     )
 }

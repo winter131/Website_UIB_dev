@@ -2,24 +2,24 @@
 
 import { forwardRef } from "react"
 
-// --- Tiptap UI ---
+
 import type { UseTurnIntoDropdownConfig } from "@/components/tiptap-ui/turn-into-dropdown"
 import {
   useTurnIntoDropdown,
   getFilteredBlockTypeOptions,
 } from "@/components/tiptap-ui/turn-into-dropdown"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI Components ---
+
 import { TextButton } from "@/components/tiptap-ui/text-button"
 import { HeadingButton } from "@/components/tiptap-ui/heading-button"
 import { ListButton } from "@/components/tiptap-ui/list-button"
 import { BlockquoteButton } from "@/components/tiptap-ui/blockquote-button"
 import { CodeBlockButton } from "@/components/tiptap-ui/code-block-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button, ButtonGroup } from "@/components/tiptap-ui-primitive/button"
 import {
@@ -145,17 +145,10 @@ function renderBlockTypeButton(
 export interface TurnIntoDropdownProps
   extends Omit<ButtonProps, "type">,
     UseTurnIntoDropdownConfig {
-  /**
-   * Whether to use card layout for the dropdown content
-   * @default true
-   */
   useCardLayout?: boolean
 }
 
-/**
- * Dropdown component for transforming block types in a Tiptap editor.
- * For custom dropdown implementations, use the `useTurnIntoDropdown` hook instead.
- */
+
 export const TurnIntoDropdown = forwardRef<
   HTMLButtonElement,
   TurnIntoDropdownProps

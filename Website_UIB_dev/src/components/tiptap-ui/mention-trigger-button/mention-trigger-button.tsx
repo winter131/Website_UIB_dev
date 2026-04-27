@@ -2,20 +2,20 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseMentionTriggerConfig } from "@/components/tiptap-ui/mention-trigger-button"
 import {
   MENTION_TRIGGER_SHORTCUT_KEY,
   useMentionTrigger,
 } from "@/components/tiptap-ui/mention-trigger-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -23,14 +23,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface MentionTriggerButtonProps
   extends Omit<ButtonProps, "type">,
     UseMentionTriggerConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -42,11 +35,7 @@ export function MentionShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for inserting mention triggers in a Tiptap editor.
- *
- * For custom button implementations, use the `useMention` hook instead.
- */
+
 export const MentionTriggerButton = forwardRef<
   HTMLButtonElement,
   MentionTriggerButtonProps

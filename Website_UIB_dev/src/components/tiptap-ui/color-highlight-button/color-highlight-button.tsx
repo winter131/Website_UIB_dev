@@ -2,38 +2,31 @@
 
 import { forwardRef, useCallback, useMemo } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseColorHighlightConfig } from "@/components/tiptap-ui/color-highlight-button"
 import {
   COLOR_HIGHLIGHT_SHORTCUT_KEY,
   useColorHighlight,
 } from "@/components/tiptap-ui/color-highlight-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
 
-// --- Styles ---
+
 import "@/components/tiptap-ui/color-highlight-button/color-highlight-button.scss"
 
 export interface ColorHighlightButtonProps
   extends Omit<ButtonProps, "type">,
     UseColorHighlightConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -45,34 +38,7 @@ export function ColorHighlightShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for applying color highlights in a Tiptap editor.
- *
- * Supports two highlighting modes:
- * - "mark": Uses the highlight mark extension (default)
- * - "node": Uses the node background extension
- *
- * For custom button implementations, use the `useColorHighlight` hook instead.
- *
- * @example
- * ```tsx
- * // Mark-based highlighting (default)
- * <ColorHighlightButton highlightColor="yellow" />
- *
- * // Node-based background coloring
- * <ColorHighlightButton
- *   highlightColor="var(--tt-color-highlight-blue)"
- *   mode="node"
- * />
- *
- * // With custom callback
- * <ColorHighlightButton
- *   highlightColor="red"
- *   mode="mark"
- *   onApplied={({ color, mode }) => console.log(`Applied ${color} in ${mode} mode`)}
- * />
- * ```
- */
+
 export const ColorHighlightButton = forwardRef<
   HTMLButtonElement,
   ColorHighlightButtonProps

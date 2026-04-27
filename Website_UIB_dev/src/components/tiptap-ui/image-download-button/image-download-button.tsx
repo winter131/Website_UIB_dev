@@ -2,20 +2,20 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseImageDownloadConfig } from "@/components/tiptap-ui/image-download-button"
 import {
   IMAGE_DOWNLOAD_SHORTCUT_KEY,
   useImageDownload,
 } from "@/components/tiptap-ui/image-download-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -23,14 +23,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface ImageDownloadButtonProps
   extends Omit<ButtonProps, "type">,
     UseImageDownloadConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -42,12 +35,7 @@ export function ImageDownloadShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for downloading images from a Tiptap editor.
- * Only appears when an image is selected in the editor.
- *
- * For custom button implementations, use the `useImageDownload` hook instead.
- */
+
 export const ImageDownloadButton = forwardRef<
   HTMLButtonElement,
   ImageDownloadButtonProps

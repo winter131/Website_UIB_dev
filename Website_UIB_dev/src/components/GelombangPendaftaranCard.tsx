@@ -43,10 +43,8 @@ export default function GelombangPendaftaranCard({
   return (
     <>
       <section className="relative rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-sm hover:shadow-lg transition-shadow">
-        {/* Accent Line */}
         <div className="absolute left-0 top-0 h-full w-1 bg-[#151743] rounded-l-xl" />
 
-        {/* Top */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
           <div className="space-y-1">
             <h2 className="text-lg font-semibold text-slate-900">
@@ -69,10 +67,8 @@ export default function GelombangPendaftaranCard({
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-4 h-px bg-slate-100" />
 
-        {/* Info */}
         <dl className="grid gap-y-2 gap-x-6 text-sm md:grid-cols-2">
           <div className="flex gap-2">
             <dt className="w-28 text-slate-500 font-medium">Pendaftaran</dt>
@@ -103,9 +99,7 @@ export default function GelombangPendaftaranCard({
           </div>
         </dl>
 
-        {/* Footer */}
         <div className="mt-5 flex justify-between items-center">
-          {/* Expand Button */}
           <button
             onClick={toggleExpand}
             className="flex items-center gap-1 text-xs font-medium text-slate-600 hover:text-[#F3B800] transition"
@@ -118,7 +112,6 @@ export default function GelombangPendaftaranCard({
             />
           </button>
 
-          {/* Actions */}
           <div className="flex gap-2">
             <button
               className="rounded-md p-2 text-amber-500 hover:text-amber-600 hover:bg-amber-50 transition-colors focus:ring-2 focus:ring-amber-200"
@@ -135,7 +128,6 @@ export default function GelombangPendaftaranCard({
           </div>
         </div>
 
-        {/* Expanded Section */}
         <div
           ref={detailRef}
           className={`overflow-hidden transition-all duration-500 ${
@@ -145,7 +137,6 @@ export default function GelombangPendaftaranCard({
           }`}
         >
           <div className="text-sm space-y-3">
-            {/* Verifikasi */}
             <div className="flex items-start gap-2">
               <BadgeCheck className="h-4 w-4 text-amber-600" />
               <p className="font-medium text-slate-900">
@@ -157,7 +148,6 @@ export default function GelombangPendaftaranCard({
               </p>
             </div>
 
-            {/* Daftar Ulang */}
             <div className="flex items-start gap-2">
               <Calendar className="h-4 w-4 text-amber-600" />
               <p className="font-medium text-slate-900">
@@ -168,7 +158,6 @@ export default function GelombangPendaftaranCard({
               </p>
             </div>
 
-            {/* Jam Ujian */}
             <div className="flex items-start gap-2">
               <Clock className="h-4 w-4 text-amber-600" />
               <p className="font-medium text-slate-900">
@@ -179,7 +168,6 @@ export default function GelombangPendaftaranCard({
               </p>
             </div>
 
-            {/* Lokasi Detail */}
             <div className="flex items-start gap-2">
               <MapPin className="h-4 w-4 text-amber-600" />
               <p className="font-medium text-slate-900">
@@ -190,7 +178,6 @@ export default function GelombangPendaftaranCard({
               </p>
             </div>
 
-            {/* Chip Tags */}
             <div className="flex flex-wrap gap-2 pt-2">
               {gelombang.IsBeasiswa === "y" && (
                 <span className="px-2.5 py-1 text-xs rounded-full bg-emerald-100 text-emerald-700 font-medium">
@@ -207,7 +194,6 @@ export default function GelombangPendaftaranCard({
           </div>
         </div>
 
-        {/* Biaya Pendaftaran */}
         <div className="flex items-start gap-2 mt-4 border-t pt-4">
           <Info className="h-4 w-4 text-amber-600 mt-1" />
           <div>

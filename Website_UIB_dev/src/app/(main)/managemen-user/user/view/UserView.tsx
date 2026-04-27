@@ -40,24 +40,20 @@ export default function UserView() {
     { value: string; label: string }[]
   >([]);
 
-  // Get data user
   const { data, isLoading, refetch } = useUserData(
     session.user?.accessToken,
     status
   );
-  // Get data usergroup
   const {
     data: dataUsergroup,
     isLoading: isLoadingUsergroup,
     refetch: refetchUsergroup,
   } = useUsergroupData(session.user?.accessToken, status);
-  // Get data pegawai
   const {
     data: dataPegawai,
     isLoading: isLoadingPegawai,
     refetch: refetchPegawai,
   } = usePegawaiData(session.user?.accessToken, status);
-  // Mutation create user
   const { mutate: createUserMutation } = useCreateUser(
     () => {
       showNotification({
@@ -121,7 +117,6 @@ export default function UserView() {
     }
   );
 
-  // Submit form tambah dan edit user
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -145,7 +140,6 @@ export default function UserView() {
           },
         });
   };
-  // Open editing state
   const handleEdit = (data: UserType) => {
     setIsEditing(true);
     setUser({
@@ -156,7 +150,6 @@ export default function UserView() {
       isAktif: data.IsAktif,
     });
   };
-  // Handle delete
   const handleDelete = (data: UserType) => {
     showConfirmation({
       title: "Hapus pengguna?",
@@ -174,7 +167,6 @@ export default function UserView() {
     });
   };
 
-  // Filter pegawai
   useEffect(() => {
     if (!dataPegawai) return;
 
@@ -198,7 +190,6 @@ export default function UserView() {
     <div className="px-8 py-4">
       <h1 className="w-full text-4xl font-bold text-black">User</h1>
 
-      {/* Breadcrumbs */}
       <div className="breadcrumbs text-sm text-black">
         <ul>
           <li>
@@ -218,7 +209,6 @@ export default function UserView() {
         </ul>
       </div>
 
-      {/* Search */}
       <div className="mt-2 flex flex-wrap gap-4">
         <span className="font-normal text-black">
           Modul untuk manajemen user internal SIM Admisi
@@ -233,9 +223,7 @@ export default function UserView() {
         />
       </div>
 
-      {/* Main Content - Table user dan form user */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-        {/* Table user */}
         <div className="col-span-2">
           <DataTable
             columns={columns}
@@ -248,7 +236,6 @@ export default function UserView() {
           />
         </div>
 
-        {/* Form user */}
         <div className="col-span-1">
           <div className="w-full card h-auto bg-white text-black p-4 shadow">
             <h2 className="text-l font-bold">
@@ -256,7 +243,6 @@ export default function UserView() {
             </h2>
 
             <form id="form" onSubmit={handleSubmit}>
-              {/* Nama Pegawai */}
               <div className="form-control">
                 <label className="label" htmlFor="namaUser">
                   <span className="label-text  text-black font-medium text-sm">
@@ -282,7 +268,6 @@ export default function UserView() {
                 />
               </div>
 
-              {/* Email Pegawai */}
               <div className="form-control">
                 <label className="label" htmlFor="email">
                   <span className="label-text text-black font-medium text-sm">
@@ -301,7 +286,6 @@ export default function UserView() {
                 />
               </div>
 
-              {/* Grup Pegawai */}
               <div className="form-control">
                 <label className="label" htmlFor="hakAkses">
                   <span className="label-text text-black font-medium text-sm">
@@ -329,7 +313,6 @@ export default function UserView() {
                 </select>
               </div>
 
-              {/* Status Pegawai */}
               <div className="form-control">
                 <label className="label" htmlFor="status">
                   <span className="label-text text-black font-medium text-sm">
@@ -357,7 +340,6 @@ export default function UserView() {
                 </select>
               </div>
 
-              {/* Tombol simpan dan reset */}
               <div className="mt-4 flex justify-end gap-2">
                 <button
                   onClick={() => {

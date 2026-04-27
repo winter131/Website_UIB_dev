@@ -5,21 +5,21 @@ import { type Editor } from "@tiptap/react"
 
 import { AiMenuItems } from "@/components/tiptap-ui/ai-menu/ai-menu-items/ai-menu-items"
 
-// -- Hooks --
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useUiEditorState } from "@/hooks/use-ui-editor-state"
 
-// -- Utils --
+
 import {
   getSelectedDOMElement,
   selectionHasText,
 } from "@/lib/tiptap-advanced-utils"
 
-// -- Tiptap UI --
+
 import { AiMenuInputTextarea } from "@/components/tiptap-ui/ai-menu/ai-menu-input/ai-menu-input"
 import { AiMenuActions } from "@/components/tiptap-ui/ai-menu/ai-menu-actions/ai-menu-actions"
 
-// -- UI Primitives --
+
 import {
   Menu,
   MenuContent,
@@ -40,7 +40,7 @@ import {
   useTextSelectionTracker,
 } from "@/components/tiptap-ui/ai-menu/ai-menu-hooks"
 
-// -- Icons --
+
 import { StopCircle2Icon } from "@/components/tiptap-icons/stop-circle-2-icon"
 
 import "@/components/tiptap-ui/ai-menu/ai-menu.scss"
@@ -83,12 +83,10 @@ export function AiMenuContent({
       if (!editor || !userPrompt.trim()) return
 
       const { context } = getContextAndInsertAt(editor)
-      // if context, add it to the user prompt
       const promptWithContext = context
         ? `${context}\n\n${userPrompt}`
         : userPrompt
 
-      // Ensure fallback anchor is set before submitting
       if (!state.fallbackAnchor.element || !state.fallbackAnchor.rect) {
         const currentSelectedElement = getSelectedDOMElement(editor)
         if (currentSelectedElement) {
@@ -192,7 +190,6 @@ export function AiMenuContent({
       inline: "nearest",
     })
 
-    // Ensure the menu back to focus after focusing on the popover
     setTimeout(() => store.setAutoFocusOnShow(false), 0)
     return false
   }

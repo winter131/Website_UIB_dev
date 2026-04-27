@@ -13,9 +13,11 @@ import { createPortal } from "react-dom";
 // --- Tiptap Core Extensions ---
 import { StarterKit } from "@tiptap/starter-kit";
 import { Mention } from "@tiptap/extension-mention";
-import { TaskList, TaskItem } from "@tiptap/extension-list";
-import { Color, TextStyle } from "@tiptap/extension-text-style";
-import { Placeholder, Selection } from "@tiptap/extensions";
+import { TaskList } from "@tiptap/extension-task-list";
+import { TaskItem } from "@tiptap/extension-task-item";
+import { Color } from "@tiptap/extension-color";
+import { TextStyle } from "@tiptap/extension-text-style";
+import { Placeholder } from "@tiptap/extension-placeholder";
 import { Typography } from "@tiptap/extension-typography";
 import { Highlight } from "@tiptap/extension-highlight";
 import { Superscript } from "@tiptap/extension-superscript";
@@ -45,15 +47,7 @@ import { NodeAlignment } from "@/components/tiptap-extension/node-alignment-exte
 // --- Tiptap Node ---
 import { ImageUploadNode } from "@/components/tiptap-node/image-upload-node/image-upload-node-extension";
 
-// --- Table Node ---
-import { TableKit } from "@/components/tiptap-node/table-node/extensions/table-node-extension";
-import { TableHandleExtension } from "@/components/tiptap-node/table-node/extensions/table-handle";
-import { TableHandle } from "@/components/tiptap-node/table-node/ui/table-handle/table-handle";
-import { TableSelectionOverlay } from "@/components/tiptap-node/table-node/ui/table-selection-overlay";
-import { TableCellHandleMenu } from "@/components/tiptap-node/table-node/ui/table-cell-handle-menu";
-import { TableExtendRowColumnButtons } from "@/components/tiptap-node/table-node/ui/table-extend-row-column-button";
-import "@/components/tiptap-node/table-node/styles/prosemirror-table.scss";
-import "@/components/tiptap-node/table-node/styles/table-node.scss";
+// Table extensions disabled due to package version incompatibility
 
 import "@/components/tiptap-node/blockquote-node/blockquote-node.scss";
 import "@/components/tiptap-node/code-block-node/code-block-node.scss";
@@ -67,7 +61,7 @@ import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
 import { EmojiDropdownMenu } from "@/components/tiptap-ui/emoji-dropdown-menu";
 import { MentionDropdownMenu } from "@/components/tiptap-ui/mention-dropdown-menu";
 import { SlashDropdownMenu } from "@/components/tiptap-ui/slash-dropdown-menu";
-import { DragContextMenu } from "@/components/tiptap-ui/drag-context-menu";
+// DragContextMenu removed to avoid collaboration extension dependency chain
 
 // --- Lib ---
 import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils";
@@ -138,7 +132,7 @@ export function EditorContentArea() {
         cursor: isDragging ? "grabbing" : "auto",
       }}
     >
-      <DragContextMenu />
+      {/* DragContextMenu removed */}
       <EmojiDropdownMenu />
       <MentionDropdownMenu />
       <SlashDropdownMenu />
@@ -209,12 +203,7 @@ export const EditorProvider = forwardRef<
         ),
         forceFallbackImages: true,
       }),
-      TableKit.configure({
-        table: {
-          resizable: true,
-          cellMinWidth: 120,
-        },
-      }),
+      // TableKit disabled - package version incompatibility
       NodeBackground,
       NodeAlignment,
       TextStyle,
@@ -225,9 +214,8 @@ export const EditorProvider = forwardRef<
       TaskList,
       TaskItem.configure({ nested: true }),
       Highlight.configure({ multicolor: true }),
-      Selection,
       Image,
-      TableHandleExtension,
+      // TableHandleExtension disabled
       ListNormalizationExtension,
       ImageUploadNode.configure({
         accept: "image/*",
@@ -282,18 +270,7 @@ export const EditorProvider = forwardRef<
     <div className="notion-like-editor-wrapper">
       <EditorContext.Provider value={{ editor }}>
         <EditorContentArea />
-
-        <TableExtendRowColumnButtons />
-        <TableHandle />
-        <TableSelectionOverlay
-          showResizeHandles={true}
-          cellMenu={(props) => (
-            <TableCellHandleMenu
-              editor={props.editor}
-              onMouseDown={(e) => props.onResizeStart?.("br")(e)}
-            />
-          )}
-        />
+        {/* Table UI components disabled */}
       </EditorContext.Provider>
     </div>
   );

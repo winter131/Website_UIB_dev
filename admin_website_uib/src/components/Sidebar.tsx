@@ -57,6 +57,15 @@ export default function Sidebar({
             ModulUrutan: 0,
             SubMenu: null,
           },
+          {
+            ModulId: 99,
+            ModulName: "Artikel",
+            ModulLink: "/artikel",
+            ModulIcon: "bx bx-news",
+            ModulMainMenu: 0,
+            ModulUrutan: 1,
+            SubMenu: null,
+          },
           ...baseData.map((m: any) => ({
             ...m,
             ModulLink: m.ModulLink === "/news" ? "/berita" : m.ModulLink,
@@ -137,9 +146,27 @@ export default function Sidebar({
           </div>
           <hr className="mt-3" />
           <ul className="space-y-2 font-normal text-sm mt-2 menu w-full">
+            {/* Menu Artikel Statis agar Pasti Muncul */}
+            <li>
+              <Link
+                href="/artikel"
+                className={`flex items-center py-2 px-4 rounded-lg group hover:bg-[#2A3955] hover:text-white ${
+                  pathname === "/artikel" || pathname.startsWith("/artikel/")
+                    ? "bg-[#2A3955] text-white"
+                    : "text-black"
+                }`}
+              >
+                <span className="text-xl bx bx-news"></span>
+                <span className="ms-3">Manajemen Artikel</span>
+              </Link>
+            </li>
+
             {modul.length > 0 ? (
               modul.map((mdl: ModulType) => {
                 const hasChildren = mdl.SubMenu && mdl.SubMenu.length > 0;
+                
+                // Lewati jika ini adalah duplikat Dashboard (karena sudah ada di atas atau modul 1)
+                if (mdl.ModulId === 1) return null;
 
                 return !hasChildren ? (
                   <li key={mdl.ModulId}>

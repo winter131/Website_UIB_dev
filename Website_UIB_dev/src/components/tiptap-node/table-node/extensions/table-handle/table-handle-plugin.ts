@@ -165,7 +165,6 @@ class TableHandleView implements PluginView {
   private _handleMouseMoveNow(event: MouseEvent) {
     const around = domCellAround(event.target as Element)
 
-    // Hide handles while selecting inside a cell
     if (
       around?.type === "cell" &&
       this.mouseState === "down" &&
@@ -191,7 +190,6 @@ class TableHandleView implements PluginView {
     })
     if (!coords) return
 
-    // Find the table node at this position
     const $pos = this.editor.view.state.doc.resolve(coords.pos)
     let blockInfo: { node: TiptapNode; pos: number } | undefined
     for (let d = $pos.depth; d >= 0; d--) {
@@ -214,7 +212,6 @@ class TableHandleView implements PluginView {
       | HTMLElement
       | undefined
 
-    // Hovering around the table (outside cells)
     if (around.type === "wrapper") {
       const below =
         event.clientY >= tableRect.bottom - 1 &&
@@ -241,7 +238,6 @@ class TableHandleView implements PluginView {
           : this.state?.referencePosCell,
       }
     } else {
-      // Hovering over a cell
       const cellPosition = getCellIndicesFromDOM(
         around.domNode as HTMLTableCellElement,
         blockInfo.node,
@@ -255,7 +251,6 @@ class TableHandleView implements PluginView {
       const lastColIndex =
         (blockInfo.node.content.firstChild?.content.childCount ?? 0) - 1
 
-      // Skip update if same cell
       if (
         this.state?.show &&
         this.tableId === blockInfo.node.attrs.id &&
@@ -297,7 +292,6 @@ class TableHandleView implements PluginView {
       this.editorView.root
     )
 
-    // The mouse cursor coordinates, bounded to the table's bounding box.
     const {
       left: tableLeft,
       right: tableRight,
@@ -310,7 +304,6 @@ class TableHandleView implements PluginView {
       top: clamp(event.clientY, tableTop + 1, tableBottom - 1),
     }
 
-    // Gets the table cell element
     const tableCellElements = this.editorView.root
       .elementsFromPoint(boundedMouseCoords.left, boundedMouseCoords.top)
       .filter((element) => element.tagName === "TD" || element.tagName === "TH")
@@ -331,7 +324,6 @@ class TableHandleView implements PluginView {
 
     const { rowIndex, colIndex } = cellPosition
 
-    // Check what changed
     const oldIndex =
       this.state.draggingState.draggedCellOrientation === "row"
         ? this.state.rowIndex
@@ -347,7 +339,6 @@ class TableHandleView implements PluginView {
         ? boundedMouseCoords.top
         : boundedMouseCoords.left
 
-    // Check if anything needs updating
     const cellChanged =
       this.state.rowIndex !== rowIndex || this.state.colIndex !== colIndex
     const mousePosChanged = this.state.draggingState.mousePos !== mousePos
@@ -367,7 +358,6 @@ class TableHandleView implements PluginView {
       this.emitUpdate()
     }
 
-    // Dispatch decorations transaction if needed
     if (dispatchDecorationsTransaction) {
       this.editor.view.dispatch(
         this.editor.state.tr.setMeta(tableHandlePluginKey, true)
@@ -461,7 +451,6 @@ class TableHandleView implements PluginView {
       return
     }
 
-    // Check if table changed
     const blockChanged =
       this.state.block !== tableInfo.node ||
       this.state.blockPos !== tableInfo.pos
@@ -477,11 +466,9 @@ class TableHandleView implements PluginView {
 
     const { height: rowCount, width: colCount } = TableMap.get(tableInfo.node)
 
-    // Calculate new indices
     let newRowIndex = this.state.rowIndex
     let newColIndex = this.state.colIndex
 
-    // Clamp indices if rows/columns were deleted
     if (newRowIndex !== undefined && newRowIndex >= rowCount) {
       newRowIndex = rowCount ? rowCount - 1 : undefined
     }
@@ -496,7 +483,6 @@ class TableHandleView implements PluginView {
       )
     }
 
-    // Calculate new reference positions
     let newReferencePosCell = this.state.referencePosCell
     if (newRowIndex !== undefined && newColIndex !== undefined) {
       const rowEl = tableBody.children[newRowIndex]
@@ -513,7 +499,6 @@ class TableHandleView implements PluginView {
 
     const newReferencePosTable = tableBody.getBoundingClientRect()
 
-    // Check if anything changed
     const indicesChanged =
       newRowIndex !== this.state.rowIndex || newColIndex !== this.state.colIndex
     const refPosChanged =
@@ -638,9 +623,6 @@ export function TableHandlePlugin(
           })
         }
 
-        // Return empty decorations if:
-        // - original index is same as new index (no change)
-        // - editor is not defined for some reason
         if (newIndex === originalIndex || !editor) {
           return DecorationSet.create(state.doc, decorations)
         }
@@ -660,9 +642,6 @@ export function TableHandlePlugin(
               return
             }
 
-            // Creates a decoration at the start or end of each cell,
-            // depending on whether the new index is before or after the
-            // original index.
             const decorationPos =
               cell.pos + (newIndex > originalIndex ? cellNode.nodeSize - 2 : 2)
             decorations.push(
@@ -671,11 +650,6 @@ export function TableHandlePlugin(
                 widget.className = "tiptap-table-dropcursor"
                 widget.style.left = "0"
                 widget.style.right = "0"
-                // This is only necessary because the drop indicator's height
-                // is an even number of pixels, whereas the border between
-                // table cells is an odd number of pixels. So this makes the
-                // positioning slightly more consistent regardless of where
-                // the row is being dropped.
                 if (newIndex > originalIndex) {
                   widget.style.bottom = "-1px"
                 } else {
@@ -698,9 +672,6 @@ export function TableHandlePlugin(
             if (!cellNode) {
               return
             }
-            // Creates a decoration at the start or end of each cell,
-            // depending on whether the new index is before or after the
-            // original index.
             const decorationPos =
               cell.pos + (newIndex > originalIndex ? cellNode.nodeSize - 2 : 2)
             decorations.push(
@@ -709,11 +680,6 @@ export function TableHandlePlugin(
                 widget.className = "tiptap-table-dropcursor"
                 widget.style.top = "0"
                 widget.style.bottom = "0"
-                // This is only necessary because the drop indicator's width
-                // is an even number of pixels, whereas the border between
-                // table cells is an odd number of pixels. So this makes the
-                // positioning slightly more consistent regardless of where
-                // the column is being dropped.
                 if (newIndex > originalIndex) {
                   widget.style.right = "-1px"
                 } else {
@@ -732,9 +698,7 @@ export function TableHandlePlugin(
   })
 }
 
-/**
- * Shared drag start handler for table rows and columns
- */
+
 const tableDragStart = (
   orientation: "col" | "row",
   event: {
@@ -762,7 +726,6 @@ const tableDragStart = (
   const { blockPos, referencePosCell } = state
   const mousePos = orientation === "col" ? event.clientX : event.clientY
 
-  // Clear cell selection to prevent table reference collapse
   if (editor.state.selection instanceof CellSelection) {
     const safeSel = TextSelection.near(editor.state.doc.resolve(blockPos), 1)
     editor.view.dispatch(editor.state.tr.setSelection(safeSel))
@@ -770,7 +733,6 @@ const tableDragStart = (
 
   const dragImage = createTableDragImage(editor, orientation, index, blockPos)
 
-  // Configure drag image
   if (event.dataTransfer) {
     const handleRect = (
       event.currentTarget as HTMLElement
@@ -785,7 +747,6 @@ const tableDragStart = (
     event.dataTransfer.setDragImage(dragImage, offset.x, offset.y)
   }
 
-  // Cleanup drag image
   const cleanup = () => dragImage.parentNode?.removeChild(dragImage)
   document.addEventListener("drop", cleanup, { once: true })
   document.addEventListener("dragend", cleanup, { once: true })
@@ -795,7 +756,6 @@ const tableDragStart = (
       mousePos
     : 0
 
-  // Update dragging state
   tableHandleView.state = {
     ...state,
     draggingState: {
@@ -809,27 +769,21 @@ const tableDragStart = (
   editor.view.dispatch(editor.state.tr.setMeta(tableHandlePluginKey, true))
 }
 
-/**
- * Callback for column drag handle
- */
+
 export const colDragStart = (event: {
   dataTransfer: DataTransfer | null
   currentTarget: EventTarget & Element
   clientX: number
 }) => tableDragStart("col", { ...event, clientY: 0 })
 
-/**
- * Callback for row drag handle
- */
+
 export const rowDragStart = (event: {
   dataTransfer: DataTransfer | null
   currentTarget: EventTarget & Element
   clientY: number
 }) => tableDragStart("row", { ...event, clientX: 0 })
 
-/**
- * Drag end cleanup
- */
+
 export const dragEnd = () => {
   if (!tableHandleView || tableHandleView.state === undefined) {
     return

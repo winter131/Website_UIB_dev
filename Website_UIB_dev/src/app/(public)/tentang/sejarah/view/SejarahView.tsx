@@ -2,25 +2,20 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import AboutHeader from '@/components/landing/tentang/about-header'
 import { ArrowRight } from 'lucide-react'
 
 export default function SejarahView() {
   return (
     <main className="min-h-screen bg-white font-poppins">
-      <NavbarLanding />
-      
-      {/* Banner Utama */}
+
       <AboutHeader title="Sejarah" />
 
-      {/* 1. Section Sejarah / Kebijakan - Image Adjusted to 4/3 */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-6 md:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Sisi Kiri: Menggunakan aspect-[4/3] agar tidak terlalu 'tinggi' */}
             <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
               <Image 
                 src="/img/gedungUIB.jpg" 
@@ -30,7 +25,6 @@ export default function SejarahView() {
               />
             </div>
 
-            {/* Sisi Kanan: Konten Teks */}
             <div className="flex flex-col gap-8 py-2">
               <div className="group">
                 <h3 className="text-[#1a365d] font-bold text-2xl mb-4">
@@ -64,10 +58,8 @@ export default function SejarahView() {
         </div>
       </section>
 
-      {/* 2. Section Gambar "Monitor Size" - Refined Height & Container */}
       <section className="bg-gradient-to-b from-transparent to-[#eceeee] pb-30 md:pb-32 ">
         <div className="container mx-auto px-20 md:px-20 w-full "> 
-          {/* max-w-6xl membatasi agar gambar tidak terlalu melebar di layar ultra-wide */}
           <div className="relative w-full h-[300px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl ">
             <Image 
               src="/img/C1700295.jpg" 
@@ -76,18 +68,15 @@ export default function SejarahView() {
               className="object-cover transition-opacity duration-1000"
               priority
             />
-            {/* Overlay Gradient halus */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a365d]/30 via-transparent to-transparent pointer-events-none"></div>
           </div>
-          
-          {/* Opsional: Menambahkan Caption halus di bawah gambar */}
           <p className="mt-6 text-center text-gray-500 text-xs italic tracking-wide">
             Gedung Utama Universitas Internasional Batam — Simbol Modernitas Pendidikan
           </p>
         </div>
       </section>
 
-      <Footer />
+
     </main>
   )
 }

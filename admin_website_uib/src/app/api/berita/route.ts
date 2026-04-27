@@ -6,7 +6,7 @@ import path from 'path';
 export async function GET() {
     try {
         const news = await prisma.news.findMany({
-            orderBy: { createdAt: 'desc' }
+            orderBy: { date: 'desc' }
         });
         const serializedNews = news.map(item => ({
             ...item,
@@ -38,9 +38,12 @@ export async function POST(request: Request) {
         const source = formData.get('source') as string;
 
         // Validate minimum required fields
-        if (!title || !slug || !tag) {
-            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+        if (!title || !slug) {
+            return NextResponse.json({ error: "Missing required fields (Title and Slug are mandatory)" }, { status: 400 });
         }
+
+        // Use category as default tag if not provided
+        const finalTag = tag || category || 'Berita';
 
         let imageUrl = '';
 
@@ -75,7 +78,7 @@ export async function POST(request: Request) {
             data: {
                 title,
                 slug,
-                tag,
+                tag: finalTag,
                 category,
                 summary,
                 source,

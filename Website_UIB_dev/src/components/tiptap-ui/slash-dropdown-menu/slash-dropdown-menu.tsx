@@ -2,10 +2,10 @@
 
 import { useEffect, useMemo, useRef } from "react"
 
-// --- Lib ---
+
 import { getElementOverflowPosition } from "@/lib/tiptap-collab-utils"
 
-// --- Tiptap UI ---
+
 import type {
   SuggestionMenuProps,
   SuggestionItem,
@@ -14,11 +14,11 @@ import type {
 import { filterSuggestionItems } from "@/components/tiptap-ui-utils/suggestion-menu"
 import { SuggestionMenu } from "@/components/tiptap-ui-utils/suggestion-menu"
 
-// --- Hooks ---
+
 import type { SlashMenuConfig } from "@/components/tiptap-ui/slash-dropdown-menu/use-slash-dropdown-menu"
 import { useSlashDropdownMenu } from "@/components/tiptap-ui/slash-dropdown-menu/use-slash-dropdown-menu"
 
-// --- UI Primitives ---
+
 import { Button, ButtonGroup } from "@/components/tiptap-ui-primitive/button"
 import { Separator } from "@/components/tiptap-ui-primitive/separator"
 import {

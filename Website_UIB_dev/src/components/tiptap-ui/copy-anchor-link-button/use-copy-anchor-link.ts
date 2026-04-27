@@ -5,68 +5,42 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import type { Node } from "@tiptap/pm/model"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Utils ---
+
 import {
   getAnchorNodeAndPos,
   getEditorExtension,
 } from "@/lib/tiptap-advanced-utils"
 
-// --- Icons ---
+
 import { LinkIcon } from "@/components/tiptap-icons/link-icon"
 
 export const COPY_ANCHOR_LINK_SHORTCUT_KEY = "mod+ctrl+l"
 
-/**
- * Configuration for the copy anchor link functionality
- */
+
 export interface UseCopyAnchorLinkConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the button should hide when no node ID is available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Called when the copy operation finishes.
-   * Provides a boolean indicating whether a node ID was found.
-   */
   onNodeIdNotFound?: (found: boolean) => void
-  /**
-   * Called after the node ID is extracted.
-   * Provides the extracted node ID, or null if none found.
-   */
   onExtractedNodeId?: (nodeId: string | null) => void
-  /**
-   * Callback function called after a successful copy operation.
-   */
   onCopied?: () => void
 }
 
-/**
- * Validates if editor is ready for operations
- */
+
 function isEditorReady(editor: Editor | null): boolean {
   return !!(editor && editor.isEditable)
 }
 
-/**
- * Gets the attribute name for unique IDs from the editor extension
- */
+
 function getAttributeName(editor: Editor): string {
   const ext = getEditorExtension(editor, "uniqueID")
   return ext?.options?.attributeName || "data-id"
 }
 
-/**
- * Comprehensive node info retrieval with validation
- */
+
 function getNodeWithId(editor: Editor | null): {
   node: Node
   nodeId: string | null
@@ -87,9 +61,7 @@ function getNodeWithId(editor: Editor | null): {
   }
 }
 
-/**
- * Extracts the data-id from a node
- */
+
 export function extractNodeId(
   node: Node | null,
   attributeName: string
@@ -103,17 +75,13 @@ export function extractNodeId(
   }
 }
 
-/**
- * Checks if a node has a data-id that can be copied
- */
+
 export function canCopyAnchorLink(editor: Editor | null): boolean {
   const nodeWithId = getNodeWithId(editor)
   return nodeWithId?.hasNodeId ?? false
 }
 
-/**
- * Extracts and copies the node ID to clipboard with full URL like Notion
- */
+
 export async function copyNodeId(
   editor: Editor | null,
   onExtractedNodeId?: (nodeId: string | null) => void,
@@ -144,9 +112,7 @@ export async function copyNodeId(
   }
 }
 
-/**
- * Determines if the copy anchor link button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -162,41 +128,7 @@ export function shouldShowButton(props: {
   return canCopyAnchorLink(editor)
 }
 
-/**
- * Custom hook that provides copy anchor link functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage - no params needed
- * function MyCopyAnchorLinkButton() {
- *   const { isVisible, handleCopyAnchorLink } = useCopyAnchorLink()
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleCopyAnchorLink}>Copy Link</button>
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedCopyAnchorLinkButton() {
- *   const { isVisible, handleCopyAnchorLink, label } = useCopyAnchorLink({
- *     editor: myEditor,
- *     hideWhenUnavailable: true,
- *     onCopied: () => console.log('Link copied!')
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleCopyAnchorLink}
- *       aria-label={label}
- *     >
- *       Copy Anchor Link
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useCopyAnchorLink(config?: UseCopyAnchorLinkConfig) {
   const {
     editor: providedEditor,

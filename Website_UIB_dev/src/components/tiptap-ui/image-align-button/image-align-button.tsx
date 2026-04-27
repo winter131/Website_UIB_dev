@@ -2,13 +2,13 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type {
   ImageAlign,
   UseImageAlignConfig,
@@ -18,7 +18,7 @@ import {
   useImageAlign,
 } from "@/components/tiptap-ui/image-align-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -26,14 +26,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface ImageAlignButtonProps
   extends Omit<ButtonProps, "type">,
     UseImageAlignConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -47,11 +40,7 @@ export function ImageAlignShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for setting image alignment in a Tiptap editor.
- *
- * For custom button implementations, use the `useImageAlign` hook instead.
- */
+
 export const ImageAlignButton = forwardRef<
   HTMLButtonElement,
   ImageAlignButtonProps

@@ -2,17 +2,17 @@
 
 import { forwardRef, useCallback } from "react"
 
-// --- Lib ---
+
 import { parseShortcutKeys } from "@/lib/tiptap-utils"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseMoveNodeConfig } from "@/components/tiptap-ui/move-node-button"
 import { useMoveNode } from "@/components/tiptap-ui/move-node-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
@@ -20,14 +20,7 @@ import { Badge } from "@/components/tiptap-ui-primitive/badge"
 export interface MoveNodeButtonProps
   extends Omit<ButtonProps, "type">,
     UseMoveNodeConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
-  /**
-   * Optional show shortcut keys in the button.
-   * @default false
-   */
   showShortcut?: boolean
 }
 
@@ -39,9 +32,7 @@ export function MoveNodeShortcutBadge({
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>
 }
 
-/**
- * Button component for moving a node up or down in a Tiptap editor.
- */
+
 export const MoveNodeButton = forwardRef<
   HTMLButtonElement,
   MoveNodeButtonProps

@@ -5,57 +5,33 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import type { Node } from "@tiptap/pm/model"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Lib ---
+
 import {
   findNodePosition,
   isNodeTypeSelected,
   isValidPosition,
 } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { SmilePlusIcon } from "@/components/tiptap-icons/smile-plus-icon"
 
 export const EMOJI_TRIGGER_SHORTCUT_KEY = "mod+shift+e"
 
-/**
- * Configuration for the emoji trigger functionality
- */
+
 export interface UseEmojiTriggerConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Optional node to insert trigger after.
-   */
   node?: Node | null
-  /**
-   * Optional position of the node to insert trigger after.
-   */
   nodePos?: number | null
-  /**
-   * The trigger text to insert.
-   * @default ":"
-   */
   trigger?: string
-  /**
-   * Whether the button should hide when trigger insertion is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful trigger insertion.
-   */
   onTriggerApplied?: (trigger: string) => void
 }
 
-/**
- * Checks if emoji trigger can be added in the current editor state
- */
+
 export function canAddEmojiTrigger(editor: Editor | null): boolean {
   if (!editor || !editor.isEditable) return false
   if (isNodeTypeSelected(editor, ["image"])) return false
@@ -63,9 +39,7 @@ export function canAddEmojiTrigger(editor: Editor | null): boolean {
   return true
 }
 
-/**
- * Inserts a trigger in a block node at a specified position or after the current selection
- */
+
 function insertTriggerInBlockNode(
   editor: Editor,
   trigger: string,
@@ -110,9 +84,7 @@ function insertTriggerInBlockNode(
     .run()
 }
 
-/**
- * Inserts a trigger in a text node at the current selection
- */
+
 function insertTriggerInTextNode(
   editor: Editor,
   trigger: string,
@@ -168,9 +140,7 @@ function insertTriggerInTextNode(
     .run()
 }
 
-/**
- * Adds an emoji trigger at the current selection or specified node position
- */
+
 export function addEmojiTrigger(
   editor: Editor | null,
   trigger: string = ":",
@@ -195,9 +165,7 @@ export function addEmojiTrigger(
   }
 }
 
-/**
- * Determines if the emoji trigger button should be shown
- */
+
 export function shouldShowButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -213,42 +181,7 @@ export function shouldShowButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides emoji trigger functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage - no params needed
- * function MySimpleEmojiTriggerButton() {
- *   const { isVisible, handleAddTrigger } = useEmojiTrigger()
- *
- *   if (!isVisible) return null
- *
- *   return <button onClick={handleAddTrigger}>Add Emoji</button>
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedEmojiTriggerButton() {
- *   const { isVisible, handleAddTrigger, label } = useEmojiTrigger({
- *     editor: myEditor,
- *     trigger: "::",
- *     hideWhenUnavailable: true,
- *     onTriggerApplied: (trigger) => console.log('Trigger added:', trigger)
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <MyButton
- *       onClick={handleAddTrigger}
- *       aria-label={label}
- *     >
- *       Add Emoji Trigger
- *     </MyButton>
- *   )
- * }
- * ```
- */
+
 export function useEmojiTrigger(config?: UseEmojiTriggerConfig) {
   const {
     editor: providedEditor,

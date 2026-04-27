@@ -5,25 +5,23 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { type Editor } from "@tiptap/react"
 import { NodeSelection } from "@tiptap/pm/state"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
 
-// --- Lib ---
+
 import {
   isExtensionAvailable,
   isNodeTypeSelected,
   sanitizeUrl,
 } from "@/lib/tiptap-utils"
 
-// --- Icons ---
+
 import { ArrowDownToLineIcon } from "@/components/tiptap-icons/arrow-down-to-line-icon"
 
 export const IMAGE_DOWNLOAD_SHORTCUT_KEY = "mod+shift+d"
 
-/**
- * Extracts file extension from URL or content type
- */
+
 function getFileExtension(url: string, contentType?: string): string {
   const urlMatch = url.match(/\.([a-zA-Z0-9]+)(?:\?|#|$)/)
   if (urlMatch && urlMatch[1]) {
@@ -46,38 +44,16 @@ function getFileExtension(url: string, contentType?: string): string {
   return ".jpg"
 }
 
-/**
- * Configuration for the image download functionality
- */
+
 export interface UseImageDownloadConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the button should hide when download is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a successful image download.
-   */
   onDownloaded?: (filename?: string) => void
-  /**
-   * Optional function to resolve file URLs before downloading.
-   * Useful for handling relative paths or custom URL schemes.
-   */
   resolveFileUrl?: (url: string) => Promise<string>
-  /**
-   * Download behavior: 'download' forces download, 'open' opens in new tab, 'auto' tries download with fallback
-   * @default 'auto'
-   */
   downloadMethod?: "download" | "open" | "auto"
 }
 
-/**
- * Checks if image can be downloaded in the current editor state
- */
+
 export function canDownloadImage(editor: Editor | null): boolean {
   if (!editor || !editor.isEditable) return false
   if (!isExtensionAvailable(editor, ["image"])) return false
@@ -85,9 +61,7 @@ export function canDownloadImage(editor: Editor | null): boolean {
   return isNodeTypeSelected(editor, ["image"])
 }
 
-/**
- * Gets the currently selected image data
- */
+
 export function getSelectedImageData(editor: Editor | null): {
   src?: string
   alt?: string
@@ -112,9 +86,7 @@ export function getSelectedImageData(editor: Editor | null): {
   return null
 }
 
-/**
- * Attempts to download image via fetch (handles CORS)
- */
+
 async function tryFetchDownload(
   url: string,
   filename: string
@@ -148,9 +120,7 @@ async function tryFetchDownload(
   }
 }
 
-/**
- * Downloads image via direct link (for same-origin or data URLs)
- */
+
 function tryDirectDownload(url: string, filename: string): boolean {
   try {
     const hasExtension = /\.[a-zA-Z0-9]+$/.test(filename)
@@ -174,9 +144,7 @@ function tryDirectDownload(url: string, filename: string): boolean {
   }
 }
 
-/**
- * Opens image in new tab
- */
+
 function openInNewTab(url: string): boolean {
   try {
     window.open(url, "_blank")
@@ -187,9 +155,7 @@ function openInNewTab(url: string): boolean {
   }
 }
 
-/**
- * Downloads the currently selected image
- */
+
 export async function downloadSelectedImage(
   editor: Editor | null,
   filename?: string,
@@ -263,16 +229,13 @@ export async function downloadSelectedImage(
         return openInNewTab(sanitizedUrl)
       }
     } catch {
-      // Silent fail
     }
 
     return false
   }
 }
 
-/**
- * Determines if the download button should be shown
- */
+
 export function shouldShowDownloadButton(props: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -289,9 +252,7 @@ export function shouldShowDownloadButton(props: {
   return true
 }
 
-/**
- * Custom hook that provides image download functionality for Tiptap editor
- */
+
 export function useImageDownload(config?: UseImageDownloadConfig) {
   const {
     editor: providedEditor,

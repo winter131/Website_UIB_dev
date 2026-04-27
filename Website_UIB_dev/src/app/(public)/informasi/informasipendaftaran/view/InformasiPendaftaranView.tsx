@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import NavbarLanding from '@/components/landing/navbar'
-import Footer from '@/components/landing/footer'
+
+
 import SarjanaPascasarjana from '@/components/landing/informasi/sarjanapascasarjana'
 import {
   ChevronDown,
@@ -23,9 +23,7 @@ export default function PendaftaranView() {
 
   return (
     <main className="min-h-screen bg-white font-poppins text-[#2A3955]">
-      <NavbarLanding />
       <SarjanaPascasarjana />
-      <Footer />
 
 
     </main>

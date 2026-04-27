@@ -3,10 +3,10 @@
 import { useCallback, useMemo } from "react"
 import type { Editor } from "@tiptap/react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Lib ---
+
 import { isExtensionAvailable } from "@/lib/tiptap-utils"
 import type { Orientation } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 import {
@@ -14,7 +14,7 @@ import {
   getRowOrColumnCells,
 } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --- Icons ---
+
 import { AlignLeftIcon } from "@/components/tiptap-icons/align-left-icon"
 import { AlignCenterIcon } from "@/components/tiptap-icons/align-center-icon"
 import { AlignRightIcon } from "@/components/tiptap-icons/align-right-icon"
@@ -28,38 +28,12 @@ export type VerticalAlignment = "top" | "middle" | "bottom"
 export type AlignmentType = "text" | "vertical"
 
 export interface UseTableAlignCellConfig {
-  /**
-   * The Tiptap editor instance. If omitted, the hook will use
-   * the context/editor from `useTiptapEditor`.
-   */
   editor?: Editor | null
-  /**
-   * The type of alignment to apply.
-   */
   alignmentType: AlignmentType
-  /**
-   * The alignment value to set.
-   */
   alignment: TextAlignment | VerticalAlignment
-  /**
-   * Optional index of the row or column to align.
-   * If provided along with orientation, aligns all cells in that row/column.
-   * If not provided, aligns the currently selected cell(s).
-   */
   index?: number
-  /**
-   * Optional orientation when using index.
-   * Determines whether to align a row or column.
-   */
   orientation?: Orientation
-  /**
-   * Hide the button when alignment isn't currently possible.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after successful alignment change.
-   */
   onAligned?: (alignment: TextAlignment | VerticalAlignment) => void
 }
 
@@ -93,10 +67,7 @@ export const tableAlignCellIcons = {
   } as Record<VerticalAlignment, React.ComponentType<{ className?: string }>>,
 }
 
-/**
- * Checks if table cell alignment can be performed
- * in the current editor state.
- */
+
 function canAlignCell(editor: Editor | null): boolean {
   if (
     !editor ||
@@ -113,10 +84,7 @@ function canAlignCell(editor: Editor | null): boolean {
   }
 }
 
-/**
- * Checks if row/column-wide alignment can be performed
- * in the current editor state.
- */
+
 function canAlignRowColumn({
   editor,
   index,
@@ -148,9 +116,7 @@ function canAlignRowColumn({
   }
 }
 
-/**
- * Gets the current alignment value for the active cell.
- */
+
 function getCurrentAlignment(
   editor: Editor | null,
   alignmentType: AlignmentType
@@ -184,9 +150,7 @@ function getCurrentAlignment(
   }
 }
 
-/**
- * Gets the current alignment for a specific row or column.
- */
+
 function getCurrentRowColumnAlignment(
   editor: Editor | null,
   alignmentType: AlignmentType,
@@ -215,9 +179,7 @@ function getCurrentRowColumnAlignment(
   }
 }
 
-/**
- * Sets the alignment attribute on the current table cell.
- */
+
 function setTableCellAlignment(
   editor: Editor | null,
   alignmentType: AlignmentType,
@@ -237,9 +199,7 @@ function setTableCellAlignment(
   }
 }
 
-/**
- * Sets alignment for all cells in a specific row or column.
- */
+
 function setRowColumnAlignment({
   editor,
   alignmentType,
@@ -267,7 +227,6 @@ function setRowColumnAlignment({
       return false
     }
 
-    // Track unique cells to avoid aligning the same merged cell multiple times
     const uniqueCells = new Map<number, (typeof cellData.cells)[0]>()
 
     cellData.cells.forEach((cellInfo) => {
@@ -280,8 +239,6 @@ function setRowColumnAlignment({
       return false
     }
 
-    // Convert to array and sort by position in reverse order
-    // This ensures we replace cells from end to beginning to maintain correct positions
     const cellsToProcess = Array.from(uniqueCells.values()).sort(
       (a, b) => b.pos - a.pos
     )
@@ -319,9 +276,7 @@ function setRowColumnAlignment({
   }
 }
 
-/**
- * Executes the cell alignment in the editor.
- */
+
 function tableAlignCell({
   editor,
   alignmentType,
@@ -355,10 +310,7 @@ function tableAlignCell({
   }
 }
 
-/**
- * Determines if the align cell button should be shown
- * based on editor state and config.
- */
+
 function shouldShowButton({
   editor,
   hideWhenUnavailable,
@@ -384,86 +336,7 @@ function shouldShowButton({
   return true
 }
 
-/**
- * Custom hook that provides **table cell alignment**
- * functionality for the Tiptap editor.
- *
- * @example
- * ```tsx
- * // Simple text alignment button
- * function AlignLeftButton() {
- *   const { isVisible, handleAlign, canAlignCell, isActive, label, Icon } = useTableAlignCell({
- *     alignmentType: "text",
- *     alignment: "left",
- *     hideWhenUnavailable: true,
- *     onAligned: (alignment) => console.log(`Aligned to: ${alignment}`),
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <button
- *       onClick={handleAlign}
- *       disabled={!canAlignCell}
- *       aria-pressed={isActive}
- *       aria-label={label}
- *     >
- *       <Icon /> {label}
- *     </button>
- *   )
- * }
- *
- * // Align entire row vertically
- * function AlignRowTopButton({ rowIndex }: { rowIndex: number }) {
- *   const { isVisible, handleAlign, label, Icon } = useTableAlignCell({
- *     alignmentType: "vertical",
- *     alignment: "top",
- *     index: rowIndex,
- *     orientation: "row",
- *     hideWhenUnavailable: true,
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <button onClick={handleAlign} aria-label={label}>
- *       <Icon /> {label}
- *     </button>
- *   )
- * }
- *
- * // Alignment toolbar for selected cell
- * function CellAlignmentToolbar() {
- *   const alignments: TextAlignment[] = ["left", "center", "right", "justify"]
- *
- *   return (
- *     <div role="toolbar" aria-label="Text alignment">
- *       {alignments.map((alignment) => {
- *         const { isVisible, handleAlign, canAlignCell, isActive, Icon } = useTableAlignCell({
- *           alignmentType: "text",
- *           alignment,
- *           hideWhenUnavailable: true,
- *         })
- *
- *         if (!isVisible) return null
- *
- *         return (
- *           <button
- *             key={alignment}
- *             onClick={handleAlign}
- *             disabled={!canAlignCell}
- *             aria-pressed={isActive}
- *             title={`Align ${alignment}`}
- *           >
- *             <Icon />
- *           </button>
- *         )
- *       })}
- *     </div>
- *   )
- * }
- * ```
- */
+
 export function useTableAlignCell(config: UseTableAlignCellConfig) {
   const {
     editor: providedEditor,

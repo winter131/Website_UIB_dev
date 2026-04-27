@@ -4,13 +4,13 @@ import { useMemo } from "react"
 import { type Editor } from "@tiptap/react"
 import type { TextOptions, Tone } from "@tiptap-pro/extension-ai"
 
-// --- Hooks ---
+
 import {
   useImproveDropdown,
   type AICommand,
 } from "@/components/tiptap-ui/improve-dropdown"
 
-// --- Icons ---
+
 import { MicAiIcon } from "@/components/tiptap-icons/mic-ai-icon"
 import { AiSparklesIcon } from "@/components/tiptap-icons/ai-sparkles-icon"
 import { CheckAiIcon } from "@/components/tiptap-icons/check-ai-icon"
@@ -23,14 +23,14 @@ import { SummarizeTextIcon } from "@/components/tiptap-icons/summarize-text-icon
 import { LanguagesIcon } from "@/components/tiptap-icons/languages-icon"
 import { ChevronRightIcon } from "@/components/tiptap-icons/chevron-right-icon"
 
-// --- Tiptap UI ---
+
 import {
   SUPPORTED_LANGUAGES,
   SUPPORTED_TONES,
 } from "@/components/tiptap-ui/ai-menu"
 import { AiAskButton } from "@/components/tiptap-ui/ai-ask-button"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button, ButtonGroup } from "@/components/tiptap-ui-primitive/button"
 import {
@@ -52,28 +52,10 @@ export interface ToneOption {
 }
 
 export interface ImproveDropdownProps extends Omit<ButtonProps, "type"> {
-  /**
-   * Optional editor instance. If not provided, will use editor from context
-   */
   editor?: Editor
-  /**
-   * List of AI command types to show in the dropdown.
-   */
   types?: Tone[]
-  /**
-   * Optional text options for AI commands
-   * @default { stream: true, format: "rich-text" }
-   */
   textOptions?: TextOptions
-  /**
-   * Whether to hide the dropdown when AI features are not available
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Whether to render the dropdown menu in a portal
-   * @default false
-   */
   portal?: boolean
 }
 

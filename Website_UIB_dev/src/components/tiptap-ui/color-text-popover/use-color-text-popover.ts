@@ -3,17 +3,17 @@
 import { useCallback, useEffect, useState } from "react"
 import type { Editor } from "@tiptap/react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Icons ---
+
 import { TextColorSmallIcon } from "@/components/tiptap-icons/text-color-small-icon"
 
-// --- Lib ---
+
 import { isMarkInSchema } from "@/lib/tiptap-utils"
 import { getActiveMarkAttrs } from "@/lib/tiptap-advanced-utils"
 
-// --- Tiptap UI ---
+
 import { canColorText } from "@/components/tiptap-ui/color-text-button"
 import { canColorHighlight } from "@/components/tiptap-ui/color-highlight-button"
 
@@ -30,22 +30,10 @@ export interface RecentColor {
   value: string
 }
 
-/**
- * Configuration for the color text popover functionality
- */
+
 export interface UseColorTextPopoverConfig {
-  /**
-   * The Tiptap editor instance.
-   */
   editor?: Editor | null
-  /**
-   * Whether the popover should hide when color text is not available.
-   * @default false
-   */
   hideWhenUnavailable?: boolean
-  /**
-   * Callback function called after a color is applied.
-   */
   onColorChanged?: ({
     type,
     label,
@@ -57,9 +45,7 @@ export interface UseColorTextPopoverConfig {
   }) => void
 }
 
-/**
- * Get a color object by its value
- */
+
 export function getColorByValue(
   value: string,
   colorArray: ColorItem[]
@@ -72,9 +58,7 @@ export function getColorByValue(
   )
 }
 
-/**
- * Checks if color text popover should be shown
- */
+
 export function shouldShowColorTextPopover(params: {
   editor: Editor | null
   hideWhenUnavailable: boolean
@@ -90,9 +74,7 @@ export function shouldShowColorTextPopover(params: {
   return true
 }
 
-/**
- * Hook to manage recently used colors
- */
+
 export function useRecentColors(maxColors: number = 3) {
   const [recentColors, setRecentColors] = useState<RecentColor[]>([])
   const [isInitialized, setIsInitialized] = useState(false)
@@ -148,64 +130,7 @@ export function useRecentColors(maxColors: number = 3) {
   return { recentColors, addRecentColor, isInitialized }
 }
 
-/**
- * Custom hook that provides color text popover functionality for Tiptap editor
- *
- * @example
- * ```tsx
- * // Simple usage - no params needed
- * function MySimpleColorTextPopover() {
- *   const { isVisible, handleColorChanged } = useColorTextPopover()
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <Popover>
- *       <PopoverTrigger asChild>
- *         <button>Color Text</button>
- *       </PopoverTrigger>
- *       <PopoverContent>
- *         <TextStyleColorPanel onColorChanged={handleColorChanged} />
- *       </PopoverContent>
- *     </Popover>
- *   )
- * }
- *
- * // Advanced usage with configuration
- * function MyAdvancedColorTextPopover() {
- *   const {
- *     isVisible,
- *     activeTextStyle,
- *     activeHighlight,
- *     handleColorChanged,
- *     label,
- *     Icon,
- *   } = useColorTextPopover({
- *     editor: myEditor,
- *     hideWhenUnavailable: true,
- *     onColorChanged: ({ type, label, value }) => console.log('Color changed!', { type, label, value })
- *   })
- *
- *   if (!isVisible) return null
- *
- *   return (
- *     <Popover>
- *       <PopoverTrigger asChild>
- *         <Button
- *           disabled={isDisabled}
- *           aria-label={label}
- *         >
- *           <Icon style={{ color: activeTextStyle.color }} />
- *         </Button>
- *       </PopoverTrigger>
- *       <PopoverContent>
- *         <TextStyleColorPanel onColorChanged={handleColorChanged} />
- *       </PopoverContent>
- *     </Popover>
- *   )
- * }
- * ```
- */
+
 export function useColorTextPopover(config?: UseColorTextPopoverConfig) {
   const {
     editor: providedEditor,

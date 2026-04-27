@@ -1,16 +1,16 @@
 "use client"
 
-// --- Lib ---
+
 import type { Orientation } from "@/components/tiptap-node/table-node/lib/tiptap-table-utils"
 
-// --- UI ---
+
 import { useTableAlignCell } from "@/components/tiptap-node/table-node/ui/table-align-cell-button"
 
-// --- Icons ---
+
 import { AlignmentIcon } from "@/components/tiptap-icons/alignment-icon"
 import { ChevronRightIcon } from "@/components/tiptap-icons/chevron-right-icon"
 
-// --- UI Primitives ---
+
 import {
   Menu,
   MenuButton,

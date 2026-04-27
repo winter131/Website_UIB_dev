@@ -25,16 +25,6 @@ export default function ContactUsLogin() {
           target="_blank"
           className="text-md text-gray-500 bx bxl-instagram hover:text-pink-500"
         ></Link>
-        {/* <Link href="">
-                <Image
-                  src="/img/line-logo.webp"
-                  alt="line"
-                  className="w-4 h-4 grayscale"
-                  width={50}
-                  height={50}
-                  unoptimized
-                />
-              </Link> */}
       </div>
     </div>
   );

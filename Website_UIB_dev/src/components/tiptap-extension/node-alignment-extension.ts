@@ -23,25 +23,9 @@ declare module "@tiptap/core" {
 }
 
 export interface NodeAlignmentOptions {
-  /**
-   * Node types that should support alignment
-   * @default ["paragraph", "heading", "blockquote", "tableCell", "tableHeader"]
-   */
   types: string[]
-  /**
-   * Use inline style instead of data attribute
-   * @default true
-   */
   useStyle?: boolean
-  /**
-   * Valid text alignment values
-   * @default ["left", "center", "right", "justify"]
-   */
   textAlignValues: string[]
-  /**
-   * Valid vertical alignment values
-   * @default ["top", "middle", "bottom"]
-   */
   verticalAlignValues: string[]
 }
 
@@ -174,7 +158,6 @@ export const NodeAlignment = Extension.create<NodeAlignmentOptions>({
     }
 
     return {
-      // TEXT ALIGN
       setNodeTextAlign: executeAlignmentCommand(
         "nodeTextAlign",
         (_, inputValue) => {
@@ -193,7 +176,6 @@ export const NodeAlignment = Extension.create<NodeAlignmentOptions>({
         }
       ),
 
-      // VERTICAL ALIGN
       setNodeVAlign: executeAlignmentCommand(
         "nodeVerticalAlign",
         (_, inputValue) => {
@@ -218,7 +200,6 @@ export const NodeAlignment = Extension.create<NodeAlignmentOptions>({
         }
       ),
 
-      // BOTH
       setNodeAlignment:
         (textAlign?: string, verticalAlign?: string) =>
         ({ state, tr }: { state: EditorState; tr: Transaction }) => {

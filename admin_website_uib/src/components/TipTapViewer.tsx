@@ -5,9 +5,10 @@ import { EditorContent, useEditor } from "@tiptap/react";
 // --- Tiptap Core Extensions ---
 import { StarterKit } from "@tiptap/starter-kit";
 import { Mention } from "@tiptap/extension-mention";
-import { TaskList, TaskItem } from "@tiptap/extension-list";
+import { TaskList } from "@tiptap/extension-task-list";
+import { TaskItem } from "@tiptap/extension-task-item";
 import { Color, TextStyle } from "@tiptap/extension-text-style";
-import { Placeholder, Selection } from "@tiptap/extensions";
+import { Placeholder } from "@tiptap/extension-placeholder";
 import { Typography } from "@tiptap/extension-typography";
 import { Highlight } from "@tiptap/extension-highlight";
 import { Superscript } from "@tiptap/extension-superscript";
@@ -103,7 +104,6 @@ export default function TiptapViewer({ content }: { content: any }) {
       TaskList,
       TaskItem.configure({ nested: true }),
       Highlight.configure({ multicolor: true }),
-      Selection,
       Image,
       TableHandleExtension,
       ListNormalizationExtension,

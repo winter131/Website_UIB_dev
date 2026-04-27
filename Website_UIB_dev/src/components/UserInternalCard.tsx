@@ -20,7 +20,6 @@ export default function UserInternalCard({
       flex flex-col sm:flex-row items-center sm:items-start gap-4
     "
     >
-      {/* Action Buttons */}
       <div className="absolute bottom-3 right-3 flex gap-2">
         <button
           onClick={() => handleEdit && handleEdit(data)}
@@ -37,7 +36,6 @@ export default function UserInternalCard({
         </button>
       </div>
 
-      {/* Foto Profil */}
       <img
         src={data.PasphotoLink}
         alt={data.PegawaiName}
@@ -51,9 +49,7 @@ export default function UserInternalCard({
         }}
       />
 
-      {/* Info */}
       <div className="flex-1 text-center sm:text-left w-full">
-        {/* Name + Status */}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start pr-8 sm:pr-10">
           <h2 className="text-base font-semibold text-gray-900 dark:text-white flex items-center gap-1 justify-center sm:justify-start">
             <span className="bx bx-user"></span>
@@ -74,7 +70,6 @@ export default function UserInternalCard({
           </span>
         </div>
 
-        {/* NIP + Email */}
         <div
           className="
           flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-2
@@ -92,7 +87,6 @@ export default function UserInternalCard({
           </p>
         </div>
 
-        {/* Group */}
         <div className="flex justify-center sm:justify-start">
           <span
             className="

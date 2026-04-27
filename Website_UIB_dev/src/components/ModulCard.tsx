@@ -21,7 +21,6 @@ export default function ModulCard({
       flex flex-col sm:flex-row items-center sm:items-start gap-4
     "
     >
-      {/* Action Buttons */}
       <div className="absolute bottom-3 right-3 flex gap-2">
         <button
           onClick={() => handleEdit && handleEdit(data)}
@@ -38,14 +37,11 @@ export default function ModulCard({
         </button>
       </div>
 
-      {/* Icon*/}
       <div className="border border-gray-200 rounded-full w-20 h-20 sm:w-16 sm:h-16 flex flex-row items-center justify-center">
         <span className={`bx ${data.modul_icon} text-4xl text-gray-400`}></span>
       </div>
 
-      {/* Info */}
       <div className="flex-1 text-center sm:text-left w-full">
-        {/* Name + Status */}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start pr-8 sm:pr-10">
           <h2 className="text-base font-semibold text-gray-900 dark:text-white flex items-center gap-1 justify-center sm:justify-start">
             <span className="bx bx-layout"></span>
@@ -53,7 +49,6 @@ export default function ModulCard({
           </h2>
         </div>
 
-        {/* NIP + Email */}
         <div
           className="
           flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-2
@@ -66,7 +61,6 @@ export default function ModulCard({
           </p>
         </div>
 
-        {/* Group */}
         <div className="flex justify-center sm:justify-start">
           <span
             className={`${

@@ -2,17 +2,17 @@
 
 import { forwardRef } from "react"
 
-// --- Hooks ---
+
 import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
 
-// --- Tiptap UI ---
+
 import type { UseTableTriggerButtonConfig } from "@/components/tiptap-node/table-node/ui/table-trigger-button"
 import { useTableTriggerButton } from "@/components/tiptap-node/table-node/ui/table-trigger-button"
 
-// --- Components ---
+
 import { TableGridSelector } from "@/components/tiptap-node/table-node/ui/table-trigger-button/table-grid-selector"
 
-// --- UI Primitives ---
+
 import type { ButtonProps } from "@/components/tiptap-ui-primitive/button"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import {
@@ -21,32 +21,16 @@ import {
   PopoverTrigger,
 } from "@/components/tiptap-ui-primitive/popover"
 
-// --- Styles ---
+
 import { Card, CardBody } from "@/components/tiptap-ui-primitive/card"
 
 export interface TableTriggerButtonProps
   extends Omit<ButtonProps, "type">,
     UseTableTriggerButtonConfig {
-  /**
-   * Optional text to display alongside the icon.
-   */
   text?: string
 }
 
-/**
- * Button component for inserting tables in a Tiptap editor with a grid selector.
- *
- * For custom button implementations, use the `useTableTriggerButton` hook instead.
- *
- * @example
- * ```tsx
- * <TableTriggerButton
- *   editor={editor}
- *   hideWhenUnavailable={true}
- *   onInserted={(rows, cols) => console.log(`Inserted ${rows}x${cols} table`)}
- * />
- * ```
- */
+
 export const TableTriggerButton = forwardRef<
   HTMLButtonElement,
   TableTriggerButtonProps

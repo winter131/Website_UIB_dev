@@ -109,7 +109,7 @@ export default function DosenFbm() {
                         value={searchTerm}
                         onChange={(e) => {
                             setSearchTerm(e.target.value)
-                            setCurrentPage(1) 
+                            setCurrentPage(1)
                         }}
                     />
                 </div>

@@ -6,7 +6,10 @@ export async function getLatestNews() {
     try {
         const allNews = await prisma.news.findMany({
             where: {
-                NOT: { category: 'Artikel' }
+                NOT: [
+                    { category: 'Artikel' },
+                    { category: 'Prestasi' }
+                ]
             },
             orderBy: { date: 'desc' },
             take: 10

@@ -56,6 +56,15 @@ export default function Sidebar({
             ModulUrutan: 0,
             SubMenu: null,
           },
+          {
+            ModulId: 99,
+            ModulName: "Managemen Prestasi",
+            ModulLink: "/managemen-prestasi",
+            ModulIcon: "bx bx-trophy",
+            ModulMainMenu: 0,
+            ModulUrutan: 1,
+            SubMenu: null,
+          },
           ...baseData,
         ];
 

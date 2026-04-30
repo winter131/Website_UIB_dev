@@ -16,9 +16,20 @@ export default function NavbarLanding() {
     return pathname.startsWith(path)
   }
 
+  const closeMobileMenu = () => {
+    const elem = document.activeElement;
+    if (elem instanceof HTMLElement) {
+      elem.blur();
+    }
+    document.querySelectorAll('details[open]').forEach(el => {
+      el.removeAttribute('open');
+    });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      setIsScrolled(window.scrollY > 20);
+      closeMobileMenu();
     }
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -40,9 +51,9 @@ export default function NavbarLanding() {
 
   return (
     <header className="fixed top-0 w-full z-[1000] shadow-sm bg-white font-poppins transition-colors duration-300">
-      <motion.div 
+      <motion.div
         initial={false}
-        animate={{ 
+        animate={{
           height: isScrolled ? 0 : 'auto',
           opacity: isScrolled ? 0 : 1,
           borderBottomWidth: isScrolled ? 0 : 1
@@ -58,10 +69,10 @@ export default function NavbarLanding() {
         </div>
 
         <div className="flex items-center gap-6 text-[13px]">
-          <Link href="#" className="hover:text-[#e67e22] transition-colors no-underline text-[#434040] tracking-wide">Admission</Link>
-          <Link href="#" className="hover:text-[#e67e22] transition-colors no-underline text-[#434040] tracking-wide">UIB Access</Link>
-          <Link href="#" className="hover:text-[#e67e22] transition-colors no-underline text-[#434040] tracking-wide">Graduation</Link>
-          <Link href="#" className="hover:text-[#e67e22] transition-colors no-underline text-[#434040] tracking-wide">Alumni and Careers</Link>
+          <Link href="#" className="hover:text-[#e67e22] transition-colors no-underline text-[#434040] tracking-wide">Admisi</Link>
+          <Link href="/landing/informasi/aksesuib" className="hover:text-[#e67e22] transition-colors no-underline text-[#434040] tracking-wide">Akses UIB</Link>
+          <Link href="#" className="hover:text-[#e67e22] transition-colors no-underline text-[#434040] tracking-wide">Wisuda</Link>
+          <Link href="#" className="hover:text-[#e67e22] transition-colors no-underline text-[#434040] tracking-wide">Alumni dan Karir</Link>
 
 
           <div className="flex items-center gap-1 ml-1 border-l border-gray-300 pl-6">
@@ -91,13 +102,13 @@ export default function NavbarLanding() {
 
         <div className="navbar-start w-auto">
           <Link href="/" className="flex items-center">
-            <Image src="/logo/uib.png" alt="Logo UIB" width={110} height={45} className="h-10 w-auto object-contain" priority />
+            <Image src="/logo/logo-uib.png" alt="Logo UIB" width={150} height={45} className="h-10 w-auto object-contain" priority />
           </Link>
         </div>
 
         <div className="navbar-end flex-grow justify-start">
           <div className="hidden lg:flex h-full w-full justify-start ml-20">
-            <ul className="menu menu-horizontal p-0 font-medium text-[#434040] text-[15px] items-center gap-6">
+            <ul className="menu menu-horizontal p-0 font-medium text-[#434040] text-[14px] items-center gap-2 flex-nowrap">
 
               <li className="list-none relative group">
                 <Link
@@ -107,9 +118,9 @@ export default function NavbarLanding() {
                 >
                   Beranda
                   {isActive('/') && (
-                    <motion.div 
-                      layoutId="activeNav" 
-                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]" 
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
                   )}
@@ -131,9 +142,9 @@ export default function NavbarLanding() {
                     <FaChevronDown size={10} className={`${hoveredMenu === 'admisi' || isActive('/admisi') ? 'text-[#e67e22]' : 'text-gray-400'}`} />
                   </motion.div>
                   {isActive('/admisi') && (
-                    <motion.div 
-                      layoutId="activeNav" 
-                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]" 
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
                   )}
@@ -166,9 +177,9 @@ export default function NavbarLanding() {
                     <FaChevronDown size={10} className={`${hoveredMenu === 'kuliah' || isActive('/akademik') ? 'text-[#e67e22]' : 'text-gray-400'}`} />
                   </motion.div>
                   {isActive('/akademik') && (
-                    <motion.div 
-                      layoutId="activeNav" 
-                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]" 
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
                   )}
@@ -199,9 +210,9 @@ export default function NavbarLanding() {
                     <FaChevronDown size={10} className={`${hoveredMenu === 'penelitian' || isActive('/penelitianpengabdian') ? 'text-[#e67e22]' : 'text-gray-400'}`} />
                   </motion.div>
                   {isActive('/penelitianpengabdian') && (
-                    <motion.div 
-                      layoutId="activeNav" 
-                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]" 
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
                   )}
@@ -225,9 +236,9 @@ export default function NavbarLanding() {
                 >
                   Program Internasional
                   {isActive('/international') && (
-                    <motion.div 
-                      layoutId="activeNav" 
-                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]" 
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
                   )}
@@ -249,9 +260,9 @@ export default function NavbarLanding() {
                     <FaChevronDown size={10} className={`${hoveredMenu === 'tentang' || isActive('/tentang') ? 'text-[#e67e22]' : 'text-gray-400'}`} />
                   </motion.div>
                   {isActive('/tentang') && (
-                    <motion.div 
-                      layoutId="activeNav" 
-                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]" 
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute bottom-2 left-3 right-3 h-0.5 bg-[#e67e22]"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
                   )}
@@ -273,79 +284,78 @@ export default function NavbarLanding() {
             </ul>
           </div>
 
-          <div className="dropdown dropdown-end lg:hidden">
-            <label tabIndex={0} className="btn btn-ghost hover:bg-transparent transition-all duration-300">
-              <FaBars size={24} />
+          <div className="dropdown dropdown-end lg:hidden flex items-center">
+            <label tabIndex={0} className="btn btn-ghost btn-circle hover:bg-transparent">
+              <FaBars size={22} className="text-[#434040]" />
             </label>
-            <ul tabIndex={0} className="dropdown-content mt-3 z-[1001] bg-white shadow-2xl w-[92vw] max-w-[380px] border-t-4 border-[#e67e22] p-0 list-none overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300">
+            <ul tabIndex={0} className="dropdown-content mt-90 z-[1001] bg-white shadow-2xl w-screen -mr-4 border-t border-gray-100 p-0 list-none overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 left-0 right-0">
 
               <li className="border-b border-gray-100">
-                <Link href="/" className="block py-4 px-6 font-medium hover:bg-gray-50 no-underline text-[#434040]">Beranda</Link>
+                <Link href="/" onClick={closeMobileMenu} className="block py-4 px-6 font-medium hover:bg-gray-50 no-underline text-[#434040]">Beranda</Link>
               </li>
 
               <li className="border-b border-gray-100">
                 <details className="group w-full">
-                  <summary className="flex items-center justify-between py-4 px-6 font-medium cursor-pointer hover:bg-gray-50 list-none">
-                    <span className="flex-grow text-[#434040]">Admisi</span>
+                  <summary className="flex items-center gap-2 py-5 px-6 font-medium cursor-pointer hover:bg-gray-50 list-none text-[#434040]">
+                    <span>Admisi</span>
                     <FaChevronDown size={10} className="text-gray-400 transition-transform group-open:rotate-180" />
                   </summary>
                   <ul className="bg-gray-50 list-none p-0">
-                    <li><Link href="/admisi/pendaftaran" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Pendaftaran</Link></li>
-                    <li><Link href="/admisi/sertifikasi" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Sertifikasi</Link></li>
-                    <li><Link href="/admisi/beasiswa" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Beasiswa</Link></li>
-                    <li><Link href="/admisi/bantuankeuangan" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Bantuan Keuangan</Link></li>
-                    <li><Link href="/admisi/biayakuliah" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Biaya Kuliah</Link></li>
+                    <li><Link href="/admisi/pendaftaran" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Pendaftaran</Link></li>
+                    <li><Link href="/admisi/sertifikasi" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Sertifikasi</Link></li>
+                    <li><Link href="/admisi/beasiswa" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Beasiswa</Link></li>
+                    <li><Link href="/admisi/bantuankeuangan" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Bantuan Keuangan</Link></li>
+                    <li><Link href="/admisi/biayakuliah" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Biaya Kuliah</Link></li>
                   </ul>
                 </details>
               </li>
 
               <li className="border-b border-gray-100">
                 <details className="group w-full">
-                  <summary className="flex items-center justify-between py-4 px-6 font-medium cursor-pointer hover:bg-gray-50 list-none">
-                    <Link href="/tentang" className="no-underline flex-grow text-[#434040]">Tentang</Link>
+                  <summary className="flex items-center gap-2 py-5 px-6 font-medium cursor-pointer hover:bg-gray-50 list-none text-[#434040]">
+                    <span>Akademik</span>
                     <FaChevronDown size={10} className="text-gray-400 transition-transform group-open:rotate-180" />
                   </summary>
                   <ul className="bg-gray-50 list-none p-0">
-                    <li><Link href="/tentang/sejarah" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Sejarah</Link></li>
-                    <li><Link href="/tentang/akreditasi" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Akreditasi</Link></li>
-                    <li><Link href="/tentang/ymti" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Ymti-batam</Link></li>
-                    <li><Link href="/tentang/pimpinan" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Pimpinan</Link></li>
-                    <li><Link href="/tentang/alumni" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Alumni</Link></li>
+                    <li><Link href="/akademik/programsarjana" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Program Sarjana</Link></li>
+                    <li><Link href="/akademik/programmagister" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Program Magister</Link></li>
+                    <li><Link href="/akademik/kehidupankampus" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Kehidupan Kampus</Link></li>
                   </ul>
                 </details>
               </li>
 
               <li className="border-b border-gray-100">
                 <details className="group w-full">
-                  <summary className="flex items-center justify-between py-4 px-6 font-medium cursor-pointer hover:bg-gray-50 list-none">
-                    <Link href="/akademik" className="no-underline flex-grow text-[#434040]">Akademik</Link>
+                  <summary className="flex items-center gap-2 py-5 px-6 font-medium cursor-pointer hover:bg-gray-50 list-none text-[#434040]">
+                    <span>Penelitian & Pengabdian</span>
                     <FaChevronDown size={10} className="text-gray-400 transition-transform group-open:rotate-180" />
                   </summary>
                   <ul className="bg-gray-50 list-none p-0">
-                    <li><Link href="/akademik/programsarjana" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Program Sarjana</Link></li>
-                    <li><Link href="/akademik/programmagister" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Program Magister</Link></li>
-                    <li><Link href="/akademik/kehidupankampus" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Kehidupan Kampus</Link></li>
-
+                    <li><Link href="/penelitianpengabdian/penelitian" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Penelitian</Link></li>
+                    <li><Link href="/penelitianpengabdian/pengabdian" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Pengabdian</Link></li>
+                    <li><Link href="/penelitianpengabdian/seminar" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Seminar</Link></li>
                   </ul>
                 </details>
               </li>
 
               <li className="border-b border-gray-100">
-                <details className="group w-full">
-                  <summary className="flex items-center justify-between py-4 px-6 font-medium cursor-pointer hover:bg-gray-50 list-none">
-                    <Link href="/penelitianpengabdian" className="no-underline flex-grow text-[#434040]">Penelitian & Pengabdian</Link>
-                    <FaChevronDown size={10} className="text-gray-400 transition-transform group-open:rotate-180" />
-                  </summary>
-                  <ul className="bg-gray-50 list-none p-0">
-                    <li><Link href="/penelitianpengabdian/penelitian" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Penelitian</Link></li>
-                    <li><Link href="/penelitianpengabdian/pengabdian" className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Pengabdian</Link></li>
-                    <li><Link href="/penelitianpengabdian/seminar" className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Seminar</Link></li>
-                  </ul>
-                </details>
+                <Link href="/international" onClick={closeMobileMenu} className="block py-4 px-6 font-medium hover:bg-gray-50 no-underline text-[#434040]">Program Internasional</Link>
               </li>
 
               <li>
-                <Link href="/international" className="block py-4 px-6 font-medium hover:bg-gray-50 no-underline text-[#434040]">Program Internasional</Link>
+                <details className="group w-full">
+                  <summary className="flex items-center gap-2 py-5 px-6 font-medium cursor-pointer hover:bg-gray-50 list-none text-[#434040]">
+                    <span>Tentang</span>
+                    <FaChevronDown size={10} className="text-gray-400 transition-transform group-open:rotate-180" />
+                  </summary>
+                  <ul className="bg-gray-50 list-none p-0">
+                    <li><Link href="/tentang/sejarah" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Sejarah</Link></li>
+                    <li><Link href="/tentang/akreditasi" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Akreditasi</Link></li>
+                    <li><Link href="/tentang/ymti" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Ymti-batam</Link></li>
+                    <li><Link href="/tentang/pimpinan" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] border-b border-gray-200/50 no-underline">Pimpinan</Link></li>
+                    <li><Link href="/tentang/alumni" onClick={closeMobileMenu} className="block py-3 px-10 text-sm hover:text-[#e67e22] no-underline">Alumni</Link></li>
+                  </ul>
+                </details>
               </li>
             </ul>
           </div>

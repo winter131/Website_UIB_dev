@@ -111,9 +111,7 @@ export default function BeasiswaAdmisiInfo() {
                         </h2>
                         <p className="text-sm text-slate-500 mt-1 font-medium">Uji kompetensi berstandar internasional untuk mahasiswa dan umum.</p>
                     </div>
-                    <button className="text-[11px] font-black text-[#1A253A] uppercase flex items-center gap-2 group hover:text-[#e67e22] transition-colors">
-                        Lihat Semua Jadwal Ujian <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
+
                 </div>
 
                 <div className="grid grid-cols-1 gap-10">
@@ -179,32 +177,7 @@ export default function BeasiswaAdmisiInfo() {
                     ))}
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    className="mt-20 bg-[#1A253A] rounded-[48px] p-10 md:p-16 text-white relative overflow-hidden"
-                >
-                    <div className="absolute right-0 bottom-0 opacity-10 translate-x-1/4 translate-y-1/4 rotate-12">
-                        <Landmark size={400} />
-                    </div>
-                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
-                        <div className="max-w-2xl text-center md:text-left">
-                            <div className="inline-block px-4 py-2 bg-white/10 rounded-xl mb-6 text-[10px] font-black uppercase tracking-widest border border-white/10">Industrial Connection</div>
-                            <h4 className="text-3xl md:text-4xl font-black uppercase mb-6 tracking-tight leading-tight">Fasilitas Kuliah <br className="hidden md:block" /> <span className="text-[#e67e22]">Sambil Kerja</span></h4>
-                            <p className="text-white/60 text-base leading-relaxed font-medium">
-                                UIB memberikan fleksibilitas tinggi bagi mahasiswa untuk menempuh pendidikan sembari membangun karier profesional di kawasan industri strategis Batam.
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-4 w-full md:w-auto">
-                            <button className="bg-[#e67e22] text-white px-12 py-5 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-[#1A253A] transition-all shadow-2xl shadow-orange-900/20 whitespace-nowrap">
-                                Daftar Sekarang
-                            </button>
-                            <button className="bg-white/5 border border-white/10 text-white px-12 py-5 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white/10 transition-all whitespace-nowrap">
-                                Hubungi Konselor
-                            </button>
-                        </div>
-                    </div>
-                </motion.div>
+
             </div>
         </div>
     );

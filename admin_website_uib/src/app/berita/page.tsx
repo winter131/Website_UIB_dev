@@ -87,9 +87,7 @@ export default async function NewsManagement(props: {
                                         </span>
                                     </td>
                                     <td className="p-4 text-gray-500">{item.date}</td>
-                                    <td className="p-4 text-right">
-                                        <NewsActions id={item.id.toString()} title={item.title} />
-                                    </td>
+                                    <NewsActions id={item.id.toString()} title={item.title} />
                                 </tr>
                             ))
                         )}

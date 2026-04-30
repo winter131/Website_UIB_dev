@@ -16,7 +16,7 @@ import Rankings from '@/components/landing/rankings'
 import AcademicPrograms from '@/components/landing/programs'
 import DirectorySection from '@/components/landing/directory'
 import LatestArticles from '@/components/landing/articles'
-import StudentAchievements from '@/components/landing/student-achievements'
+import StudentAchievements from '@/components/landing/prestasi/FeaturedAchievement'
 
 
 

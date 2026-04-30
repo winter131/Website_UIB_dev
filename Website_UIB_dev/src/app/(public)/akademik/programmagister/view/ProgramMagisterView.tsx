@@ -154,7 +154,7 @@ export default function ProgramMagisterView() {
           })}
         </div>
 
-        <div className="max-w-6xl mx-auto mt-6">
+        {/* <div className="max-w-6xl mx-auto mt-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -176,7 +176,7 @@ export default function ProgramMagisterView() {
             </Link>
             <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
           </motion.div>
-        </div>
+        </div> */}
       </section>
 
     </main>

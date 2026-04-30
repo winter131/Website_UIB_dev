@@ -9,7 +9,7 @@ export default function SertifikasiView() {
     return (
         <main className="min-h-screen bg-white font-poppins selection:bg-[#e67e22] selection:text-white">
 
-            <section className="py-40">
+            <section className="pt-50 pb-5">
                 <div className="container mx-auto px-6 md:px-16 max-w-6xl">
                     <div className="bg-white rounded-[40px] border border-slate-100 p-2 md:p-4">
                         <SertifikasiInfo />

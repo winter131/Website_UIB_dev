@@ -31,6 +31,9 @@ export default function RootLayout({
             <Link href="/artikel" className="px-4 py-2 hover:bg-slate-800 rounded-md transition-colors font-medium">
               Article Management
             </Link>
+            <Link href="/prestasi" className="px-4 py-2 hover:bg-slate-800 rounded-md transition-colors font-medium">
+              Prestasi Management
+            </Link>
           </nav>
         </aside>
 

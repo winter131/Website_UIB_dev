@@ -1,26 +1,8 @@
 'use client'
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import {
-  CreditCard,
-  CheckCircle2,
-  ArrowRight
-} from 'lucide-react'
-
-// Data berdasarkan Gambar 1 (Estimasi Semester 1 Sarjana)
-const sarjanaData = [
-  { prodi: 'Teknik Sipil', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '3.500.000', total: '23.000.000' },
-  { prodi: 'Arsitektur', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '3.325.000', total: '22.825.000' },
-  { prodi: 'Sistem Informasi', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '3.325.000', total: '22.825.000' },
-  { prodi: 'Teknologi Informasi', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '3.150.000', total: '22.650.000' },
-  { prodi: 'Manajemen', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '3.150.000', total: '22.650.000' },
-  { prodi: 'Akuntansi', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '3.150.000', total: '22.650.000' },
-  { prodi: 'Pariwisata', gedung: '10.500.000', ppl: '5.000.000', bpp: '6.000.000', sks: '3.500.000', total: '25.000.000' },
-  { prodi: 'Ilmu Hukum', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '3.500.000', total: '23.000.000' },
-  { prodi: 'Pendidikan Bahasa Inggris', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '3.500.000', total: '23.000.000' },
-  { prodi: 'Gizi', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '2.975.000', total: '22.475.000' },
-  { prodi: 'Biologi', gedung: '10.500.000', ppl: '3.000.000', bpp: '6.000.000', sks: '2.975.000', total: '22.475.000' },
-];
+import { CreditCard, CheckCircle2, ArrowRight } from 'lucide-react'
+import KalkulatorBeasiswa, { sarjanaData } from './kalkulatorbeasiswa'
 
 const pascaData = [
   { kategori: 'Umum', total: '50.000.000', s1: '30.000.000', s2: '10.000.000', s3: '10.000.000' },
@@ -48,38 +30,43 @@ export default function BiayaKuliahAdmisiInfo() {
 
       <AnimatePresence mode='wait'>
         {activeTab === 'Sarjana' && (
-          <motion.div key="s1" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            <div className="bg-[#1a365d] p-8 rounded-t-[32px] text-center border-b-4 border-[#e67e22]">
-              <h2 className="text-xl font-black text-white uppercase tracking-wider">ESTIMASI <span className="text-[#e67e22]">BIAYA SEMESTER 1</span></h2>
-            </div>
-            <div className="overflow-x-auto bg-white border border-slate-100 rounded-b-[32px]">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-[#fbc531]">
-                    <th className="py-5 px-6 text-center border border-slate-300 font-black uppercase text-[10px]">Program Studi</th>
-                    <th className="py-5 px-4 text-center border border-slate-300 font-black uppercase text-[10px]">Gedung/SPP</th>
-                    <th className="py-5 px-4 text-center border border-slate-300 font-black uppercase text-[10px]">PPL</th>
-                    <th className="py-5 px-4 text-center border border-slate-300 font-black uppercase text-[10px]">BPP Pokok</th>
-                    <th className="py-5 px-4 text-center border border-slate-300 font-black uppercase text-[10px]">Biaya SKS</th>
-                    <th className="py-5 px-6 text-center border border-slate-300 font-black uppercase text-[10px] bg-orange-400">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sarjanaData.map((row, i) => (
-                    <tr key={i} className="hover:bg-slate-50 transition-colors text-center font-bold text-slate-700 text-[10px]">
-                      <td className="py-4 px-6 border border-slate-100 text-left bg-slate-50/50 uppercase">{row.prodi}</td>
-                      <td className="py-4 px-4 border border-slate-100">{row.gedung}</td>
-                      <td className="py-4 px-4 border border-slate-100">{row.ppl}</td>
-                      <td className="py-4 px-4 border border-slate-100">{row.bpp}</td>
-                      <td className="py-4 px-4 border border-slate-100">{row.sks}</td>
-                      <td className="py-4 px-6 border border-slate-100 font-black bg-orange-50 text-[#1a365d]">{row.total}</td>
+          <motion.div key="s1" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-12">
+            <div>
+              <div className="bg-[#1a365d] p-8 rounded-t-[32px] text-center border-b-4 border-[#e67e22]">
+                <h2 className="text-xl font-black text-white uppercase tracking-wider">ESTIMASI <span className="text-[#e67e22]">BIAYA SEMESTER 1</span></h2>
+              </div>
+              <div className="overflow-x-auto bg-white border border-slate-100 rounded-b-[32px]">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-[#fbc531]">
+                      <th className="py-5 px-6 text-center border border-slate-300 font-black uppercase text-[10px]">Program Studi</th>
+                      <th className="py-5 px-4 text-center border border-slate-300 font-black uppercase text-[10px]">Gedung/SPP</th>
+                      <th className="py-5 px-4 text-center border border-slate-300 font-black uppercase text-[10px]">PPL</th>
+                      <th className="py-5 px-4 text-center border border-slate-300 font-black uppercase text-[10px]">BPP Pokok</th>
+                      <th className="py-5 px-4 text-center border border-slate-300 font-black uppercase text-[10px]">Biaya SKS</th>
+                      <th className="py-5 px-6 text-center border border-slate-300 font-black uppercase text-[10px] bg-orange-400">Total</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {sarjanaData.map((row, i) => (
+                      <tr key={i} className="hover:bg-slate-50 transition-colors text-center font-bold text-slate-700 text-[10px]">
+                        <td className="py-4 px-6 border border-slate-100 text-left bg-slate-50/50 uppercase">{row.prodi}</td>
+                        <td className="py-4 px-4 border border-slate-100">{row.gedung}</td>
+                        <td className="py-4 px-4 border border-slate-100">{row.ppl}</td>
+                        <td className="py-4 px-4 border border-slate-100">{row.bpp}</td>
+                        <td className="py-4 px-4 border border-slate-100">{row.sks}</td>
+                        <td className="py-4 px-6 border border-slate-100 font-black bg-orange-50 text-[#1a365d]">{row.total}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
+
+            <KalkulatorBeasiswa />
           </motion.div>
         )}
+
 
         {activeTab === 'Pasca Sarjana' && (
           <motion.div key="s2" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
@@ -128,19 +115,19 @@ export default function BiayaKuliahAdmisiInfo() {
                 <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
                   <h3 className="text-lg font-black mb-4 uppercase text-[#fbc531]">Program Sarjana (S1)</h3>
                   <div className="space-y-3 text-[11px] font-bold">
-                     <div className="flex justify-between border-b border-white/10 pb-2"><span>Uang Gedung</span><span>Rp 5.000.000,-</span></div>
-                     <div className="flex justify-between border-b border-white/10 pb-2"><span>Administrasi</span><span>Rp 3.000.000,-</span></div>
-                     <div className="flex justify-between border-b border-white/10 pb-2"><span>BPP Pokok</span><span>Rp 6.000.000,-</span></div>
-                     <div className="flex justify-between"><span>Biaya SKS</span><span>Rp 175.000,- /SKS</span></div>
+                    <div className="flex justify-between border-b border-white/10 pb-2"><span>Uang Gedung</span><span>Rp 5.000.000,-</span></div>
+                    <div className="flex justify-between border-b border-white/10 pb-2"><span>Administrasi</span><span>Rp 3.000.000,-</span></div>
+                    <div className="flex justify-between border-b border-white/10 pb-2"><span>BPP Pokok</span><span>Rp 6.000.000,-</span></div>
+                    <div className="flex justify-between"><span>Biaya SKS</span><span>Rp 175.000,- /SKS</span></div>
                   </div>
                 </div>
                 <div className="bg-[#fbc531] p-6 rounded-2xl text-[#1a365d] flex flex-col justify-center text-center">
                   <h3 className="text-lg font-black mb-1 uppercase">Program Magister (S2)</h3>
                   <p className="text-[10px] font-black opacity-70 mb-2 uppercase tracking-widest">BIAYA PAKET TOTAL</p>
                   <div className="text-3xl font-black mb-4">Rp 35.000.000,-</div>
-                  <button className="px-6 py-3 bg-[#1a365d] text-white rounded-xl font-black uppercase text-[9px] tracking-widest flex items-center justify-center gap-2">
+                  <a href="/admisi/pendaftaran" className="px-6 py-3 bg-[#1a365d] text-white rounded-xl font-black uppercase text-[9px] tracking-widest flex items-center justify-center gap-2 no-underline">
                     DAFTAR RPL <ArrowRight size={14} />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

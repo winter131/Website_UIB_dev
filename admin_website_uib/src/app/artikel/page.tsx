@@ -88,9 +88,7 @@ export default async function ArtikelManagement(props: {
                                         </span>
                                     </td>
                                     <td className="p-4 text-gray-500">{item.date}</td>
-                                    <td className="p-4 text-right">
-                                        <ArticleActions id={item.id.toString()} title={item.title} />
-                                    </td>
+                                    <ArticleActions id={item.id.toString()} title={item.title} />
                                 </tr>
                             ))
                         )}

@@ -48,7 +48,7 @@ export default function NavbarInternational() {
           </Link>
         </div>
         <div className="flex items-center gap-6">
-           <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1">
             {[
               { code: 'ID', src: 'https://flagcdn.com/w40/id.png' },
               { code: 'EN', src: 'https://flagcdn.com/w40/gb.png' },
@@ -73,7 +73,7 @@ export default function NavbarInternational() {
         <div className="navbar-end flex-grow justify-end">
           <div className="hidden lg:flex h-full items-center">
             <ul className="menu menu-horizontal p-0 font-bold text-blue-900 text-[14px] items-center gap-2 flex-nowrap">
-              
+
               <li className="list-none relative group">
                 <Link href="/international" className={`px-4 py-4 transition-all duration-300 no-underline ${isActive('/international') ? 'text-orange-500' : 'hover:text-orange-500'}`}>
                   Home
@@ -117,9 +117,9 @@ export default function NavbarInternational() {
           </div>
 
           <div className="lg:hidden flex items-center">
-             <button className="btn btn-ghost btn-circle">
-                <FaBars size={22} className="text-blue-900" />
-             </button>
+            <button className="btn btn-ghost btn-circle">
+              <FaBars size={22} className="text-blue-900" />
+            </button>
           </div>
         </div>
       </nav>
